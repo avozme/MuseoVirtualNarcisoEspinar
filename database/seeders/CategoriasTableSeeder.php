@@ -32,5 +32,9 @@ class CategoriasTableSeeder extends Seeder
         DB::table('categorias')->insert([
             'name' => 'Basura para borrar',
         ]);
+        DB::table('categorias')->insert([
+            'name' => 'Feria',
+
+        ]);
     }
 }
