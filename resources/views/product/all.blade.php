@@ -5,23 +5,23 @@
 @section("header", "Administración de productos")
 
 @section("content")
-    <a href="{{ route('product.create') }}">Nuevo</a>
-    <table border='1'>
+    <table class="table" >
     @foreach ($productList as $product)
         <tr>
             <td>{{$product->name}}</td>
             <td>{{$product->description}}</td>
             <td>{{$product->price}}</td>
             <td>
-                <a href="{{route('product.edit', $product->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-success" href="{{route('product.edit', $product->id)}}">Modificar</a></td>
             <td>
                 <form action = "{{route('product.destroy', $product->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input type="submit" value="Borrar">
+                    <input class="btn btn-outline-danger" type="submit" value="Borrar">
                 </form>
             </td>
         <br>
     @endforeach
     </table>
+    <a class="btn btn-outline-dark" href="{{ route('product.create') }}">Nuevo</a>
 @endsection
