@@ -7,9 +7,9 @@
 @section("content")
     <a href="{{ route('etiquetas.create') }}">Nuevo</a>
     <table border='1'>
-    @foreach ($etiquetasList as $etiquetas)
+    @foreach ($etiquetasList as $etiqueta)
         <tr>
-            <td>{{$etiquetas->name}}</td>
+            <td>{{$etiqueta->name}}</td>
             <td>
                 <a href="{{route('etiquetas.edit', $etiqueta->id)}}">Modificar</a></td>
             <td>
