@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('product', 'ProductController');
+Route::resource('categorias', 'CategoriasController');
+Route::resource('etiquetas', 'EtiquetasController');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
