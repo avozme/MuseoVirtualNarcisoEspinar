@@ -30,7 +30,7 @@ class ImagenesController extends Controller
     }
 
     public function edit($id) {
-        $etiquetas = Imagenes::find($id);
+        $imagenes = Imagenes::find($id);
         return view('imagenes.form', array('imagen' => $imagenes));
     }
 

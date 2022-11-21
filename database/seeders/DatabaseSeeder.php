@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
     $this->call(CategoriasTableSeeder::class);
     $this->call(ProductoTableSeeder::class);
     $this->call(EtiquetasTableSeeder::class);
+<<<<<<< HEAD
+=======
+    $this->call(ItemsTableSeeder::class);
+>>>>>>> 9618f5da609edc07961aea740e999ab2026a5d29
     $this->call(ImagenesTableSeeder::class);
     
         // \App\Models\User::factory(10)->create();
