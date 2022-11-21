@@ -9,7 +9,7 @@
     <table border='1'>
     @foreach ($imagenesList as $imagen)
         <tr>
-            <td>{{$imagen->name}}</td>
+            <td>{{$imagen->image}}</td>
             <td>
                 <a href="{{route('imagenes.edit', $imagen->id)}}">Modificar</a></td>
             <td>

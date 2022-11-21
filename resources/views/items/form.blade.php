@@ -6,7 +6,7 @@
 @section("header", "Inserción de items")
 
 @section("content")
-    @isset($etiqueta)
+    @isset($item)
         <form action="{{ route('items.update', ['item' => $item->id]) }}" method="POST">
         @method("PUT")
     @else

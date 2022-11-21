@@ -24,7 +24,7 @@ class ImagenesController extends Controller
 
     public function store(Request $r) {
         $p = new Imagenes();
-        $p->name = $r->name;
+        $p->image = $r->image;
         $p->save();
         return redirect()->route('imagenes.index');
     }
@@ -36,7 +36,7 @@ class ImagenesController extends Controller
 
     public function update($id, Request $r) {
         $p = Imagenes::find($id);
-        $p->name = $r->name;
+        $p->image = $r->image;
         $p->save();
         return redirect()->route('imagenes.index');
     }
@@ -44,6 +44,6 @@ class ImagenesController extends Controller
     public function destroy($id) {
         $p = Imagenes::find($id);
         $p->delete();
-        return redirect()->route('etiquetas.index');
+        return redirect()->route('imagenes.index');
     }
 }
