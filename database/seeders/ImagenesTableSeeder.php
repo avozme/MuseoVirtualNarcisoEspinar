@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class ImagenesTableSeeder extends Seeder
 {
@@ -14,6 +14,16 @@ class ImagenesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('imagenes')->insert([
+            'image' => 'Imagen 1',
+        ]);
+
+        DB::table('imagenes')->insert([
+            'image' => 'Imagen 2',
+        ]);
+
+        DB::table('imagenes')->insert([
+            'image' => 'Imagen 3',
+        ]);
     }
 }

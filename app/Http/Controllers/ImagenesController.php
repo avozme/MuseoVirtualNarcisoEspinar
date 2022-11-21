@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Imagenes;
 
 class ImagenesController extends Controller
 {
@@ -41,7 +42,7 @@ class ImagenesController extends Controller
     }
 
     public function destroy($id) {
-        $p = Etiquetas::find($id);
+        $p = Imagenes::find($id);
         $p->delete();
         return redirect()->route('etiquetas.index');
     }
