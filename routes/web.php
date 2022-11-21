@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('product', 'ProductController');
+Route::resource('producto', 'ProductoController');
 Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
 Route::resource('imagenes', 'ImagenesController');
