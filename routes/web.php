@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::resource('product', 'ProductController');
 Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
+Route::resource('items', 'ItemsController');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
