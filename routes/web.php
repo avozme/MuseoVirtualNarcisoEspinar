@@ -18,10 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('product', 'ProductController');
+Route::resource('producto', 'ProductoController');
 Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
+<<<<<<< HEAD
 Route::resource('items', 'ItemsController');
+=======
+Route::resource('imagenes', 'ImagenesController');
+>>>>>>> 298c109c8939f2137f262771e0e0f66d3df0aceb
 
 Route::get('/dashboard', function () {
     return view('dashboard');
