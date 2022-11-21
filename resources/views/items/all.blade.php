@@ -1,19 +1,19 @@
 @extends("layouts.master")
 
-@section("title", "Administración de etiquetas")
+@section("title", "Administración de items")
 
-@section("header", "Administración de etiquetas")
+@section("header", "Administración de items")
 
 @section("content")
-    <a href="{{ route('etiquetas.create') }}">Nuevo</a>
+    <a href="{{ route('items.create') }}">Nuevo</a>
     <table border='1'>
-    @foreach ($etiquetasList as $etiqueta)
+    @foreach ($itemsList as $item)
         <tr>
-            <td>{{$etiqueta->name}}</td>
+            <td>{{$item->name}}</td>
             <td>
-                <a href="{{route('etiquetas.edit', $etiqueta->id)}}">Modificar</a></td>
+                <a href="{{route('items.edit', $item->id)}}">Modificar</a></td>
             <td>
-                <form action = "{{route('etiquetas.destroy', $etiqueta->id)}}" method="POST">
+                <form action = "{{route('items.destroy', $item->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
                     <input type="submit" value="Borrar">
