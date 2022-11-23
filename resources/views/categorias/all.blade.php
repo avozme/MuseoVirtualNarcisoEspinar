@@ -5,8 +5,9 @@
 @section("header", "Administración de categorias")
 
 @section("content")
-    <a href="{{ route('categorias.create') }}">Nuevo</a>
-    <table class="table" >
+   
+    <table class="table">
+
     @foreach ($categoriasList as $categoria)
         <tr>
             <td>{{$categoria->name}}</td>
@@ -22,4 +23,5 @@
         <br>
     @endforeach
     </table>
+    <a class ="btn btn-outline-dark" href="{{ route('categorias.create') }}">Nuevo</a>
 @endsection
