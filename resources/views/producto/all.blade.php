@@ -23,7 +23,6 @@
                     <input class="btn btn-outline-danger" type="submit" value="Borrar">
                 </form>
             </td>
-        <br>
     @endforeach
     </table>
     <a class="btn btn-outline-dark" href="{{ route('producto.create') }}">Nuevo</a>
