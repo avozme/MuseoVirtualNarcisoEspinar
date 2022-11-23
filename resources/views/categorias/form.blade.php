@@ -1,4 +1,3 @@
-
 @extends("layouts.master")
 
 @section("title", "Inserción de categorias")
