@@ -6,8 +6,8 @@
 @section("header", "Inserción de opciones")
 
 @section("content")
-    @isset($opciones)
-        <form action="{{ route('opciones.update', ['opcion' => $opcion->id]) }}" method="POST">
+    @isset($opcion)
+        <form action="{{ route('opciones.update', ['opcione' => $opcion->id]) }}" method="POST">
         @method("PUT")
     @else
         <form action="{{ route('opciones.store') }}" method="POST">

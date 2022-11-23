@@ -23,6 +23,7 @@ Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
 Route::resource('items', 'ItemsController');
 Route::resource('opciones', 'OpcionesController');
+Route::resource('imagenes', 'ImagenesController');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
