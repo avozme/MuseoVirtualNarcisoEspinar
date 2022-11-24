@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
     $this->call(ImagenesTableSeeder::class);
     $this->call(ItemsTableSeeder::class);
     $this->call(OpcionesTableSeeder::class);
+    $this->call(UsuariosTableSeeder::class);
     
         // \App\Models\User::factory(10)->create();
 

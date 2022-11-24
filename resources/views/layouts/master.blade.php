@@ -16,6 +16,7 @@
                      <a class="nav-link" href="{{ url('/items/') }}" > Items</a>
                      <a class="nav-link" href="{{ url('/opciones/') }}" > Opciones</a>
                      <a class="nav-link" href="{{ url('/imagenes/') }}" > Imagenes</a>
+                     <a class="nav-link" href="{{ url('/usuarios/') }}" > Usuarios</a>
                </a>
             </div>
          </nav>

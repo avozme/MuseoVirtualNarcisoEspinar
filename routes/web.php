@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::resource('producto', 'ProductoController');
@@ -24,6 +24,8 @@ Route::resource('etiquetas', 'EtiquetasController');
 Route::resource('items', 'ItemsController');
 Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');
+Route::resource('usuarios', 'UsuariosController');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
