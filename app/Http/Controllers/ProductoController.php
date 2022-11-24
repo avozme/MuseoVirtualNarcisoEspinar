@@ -24,11 +24,11 @@ class ProductoController extends Controller
 
     public function store(Request $r) {
         $p = new Producto();
-        $p->nombre = $r->nombre;
-        $p->descripcion = $r->descripcion;
-        $p->dimensiones = $r->dimensiones;
-        $p->coleccion = $r->coleccion;
-        $p->tecnica = $r->tecnica;
+        $p->name = $r->name;
+        $p->description = $r->description;
+        $p->dimensions = $r->dimensions;
+        $p->collection = $r->collection;
+        $p->technique = $r->technique;
         $p->save();
         return redirect()->route('producto.index');
     }
@@ -40,11 +40,11 @@ class ProductoController extends Controller
 
     public function update($id, Request $r) {
         $p = Producto::find($id);
-        $p->nombre = $r->nombre;
-        $p->descripcion = $r->descripcion;
-        $p->dimensiones = $r->dimensiones;
-        $p->coleccion = $r->coleccion;
-        $p->tecnica = $r->tecnica;
+        $p->name = $r->name;
+        $p->description = $r->description;
+        $p->dimensions = $r->dimensions;
+        $p->collection = $r->collection;
+        $p->technique = $r->technique;
         $p->save();
         return redirect()->route('producto.index');
     }

@@ -8,11 +8,11 @@
     <table class="table" >
     @foreach ($productoList as $producto)
         <tr>
-            <td>{{$producto->nombre}}</td>
-            <td>{{$producto->descripcion}}</td>
-            <td>{{$producto->dimensiones}}</td>
-            <td>{{$producto->coleccion}}</td>
-            <td>{{$producto->tecnica}}</td>
+            <td>{{$producto->name}}</td>
+            <td>{{$producto->description}}</td>
+            <td>{{$producto->dimensions}}</td>
+            <td>{{$producto->collection}}</td>
+            <td>{{$producto->technique}}</td>
 
             <td>
                 <a class="btn btn-outline-success" href="{{route('producto.edit', $producto->id)}}">Modificar</a></td>

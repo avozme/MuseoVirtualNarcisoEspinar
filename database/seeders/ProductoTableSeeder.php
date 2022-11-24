@@ -15,39 +15,39 @@ class ProductoTableSeeder extends Seeder
     public function run()
     {
         DB::table('productos')->insert([
-            'nombre' => 'Vasija marroquí',
-            'descripcion' => 'Una vasija',
-            'dimensiones' => '58cmx36cm',
-            'coleccion' => 'vasijas',
-            'tecnica' => 'semi-vidriada',
+            'name' => 'Vasija marroquí',
+            'description' => 'Una vasija',
+            'dimensions' => '58cmx36cm',
+            'collection' => 'vasijas',
+            'technique' => 'semi-vidriada',
         ]);
         DB::table('productos')->insert([
-            'nombre' => 'Postal paseo',
-            'descripcion' => 'Una postal del paseo de almerí',
-            'dimensiones' => '10cmx15cm',
-            'coleccion' => 'postales',
-            'tecnica' => 'a color',
+            'name' => 'Postal paseo',
+            'description' => 'Una postal del paseo de almerí',
+            'dimensions' => '10cmx15cm',
+            'collection' => 'postales',
+            'technique' => 'a color',
         ]);
         DB::table('productos')->insert([
-            'nombre' => 'Postal rambla',
-            'descripcion' => 'Una postal de la rambla',
-            'dimensiones' => '10cmx15cm',
-            'coleccion' => 'postales',
-            'tecnica' => 'sepia',
+            'name' => 'Postal rambla',
+            'description' => 'Una postal de la rambla',
+            'dimensions' => '10cmx15cm',
+            'collection' => 'postales',
+            'technique' => 'sepia',
         ]);
         DB::table('productos')->insert([
-            'nombre' => 'Vasija marroquí',
-            'descripcion' => 'otra vasija',
-            'dimensiones' => '58cmx36cm',
-            'coleccion' => 'vasijas',
-            'tecnica' => 'arcilla',
+            'name' => 'Vasija marroquí',
+            'description' => 'otra vasija',
+            'dimensions' => '58cmx36cm',
+            'collection' => 'vasijas',
+            'technique' => 'arcilla',
         ]);
         DB::table('productos')->insert([
-            'nombre' => 'postal pescaderia',
-            'descripcion' => 'una postal de pescaderia',
-            'dimensiones' => '10cmx15cm',
-            'coleccion' => 'postales',
-            'tecnica' => 'a color',
+            'name' => 'postal pescaderia',
+            'description' => 'una postal de pescaderia',
+            'dimensions' => '10cmx15cm',
+            'collection' => 'postales',
+            'technique' => 'a color',
         ]);
         
     }
