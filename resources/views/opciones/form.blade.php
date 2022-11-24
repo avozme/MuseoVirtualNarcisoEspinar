@@ -13,8 +13,8 @@
         <form action="{{ route('opciones.store') }}" method="POST">
     @endisset
         @csrf
-        Valor: <input type="text" name="valor" value="{{$opcion->valor ?? '' }}"><br>
-        Clave: <input type="text" name="clave" value="{{$opcion->clave ?? '' }}"><br>
+        Valor: <input type="text" name="value" value="{{$opcion->value ?? '' }}"><br>
+        Clave: <input type="text" name="key" value="{{$opcion->key ?? '' }}"><br>
         <input type="submit">
         </form>
 @endsection

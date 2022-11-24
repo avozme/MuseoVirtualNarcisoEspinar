@@ -9,8 +9,8 @@
     <table border='1'>
     @foreach ($opcionesList as $opcion)
         <tr>
-            <td>{{$opcion->valor}}</td>
-            <td>{{$opcion->clave}}</td>
+            <td>{{$opcion->value}}</td>
+            <td>{{$opcion->key}}</td>
             <td>
                 <a href="{{route('opciones.edit', $opcion->id)}}">Modificar</a></td>
             <td>

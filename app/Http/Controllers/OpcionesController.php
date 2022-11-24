@@ -25,8 +25,8 @@ class OpcionesController extends Controller
 
     public function store(Request $r) {
         $p = new Opciones();
-        $p->valor = $r->valor;
-        $p->clave = $r->clave;
+        $p->value = $r->value;
+        $p->key = $r->key;
         $p->save();
         return redirect()->route('opciones.index');
     }
@@ -38,8 +38,8 @@ class OpcionesController extends Controller
 
     public function update($id, Request $r) {
         $p = Opciones::find($id);
-        $p->valor = $r->valor;
-        $p->clave = $r->clave;
+        $p->value = $r->value;
+        $p->key = $r->key;
         $p->save();
         return redirect()->route('opciones.index');
     }

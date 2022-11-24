@@ -15,18 +15,18 @@ class OpcionesTableSeeder extends Seeder
     public function run()
     {
         DB::table('opciones')->insert([
-            'valor' => 'Vista 1 narciso',
-            'clave' => '1',
+            'value' => 'Vista 1 narciso',
+            'key' => '1',
         ]);
 
         DB::table('opciones')->insert([
-            'valor' => 'Vista 1 clara',
-            'clave' => '0',
+            'value' => 'Vista 1 clara',
+            'key' => '0',
         ]);
 
         DB::table('opciones')->insert([
-            'valor' => 'footer 1 narciso',
-            'clave' => '2',
+            'value' => 'footer 1 narciso',
+            'key' => '2',
         ]);
 
 
