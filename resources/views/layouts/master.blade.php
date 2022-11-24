@@ -9,7 +9,7 @@
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid px-4">
                <a class="navbar-brand" href="#">
-                  <img src="logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                  <img src="logo.png" alt="" width="60" height="44" class="d-inline-block align-text-top">
                      <a class="nav-link" href="{{ url('/producto/') }}">Productos</a>
                      <a class="nav-link" href="{{ url('/categorias/') }}" > Categorias</a>
                      <a class="nav-link" href="{{ url('/etiquetas/') }}" > Etiquetas</a>

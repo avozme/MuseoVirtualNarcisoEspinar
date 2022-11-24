@@ -12,7 +12,7 @@
         <form action="{{ route('imagenes.store') }}" method="POST">
     @endisset
         @csrf
-        Nombre imagen:<input type="text" name="name" value="{{$imagene->image ?? '' }}"><br>
+        Nombre imagen:<input type="text" name="image" value="{{$imagene->image ?? '' }}"><br>
         <input type="submit">
         </form>
 @endsection
