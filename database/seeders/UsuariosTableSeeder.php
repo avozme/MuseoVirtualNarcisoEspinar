@@ -15,19 +15,19 @@ class UsuariosTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('usuarios')->insert([
+        DB::table('users')->insert([
             'name' => 'José Manuel',
             'user' => 'joselito',
             'password' => 'asdf',
         ]);
 
-        DB::table('usuarios')->insert([
+        DB::table('users')->insert([
             'name' => 'Lucía',
             'user' => 'lcp622',
             'password' => 'root',
         ]);
 
-        DB::table('usuarios')->insert([
+        DB::table('users')->insert([
             'name' => 'Juan',
             'user' => 'juan',
             'password' => 'juan',
