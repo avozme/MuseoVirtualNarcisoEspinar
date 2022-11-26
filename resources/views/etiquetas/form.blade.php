@@ -1,4 +1,3 @@
-
 @extends("layouts.master")
 
 @section("title", "Inserción de etiquetas")
@@ -13,7 +12,9 @@
         <form action="{{ route('etiquetas.store') }}" method="POST">
     @endisset
         @csrf
-        Nombre de la etiqueta:<input type="text" name="name" value="{{$etiqueta->name ?? '' }}"><br>
-        <input type="submit">
+        <div class="container w-50">
+            Nombre de la etiqueta:<input type="text" name="name" value="{{$etiqueta->name ?? '' }}"><br>
+            <input class="btn btn-dark center" type="submit">    
+        </div>
         </form>
 @endsection

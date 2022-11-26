@@ -1,4 +1,3 @@
-
 @extends("layouts.master")
 
 @section("title", "Inserción de items")
@@ -13,7 +12,9 @@
         <form action="{{ route('items.store') }}" method="POST">
     @endisset
         @csrf
+        <div class="container w-50">
         Nombre del item:<input type="text" name="name" value="{{$item->name ?? '' }}"><br>
-        <input type="submit">
+        <input class="btn btn-dark center" type="submit">
+        </div>
         </form>
 @endsection

@@ -5,7 +5,7 @@
 @section("header", "Administración de productos")
 
 @section("content")
-    <table class="table" >
+<table class="table table-hover">
     @foreach ($productoList as $producto)
         <tr>
             <td>{{$producto->name}}</td>
@@ -15,7 +15,7 @@
             <td>{{$producto->technique}}</td>
 
             <td>
-                <a class="btn btn-outline-success" href="{{route('producto.edit', $producto->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('producto.edit', $producto->id)}}">Modificar</a></td>
             <td>
                 <form action = "{{route('producto.destroy', $producto->id)}}" method="POST">
                     @csrf
@@ -25,5 +25,5 @@
             </td>
     @endforeach
     </table>
-    <a class="btn btn-outline-dark" href="{{ route('producto.create') }}">Nuevo</a>
+    <a class="btn btn-outline-success" href="{{ route('producto.create') }}">Nuevo</a>
 @endsection

@@ -6,13 +6,12 @@
 
 @section("content")
    
-    <table class="table">
-
+<table class="table table-hover">
     @foreach ($categoriasList as $categoria)
         <tr>
             <td>{{$categoria->name}}</td>
             <td>
-                <a class="btn btn-outline-success" href="{{route('categorias.edit', $categoria->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('categorias.edit', $categoria->id)}}">Modificar</a></td>
             <td>
                 <form action = "{{route('categorias.destroy', $categoria->id)}}" method="POST">
                     @csrf
@@ -20,8 +19,7 @@
                     <input class="btn btn-outline-danger" type="submit" value="Borrar">
                 </form>
             </td>
-        <br>
     @endforeach
     </table>
-    <a class ="btn btn-outline-dark" href="{{ route('categorias.create') }}">Nuevo</a>
+    <a class ="btn btn-outline-success" href="{{ route('categorias.create') }}">Nuevo</a>
 @endsection

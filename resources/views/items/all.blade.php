@@ -5,21 +5,22 @@
 @section("header", "Administración de items")
 
 @section("content")
-    <a href="{{ route('items.create') }}">Nuevo</a>
-    <table border='1'>
+    
+    <table class="table table-hover">
     @foreach ($itemsList as $item)
         <tr>
             <td>{{$item->name}}</td>
             <td>
-                <a href="{{route('items.edit', $item->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('items.edit', $item->id)}}">Modificar</a></td>
             <td>
                 <form action = "{{route('items.destroy', $item->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input type="submit" value="Borrar">
+                    <input class="btn btn-outline-danger" type="submit" value="Borrar">
                 </form>
             </td>
-        <br>
+
     @endforeach
     </table>
+    <a class ="btn btn-outline-success" href="{{ route('items.create') }}">Nuevo</a>
 @endsection

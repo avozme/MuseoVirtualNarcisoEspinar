@@ -6,24 +6,22 @@
 
 @section("content")
    
-    <table border='1'>
+<table class="table table-hover">
     @foreach ($opcionesList as $opcion)
         <tr>
             <td>{{$opcion->value}}</td>
             <td>{{$opcion->key}}</td>
             <td>
-                <a href="{{route('opciones.edit', $opcion->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('opciones.edit', $opcion->id)}}">Modificar</a></td>
             <td>
                 <form action = "{{route('opciones.destroy', $opcion->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input type="submit" value="Borrar">
+                    <input class="btn btn-outline-danger" type="submit" value="Borrar">
                 </form>
             </td>
             
-        <br>
-    
     @endforeach
     </table>
-    <a href="{{ route('opciones.create') }}">Nuevo</a>
+    <a class ="btn btn-outline-success" href="{{ route('opciones.create') }}">Nuevo</a>
 @endsection
