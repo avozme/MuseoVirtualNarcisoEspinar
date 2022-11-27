@@ -12,7 +12,7 @@
         <form action="{{ route('categorias.store') }}" method="POST">
     @endisset
         @csrf
-        <div class="container w-50">
+        <div class="container-fluid">
             Nombre de la categoria:<input class="form-control" type="text" name="name" value="{{$categoria->name ?? '' }}"><br>
             <input class="btn btn-dark center" type="submit">    
         </div>

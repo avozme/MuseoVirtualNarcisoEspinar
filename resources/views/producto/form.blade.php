@@ -13,7 +13,7 @@
     <form action="{{ route('producto.store') }}" method="POST">
     @endisset
         @csrf
-        <div class="container w-50">
+        <div class="container-fluid">
             Nombre del producto:<input class="form-control" type="text" name="name" value="{{$producto->name ?? '' }}"><br>
             Descripción:<input class="form-control" type="text" name="description" value="{{$producto->description ?? '' }}"><br>
             Dimensiones:<input class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>

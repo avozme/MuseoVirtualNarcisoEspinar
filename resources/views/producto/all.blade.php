@@ -25,5 +25,5 @@
             </td>
     @endforeach
     </table>
-    <a class="btn btn-outline-success" href="{{ route('producto.create') }}">Nuevo</a>
+    <a class="btn btn-outline-success"  href="{{ route('producto.create') }}">Nuevo</a>
 @endsection

@@ -98,14 +98,26 @@
 </ul>
 
 </aside><!-- End Sidebar-->
+<main id="main" class="main">
+    <section class="section dashboard">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-xxl col-md-12">
+              <div class="card info-card sales-card">
+                @section('sidebar')
+                @show
+                @yield('content')
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-   @section('sidebar')
-         @show
-         <br> <br> <br> <br>
-         <div class="container w-50">
-            @yield('content')
-         </div>
 
+  
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
    <script src="/js/main.js"></script>
 </body>
