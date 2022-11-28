@@ -1,4 +1,3 @@
-
 @extends("layouts.master")
 
 @section("title", "Modificación de productos")
@@ -7,10 +6,10 @@
 
 @section("content")
     @isset($producto)
-        <form  action="{{ route('producto.update', ['producto' => $producto->id]) }}" method="POST">
+        <form  action="{{ route('productos.update', ['producto' => $producto->id]) }}" method="POST">
         @method("PUT")
     @else
-    <form action="{{ route('producto.store') }}" method="POST">
+    <form action="{{ route('productos.store') }}" method="POST">
     @endisset
         @csrf
         <div class="container-fluid">

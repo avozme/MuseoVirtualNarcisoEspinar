@@ -3,55 +3,55 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Producto;
+use App\Models\Productos;
 
-class ProductoController extends Controller
+class ProductosController extends Controller
 {
     public function index() {
-        $productoList = Producto::all();
-        return view('producto.all', ['productoList'=>$productoList]);
+        $productosList = Productos::all();
+        return view('productos.all', ['productosList'=>$productosList]);
     }
 
     public function show($id) {
-        $p = Producto::find($id);
-        $data['producto'] = $p;
-        return view('producto.show', $data);
+        $p = Productos::find($id);
+        $data['productos'] = $p;
+        return view('productos.show', $data);
     }
 
     public function create() {
-        return view('producto.form');
+        return view('productos.form');
     }
 
     public function store(Request $r) {
-        $p = new Producto();
+        $p = new Productos();
         $p->name = $r->name;
         $p->description = $r->description;
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
         $p->save();
-        return redirect()->route('producto.index');
+        return redirect()->route('productos.index');
     }
 
     public function edit($id) {
-        $producto = Producto::find($id);
-        return view('producto.form', array('producto' => $producto));
+        $productos = Productos::find($id);
+        return view('productos.form', array('producto' => $productos));
     }
 
     public function update($id, Request $r) {
-        $p = Producto::find($id);
+        $p = Productos::find($id);
         $p->name = $r->name;
         $p->description = $r->description;
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
         $p->save();
-        return redirect()->route('producto.index');
+        return redirect()->route('productos.index');
     }
 
     public function destroy($id) {
-        $p = Producto::find($id);
+        $p = Productos::find($id);
         $p->delete();
-        return redirect()->route('producto.index');
+        return redirect()->route('productos.index');
     }
 }

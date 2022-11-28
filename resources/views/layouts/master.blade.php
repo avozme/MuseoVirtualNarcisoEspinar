@@ -17,7 +17,7 @@
 <div class="d-flex align-items-center justify-content-between">
   <a href="" class="logo d-flex align-items-center">
     <!-- añadir ruta -->
-    <img src="logo.png" alt="Celia Viñas" width="40" height="50">
+    <img src="/logo.png" alt="Celia Viñas" width="40" height="50">
     <span class="d-none d-lg-block">Museo de obras</span>
   </a>
   <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -40,7 +40,7 @@
   <li class="nav-heading">Vistas</li>
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="{{ url('/producto/') }}">
+    <a class="nav-link collapsed" href="{{ url('/productos/') }}">
       <i class="bi bi-folder"></i>
       <span>Productos</span>
     </a>

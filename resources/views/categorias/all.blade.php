@@ -5,7 +5,6 @@
 @section("header", "Administración de categorias")
 
 @section("content")
-   
 <table class="table table-hover">
     @foreach ($categoriasList as $categoria)
         <tr>
