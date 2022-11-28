@@ -16,7 +16,7 @@
         Nombre :<input type="text" name="name" value="{{$usuario->name ?? '' }}"><br>
         Usuario:<input type="text" name="user" value="{{$usuario->user ?? '' }}"><br>
         Contraseña:<input type="text" name="password" value="{{$usuario->password ?? '' }}"><br>
-        <input class="btn btn-dark center" type="submit">
+        <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>
 @endsection

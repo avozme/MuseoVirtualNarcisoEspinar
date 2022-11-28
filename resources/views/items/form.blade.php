@@ -14,7 +14,7 @@
         @csrf
         <div class="container w-50">
         Nombre del item:<input type="text" name="name" value="{{$item->name ?? '' }}"><br>
-        <input class="btn btn-dark center" type="submit">
+        <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>
 @endsection

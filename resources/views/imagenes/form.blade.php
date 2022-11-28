@@ -14,7 +14,7 @@
         @csrf
         <div class="container w-50">
         Nombre imagen:<input type="text" name="image" value="{{$imagene->image ?? '' }}"><br>
-        <input class="btn btn-dark center" type="submit">
+        <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>
 @endsection

@@ -14,7 +14,7 @@
         @csrf
         <div class="container-fluid">
             Nombre de la categoria:<input class="form-control" type="text" name="name" value="{{$categoria->name ?? '' }}"><br>
-            <input class="btn btn-dark center" type="submit">    
+            <input class="btn btn-dark center" type="submit" value="Enviar">    
         </div>
         </form>
 @endsection

@@ -14,7 +14,7 @@
         @csrf
         <div class="container w-50">
             Nombre de la etiqueta:<input type="text" name="name" value="{{$etiqueta->name ?? '' }}"><br>
-            <input class="btn btn-dark center" type="submit">    
+            <input class="btn btn-dark center" type="submit" value="Enviar">    
         </div>
         </form>
 @endsection

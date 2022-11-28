@@ -19,7 +19,7 @@
             Dimensiones:<input class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
             Colección:<input class="form-control" type="text" name="collection" value="{{$producto->collection ?? '' }}"><br>
             Técnica:<input class="form-control" type="text" name="technique" value="{{$producto->technique ?? '' }}"><br>
-            <input class="btn btn-dark center" type="submit">    
+            <input class="btn btn-dark center" type="submit" value="Enviar">    
         </div>
     </form>
 @endsection

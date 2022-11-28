@@ -15,7 +15,7 @@
         <div class="container w-50">
         Valor: <input type="text" name="value" value="{{$opcion->value ?? '' }}"><br>
         Clave: <input type="text" name="key" value="{{$opcion->key ?? '' }}"><br>
-        <input class="btn btn-dark center" type="submit">
+        <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>
 @endsection
