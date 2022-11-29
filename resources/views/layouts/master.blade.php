@@ -15,8 +15,7 @@
  <header id="header" class="header fixed-top d-flex align-items-center">
 
 <div class="d-flex align-items-center justify-content-between">
-  <a href="" class="logo d-flex align-items-center">
-    <!-- añadir ruta -->
+  <a href="" class="logo d-flex align-items-center">  <!-- añadir ruta -->
     <img src="/logo.png" alt="Celia Viñas" width="40" height="50">
     <span class="d-none d-lg-block">Colección Narciso Espinar</span>
   </a>
@@ -31,18 +30,9 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="{{ url('/') }}">
-      <i class="bi bi-grid"></i>
-      <span>Inicio</span>
-    </a>
-  </li><!-- End Dashboard Nav -->
-
-  <li class="nav-heading">Vistas</li>
-
-  <li class="nav-item">
     <a class="nav-link collapsed" href="{{ url('/productos/') }}">
       <i class="bi bi-folder"></i>
-      <span>Productos</span>
+      <span>Objetos</span>
     </a>
   </li>
 
@@ -83,14 +73,14 @@
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ url('/opciones/') }}">
-      <i class="bi bi-box-arrow-in-right"></i>
+      <i class="bi bi-grid"></i>
       <span>Opciones</span>
     </a>
   </li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ url('/categorias/') }}"> <!--meter ruta -->
-      <i class="bi bi-dash-circle"></i>
+      <i class="bi bi-box-arrow-in-right"></i>
       <span>Cerrar sesión</span>
     </a>
   </li>
