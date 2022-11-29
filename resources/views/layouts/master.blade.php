@@ -18,7 +18,7 @@
   <a href="" class="logo d-flex align-items-center">
     <!-- añadir ruta -->
     <img src="/logo.png" alt="Celia Viñas" width="40" height="50">
-    <span class="d-none d-lg-block">Museo de obras</span>
+    <span class="d-none d-lg-block">Colección Narciso Espinar</span>
   </a>
   <i class="bi bi-list toggle-sidebar-btn"></i>
 </div><!-- End Logo -->
@@ -31,7 +31,7 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="index.html">
+    <a class="nav-link " href="{{ url('/') }}">
       <i class="bi bi-grid"></i>
       <span>Inicio</span>
     </a>
