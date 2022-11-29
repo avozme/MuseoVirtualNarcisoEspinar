@@ -12,9 +12,9 @@
         <form action="{{ route('opciones.store') }}" method="POST">
     @endisset
         @csrf
-        <div class="container w-50">
-        Valor: <input type="text" name="value" value="{{$opcion->value ?? '' }}"><br>
-        Clave: <input type="text" name="key" value="{{$opcion->key ?? '' }}"><br>
+        <div class="container-fluid">
+        Valor: <input class="form-control" type="text" name="value" value="{{$opcion->value ?? '' }}"><br>
+        Clave: <input class="form-control" type="text" name="key" value="{{$opcion->key ?? '' }}"><br>
         <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>

@@ -12,8 +12,8 @@
         <form action="{{ route('items.store') }}" method="POST">
     @endisset
         @csrf
-        <div class="container w-50">
-        Nombre del item:<input type="text" name="name" value="{{$item->name ?? '' }}"><br>
+        <div class="container-fluid">
+        Nombre del item:<input class="form-control" type="text" name="name" value="{{$item->name ?? '' }}"><br>
         <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>

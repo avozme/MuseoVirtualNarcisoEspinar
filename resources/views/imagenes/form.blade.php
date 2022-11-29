@@ -12,8 +12,8 @@
         <form action="{{ route('imagenes.store') }}" method="POST">
     @endisset
         @csrf
-        <div class="container w-50">
-        Nombre imagen:<input type="text" name="image" value="{{$imagene->image ?? '' }}"><br>
+        <div class="container-fluid">
+        Nombre imagen:<input class="form-control" type="text" name="image" value="{{$imagene->image ?? '' }}"><br>
         <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>
