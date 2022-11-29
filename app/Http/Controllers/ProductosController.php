@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Productos;
+//use App\Models\Categorias; 
 
 class ProductosController extends Controller
 {
     public function index() {
         $productosList = Productos::all();
-        return view('productos.all', ['productosList'=>$productosList]);
+       // $categoriasList = Categorias::all();
+    return view('productos.all', ['productosList'=>$productosList /*, 'categoriasList'=>$categoriasList*/]);
     }
 
     public function show($id) {
         $p = Productos::find($id);
         $data['productos'] = $p;
-        return view('productos.show', $data);
+        /*$categorias = Categorias::find(1)->categorias;
+        foreach ($categorias as $categoria) {
+            $categoria->name;
+        }
+        $data2['categorias'] = $c;*/
+    return view('productos.show', $data/*, $data2*/);
     }
 
     public function create() {
