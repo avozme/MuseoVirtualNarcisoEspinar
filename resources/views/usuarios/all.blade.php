@@ -18,7 +18,7 @@
                 <form action = "{{route('usuarios.destroy', $usuario->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input class="btn btn-outline-danger" type="submit" value="Borrar">
+                    <input class="btn btn-outline-danger" type="submit" value="Borrar" onclick='destroy(event)'>
                 </form>
             </td>
 
@@ -26,3 +26,12 @@
     </table>
     <a class ="btn btn-outline-success" href="{{ route('usuarios.create') }}">Nuevo</a>
 @endsection
+
+<script type = "text/javascript">
+  function destroy(e){
+    if (!confirm('¿Seguro que desea borrar este recurso?')){
+    e.preventDefault();
+    }
+
+  }
+  </script>
