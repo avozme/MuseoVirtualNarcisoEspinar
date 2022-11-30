@@ -4,29 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Productos;
-//use App\Models\Categorias; 
+use App\Models\Categorias;
+ 
 
 class ProductosController extends Controller
 {
     public function index() {
         $productosList = Productos::all();
-       // $categoriasList = Categorias::all();
-    return view('productos.all', ['productosList'=>$productosList /*, 'categoriasList'=>$categoriasList*/]);
+    return view('productos.all', ['productosList'=>$productosList]);
     }
 
     public function show($id) {
         $p = Productos::find($id);
         $data['productos'] = $p;
-        /*$categorias = Categorias::find(1)->categorias;
-        foreach ($categorias as $categoria) {
-            $categoria->name;
-        }
-        $data2['categorias'] = $c;*/
-    return view('productos.show', $data/*, $data2*/);
+    return view('productos.show', $data);
     }
 
     public function create() {
-        return view('productos.form');
+        $data ['categoriasList'] = Categorias::all();
+        return view('productos.form', $data);
     }
 
     public function store(Request $r) {
@@ -36,13 +32,15 @@ class ProductosController extends Controller
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
+        $p->categoria_id = $r->categoria_id;
         $p->save();
         return redirect()->route('productos.index');
     }
 
     public function edit($id) {
         $productos = Productos::find($id);
-        return view('productos.form', array('producto' => $productos));
+        $categorias = Categorias::all();
+        return view('productos.form', array('producto' => $productos, 'categoriasList' => $categorias));
     }
 
     public function update($id, Request $r) {
@@ -52,6 +50,7 @@ class ProductosController extends Controller
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
+        $p->categoria_id = $r->categoria_id;
         $p->save();
         return redirect()->route('productos.index');
     }
