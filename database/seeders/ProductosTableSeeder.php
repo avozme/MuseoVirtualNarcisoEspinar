@@ -20,6 +20,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '58cmx36cm',
             'collection' => 'vasijas',
             'technique' => 'semi-vidriada',
+            'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Postal paseo',
@@ -27,6 +28,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '10cmx15cm',
             'collection' => 'postales',
             'technique' => 'a color',
+            'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Postal rambla',
@@ -34,6 +36,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '10cmx15cm',
             'collection' => 'postales',
             'technique' => 'sepia',
+            'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Vasija marroquí',
@@ -41,6 +44,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '58cmx36cm',
             'collection' => 'vasijas',
             'technique' => 'arcilla',
+            'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'postal pescaderia',
@@ -48,6 +52,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '10cmx15cm',
             'collection' => 'postales',
             'technique' => 'a color',
+            'categoria_id' => '1',
         ]);
         
     }

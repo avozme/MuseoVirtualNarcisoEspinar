@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('dimensions', 10);
             $table->string('collection', 50);
             $table->string('technique', 30);
+            $table->integer('categoria_id');
             $table->timestamps();
         });
     }
