@@ -18,14 +18,14 @@
             Dimensiones:<input class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
             Colección:<input class="form-control" type="text" name="collection" value="{{$producto->collection ?? '' }}"><br>
             Técnica:<input class="form-control" type="text" name="technique" value="{{$producto->technique ?? '' }}"><br>
-            Categoria:<select class="form-control" type="text" name="categoria_id">
+            Categoria:<select class="form-select" type="text" name="categoria_id">
 
             @foreach ($categoriasList as $categoria) {
                 <option value='{{$categoria->id}}'>{{$categoria->name}}</option>
             @endforeach
 
         </select>
-            <input class="btn btn-dark center" type="submit" value="Enviar">    
+            <input class="btn btn-dark center mt-3" type="submit" value="Enviar">    
         </div>
     </form>
 @endsection

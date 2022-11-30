@@ -19,10 +19,17 @@
     <img src="/logo.png" alt="Celia Viñas" width="40" height="50">
     <span class="d-none d-lg-block">Colección Narciso Espinar</span>
   </a>
-  <i class="bi bi-list toggle-sidebar-btn"></i>
+  <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
 </div><!-- End Logo -->
-
-</header><!-- End Header -->
+<!-- buscador -->
+  <div class="p-2 flex-shrink-1 align-self-center ps-5"> 
+    <form class="d-flex justify-content-end" role="search">
+          <input class="form-control me-2" type="search" placeholder="nombre.." aria-label="Search" value="buscar">
+          <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </form>
+  </div> <!-- fin buscador -->
+</div>
+</header><!-- fin Header -->
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
