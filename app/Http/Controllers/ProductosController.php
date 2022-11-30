@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Productos;
 use App\Models\Categorias;
- 
+
 
 class ProductosController extends Controller
 {
+
+    
+
     public function index() {
         $productosList = Productos::all();
     return view('productos.all', ['productosList'=>$productosList]);
@@ -25,14 +28,16 @@ class ProductosController extends Controller
         return view('productos.form', $data);
     }
 
+    //Hemos cambiado cossa aquí
     public function store(Request $r) {
-        $p = new Productos();
+        $p = new Productos($r->all());
         $p->name = $r->name;
         $p->description = $r->description;
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
         $p->categoria_id = $r->categoria_id;
+        $p->etiquetas()->attach($r->etiquetas);
         $p->save();
         return redirect()->route('productos.index');
     }
