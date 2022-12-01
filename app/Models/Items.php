@@ -9,7 +9,7 @@ class Items extends Model
 {
 
     public function categoria() {
-        return $this->belongsTo('App\Models\Categorias');
+        return $this->belongsTo('App\Models\Categorias', 'Categorias_id');
         }
 
     use HasFactory;

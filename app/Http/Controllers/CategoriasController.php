@@ -48,5 +48,10 @@ class CategoriasController extends Controller
         $p->delete();
         return redirect()->route('categorias.index');
     }
+
+    public function get_items($id_categoria) {
+        $lista_items = Categorias::find($id_categoria)->items;
+        return json_encode($lista_items);
+    }
 } 
 

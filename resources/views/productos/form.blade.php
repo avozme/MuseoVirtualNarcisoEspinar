@@ -9,7 +9,7 @@
         <form  action="{{ route('productos.update', ['producto' => $producto->id]) }}" method="POST">
         @method("PUT")
     @else
-    <form action="{{ route('productos.store') }}" method="POST">
+    <form action="{{ route('productos.store') }}" method="POST" id="formulario">
     @endisset
         @csrf
         <div class="container-fluid">
@@ -18,7 +18,7 @@
             Dimensiones:<input class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
             Colección:<input class="form-control" type="text" name="collection" value="{{$producto->collection ?? '' }}"><br>
             Técnica:<input class="form-control" type="text" name="technique" value="{{$producto->technique ?? '' }}"><br>
-            Categoria:<select class="form-select" type="text" name="categoria_id">
+            Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
 
             @foreach ($categoriasList as $categoria) {
                 <option value='{{$categoria->id}}'>{{$categoria->name}}</option>
@@ -29,3 +29,27 @@
         </div>
     </form>
 @endsection
+
+
+
+<script>
+    function actualizar_items() {
+        id_categoria = document.getElementById("categoria_id").value;
+
+        fetch("/categorias/get_items/" + id_categoria)
+            .then((response)=> {
+                if (response.ok === true && response.status === 200) {
+                    let lista_items = response.json();
+                }
+            })
+            .then((lista_items)=> {
+                lista_items.forEach(item => {
+                    //formulario.append("<input class='form-control' type='text' name='item[]'>" );
+                    console.log(item);
+                });
+            })
+            .catch(e => { 
+                console.log(e);
+            })
+    }
+</script>

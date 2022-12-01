@@ -12,7 +12,7 @@ class Categorias extends Model
         }
 
     public function items() {
-        return $this->hasMany('App\Models\Items');
+        return $this->hasMany('App\Models\Items', 'Categorias_id');
         }
     use HasFactory;
 }

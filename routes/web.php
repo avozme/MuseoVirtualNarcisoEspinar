@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/categorias/get_items/{id_categoria}', 'CategoriasController@get_items');
+
 Route::resource('productos', 'ProductosController');
 Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
