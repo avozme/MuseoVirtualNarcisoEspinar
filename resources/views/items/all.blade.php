@@ -9,12 +9,14 @@
     <table class="table table-hover">
     <tr>
       <th scope="col">Nombre</th>
-      <th scope="col"></th>  
+      <th scope="col">Nombre del Item</th>  
+      <th scope="col"></th> 
       <th scope="col"></th> 
     </tr>
     @foreach ($itemsList as $item)
         <tr>
             <td>{{$item->name}}</td>
+            <td>{{$item->categoria->name}}</td>
             <td>
                 <a class="btn btn-outline-secondary" href="{{route('items.edit', $item->id)}}">Modificar</a></td>
             <td>

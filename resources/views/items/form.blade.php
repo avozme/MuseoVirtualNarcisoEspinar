@@ -14,7 +14,12 @@
         @csrf
         <div class="container-fluid">
         Nombre del item:<input class="form-control" type="text" name="name" value="{{$item->name ?? '' }}"><br>
-        <input class="btn btn-dark center" type="submit" value="Enviar">
+        Categorias:<select class="form-select" type="text" name="categoria_id">
+
+        @foreach ($categoriasList as $categoria) {
+            <option value='{{$categoria->id}}'>{{$categoria->name}}</option>
+        @endforeach
+        <input class="btn btn-dark center mt-3" type="submit" value="Enviar">
         </div>
         </form>
 @endsection

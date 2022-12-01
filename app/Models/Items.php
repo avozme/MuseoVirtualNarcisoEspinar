@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Items extends Model
 {
+
+    public function categoria() {
+        return $this->belongsTo('App\Models\Categorias');
+        }
+
     use HasFactory;
 }

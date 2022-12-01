@@ -30,14 +30,13 @@ class ProductosController extends Controller
 
     //Hemos cambiado cossa aquí
     public function store(Request $r) {
-        $p = new Productos($r->all());
+        $p = new Productos();
         $p->name = $r->name;
         $p->description = $r->description;
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
         $p->categoria_id = $r->categoria_id;
-        $p->etiquetas()->attach($r->etiquetas);
         $p->save();
         return redirect()->route('productos.index');
     }
