@@ -15,6 +15,8 @@
       <th scope="col">Categoría</th>
       <th scope="col"></th>  
       <th scope="col"></th> 
+      <th scope="col"></th>  
+      <th scope="col"></th> 
     </tr>
     @foreach ($productosList as $producto)
         <tr>
@@ -28,6 +30,8 @@
 
             <td>
                 <a class="btn btn-outline-secondary" href="{{route('productos.edit', $producto->id)}}">Modificar</a></td>
+            <td> <!-- anadir ruta para ver producto completo -->
+                <a class="btn btn-outline-secondary" href="{{route('productos.edit', $producto->id)}}">Ver</a></td>
             <td>
                 <form action = "{{route('productos.destroy', $producto->id)}}" method="POST">
                     @csrf
