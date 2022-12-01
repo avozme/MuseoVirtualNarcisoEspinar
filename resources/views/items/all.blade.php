@@ -8,8 +8,8 @@
     
     <table class="table table-hover">
     <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Nombre del Item</th>  
+      <th scope="col">Item</th>
+      <th scope="col">Categoria</th>  
       <th scope="col"></th> 
       <th scope="col"></th> 
     </tr>

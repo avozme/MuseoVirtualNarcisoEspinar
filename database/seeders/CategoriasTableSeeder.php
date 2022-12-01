@@ -22,7 +22,7 @@ class CategoriasTableSeeder extends Seeder
 
         ]);
         DB::table('categorias')->insert([
-            'name' => 'Ceramica Arave',
+            'name' => 'Ceramica Arabe',
 
         ]);
         DB::table('categorias')->insert([

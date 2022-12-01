@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Productos;
 use App\Models\Categorias;
 
-
 class ProductosController extends Controller
-{
-
-    
+{   
 
     public function index() {
         $productosList = Productos::all();

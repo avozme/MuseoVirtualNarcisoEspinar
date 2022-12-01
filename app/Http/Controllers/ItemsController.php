@@ -20,7 +20,8 @@ class ItemsController extends Controller
     }
 
     public function create() {
-        return view('items.form');
+        $data ['categoriasList'] = Categorias::all();
+        return view('items.form', $data);
     }
 
     public function store(Request $r) {
