@@ -7,6 +7,11 @@
 @section("content")
     
 <table class="table table-hover">
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col"></th> 
+      <th scope="col"></th> 
+    </tr>
     @foreach ($imagenesList as $imagene)
         <tr>
             <td>{{$imagene->image}}</td>

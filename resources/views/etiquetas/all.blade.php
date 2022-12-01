@@ -7,6 +7,11 @@
 @section("content")
     
     <table class="table table-hover">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col"></th> 
+      <th scope="col"></th> 
+    </tr>
     @foreach ($etiquetasList as $etiqueta)
         <tr>
             <td>{{$etiqueta->name}}</td>

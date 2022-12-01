@@ -7,6 +7,12 @@
 @section("content")
    
 <table class="table table-hover">
+    <tr>
+      <th scope="col">Tipo</th>
+      <th scope="col"></th> 
+      <th scope="col"></th>
+      <th scope="col"></th>  
+    </tr>
     @foreach ($opcionesList as $opcion)
         <tr>
             <td>{{$opcion->value}}</td>

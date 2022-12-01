@@ -7,6 +7,13 @@
 @section("content")
 
     <table class="table table-hover">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Usuario</th> 
+      <th scope="col">Contraseña</th>
+      <th scope="col"></th>  
+      <th scope="col"></th> 
+    </tr>
     @foreach ($usuariosList as $usuario)
         <tr>
             <td>{{$usuario->name}}</td>

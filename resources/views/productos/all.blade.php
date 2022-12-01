@@ -6,6 +6,16 @@
 
 @section("content")
 <table class="table table-hover">
+<tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th> 
+      <th scope="col">Dimensiones</th>
+      <th scope="col">Colección</th> 
+      <th scope="col">Técnica</th>  
+      <th scope="col">Categoría</th>
+      <th scope="col"></th>  
+      <th scope="col"></th> 
+    </tr>
     @foreach ($productosList as $producto)
         <tr>
             <td>{{$producto->name}}</td>
