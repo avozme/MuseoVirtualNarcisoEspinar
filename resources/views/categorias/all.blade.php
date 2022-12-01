@@ -25,7 +25,9 @@
             </td>
     @endforeach
     </table>
-    <a class ="btn btn-outline-success" href="{{ route('categorias.create') }}">Nuevo</a>
+    <div class ="d-grid gap-4 d-md-flex justify-content-md-start ms-2">
+      <a class ="btn btn-outline-success" href="{{ route('categorias.create') }}">Nuevo</a>
+    </div>
 @endsection
 
 <script type = "text/javascript">
