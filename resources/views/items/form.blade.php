@@ -13,7 +13,7 @@
     @endisset
         @csrf
         <div class="container-fluid">
-        Nombre del item:<input class="form-control" type="text" name="name" value="{{$item->name ?? '' }}"><br>
+        Item:<input class="form-control" type="text" name="name" value="{{$item->name ?? '' }}"><br>
         Categorias:<select class="form-select" type="text" name="categoria_id">
 
         @foreach ($categoriasList as $categoria) {
