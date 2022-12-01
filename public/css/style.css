@@ -229,7 +229,6 @@ h6 {
 /* Card */
 .card {
   margin-bottom: 30px;
-  border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }
@@ -281,8 +280,9 @@ h6 {
   box-shadow: none;
 }
 .ps-5{
-  padding-left: 55rem!important;
+  width: 94em !important;
   padding-top: 1.5em !important;
+  padding-left: 50em !important;
 }
 /* Accordion */
 .accordion-item {

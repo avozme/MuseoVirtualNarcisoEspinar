@@ -22,13 +22,13 @@
   <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
 </div><!-- End Logo -->
 <!-- buscador -->
-  <div class="p-2 flex-shrink-1 align-self-center ps-5"> 
-    <form class="d-flex justify-content-end" role="search">
-          <input class="form-control me-2" type="search" placeholder="nombre.." aria-label="Search" value="buscar">
-          <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-        </form>
-  </div> <!-- fin buscador -->
-</div>
+<div class="p-2 flex-shrink-1 align-self-center ps-5"> 
+  <form class="d-flex justify-content-end" role="search">
+    <input class="form-control me-2" type="search" placeholder="nombre.." aria-label="Search" >
+    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+  </form>
+</div> <!-- fin buscador -->
+
 </header><!-- fin Header -->
 
 <!-- ======= Sidebar ======= -->
