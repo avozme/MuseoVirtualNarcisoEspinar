@@ -51,7 +51,7 @@ class CategoriasController extends Controller
 
     public function get_items($id_categoria) {
         $lista_items = Categorias::find($id_categoria)->items;
-        return json_encode($lista_items);
+        return response()->json($lista_items);
     }
 } 
 

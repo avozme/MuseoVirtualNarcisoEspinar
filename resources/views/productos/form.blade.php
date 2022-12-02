@@ -36,20 +36,15 @@
     function actualizar_items() {
         id_categoria = document.getElementById("categoria_id").value;
 
-        fetch("/categorias/get_items/" + id_categoria)
-            .then((response)=> {
-                if (response.ok === true && response.status === 200) {
-                    let lista_items = response.json();
-                }
-            })
-            .then((lista_items)=> {
-                lista_items.forEach(item => {
-                    //formulario.append("<input class='form-control' type='text' name='item[]'>" );
+        //let lista_items = null;
+        fetch("/categorias/get_items/" + id_categoria).then(data=> data.json()).then(json=> {        
+                /*let lista_items = */
+                console.log(json);
+                json.forEach(item => {
+                    formulario.append("<input class='form-control' type='text' name='"+item.name+"'>" );
                     console.log(item);
                 });
             })
-            .catch(e => { 
-                console.log(e);
-            })
-    }
+        }
+        
 </script>

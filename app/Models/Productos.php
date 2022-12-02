@@ -15,5 +15,8 @@ class Productos extends Model
         return $this->belongsToMany('App\Models\Etiquetas');
         }
 
+    public function items() {
+        return $this->hasMany('App\Models\Items');
+    }
         use HasFactory;
 }
