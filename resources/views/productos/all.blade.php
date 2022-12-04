@@ -11,7 +11,8 @@
       <th scope="col">Descripción</th> 
       <th scope="col">Dimensiones</th>
       <th scope="col">Colección</th> 
-      <th scope="col">Técnica</th>  
+      <th scope="col">Técnica</th>
+      <th scope="col">Imagen</th>    
       <th scope="col">Categoría</th>
       <th scope="col"></th>  
       <th scope="col"></th> 
@@ -25,6 +26,7 @@
             <td>{{$producto->dimensions}}</td>
             <td>{{$producto->collection}}</td>
             <td>{{$producto->technique}}</td>
+            <td>{{$producto->image}}</td>
             <td>{{$producto->categoria->name}}</td>
 
 

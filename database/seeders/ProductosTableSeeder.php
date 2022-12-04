@@ -20,6 +20,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '58cmx36cm',
             'collection' => 'vasijas',
             'technique' => 'semi-vidriada',
+            'image' => 'imagen 1',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
@@ -28,6 +29,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '10cmx15cm',
             'collection' => 'postales',
             'technique' => 'a color',
+            'image' => 'imagen 2',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
@@ -36,6 +38,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '10cmx15cm',
             'collection' => 'postales',
             'technique' => 'sepia',
+            'image' => 'imagen 3',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
@@ -44,6 +47,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '58cmx36cm',
             'collection' => 'vasijas',
             'technique' => 'arcilla',
+            'image' => 'imagen 4',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
@@ -52,6 +56,7 @@ class ProductosTableSeeder extends Seeder
             'dimensions' => '10cmx15cm',
             'collection' => 'postales',
             'technique' => 'a color',
+            'image' => 'imagen 5',
             'categoria_id' => '1',
         ]);
         

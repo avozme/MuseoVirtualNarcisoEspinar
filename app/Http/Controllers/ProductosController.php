@@ -8,7 +8,6 @@ use App\Models\Categorias;
 
 class ProductosController extends Controller
 {   
-
     public function index() {
         $productosList = Productos::all();
     return view('productos.all', ['productosList'=>$productosList]);
@@ -33,6 +32,7 @@ class ProductosController extends Controller
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
+        $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
         $p->save();
         return redirect()->route('productos.index');
@@ -51,6 +51,7 @@ class ProductosController extends Controller
         $p->dimensions = $r->dimensions;
         $p->collection = $r->collection;
         $p->technique = $r->technique;
+        $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
         $p->save();
         return redirect()->route('productos.index');

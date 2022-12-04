@@ -14,7 +14,30 @@
         @csrf
         <div class="container-fluid">
         Nombre imagen:<input class="form-control" type="text" name="image" value="{{$imagene->image ?? '' }}"><br>
+        Producto:<select class="form-select" type="text" name="producto_id" id="producto_id" onchange="actualizar_items()">
+
+        @foreach ($productosList as $producto) {
+                <option value='{{$producto->id}}'>{{$producto->name}}</option>
+            @endforeach
+
+        </select>
         <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>
         </form>
 @endsection
+
+<script>
+    function actualizar_items() {
+        id_producto = document.getElementById("producto_id").value;
+
+        //let lista_items = null;
+        fetch("/producto/get_items/" + id_producto).then(data=> data.json()).then(json=> {        
+                /*let lista_items = */
+                console.log(json);
+                json.forEach(item => {
+                    formulario.append("<input class='form-control' type='text' name='"+item.name+"'>" );
+                    console.log(item);
+                });
+            })
+        }      
+</script>

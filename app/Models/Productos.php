@@ -18,5 +18,9 @@ class Productos extends Model
     public function items() {
         return $this->hasMany('App\Models\Items');
     }
+
+    public function imagenes() {
+        return $this->hasMany('App\Models\Imagenes');
+        }
         use HasFactory;
 }

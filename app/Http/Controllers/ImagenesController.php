@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Imagenes;
+use App\Models\Productos;
 
 class ImagenesController extends Controller
 {
@@ -19,24 +20,28 @@ class ImagenesController extends Controller
     }
 
     public function create() {
-        return view('imagenes.form');
+        $data ['productosList'] = Productos::all();
+        return view('imagenes.form', $data);
     }
 
     public function store(Request $r) {
         $p = new Imagenes();
         $p->image = $r->image;
+        $p->producto_id = $r->producto_id;
         $p->save();
         return redirect()->route('imagenes.index');
     }
 
     public function edit($id) {
         $imagenes = Imagenes::find($id);
-        return view('imagenes.form', array('imagene' => $imagenes));
+        $productos = Productos::all();
+        return view('imagenes.form', array('imagene' => $imagenes, 'productosList' => $productos));
     }
 
     public function update($id, Request $r) {
         $p = Imagenes::find($id);
         $p->image = $r->image;
+        $p->producto_id = $r->producto_id;
         $p->save();
         return redirect()->route('imagenes.index');
     }

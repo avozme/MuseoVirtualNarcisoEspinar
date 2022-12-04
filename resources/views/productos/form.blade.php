@@ -18,6 +18,7 @@
             Dimensiones:<input class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
             Colección:<input class="form-control" type="text" name="collection" value="{{$producto->collection ?? '' }}"><br>
             Técnica:<input class="form-control" type="text" name="technique" value="{{$producto->technique ?? '' }}"><br>
+            Imagen:<input class="form-control" type="text" name="image" value="{{$producto->image ?? '' }}"><br>
             Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
 
             @foreach ($categoriasList as $categoria) {
