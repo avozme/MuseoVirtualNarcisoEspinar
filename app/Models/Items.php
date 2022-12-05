@@ -9,9 +9,9 @@ class Items extends Model
 {
 
     public function categoria() {
+        
         return $this->belongsTo('App\Models\Categorias', 'categoria_id');
         }
-
 
         public function productos() {
             return $this->hasMany('App\Models\Productos');

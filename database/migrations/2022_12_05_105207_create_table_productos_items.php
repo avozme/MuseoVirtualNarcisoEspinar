@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('productos_etiquetas', function (Blueprint $table) {
+        Schema::create('productos_items', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('productos_id');
-            $table->unsignedBigInteger('etiquetas_id');
+            $table->unsignedBigInteger('items_id');
 
             $table->foreign('productos_id')->references('id')->on('productos')->onDelete('cascade');
-            $table->foreign('etiquetas_id')->references('id')->on('etiquetas')->onDelete('cascade');
+            $table->foreign('items_id')->references('id')->on('items')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -28,23 +28,24 @@ return new class extends Migration
 
 
     public function store(Request $r) {
-        $etiquetas = new Etiquetas($r→all());
-        $etiquetas->productos()->attach($r->productos);
-        $etiquetas->save();
+        $items = new Items($r→all());
+        $items->productos()->attach($r->productos);
+        $items->save();
     }
     
     public function update(Request $r, $id) {
-        $etiquetas = Etiquetas::find($id);
-        $etiquetas->fill($r->all());
-        $etiquetas->productos()->sync($r->productos);
-        $etiquetas->save();
+        $items = Items::find($id);
+        $items->fill($r->all());
+        $items->productos()->sync($r->productos);
+        $items->save();
     }
        
     public function destroy($id) {
-        $etiquetas = Etiquetas::find($id);
-        $etiquetas->productos()->detach();
-        $etiquetas->delete();
+        $items = Items::find($id);
+        $items->productos()->detach();
+        $items->delete();
     }
+
 
 
     /**
@@ -54,6 +55,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos_etiquetas');
+        Schema::dropIfExists('productos_items');
     }
 };
