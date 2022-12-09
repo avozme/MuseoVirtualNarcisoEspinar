@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('productos_etiquetas', function (Blueprint $table) {
+        Schema::create('etiquetas_productos', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('productos_id');
@@ -27,26 +27,6 @@ return new class extends Migration
     }
 
 
-    public function store(Request $r) {
-        $etiquetas = new Etiquetas($r→all());
-        $etiquetas->productos()->attach($r->productos);
-        $etiquetas->save();
-    }
-    
-    public function update(Request $r, $id) {
-        $etiquetas = Etiquetas::find($id);
-        $etiquetas->fill($r->all());
-        $etiquetas->productos()->sync($r->productos);
-        $etiquetas->save();
-    }
-       
-    public function destroy($id) {
-        $etiquetas = Etiquetas::find($id);
-        $etiquetas->productos()->detach();
-        $etiquetas->delete();
-    }
-
-
     /**
      * Reverse the migrations.
      *
@@ -54,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos_etiquetas');
+        Schema::dropIfExists('etiquetas_productos');
     }
 };

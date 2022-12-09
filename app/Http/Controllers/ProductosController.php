@@ -15,8 +15,7 @@ class ProductosController extends Controller
 
     public function show($id) {
         $p = Productos::find($id);
-        $data['productos'] = $p;
-    return view('productos.show', $data);
+        return view('productos.show', array('producto' => $p));
     }
 
     public function create() {
@@ -26,7 +25,7 @@ class ProductosController extends Controller
 
     //Hemos cambiado cossa aquí
     public function store(Request $r) {
-        $p = new Productos();
+        $p = new Productos($r->all());
         $p->name = $r->name;
         $p->description = $r->description;
         $p->dimensions = $r->dimensions;
@@ -34,6 +33,7 @@ class ProductosController extends Controller
         $p->technique = $r->technique;
         $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
+        $p->items()->attach($r->items);
         $p->save();
         return redirect()->route('productos.index');
     }

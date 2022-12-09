@@ -14,7 +14,7 @@ class Items extends Model
         }
 
         public function productos() {
-            return $this->hasMany('App\Models\Productos');
+            return $this->belongsToMany('App\Models\Productos')->withPivot('value');
         }
     
     use HasFactory;

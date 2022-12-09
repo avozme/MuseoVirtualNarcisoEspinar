@@ -16,7 +16,7 @@ class Productos extends Model
         }
 
     public function items() {
-        return $this->hasMany('App\Models\Items');
+        return $this->belongsToMany('App\Models\Items')->withPivot('value');
     }
 
     public function imagenes() {
