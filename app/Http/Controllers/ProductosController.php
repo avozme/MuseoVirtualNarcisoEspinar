@@ -34,6 +34,7 @@ class ProductosController extends Controller
         $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
         $p->items()->attach($r->items);
+        $p->etiquetas()->attach($r->etiquetas);
         $p->save();
         return redirect()->route('productos.index');
     }

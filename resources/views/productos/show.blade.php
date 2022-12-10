@@ -19,7 +19,6 @@
             @foreach ($producto->items as $item) 
             {{$item->name}} <input class="form-control" disabled type="text" value='{{$item->pivot->value}}'><br>
             @endforeach
-
         </select>
                
         </div>
