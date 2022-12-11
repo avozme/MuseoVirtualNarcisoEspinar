@@ -25,7 +25,7 @@ class ProductosController extends Controller
 
     //Hemos cambiado cossa aquí
     public function store(Request $r) {
-        $p = new Productos($r->all());
+        $p = new Productos();
         $p->name = $r->name;
         $p->description = $r->description;
         $p->dimensions = $r->dimensions;
