@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Productos;
 use App\Models\Categorias;
+use App\Models\ItemsProductos;
 
 class ProductosController extends Controller
 {   
@@ -19,7 +20,7 @@ class ProductosController extends Controller
     }
 
     public function create() {
-        $data ['categoriasList'] = Categorias::all();
+        $data ['categorias'] = Categorias::all();
         return view('productos.form', $data);
     }
 
@@ -33,17 +34,24 @@ class ProductosController extends Controller
         $p->technique = $r->technique;
         $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
-        //$categorias = Categorias::where("id", $r->categoria_id)->get();
-        $p->items()->attach($r->items);
         $p->etiquetas()->attach($r->etiquetas);
+        // $p->items()->attach($r->items);
         $p->save();
+        foreach($r->items as $item){ 
+            $itemProducto = new ItemsProductos();
+            $itemProducto->productos_id = $p->id;
+            $itemProducto->value = $item['value'];
+            $itemProducto->items_id = $item['id'];
+            $itemProducto->save();
+        }
         return redirect()->route('productos.index');
     }
 
     public function edit($id) {
-        $productos = Productos::find($id);
+        $producto = Productos::find($id);
         $categorias = Categorias::all();
-        return view('productos.form', array('producto' => $productos, 'categoriasList' => $categorias));
+        $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
+        return view('productos.form', compact('producto', 'categorias', 'itemsProductos'));
     }
 
     public function update($id, Request $r) {
@@ -56,9 +64,12 @@ class ProductosController extends Controller
         $p->technique = $r->technique;
         $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
-        $p->fill($r->all());
-        $p->items()->sync($p->items);
-        dd($p->items);
+        foreach($r->items as $item){ 
+            $itemProducto = ItemsProductos::where('items_id', $item['id'])->first();
+            $itemProducto->productos_id = $id;
+            $itemProducto->value = $item['value'];
+            $itemProducto->save();
+        }
         $p->save();
         return redirect()->route('productos.index');
     }
@@ -66,6 +77,10 @@ class ProductosController extends Controller
     public function destroy($id) {
         $p = Productos::find($id);
         $p->delete();
+        $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
+        foreach($itemsProductos as $ip){
+            $ip->delete();
+        }
         return redirect()->route('productos.index');
     }
 }
