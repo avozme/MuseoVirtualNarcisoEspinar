@@ -21,7 +21,7 @@
             @endforeach
 
         </select>
-        <input class="btn btn-dark center" type="submit" value="Enviar">
+        <input class="btn btn-dark center mt-3" type="submit" value="Enviar">
         </div>
         </form>
 @endsection
