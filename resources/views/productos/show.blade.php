@@ -1,8 +1,8 @@
 @extends("layouts.master")
 
-@section("title", "Modificación de productos")
+@section("title", "vista de productos")
 
-@section("header", "Modificación de productos")
+@section("header", "vista de productos")
 
 @section("content")
 

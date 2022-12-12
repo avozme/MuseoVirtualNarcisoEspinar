@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Productos extends Model
 {
+
+    protected $fillable = ["name", "description", "dimensions", "collection", "technique", "image", "categoria_id"];
+
+
     public function categoria() {
         return $this->belongsTo('App\Models\Categorias');
         }

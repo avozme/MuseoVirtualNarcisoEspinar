@@ -23,7 +23,7 @@ class ProductosController extends Controller
         return view('productos.form', $data);
     }
 
-    //Hemos cambiado cossa aquí
+    //Hemos cambiado cosa aquí
     public function store(Request $r) {
         $p = new Productos();
         $p->name = $r->name;
@@ -33,6 +33,7 @@ class ProductosController extends Controller
         $p->technique = $r->technique;
         $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
+        //$categorias = Categorias::where("id", $r->categoria_id)->get();
         $p->items()->attach($r->items);
         $p->etiquetas()->attach($r->etiquetas);
         $p->save();
@@ -46,6 +47,7 @@ class ProductosController extends Controller
     }
 
     public function update($id, Request $r) {
+        
         $p = Productos::find($id);
         $p->name = $r->name;
         $p->description = $r->description;
@@ -54,6 +56,9 @@ class ProductosController extends Controller
         $p->technique = $r->technique;
         $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
+        $p->fill($r->all());
+        $p->items()->sync($p->items);
+        dd($p->items);
         $p->save();
         return redirect()->route('productos.index');
     }
