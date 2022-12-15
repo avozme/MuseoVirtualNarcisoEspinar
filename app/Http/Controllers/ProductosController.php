@@ -26,17 +26,10 @@ class ProductosController extends Controller
 
     //Hemos cambiado cosa aquí
     public function store(Request $r) {
-        $p = new Productos();
-        $p->name = $r->name;
-        $p->description = $r->description;
-        $p->dimensions = $r->dimensions;
-        $p->collection = $r->collection;
-        $p->technique = $r->technique;
-        $p->image = $r->image;
-        $p->categoria_id = $r->categoria_id;
-        $p->etiquetas()->attach($r->etiquetas);
-        // $p->items()->attach($r->items);
+        $p = new Productos($r->all());
         $p->save();
+        $p->etiquetas()->attach($r->etiquetas);
+        //$p->items()->attach($r->items);
         foreach($r->items as $item){ 
             $itemProducto = new ItemsProductos();
             $itemProducto->productos_id = $p->id;
@@ -54,8 +47,7 @@ class ProductosController extends Controller
         return view('productos.form', compact('producto', 'categorias', 'itemsProductos'));
     }
 
-    public function update($id, Request $r) {
-        
+    public function update(Request $r, $id) {
         $p = Productos::find($id);
         $p->name = $r->name;
         $p->description = $r->description;
@@ -64,6 +56,11 @@ class ProductosController extends Controller
         $p->technique = $r->technique;
         $p->image = $r->image;
         $p->categoria_id = $r->categoria_id;
+
+        // $p->fill($r->all());
+        // $p->save();
+        // $p->items()->sync($r->items);
+
         foreach($r->items as $item){ 
             $itemProducto = ItemsProductos::where('items_id', $item['id'])->first();
             $itemProducto->productos_id = $id;
@@ -75,6 +72,11 @@ class ProductosController extends Controller
     }
 
     public function destroy($id) {
+
+        // $p = Productos::find($id);
+        // $p->items()->detach();
+        // $p->delete();
+
         $p = Productos::find($id);
         $p->delete();
         $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
