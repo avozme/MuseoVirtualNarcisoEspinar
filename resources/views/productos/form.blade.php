@@ -24,6 +24,8 @@
             Colección:<input required class="form-control" type="text" name="collection" value="{{$producto->collection ?? '' }}"><br>
             Técnica:<input required class="form-control" type="text" name="technique" value="{{$producto->technique ?? '' }}"><br>
             Imagen:<input required class="form-control" type="text" name="image" value="{{$producto->image ?? '' }}"><br>
+            
+            @if(isset($producto))<img src='{{url("/images")."/".$producto->image}}'>@endif
             Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
                 <option value=''>Selecciona</option>
             @foreach ($categorias as $categoria) {

@@ -13,7 +13,7 @@
     @endisset
         @csrf
         <div class="container-fluid">
-        Nombre imagen:<input class="form-control" type="file" name="image" accept="image/*" value="{{$imagene->image ?? '' }}"><br>
+        Nombre imagen:<input class="form-control" type="file" name="image" accept="image/*" value="{{$imagene->image ?? '' }}">
         Producto:<select class="form-select" type="text" name="producto_id" id="producto_id" onchange="actualizar_items()">
 
         @foreach ($productosList as $producto) {

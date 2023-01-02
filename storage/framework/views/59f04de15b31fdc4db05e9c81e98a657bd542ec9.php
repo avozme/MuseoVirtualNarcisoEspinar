@@ -13,11 +13,7 @@
     <?php endif; ?>
         <?php echo csrf_field(); ?>
         <div class="container-fluid">
-        Nombre imagen:<input class="form-control" type="file" name="image" accept="image/*" value="<?php echo e($imagene->image ?? ''); ?>"><br>
-        <div id="subida_imagen" type="hidden">
-        <?php echo e(storage_path("app/public")); ?>
-
-        </div>
+        Nombre imagen:<input class="form-control" type="file" name="image" accept="image/*" value="<?php echo e($imagene->image ?? ''); ?>">
         Producto:<select class="form-select" type="text" name="producto_id" id="producto_id" onchange="actualizar_items()">
 
         <?php $__currentLoopData = $productosList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $producto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> {

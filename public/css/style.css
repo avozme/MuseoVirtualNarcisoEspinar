@@ -937,6 +937,10 @@ padding-right: calc(var(--bs-gutter-x) * .1) !important;
   font-size: 14px;
 }
 
+.table{
+  vertical-align: inherit !important;
+}
+
 .dashboard .recent-sales .table thead {
   background: #f6f6fe;
 }

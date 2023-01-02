@@ -9,16 +9,20 @@
 <table class="table table-hover">
     <tr>
       <th scope="col">Imagen</th>
+      <th scope="col"></th>
       <th scope="col">Producto</th>
       <th scope="col"></th> 
       <th scope="col"></th> 
     </tr>
     <?php $__currentLoopData = $imagenesList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $imagene): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td><?php echo e($imagene->image); ?></td>
+          <td><?php echo e($imagene->image); ?></td>
+          <td>
+            <img src='<?php echo e(asset("storage/$imagene->image")); ?>' width="100">
+          </td>
             <td><?php echo e($imagene->producto->name); ?></td>
             <td>
-                <a class="btn btn-outline-secondary" href="<?php echo e(route('imagenes.edit', $imagene->id)); ?>">Modificar</a></td>
+         
             <td>
                 <form action = "<?php echo e(route('imagenes.destroy', $imagene->id)); ?>" method="POST">
                     <?php echo csrf_field(); ?>

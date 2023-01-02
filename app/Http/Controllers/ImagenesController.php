@@ -25,12 +25,14 @@ class ImagenesController extends Controller
     }
 
     public function store(Request $r) {
+        $image = $r->file('image');
+        $image_name = $image->getClientOriginalName();
+        $image->storeAs("public", $image_name);
         $p = new Imagenes();
-        $p->image = $r->image;
+        $p->image = $image_name;
         $p->producto_id = $r->producto_id;
         $p->save();
-        // return redirect()->route('imagenes.index');
-        return $r->file('image')->store('');
+        return redirect()->route('imagenes.index');
     }
 
     public function edit($id) {
