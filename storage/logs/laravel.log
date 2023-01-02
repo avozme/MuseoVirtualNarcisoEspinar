@@ -1,0 +1,10 @@
+[2023-01-02 12:08:56] local.ERROR: There are no commands defined in the "delete" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"delete\" namespace. at /var/www/html/vendor/symfony/console/Application.php:624)
+[stacktrace]
+#0 /var/www/html/vendor/symfony/console/Application.php(675): Symfony\\Component\\Console\\Application->findNamespace()
+#1 /var/www/html/vendor/symfony/console/Application.php(259): Symfony\\Component\\Console\\Application->find()
+#2 /var/www/html/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#3 /var/www/html/vendor/laravel/framework/src/Illuminate/Console/Application.php(111): Symfony\\Component\\Console\\Application->run()
+#4 /var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(155): Illuminate\\Console\\Application->run()
+#5 /var/www/html/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#6 {main}
+"} 

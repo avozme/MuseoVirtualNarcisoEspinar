@@ -29,7 +29,8 @@ class ImagenesController extends Controller
         $p->image = $r->image;
         $p->producto_id = $r->producto_id;
         $p->save();
-        return redirect()->route('imagenes.index');
+        // return redirect()->route('imagenes.index');
+        return $r->file('image')->store('');
     }
 
     public function edit($id) {
