@@ -8,21 +8,15 @@
 <table class="table table-hover">
 <tr>
       <th scope="col">Nombre
-        <input class="form-control" >
       </th>
       <th scope="col">Descripción
-        
       </th> 
       <th scope="col">Dimensiones</th>
       <th scope="col">Colección
-      <input class="form-control" >
-
       </th> 
       <th scope="col">Técnica</th>
       <th scope="col">Imagen</th>    
       <th scope="col">Categoría
-      <input class="form-control" >
-
       </th>
       <th scope="col"></th>  
       <th scope="col"></th> 
@@ -36,13 +30,13 @@
             <td><?php echo e($producto->dimensions); ?></td>
             <td><?php echo e($producto->collection); ?></td>
             <td><?php echo e($producto->technique); ?></td>
-            <td><?php echo e($producto->image); ?></td>
+            <td><img src='<?php echo e(asset("storage/$producto->image")); ?>' width="70"></td>
             <td><?php echo e($producto->categoria->name); ?></td>
 
 
             <td>
                 <a class="btn btn-outline-secondary" href="<?php echo e(route('productos.edit', $producto->id)); ?>">Modificar</a></td>
-            <td> <!-- anadir ruta para ver producto completo -->
+            <td>
                 <a class="btn btn-outline-secondary" href="<?php echo e(route('productos.show', $producto->id)); ?>">Ver más</a></td>
             <td>
                 <form action = "<?php echo e(route('productos.destroy', $producto->id)); ?>" method="POST">

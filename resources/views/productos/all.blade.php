@@ -30,13 +30,13 @@
             <td>{{$producto->dimensions}}</td>
             <td>{{$producto->collection}}</td>
             <td>{{$producto->technique}}</td>
-            <td>{{$producto->image}}</td>
+            <td><img src='{{asset("storage/$producto->image")}}' width="70"></td>
             <td>{{$producto->categoria->name}}</td>
 
 
             <td>
                 <a class="btn btn-outline-secondary" href="{{route('productos.edit', $producto->id)}}">Modificar</a></td>
-            <td> <!-- anadir ruta para ver producto completo -->
+            <td>
                 <a class="btn btn-outline-secondary" href="{{route('productos.show', $producto->id)}}">Ver más</a></td>
             <td>
                 <form action = "{{route('productos.destroy', $producto->id)}}" method="POST">

@@ -42,7 +42,7 @@ class ProductosTableSeeder extends Seeder
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
-            'name' => 'Vasija marroquí',
+            'name' => 'Vasija',
             'description' => 'otra vasija',
             'dimensions' => '58cmx36cm',
             'collection' => 'vasijas',

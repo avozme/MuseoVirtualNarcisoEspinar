@@ -18,7 +18,7 @@
         <tr>
           <td><?php echo e($imagene->image); ?></td>
           <td>
-            <img src='<?php echo e(asset("storage/$imagene->image")); ?>' width="100">
+            <img src='<?php echo e(asset("storage/$imagene->image")); ?>' width="150">
           </td>
             <td><?php echo e($imagene->producto->name); ?></td>
             <td>

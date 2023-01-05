@@ -18,7 +18,7 @@
         <tr>
           <td>{{$imagene->image}}</td>
           <td>
-            <img src='{{asset("storage/$imagene->image")}}' width="100">
+            <img src='{{asset("storage/$imagene->image")}}' width="150">
           </td>
             <td>{{$imagene->producto->name}}</td>
             <td>
