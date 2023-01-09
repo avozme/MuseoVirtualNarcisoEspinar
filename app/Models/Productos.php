@@ -24,8 +24,8 @@ class Productos extends Model
     }
 
     public function imagenes() {
-        return $this->hasMany('App\Models\Imagenes');
-        }
+        return $this->hasMany('App\Models\Imagenes', 'producto_id');
+    }
         use HasFactory;
 
     //public function recuperarProductosFront(){

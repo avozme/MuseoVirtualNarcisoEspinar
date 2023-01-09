@@ -18,18 +18,18 @@
         <tr>
           <td><?php echo e($imagene->image); ?></td>
           <td>
-            <img src='<?php echo e(asset("storage/$imagene->image")); ?>' width="150">
+            <img src='<?php echo e(asset("storage/$imagene->producto_id/$imagene->image")); ?>' width="150">
           </td>
-            <td><?php echo e($imagene->producto->name); ?></td>
-            <td>
-         
-            <td>
-                <form action = "<?php echo e(route('imagenes.destroy', $imagene->id)); ?>" method="POST">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field("DELETE"); ?>
-                    <input class="btn btn-outline-danger"  type="submit" value="Borrar" onclick='destroy(event)'>
-                </form>
-            </td>
+          <td><?php echo e($imagene->producto->name); ?></td>
+          <td>
+          </td>
+          <td>
+              <form action = "<?php echo e(route('imagenes.destroy', $imagene->id)); ?>" method="POST">
+                  <?php echo csrf_field(); ?>
+                  <?php echo method_field("DELETE"); ?>
+                  <input class="btn btn-outline-danger"  type="submit" value="Borrar" onclick='destroy(event)'>
+              </form>
+          </td>
 
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>

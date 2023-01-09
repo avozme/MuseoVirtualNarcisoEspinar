@@ -18,18 +18,18 @@
         <tr>
           <td>{{$imagene->image}}</td>
           <td>
-            <img src='{{asset("storage/$imagene->image")}}' width="150">
+            <img src='{{asset("storage/$imagene->producto_id/$imagene->image")}}' width="150">
           </td>
-            <td>{{$imagene->producto->name}}</td>
-            <td>
-         
-            <td>
-                <form action = "{{route('imagenes.destroy', $imagene->id)}}" method="POST">
-                    @csrf
-                    @method("DELETE")
-                    <input class="btn btn-outline-danger"  type="submit" value="Borrar" onclick='destroy(event)'>
-                </form>
-            </td>
+          <td>{{$imagene->producto->name}}</td>
+          <td>
+          </td>
+          <td>
+              <form action = "{{route('imagenes.destroy', $imagene->id)}}" method="POST">
+                  @csrf
+                  @method("DELETE")
+                  <input class="btn btn-outline-danger"  type="submit" value="Borrar" onclick='destroy(event)'>
+              </form>
+          </td>
 
     @endforeach
     </table>

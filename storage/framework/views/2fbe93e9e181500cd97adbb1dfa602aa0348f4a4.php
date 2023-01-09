@@ -17,8 +17,10 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             
         </select>  
-        Imagen: <br> <img src='<?php echo e(asset("storage/$producto->image")); ?>' width="70">
-
+        Imagen: <br> <img src='<?php echo e(asset("storage/$producto->id/$producto->image")); ?>' width="70">
+        <?php $__currentLoopData = $producto->imagenes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <img src='<?php echo e(asset("storage/$producto->id/$image->image")); ?>' width="70">
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
        
     </form>

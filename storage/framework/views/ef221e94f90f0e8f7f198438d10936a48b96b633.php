@@ -27,7 +27,7 @@
             <td><?php echo e($producto->name); ?></td>
             <td><?php echo e($producto->remarks); ?></td>
             <td><?php echo e($producto->dimensions); ?></td>
-            <td><img src='<?php echo e(asset("storage/$producto->image")); ?>' width="70"></td>
+            <td><img src='<?php echo e(asset("storage/$producto->id/$producto->image")); ?>' width="70"></td>
             <td><?php echo e($producto->categoria->name); ?></td>
 
 

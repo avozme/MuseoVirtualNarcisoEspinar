@@ -27,7 +27,7 @@
             <td>{{$producto->name}}</td>
             <td>{{$producto->remarks}}</td>
             <td>{{$producto->dimensions}}</td>
-            <td><img src='{{asset("storage/$producto->image")}}' width="70"></td>
+            <td><img src='{{asset("storage/$producto->id/$producto->image")}}' width="70"></td>
             <td>{{$producto->categoria->name}}</td>
 
 

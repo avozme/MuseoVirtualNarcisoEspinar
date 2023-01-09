@@ -17,8 +17,10 @@
             @endforeach
             
         </select>  
-        Imagen: <br> <img src='{{asset("storage/$producto->image")}}' width="70">
-
+        Imagen: <br> <img src='{{asset("storage/$producto->id/$producto->image")}}' width="70">
+        @foreach($producto->imagenes as $image)
+            <img src='{{asset("storage/$producto->id/$image->image")}}' width="70">
+        @endforeach
         </div>
        
     </form>

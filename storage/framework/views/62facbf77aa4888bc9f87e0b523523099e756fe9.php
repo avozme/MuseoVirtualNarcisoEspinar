@@ -6,7 +6,7 @@
 
 <?php $__env->startSection("content"); ?>
     <?php if(isset($producto)): ?>
-        <form  action="<?php echo e(route('productos.update', ['producto' => $producto->id])); ?>" method="POST" id="formulario">
+        <form action="<?php echo e(route('productos.update', ['producto' => $producto->id])); ?>" method="POST" id="formulario" enctype="multipart/form-data">
             <div class="container-fluid" id="miFormulario">
                 <!-- <?php $__currentLoopData = $producto->items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
                 <?php echo e($item->name); ?> <input class="form-control" type="text" value='<?php echo e($item->pivot->value); ?>'><br>
@@ -14,19 +14,20 @@
             </div>
         <?php echo method_field("PUT"); ?>
     <?php else: ?>
-    <form action="<?php echo e(route('productos.store')); ?>" method="POST" id="formulario">
+    <form action="<?php echo e(route('productos.store')); ?>" method="POST" id="formulario" enctype="multipart/form-data">
     <?php endif; ?>
         <?php echo csrf_field(); ?>
         <div class="container-fluid" id="miFormulario">
             Nombre del producto:<input required class="form-control" type="text" name="name" value="<?php echo e($producto->name ?? ''); ?>"><br>
             Observaciones:<input required class="form-control" type="text" name="remarks" value="<?php echo e($producto->remarks ?? ''); ?>"><br>
             Dimensiones:<input required class="form-control" type="text" name="dimensions" value="<?php echo e($producto->dimensions ?? ''); ?>"><br>
-            Colección:<input required class="form-control" type="text" name="collection" value="<?php echo e($producto->collection ?? ''); ?>"><br>
-            Técnica:<input required class="form-control" type="text" name="technique" value="<?php echo e($producto->technique ?? ''); ?>"><br>
-            Imagen: <input class="form-control" type="file" name="image" accept="image/*" value="<?php echo e($producto->image ?? ''); ?>"<br>
-            
-            Miniatura: <input class="form-control" type="file" name="image" accept="image/*" value="<?php echo e($producto->image ?? ''); ?>"><br>
-            <?php if(isset($producto)): ?><img src='<?php echo e(url("/images")."/".$producto->image); ?>'><?php endif; ?>
+            Miniatura: 
+            <?php if(isset($image)): ?>
+                <div id="image">
+                    <img src="<?php echo e($image); ?>" width=100>
+                </div>
+            <?php endif; ?>
+            <input class="form-control" type="file" accept="image/*" name="image" value="<?php echo e($producto->image ?? ''); ?>"><br>
             Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
                 <option value=''>Selecciona</option>
             <?php $__currentLoopData = $categorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> {
@@ -71,7 +72,6 @@
                     listItems.appendChild(label);
                     listItems.appendChild(hidden);
                     listItems.appendChild(input);
-                    console.log(item);
                     cont++;
                 });
             })
