@@ -21,6 +21,10 @@
             
         </select>  
         Imagen: <br> <img src='<?php echo e(asset("storage/$producto->image")); ?>' width="70">
+
+        <?php $__currentLoopData = $producto->imagenes->name; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+            <img src='<?php echo e(asset("storage/$image")); ?>' width="70"><br>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
        
     </form>
