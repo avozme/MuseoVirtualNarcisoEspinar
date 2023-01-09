@@ -13,14 +13,15 @@
             Dimensiones:<input class="form-control" type="text" disabled name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
             Colección:<input class="form-control" type="text" disabled name="collection" value="{{$producto->collection ?? '' }}"><br>
             Técnica:<input class="form-control" type="text" disabled name="technique" value="{{$producto->technique ?? '' }}"><br>
-            Imagen:<input class="form-control" type="text" disabled name="image" value="{{$producto->image ?? '' }}"><br>
             Categoria:<input class="form-control" type="text" disabled name="categoria_id" value="{{$producto->categoria->name}}" id="categoria_id"><br>
 
             @foreach ($producto->items as $item) 
             {{$item->name}} <input class="form-control" disabled type="text" value='{{$item->pivot->value}}'><br>
             @endforeach
-        </select>
-               
+            
+        </select>  
+        Imagen: <br> <img src='{{asset("storage/$producto->image")}}' width="70">
         </div>
+       
     </form>
     @endsection

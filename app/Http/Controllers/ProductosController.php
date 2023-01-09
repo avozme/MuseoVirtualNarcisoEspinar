@@ -26,7 +26,11 @@ class ProductosController extends Controller
 
     //Hemos cambiado cosa aquí
     public function store(Request $r) {
+        $image = $r->file('image');
+        // $image_name = $image->getClientOriginalName();
+        // $image->storeAs("public", $image_name);
         $p = new Productos($r->all());
+        // $p->image = $image_name;
         $p->save();
         $p->etiquetas()->attach($r->etiquetas);
         //$p->items()->attach($r->items);

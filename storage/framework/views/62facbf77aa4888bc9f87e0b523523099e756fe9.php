@@ -23,7 +23,7 @@
             Dimensiones:<input required class="form-control" type="text" name="dimensions" value="<?php echo e($producto->dimensions ?? ''); ?>"><br>
             Colección:<input required class="form-control" type="text" name="collection" value="<?php echo e($producto->collection ?? ''); ?>"><br>
             Técnica:<input required class="form-control" type="text" name="technique" value="<?php echo e($producto->technique ?? ''); ?>"><br>
-            Imagen:<input required class="form-control" type="text" name="image" value="<?php echo e($producto->image ?? ''); ?>"><br>
+            Imagen: <input class="form-control" type="file" name="image" accept="image/*" value="<?php echo e($producto->image ?? ''); ?>"<br>
             
             <?php if(isset($producto)): ?><img src='<?php echo e(url("/images")."/".$producto->image); ?>'><?php endif; ?>
             Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
