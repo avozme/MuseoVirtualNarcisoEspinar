@@ -8,9 +8,9 @@
     @isset($producto)
         <form action="{{ route('productos.update', ['producto' => $producto->id]) }}" method="POST" id="formulario">
             <div class="container-fluid" id="miFormulario">
-                @foreach ($producto->items as $item) 
+                <!-- @foreach ($producto->items as $item) 
                 {{$item->name}} <input class="form-control" type="text" value='{{$item->pivot->value}}'><br>
-                @endforeach
+                @endforeach -->
             </div>
         @method("PUT")
     @else
@@ -19,12 +19,9 @@
         @csrf
         <div class="container-fluid" id="miFormulario">
             Nombre del producto:<input required class="form-control" type="text" name="name" value="{{$producto->name ?? '' }}"><br>
-            Descripción:<input required class="form-control" type="text" name="description" value="{{$producto->description ?? '' }}"><br>
+            Observaciones:<input required class="form-control" type="text" name="remarks" value="{{$producto->remarks ?? '' }}"><br>
             Dimensiones:<input required class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
-            Colección:<input required class="form-control" type="text" name="collection" value="{{$producto->collection ?? '' }}"><br>
-            Técnica:<input required class="form-control" type="text" name="technique" value="{{$producto->technique ?? '' }}"><br>
-            Imagen: <input class="form-control" type="file" name="image" accept="image/*" value="{{$producto->image ?? '' }}"<br>
-            
+            Miniatura: <input class="form-control" type="file" name="image" accept="image/*" value="{{$producto->image ?? '' }}"><br>
             Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
                 <option value=''>Selecciona</option>
             @foreach ($categorias as $categoria) {

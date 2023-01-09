@@ -9,13 +9,12 @@
 <tr>
       <th scope="col">Nombre
       </th>
-      <th scope="col">Descripción
+      <th scope="col">Observaciones
       </th> 
-      <th scope="col">Dimensiones</th>
-      <th scope="col">Colección
-      </th> 
-      <th scope="col">Técnica</th>
-      <th scope="col">Imagen</th>    
+      <th scope="col">Dimensiones
+      </th>
+      <th scope="col">Miniatura
+      </th>
       <th scope="col">Categoría
       </th>
       <th scope="col"></th>  
@@ -26,10 +25,8 @@
     @foreach ($productosList as $producto)
         <tr>
             <td>{{$producto->name}}</td>
-            <td>{{$producto->description}}</td>
+            <td>{{$producto->remarks}}</td>
             <td>{{$producto->dimensions}}</td>
-            <td>{{$producto->collection}}</td>
-            <td>{{$producto->technique}}</td>
             <td><img src='{{asset("storage/$producto->image")}}' width="70"></td>
             <td>{{$producto->categoria->name}}</td>
 

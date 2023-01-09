@@ -143,7 +143,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Vasijas Alcabaza</div>
-                                <div class="portfolio-caption-subheading text-muted">Cerámica Árabe</div>
+                                <div class="portfolio-caption-subheading text-muted">Piezas Arqueológicas</div>
                             </div>
                         </div>
                     </div>

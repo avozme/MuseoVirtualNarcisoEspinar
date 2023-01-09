@@ -14,26 +14,13 @@ class CategoriasTableSeeder extends Seeder
      */
     public function run()
     {
+        
         DB::table('categorias')->insert([
-            'name' => 'Coleccion colectiva',
-        ]);
-        DB::table('categorias')->insert([
-            'name' => 'Coleccion individual',
+            'name' => 'Piezas Arqueológicas',
 
         ]);
         DB::table('categorias')->insert([
-            'name' => 'Ceramica Arabe',
-
-        ]);
-        DB::table('categorias')->insert([
-            'name' => 'Postales',
-
-        ]);
-        DB::table('categorias')->insert([
-            'name' => 'Basura para borrar',
-        ]);
-        DB::table('categorias')->insert([
-            'name' => 'Feria',
+            'name' => 'Postales de Almería',
 
         ]);
     }
