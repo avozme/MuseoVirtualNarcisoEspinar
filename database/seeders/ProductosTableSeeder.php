@@ -16,49 +16,17 @@ class ProductosTableSeeder extends Seeder
     {
         DB::table('productos')->insert([
             'name' => 'Vasija marroquí',
-            'description' => 'Una vasija',
-            'dimensions' => '58cmx36cm',
-            'collection' => 'vasijas',
-            'technique' => 'semi-vidriada',
-            'image' => 'imagen 1',
+            'remarks' => 'Buen Estado',
+            'dimensions' => '58cm x 36cm',
+            'image' => '',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
-            'name' => 'Postal paseo',
-            'description' => 'Una postal del paseo de almerí',
-            'dimensions' => '10cmx15cm',
-            'collection' => 'postales',
-            'technique' => 'a color',
-            'image' => 'imagen 2',
-            'categoria_id' => '1',
-        ]);
-        DB::table('productos')->insert([
-            'name' => 'Postal rambla',
-            'description' => 'Una postal de la rambla',
-            'dimensions' => '10cmx15cm',
-            'collection' => 'postales',
-            'technique' => 'sepia',
-            'image' => 'imagen 3',
+            'name' => 'Postal Paseo',
+            'remarks' => 'Deplorable',
+            'dimensions' => '15cm x 10cm',
+            'image' => '',
             'categoria_id' => '2',
         ]);
-        DB::table('productos')->insert([
-            'name' => 'Vasija',
-            'description' => 'otra vasija',
-            'dimensions' => '58cmx36cm',
-            'collection' => 'vasijas',
-            'technique' => 'arcilla',
-            'image' => 'imagen 4',
-            'categoria_id' => '1',
-        ]);
-        DB::table('productos')->insert([
-            'name' => 'postal pescaderia',
-            'description' => 'una postal de pescaderia',
-            'dimensions' => '10cmx15cm',
-            'collection' => 'postales',
-            'technique' => 'a color',
-            'image' => 'imagen 5',
-            'categoria_id' => '1',
-        ]);
-        
     }
 }

@@ -18,19 +18,69 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '1',
-            'value' => 'pepito',
+            'value' => 'arcilla',
         ]);
 
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '2',
-            'value' => '24-02-1989',
+            'value' => 'estampilla',
         ]);
 
         DB::table('items_productos')->insert([
-            'productos_id' => '2',
-            'items_id' => '1',
-            'value' => 'joseluis',
+            'productos_id' => '1',
+            'items_id' => '3',
+            'value' => 'Almería',
         ]);
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '1',
+            'items_id' => '4',
+            'value' => '1895',
+        ]);
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '1',
+            'items_id' => '5',
+            'value' => 'bibliografia',
+        ]);
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '1',
+            'items_id' => '6',
+            'value' => 'observación',
+        ]);
+        
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '7',
+            'value' => 'madera',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '8',
+            'value' => 'Postal del Paseo de almería',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '9',
+            'value' => 'autor',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '10',
+            'value' => 'colección',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '11',
+            'value' => '1876',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '12',
+            'value' => 'impresor',
+        ]);
+
     }
 }

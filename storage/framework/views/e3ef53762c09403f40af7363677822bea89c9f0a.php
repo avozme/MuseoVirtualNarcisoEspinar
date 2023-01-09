@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Mi fuente-->
-        <link href="css/frontStyles.css" rel="stylesheet" type="text/css" />
+        <link href="/css/frontStyles.css" rel="stylesheet" type="text/css" />
         
         
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -93,6 +93,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
+                                
                                 <img class="img-fluid" src="postal1.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
@@ -142,7 +143,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Vasijas Alcabaza</div>
-                                <div class="portfolio-caption-subheading text-muted">Cerámica Árabe</div>
+                                <div class="portfolio-caption-subheading text-muted">Piezas Arqueológicas</div>
                             </div>
                         </div>
                     </div>

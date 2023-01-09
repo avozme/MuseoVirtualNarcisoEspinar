@@ -9,10 +9,7 @@
 <form id="formulario">
         <div class="container-fluid">
             Nombre del producto:<input class="form-control" disabled type="text" name="name" value="<?php echo e($producto->name ?? ''); ?>"><br>
-            Descripción:<input class="form-control" type="text" disabled name="description" value="<?php echo e($producto->description ?? ''); ?>"><br>
             Dimensiones:<input class="form-control" type="text" disabled name="dimensions" value="<?php echo e($producto->dimensions ?? ''); ?>"><br>
-            Colección:<input class="form-control" type="text" disabled name="collection" value="<?php echo e($producto->collection ?? ''); ?>"><br>
-            Técnica:<input class="form-control" type="text" disabled name="technique" value="<?php echo e($producto->technique ?? ''); ?>"><br>
             Categoria:<input class="form-control" type="text" disabled name="categoria_id" value="<?php echo e($producto->categoria->name); ?>" id="categoria_id"><br>
 
             <?php $__currentLoopData = $producto->items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
@@ -22,9 +19,6 @@
         </select>  
         Imagen: <br> <img src='<?php echo e(asset("storage/$producto->image")); ?>' width="70">
 
-        <?php $__currentLoopData = $producto->imagenes->name; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
-            <img src='<?php echo e(asset("storage/$image")); ?>' width="70"><br>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
        
     </form>
