@@ -26,6 +26,7 @@ class ProductosController extends Controller
 
     //Hemos cambiado cosa aquí
     public function store(Request $r) {
+        // dd($r);
         $image = $r->file('image');
         // $image_name = $image->getClientOriginalName();
         // $image->storeAs("public", $image_name);

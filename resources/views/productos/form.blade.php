@@ -6,7 +6,7 @@
 
 @section("content")
     @isset($producto)
-        <form  action="{{ route('productos.update', ['producto' => $producto->id]) }}" method="POST" id="formulario">
+        <form action="{{ route('productos.update', ['producto' => $producto->id]) }}" method="POST" id="formulario">
             <div class="container-fluid" id="miFormulario">
                 @foreach ($producto->items as $item) 
                 {{$item->name}} <input class="form-control" type="text" value='{{$item->pivot->value}}'><br>
