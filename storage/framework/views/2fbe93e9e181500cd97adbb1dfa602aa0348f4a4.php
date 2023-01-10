@@ -17,12 +17,15 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             
         </select>  
-        Imagen: <br> <img src='<?php echo e(asset("storage/$producto->id/$producto->image")); ?>' width="70">
+        Imagen: <br> <img src='<?php echo e(asset("storage/$producto->id/$producto->image")); ?>' width="150">
         <?php $__currentLoopData = $producto->imagenes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <img src='<?php echo e(asset("storage/$producto->id/$image->image")); ?>' width="70">
+            <img src='<?php echo e(asset("storage/$producto->id/$image->image")); ?>' width="150" >
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
-       
+
     </form>
+
     <?php $__env->stopSection(); ?>
+
+
 <?php echo $__env->make("layouts.master", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/productos/show.blade.php ENDPATH**/ ?>
