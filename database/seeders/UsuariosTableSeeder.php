@@ -22,12 +22,6 @@ class UsuariosTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Lucía',
-            'user' => 'lcp622',
-            'password' => 'root',
-        ]);
-
-        DB::table('users')->insert([
             'name' => 'Juan',
             'user' => 'juan',
             'password' => 'juan',
