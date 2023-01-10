@@ -31,10 +31,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services">Cerámica Árabe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Piezas Arqueológicas</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Postales</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">Programas de Feria</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Todas las categorias</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Buscador</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso</a></li>
                     </ul>
                 </div>
@@ -47,44 +47,17 @@
                 <div class="masthead-heading text-uppercase">Conoce su historia</div>
             </div>
         </header>
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Categorías</h2><br>
-                </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <img src="c2.png">
-                        </span>
-                        <h4 class="my-3">Cerámica Árabe</h4>
-                        <p class="text-muted">Colección de Cerámica árabe</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                        <img src="c3.png">
-                        </span>
-                        <h4 class="my-3">Postales</h4>
-                        <p class="text-muted">Colección de postales de Almería desde 1930</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                        <img src="c1.png">
-                        </span>
-                        <h4 class="my-3">Programas de Feria</h4>
-                        <p class="text-muted">Programas de feria almerianses del sigo XX .</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Services
+       
+
         <!-- Portfolio Grid-->
+ 
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+                                            <!-- Función imagenes -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
         <section class="page-section bg-light" id="portfolio">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Portfolio</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
+            <div class="container"> 
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
@@ -94,11 +67,11 @@
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 
-                                <img class="img-fluid" src="postal1.jpg" alt="..." />
+                                <img class="img-fluid" src="ceramica2.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Playa del Zapillo</div>
-                                <div class="portfolio-caption-subheading text-muted">Postal 1960</div>
+                                <div class="portfolio-caption-heading">Piezas Arqueológicas</div>
+                                <div class="portfolio-caption-subheading text-muted">placeholder</div>
                             </div>
                         </div>
                     </div>
@@ -109,11 +82,11 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="postal2.jpg" alt="..." />
+                                <img class="img-fluid" src="18 - LSP 17 Narciso.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Puerto de Almería</div>
-                                <div class="portfolio-caption-subheading text-muted">Postal 1960</div>
+                                <div class="portfolio-caption-heading">Postales</div>
+                                <div class="portfolio-caption-subheading text-muted">placeholder</div>
                             </div>
                         </div>
                     </div>
@@ -124,56 +97,11 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="postal2.jpg" alt="..." />
+                                <img class="img-fluid" src="29 - Sempere 864 Narciso.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Plaza de toros</div>
-                                <div class="portfolio-caption-subheading text-muted">Postal 1930</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <!-- Portfolio item 4-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="ceramica1.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Vasijas Alcabaza</div>
-                                <div class="portfolio-caption-subheading text-muted">Piezas Arqueológicas</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-                        <!-- Portfolio item 5-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="ceramica2.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Vasija</div>
-                                <div class="portfolio-caption-subheading text-muted">Cerámica Árabe</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <!-- Portfolio item 6-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="ceramica2.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Ánfora</div>
-                                <div class="portfolio-caption-subheading text-muted">Cerámica Árabe</div>
+                                <div class="portfolio-caption-heading">Imágenes</div>
+                                <div class="portfolio-caption-subheading text-muted">placeholder</div>
                             </div>
                         </div>
                     </div>
