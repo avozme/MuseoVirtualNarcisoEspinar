@@ -28,12 +28,15 @@ class ProductosController extends Controller
     //Hemos cambiado cosa aquí
     public function store(Request $r) {
         $image = $r->file('image');
+        $image2 = $r->file('image2');
         $image_name = $image->getClientOriginalName();
         $p = new Productos($r->all());
+
         $p->image = $image_name;
         $p->save();
         $image->storeAs("public/$p->id", $image_name);
-        $p->etiquetas()->attach($r->etiquetas);
+
+        //$p->etiquetas()->attach($r->etiquetas);
         //$p->items()->attach($r->items);
         foreach($r->items as $item){ 
             $itemProducto = new ItemsProductos();

@@ -21,13 +21,17 @@
             Nombre del producto:<input required class="form-control" type="text" name="name" value="{{$producto->name ?? '' }}"><br>
             Observaciones:<input required class="form-control" type="text" name="remarks" value="{{$producto->remarks ?? '' }}"><br>
             Dimensiones:<input required class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
-            Miniatura: 
+            Foto principal: 
             @if(isset($image))
                 <div id="image">
                     <img src="{{$image}}" width=100>
                 </div>
             @endif
             <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}"><br>
+            
+            Fotos Adicionales:
+            <input class="form-control" type="file" accept="image/*" name="image2[]" multiple value=""><br>
+           
             Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
                 <option value=''>Selecciona</option>
             @foreach ($categorias as $categoria) {

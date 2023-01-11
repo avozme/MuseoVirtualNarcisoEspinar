@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('remarks', 300);
             $table->string('dimensions', 20);
             $table->string('image', 150);
-            $table->string('image2', 150);
             $table->integer('categoria_id');
             $table->timestamps();
         });
