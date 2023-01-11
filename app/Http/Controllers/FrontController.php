@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class FrontController extends Controller
 {
     public function index() {
-        $productosList = Productos::all(); //funcion
-        
+        //$productosList = Productos::all(); //funcion
+        $productosList = Productos::recuperarProductosFront();
         return view('front.front', ['productosList'=>$productosList]);
     }
 

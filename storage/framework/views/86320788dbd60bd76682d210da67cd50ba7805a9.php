@@ -22,9 +22,9 @@
           </td>
 
 
+          <td><?php echo e($imagene->producto->name); ?></td>
+
           
-
-
           <td>
           </td>
           <td>

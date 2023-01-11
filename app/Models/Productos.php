@@ -28,7 +28,14 @@ class Productos extends Model
     }
         use HasFactory;
 
-    //public function recuperarProductosFront(){
-    //
-   // }
+    public function recuperarProductosFront(){
+        $listaCategorias = Categories::all();
+        $lsitaProductos = array();
+        foreach ($listaCategorias as $categoria) {
+            $numProd = Productos::count("id_cat = $categoria->id");
+            $aleat = random(1, $numProd);
+            $listaProductos[] = Productos::consultar_aleatoriamente_un_producto_de($categoria->id)  // SELECT * FROM productos WHERE cat='' LIMIT 1, $aleat
+        }
+        return $listaProductos;
+    }
 }
