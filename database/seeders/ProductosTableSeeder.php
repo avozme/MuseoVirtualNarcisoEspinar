@@ -19,6 +19,7 @@ class ProductosTableSeeder extends Seeder
             'remarks' => 'Buen Estado',
             'dimensions' => '58cm x 36cm',
             'image' => '',
+            'image2' => '',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
@@ -26,6 +27,7 @@ class ProductosTableSeeder extends Seeder
             'remarks' => 'Deplorable',
             'dimensions' => '15cm x 10cm',
             'image' => '',
+            'image2' => '',
             'categoria_id' => '2',
         ]);
     }
