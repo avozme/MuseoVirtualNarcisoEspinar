@@ -20,7 +20,11 @@
           <td>
             <img src='{{asset("storage/$imagene->producto_id/$imagene->image")}}' width="150">
           </td>
+
+
           <td>{{$imagene->producto->name}}</td>
+
+          
           <td>
           </td>
           <td>

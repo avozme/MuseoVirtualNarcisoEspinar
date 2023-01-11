@@ -61,10 +61,10 @@ class ProductosController extends Controller
 
         if(!blank($r->file('image'))){
             $deleteImage = $p->image;
-            Storage::delete('public/'.$deleteImage);
+            Storage::delete("public/" . $id . "/" . $deleteImage);
             $image = $r->file('image');
             $image_name = $image->getClientOriginalName();
-            $image->storeAs("public", $image_name);
+            $image->storeAs("public/$p->id", $image_name);
             $p->image = $image_name;
         }
 
@@ -84,14 +84,13 @@ class ProductosController extends Controller
     }
 
     public function destroy($id) {
-
         // $p = Productos::find($id);
         // $p->items()->detach();
         // $p->delete();
-
         $p = Productos::find($id);
         $deleteImage = $p->image;
-        Storage::delete('public/' . $deleteImage);
+        //Storage::delete('public/' . $id);
+            Storage::DeleteDirectory('public/' . $id);
         $p->delete();
         $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
         foreach($itemsProductos as $ip){

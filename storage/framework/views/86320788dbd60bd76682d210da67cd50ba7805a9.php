@@ -20,7 +20,11 @@
           <td>
             <img src='<?php echo e(asset("storage/$imagene->producto_id/$imagene->image")); ?>' width="150">
           </td>
-          <td><?php echo e($imagene->producto->name); ?></td>
+
+
+          
+
+
           <td>
           </td>
           <td>
