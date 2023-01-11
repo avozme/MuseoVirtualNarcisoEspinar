@@ -9,11 +9,8 @@
 <tr>
       <th scope="col">Nombre
       </th>
-      <th scope="col">Observaciones
-      </th> 
-      <th scope="col">Dimensiones
       </th>
-      <th scope="col">Miniatura
+      <th scope="col">Foto Principal
       </th>
       <th scope="col">Categoría
       </th>
@@ -22,12 +19,11 @@
       <th scope="col"></th>  
       <th scope="col"></th> 
     </tr>
+
     @foreach ($productosList as $producto)
         <tr>
             <td>{{$producto->name}}</td>
-            <td>{{$producto->remarks}}</td>
-            <td>{{$producto->dimensions}}</td>
-            <td><img src='{{asset("storage/$producto->id/$producto->image")}}' width="70"></td>
+            <td><img src='{{asset("storage/$producto->id/$producto->image")}}' width="120"></td>
             <td>{{$producto->categoria->name}}</td>
 
 

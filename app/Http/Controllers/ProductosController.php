@@ -28,7 +28,7 @@ class ProductosController extends Controller
     //Hemos cambiado cosa aquí
     public function store(Request $r) {
         $image = $r->file('image');
-        $image2 = $r->file('image2');
+        //$image2 = $r->file('image2');
         $image_name = $image->getClientOriginalName();
         $p = new Productos($r->all());
 
@@ -58,8 +58,8 @@ class ProductosController extends Controller
 
     public function update(Request $r, $id) {
         $p = Productos::find($id);
-        $p->name = $r->name;
-        $p->dimensions = $r->dimensions;
+        // $p->name = $r->name;
+        // $p->dimensions = $r->dimensions;
         $p->categoria_id = $r->categoria_id;
 
         if(!blank($r->file('image'))){

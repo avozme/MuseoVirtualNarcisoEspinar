@@ -16,15 +16,15 @@ class ProductosTableSeeder extends Seeder
     {
         DB::table('productos')->insert([
             'name' => 'Vasija marroquí',
-            'remarks' => 'Buen Estado',
-            'dimensions' => '58cm x 36cm',
+            // 'remarks' => 'Buen Estado',
+            // 'dimensions' => '58cm x 36cm',
             'image' => '',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Postal Paseo',
-            'remarks' => 'Deplorable',
-            'dimensions' => '15cm x 10cm',
+            // 'remarks' => 'Deplorable',
+            // 'dimensions' => '15cm x 10cm',
             'image' => '',
             'categoria_id' => '2',
         ]);

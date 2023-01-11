@@ -18,22 +18,25 @@
     <?php endif; ?>
         <?php echo csrf_field(); ?>
         <div class="container-fluid" id="miFormulario">
-            Nombre del producto:<input required class="form-control" type="text" name="name" value="<?php echo e($producto->name ?? ''); ?>"><br>
-            Observaciones:<input required class="form-control" type="text" name="remarks" value="<?php echo e($producto->remarks ?? ''); ?>"><br>
-            Dimensiones:<input required class="form-control" type="text" name="dimensions" value="<?php echo e($producto->dimensions ?? ''); ?>"><br>
-            Miniatura: 
-            <?php if(isset($image)): ?>
-                <div id="image">
-                    <img src="<?php echo e($image); ?>" width=100>
-                </div>
-            <?php endif; ?>
-            <input class="form-control" type="file" accept="image/*" name="image" value="<?php echo e($producto->image ?? ''); ?>"><br>
-            Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
+        Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
                 <option value=''>Selecciona</option>
             <?php $__currentLoopData = $categorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> {
                 <option value='<?php echo e($categoria->id); ?>' <?php if(isset($producto->categoria) && $producto->categoria->id == $categoria->id): ?> selected <?php endif; ?>><?php echo e($categoria->name); ?></option>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </select>
+            </select> <br>
+            Nombre :<input class="form-control" type="text"  name="name" value="<?php echo e($producto->name ?? ''); ?>" id="categoria_id"><br>
+            Foto principal: 
+            <?php if(isset($image)): ?>
+                <div id="image">
+                    <img src="<?php echo e($image); ?>" width=150>
+                </div> <br>
+            <?php endif; ?>
+            <input class="form-control" type="file" accept="image/*" name="image" value="<?php echo e($producto->image ?? ''); ?>"><br>
+            
+            Fotos Adicionales:
+            <input class="form-control" type="file" accept="image/*" name="image2[]" multiple value="">
+           
+
             <div id="listItems">
                 <?php if(isset($itemsProductos)): ?>
                     <?php $__currentLoopData = $itemsProductos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $itemProducto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

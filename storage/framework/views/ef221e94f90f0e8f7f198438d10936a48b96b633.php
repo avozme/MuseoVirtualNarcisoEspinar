@@ -9,11 +9,8 @@
 <tr>
       <th scope="col">Nombre
       </th>
-      <th scope="col">Observaciones
-      </th> 
-      <th scope="col">Dimensiones
       </th>
-      <th scope="col">Miniatura
+      <th scope="col">Foto Principal
       </th>
       <th scope="col">Categoría
       </th>
@@ -22,12 +19,11 @@
       <th scope="col"></th>  
       <th scope="col"></th> 
     </tr>
+
     <?php $__currentLoopData = $productosList; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $producto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
             <td><?php echo e($producto->name); ?></td>
-            <td><?php echo e($producto->remarks); ?></td>
-            <td><?php echo e($producto->dimensions); ?></td>
-            <td><img src='<?php echo e(asset("storage/$producto->id/$producto->image")); ?>' width="70"></td>
+            <td><img src='<?php echo e(asset("storage/$producto->id/$producto->image")); ?>' width="120"></td>
             <td><?php echo e($producto->categoria->name); ?></td>
 
 

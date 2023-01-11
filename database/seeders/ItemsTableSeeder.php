@@ -14,6 +14,17 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('items')->insert([
+            'name' => 'Observaciones',
+            'categoria_id' => '1',
+        ]);
+
+        DB::table('items')->insert([
+            'name' => 'Dimensiones',
+            'categoria_id' => '1',
+        ]);
+
         DB::table('items')->insert([
             'name' => 'Material',
             'categoria_id' => '1',
@@ -37,6 +48,17 @@ class ItemsTableSeeder extends Seeder
         DB::table('items')->insert([
             'name' => 'Bibliografía',
             'categoria_id' => '1',
+        ]);
+
+
+        DB::table('items')->insert([
+            'name' => 'Observaciones',
+            'categoria_id' => '2',
+        ]);
+
+        DB::table('items')->insert([
+            'name' => 'Dimensiones',
+            'categoria_id' => '2',
         ]);
 
         DB::table('items')->insert([

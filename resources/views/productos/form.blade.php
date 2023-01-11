@@ -18,26 +18,25 @@
     @endisset
         @csrf
         <div class="container-fluid" id="miFormulario">
-            Nombre del producto:<input required class="form-control" type="text" name="name" value="{{$producto->name ?? '' }}"><br>
-            Observaciones:<input required class="form-control" type="text" name="remarks" value="{{$producto->remarks ?? '' }}"><br>
-            Dimensiones:<input required class="form-control" type="text" name="dimensions" value="{{$producto->dimensions ?? '' }}"><br>
-            Foto principal: 
-            @if(isset($image))
-                <div id="image">
-                    <img src="{{$image}}" width=100>
-                </div>
-            @endif
-            <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}"><br>
-            
-            Fotos Adicionales:
-            <input class="form-control" type="file" accept="image/*" name="image2[]" multiple value=""><br>
-           
-            Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
+        Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
                 <option value=''>Selecciona</option>
             @foreach ($categorias as $categoria) {
                 <option value='{{$categoria->id}}' @if(isset($producto->categoria) && $producto->categoria->id == $categoria->id) selected @endif>{{$categoria->name}}</option>
             @endforeach
-            </select>
+            </select> <br>
+            Nombre :<input class="form-control" type="text"  name="name" value="{{$producto->name ?? '' }}" id="categoria_id"><br>
+            Foto principal: 
+            @if(isset($image))
+                <div id="image">
+                    <img src="{{$image}}" width=150>
+                </div> <br>
+            @endif
+            <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}"><br>
+            
+            Fotos Adicionales:
+            <input class="form-control" type="file" accept="image/*" name="image2[]" multiple value="">
+           
+
             <div id="listItems">
                 @if(isset($itemsProductos))
                     @foreach($itemsProductos as $key => $itemProducto)
