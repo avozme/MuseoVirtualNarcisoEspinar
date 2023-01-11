@@ -96,6 +96,10 @@ class ProductosController extends Controller
         foreach($itemsProductos as $ip){
             $ip->delete();
         }
+        // $borrarImagenes = Imagenes::find($id);
+        // foreach($borrarImagenes as $bi){
+        //     $bi->delete();
+        // }
         return redirect()->route('productos.index');
     }
 }
