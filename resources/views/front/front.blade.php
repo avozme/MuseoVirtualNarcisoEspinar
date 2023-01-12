@@ -44,18 +44,12 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
+                <div class="tituloPrincipal">
                 <div class="masthead-subheading">Un poquito más cerca de Almería</div>
                 <div class="masthead-heading text-uppercase">Conoce su historia</div>
             </div>
+            </div>
         </header>
-        <!-- Services
-       
-
-        <!-- Portfolio Grid-->
- 
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                                            <!-- Función imagenes -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
         <section class="page-section bg-light" id="portfolio">
             <div class="container"> 
@@ -81,7 +75,7 @@
             </div>
         </section>
         
-        <!-- Team-->
+
         <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
@@ -114,13 +108,7 @@
                     <h2 class="section-heading text-uppercase">Contáctanos</h2>
                     <h3 class="section-subheading text-muted">Para cualquier sugerencia o aportar información:</h3>
                 </div>
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!-->
+
                 <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">

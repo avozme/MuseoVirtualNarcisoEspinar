@@ -11341,7 +11341,7 @@ p {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  background-color: #21252996;
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -11389,7 +11389,7 @@ p {
   #mainNav.navbar-shrink {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: darkslategray;
+    background-color: #eee4cc;
   }
   #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.25em;
@@ -11406,15 +11406,19 @@ p {
   }
 }
 header.masthead {
-  padding-top: 10.5rem;
-  padding-bottom: 6rem;
+  padding-top: 21rem !important;
+  padding-bottom: 19rem !important;
   text-align: center;
-  color: black;
+  color: white;
+  filter:brightness(0.6);
   background-image: url("../postal.png");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
+}
+.tituloPrincipal{
+color:white !important;
 }
 header.masthead .masthead-subheading {
   font-size: 1.5rem;
