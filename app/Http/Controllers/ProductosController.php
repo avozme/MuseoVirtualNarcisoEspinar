@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Productos;
 use App\Models\Categorias;
 use App\Models\ItemsProductos;
+use App\Models\Imagenes;
 use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
@@ -28,14 +29,21 @@ class ProductosController extends Controller
     //Hemos cambiado cosa aquí
     public function store(Request $r) {
         $image = $r->file('image');
-        //$image2 = $r->file('image2');
+        $images = $r->file('images');
         $image_name = $image->getClientOriginalName();
         $p = new Productos($r->all());
-
         $p->image = $image_name;
         $p->save();
         $image->storeAs("public/$p->id", $image_name);
-
+       
+        foreach($images as $i){
+            $i_name = $i->getClientOriginalName();
+            $img = new Imagenes();
+            $i->storeAs("public/$p->id", $i_name);
+            $img->producto_id = $p->id;
+            $img->image = $i_name;
+            $img->save();
+        }
         //$p->etiquetas()->attach($r->etiquetas);
         //$p->items()->attach($r->items);
         foreach($r->items as $item){ 

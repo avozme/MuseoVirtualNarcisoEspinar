@@ -32,11 +32,10 @@ class Productos extends Model
         $listaCategorias = Categorias::all();
         $listaProductos = array();
         foreach ($listaCategorias as $categoria) {
-            $numProd = DB::table('productos')->where('productos.categoria_id', '=', 'categorias.id')->count();
+            $numProd = Productos::find($categoria->id)->count();
             // $numProd = "SELECT COUNT (id) FROM productos WHERE (categorias_id = $id_categoria)";
             // DB::statement($numProd)
-            $random = rand(1, $numProd);
-            $listaProductos[] = DB::table('productos')->where('productos.categoria_id', '=', $categoria->id)->skip($random-1)->limit(1)->get()->toArray();
+            $listaProductos[] = $categoria->productos->random();
             // $listaProductos[] = Productos::consultar_aleatoriamente_un_producto_de($categoria->id)  // SELECT * FROM productos WHERE cat='$categoria->id' LIMIT 1, $random
         }
         return $listaProductos;

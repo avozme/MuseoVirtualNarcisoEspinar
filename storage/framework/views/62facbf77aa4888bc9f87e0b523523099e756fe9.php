@@ -32,9 +32,17 @@
                 </div> <br>
             <?php endif; ?>
             <input class="form-control" type="file" accept="image/*" name="image" value="<?php echo e($producto->image ?? ''); ?>"><br>
-            
+        
+            <div id="image">
+            <?php if(isset($producto)): ?>
+                <?php $__currentLoopData = $producto->imagenes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <img src="/storage/<?php echo e($producto->id); ?>/<?php echo e($image->image); ?>" width="150">
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
+            </div> <br>
+
             Fotos Adicionales:
-            <input class="form-control" type="file" accept="image/*" name="image2[]" multiple value="">
+            <input class="form-control" type="file" accept="image/*" name="images[]" multiple value="">
            
 
             <div id="listItems">

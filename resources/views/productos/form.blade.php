@@ -32,9 +32,17 @@
                 </div> <br>
             @endif
             <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}"><br>
-            
+        
+            <div id="image">
+            @if (isset($producto))
+                @foreach($producto->imagenes as $image)
+                    <img src="/storage/{{$producto->id}}/{{$image->image}}" width="150">
+                @endforeach
+            @endif
+            </div> <br>
+
             Fotos Adicionales:
-            <input class="form-control" type="file" accept="image/*" name="image2[]" multiple value="">
+            <input class="form-control" type="file" accept="image/*" name="images[]" multiple value="">
            
 
             <div id="listItems">
