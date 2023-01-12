@@ -61,49 +61,20 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
+                        
                         <div class="portfolio-item">
                             <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                
-                                <img class="img-fluid" src="ceramica2.jpg" alt="..." />
+                                <img class="img-fluid" src="storage/app/public/{{$producto->id}}/{{$producto->image}}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Piezas Arqueológicas</div>
-                                <div class="portfolio-caption-subheading text-muted">placeholder</div>
+                                <div class="portfolio-caption-heading">{{$producto->name}}</div>
                             </div>
                         </div>
+                        
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 2-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="18 - LSP 17 Narciso.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Postales</div>
-                                <div class="portfolio-caption-subheading text-muted">placeholder</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 3-->
-                        <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
-                                <img class="img-fluid" src="29 - Sempere 864 Narciso.jpg" alt="..." />
-                            </a>
-                            <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Imágenes</div>
-                                <div class="portfolio-caption-subheading text-muted">placeholder</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

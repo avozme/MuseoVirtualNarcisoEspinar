@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Productos extends Model
 {
 
@@ -28,14 +28,17 @@ class Productos extends Model
     }
         use HasFactory;
 
-    // public function recuperarProductosFront(){
-    //     $listaCategorias = Categories::all();
-    //     $listaProductos = array();
-    //     foreach ($listaCategorias as $categoria) {
-    //         $numProd = Productos::count("id_cat = $categoria->id");
-    //         $aleat = random(1, $numProd);
-    //         $listaProductos[] = Productos::consultar_aleatoriamente_un_producto_de($categoria->id)  // SELECT * FROM productos WHERE cat='' LIMIT 1, $aleat
-    //     }
-    //     return $listaProductos;
-    // }
+    public static function recuperarProductosFront(){
+        $listaCategorias = Categorias::all();
+        $listaProductos = array();
+        foreach ($listaCategorias as $categoria) {
+            $numProd = DB::table('productos')->where('productos.categoria_id', '=', 'categorias.id')->count();
+            // $numProd = "SELECT COUNT (id) FROM productos WHERE (categorias_id = $id_categoria)";
+            // DB::statement($numProd)
+            $random = rand(1, $numProd);
+            $listaProductos[] = DB::table('productos')->where('productos.categoria_id', '=', $categoria->id)->skip($random-1)->limit(1)->get()->toArray();
+            // $listaProductos[] = Productos::consultar_aleatoriamente_un_producto_de($categoria->id)  // SELECT * FROM productos WHERE cat='$categoria->id' LIMIT 1, $random
+        }
+        return $listaProductos;
+    }
 }
