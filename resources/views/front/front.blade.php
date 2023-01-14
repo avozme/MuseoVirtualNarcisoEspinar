@@ -53,8 +53,9 @@
 
         <section class="page-section bg-light" id="portfolio">
             <div class="container"> 
+            <div class="Ticatego">CATEGORÍAS</div>
                 <div class="grid">
-                    <!-- Portfolio item 1-->
+                    
                     @foreach($productosList as $producto)
                         <div class="gridItem">
                             <div class="portfolio-item">
