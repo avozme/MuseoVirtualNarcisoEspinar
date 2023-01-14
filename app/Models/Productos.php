@@ -32,7 +32,7 @@ class Productos extends Model
         $listaCategorias = Categorias::all();
         $listaProductos = array();
         foreach ($listaCategorias as $categoria) {
-            $numProd = Productos::find($categoria->id)->count();
+            // $numProd = Productos::find($categoria->id)->count();
             // $numProd = "SELECT COUNT (id) FROM productos WHERE (categorias_id = $id_categoria)";
             // DB::statement($numProd)
             $listaProductos[] = $categoria->productos->random();
