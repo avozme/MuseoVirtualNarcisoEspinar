@@ -37,16 +37,4 @@ class Productos extends Model
         }
         return $listaProductos;
     }
-
-    public static function CategoriasFront(){
-        $listaC = Categorias::all();
-        $listaP = array();
-        foreach ($listaCategorias as $categoria) {
-            $numProd = Productos::find($categoria->id)->count();
-            // $numProd = "SELECT COUNT (id) FROM productos WHERE (categorias_id = $id_categoria)";
-            // DB::statement($numProd)
-        }
-        return $listaP;
-    }
 }
-
