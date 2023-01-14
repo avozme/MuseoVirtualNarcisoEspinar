@@ -65,7 +65,7 @@
                                     <img class="img-fluid" src="/storage/{{$producto->id}}/{{$producto->image}}" alt="..." />
                                 </a>
                                 <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">{{$producto->name}}</div>
+                                    <div class="portfolio-caption-heading">{{$producto->categoria->name}}</div>
                                 </div>
                             </div>
                         </div>

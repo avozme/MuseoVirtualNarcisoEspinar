@@ -32,12 +32,21 @@ class Productos extends Model
         $listaCategorias = Categorias::all();
         $listaProductos = array();
         foreach ($listaCategorias as $categoria) {
-            $numProd = Productos::find($categoria->id)->count();
-            // $numProd = "SELECT COUNT (id) FROM productos WHERE (categorias_id = $id_categoria)";
-            // DB::statement($numProd)
             $listaProductos[] = $categoria->productos->random();
             // $listaProductos[] = Productos::consultar_aleatoriamente_un_producto_de($categoria->id)  // SELECT * FROM productos WHERE cat='$categoria->id' LIMIT 1, $random
         }
         return $listaProductos;
     }
+
+    public static function CategoriasFront(){
+        $listaC = Categorias::all();
+        $listaP = array();
+        foreach ($listaCategorias as $categoria) {
+            $numProd = Productos::find($categoria->id)->count();
+            // $numProd = "SELECT COUNT (id) FROM productos WHERE (categorias_id = $id_categoria)";
+            // DB::statement($numProd)
+        }
+        return $listaP;
+    }
 }
+

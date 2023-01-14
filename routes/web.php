@@ -26,6 +26,10 @@ Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');
 Route::resource('usuarios', 'UsuariosController');
 
+Route::view('/postales', 'postales');
+Route::view('/piezas_arqueológicas', 'pa');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
