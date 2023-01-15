@@ -37,4 +37,14 @@ class Productos extends Model
         }
         return $listaProductos;
     }
+
+    public static function recuperarPostales(){
+        $listaPostales = Productos::where('categoria_id', '2');
+        return $listaPostales->get();
+    }
+
+    public static function recuperarPiezasArqueologicas(){
+        $listaPostales = Productos::where('categoria_id', '1');
+        return $listaPostales->get();
+    }
 }

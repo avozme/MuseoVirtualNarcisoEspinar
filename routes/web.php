@@ -26,8 +26,14 @@ Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');
 Route::resource('usuarios', 'UsuariosController');
 
-Route::view('/postales', 'postales');
-Route::view('/piezas_arqueológicas', 'pa');
+
+Route::get('/postales', 'FrontController@mostrarPostales')->name('postales');
+Route::get('/piezas_arqueologicas', 'FrontController@mostrarpiezasPiezasArqueologicas')->name('piezas_arqueologicas');
+// Route::group(['as' => 'front.'] , function(){
+//     Route::view('/postales', 'front.postales');
+//     Route::view('/piezas_arqueologicas', 'front.piezas_arqueologicas');  
+// });
+
 
 
 

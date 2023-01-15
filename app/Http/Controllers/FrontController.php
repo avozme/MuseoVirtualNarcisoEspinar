@@ -18,6 +18,18 @@ class FrontController extends Controller
         $data['productos'] = $p;
         return view('categorias.show', $data);
     }
+
+    public function mostrarPostales() {
+        //$productosList = Productos::all(); //funcion
+        $todosProductos = Productos::recuperarPostales();
+        return view('front.postales', ['todosProductos'=>$todosProductos]);
+    }
+
+    public function mostrarpiezasPiezasArqueologicas() {
+        //$productosList = Productos::all(); //funcion
+        $todosProductos = Productos::recuperarPiezasArqueologicas();
+        return view('front.piezas_arqueologicas', ['todosProductos'=>$todosProductos]);
+    }
 }
  //categoria
 
