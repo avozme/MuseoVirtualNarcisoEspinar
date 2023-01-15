@@ -36,13 +36,15 @@ class ProductosController extends Controller
         $p->save();
         $image->storeAs("public/$p->id", $image_name);
        
-        foreach($images as $i){
-            $i_name = $i->getClientOriginalName();
-            $img = new Imagenes();
-            $i->storeAs("public/$p->id", $i_name);
-            $img->producto_id = $p->id;
-            $img->image = $i_name;
-            $img->save();
+        if(!blank($images)){
+            foreach($images as $i){
+                $i_name = $i->getClientOriginalName();
+                $img = new Imagenes();
+                $i->storeAs("public/$p->id", $i_name);
+                $img->producto_id = $p->id;
+                $img->image = $i_name;
+                $img->save();
+            }
         }
         //$p->etiquetas()->attach($r->etiquetas);
         //$p->items()->attach($r->items);
@@ -95,22 +97,19 @@ class ProductosController extends Controller
     }
 
     public function destroy($id) {
-        // $p = Productos::find($id);
-        // $p->items()->detach();
-        // $p->delete();
         $p = Productos::find($id);
         $deleteImage = $p->image;
         //Storage::delete('public/' . $id);
-            Storage::DeleteDirectory('public/' . $id);
+         Storage::DeleteDirectory('public/' . $id);
         $p->delete();
         $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
         foreach($itemsProductos as $ip){
             $ip->delete();
         }
-        // $borrarImagenes = Imagenes::find($id);
-        // foreach($borrarImagenes as $bi){
-        //     $bi->delete();
-        // }
+        $borrarImagenes = Imagenes::where('producto_id', $id)->get();
+        foreach($borrarImagenes as $bi){
+            $bi->delete();
+        }
         return redirect()->route('productos.index');
     }
 }
