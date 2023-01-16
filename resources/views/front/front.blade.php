@@ -107,7 +107,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contáctanos</h2>
-                    <h3 class="section-subheading text-muted">Para cualquier sugerencia o aportar información:</h3>
+                    <h3 class="section-subheading text-muted">Los campos que contengan (*) son obligatorios.</h3>
                 </div>
 
                 <form id="contactForm" data-sb-form-api-token="API_TOKEN">
@@ -180,10 +180,6 @@
         <script src="js/scripts.js"></script>
         <!-- Nuestro js-->
         <script src="js/frontScripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>

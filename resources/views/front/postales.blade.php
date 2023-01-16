@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<!DOCTYPE html>
-<html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -26,6 +23,7 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
+    <div class="hola">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 
@@ -44,29 +42,33 @@
                 </div>
             </div>
         </nav>
+    </div>
+        <section class="page-section bg-light" id="portfolio">
+        <div class=""> 
 
-        <div class="grid">
-            <!-- Portfolio item 1-->
-            @foreach($todosProductos as $producto)
-                <div class="gridItem">
-                    <div class="portfolio-item">
-
-                        Nombre <input class="form-control" disabled type="text" value='{{$producto->name}}'><br>
-                        @foreach ($producto->items as $item) 
-                        {{$item->name}} <input class="form-control" disabled type="text" value='{{$item->pivot->value}}'><br>
-                        @endforeach   
-                        
-                        Imagen: <br> <img class="img-fluid" src='{{asset("storage/$producto->id/$producto->image")}}' width="150">
-                        @foreach($producto->imagenes as $image)
-                            <img src='{{asset("storage/$producto->id/$image->image")}}' width="150" >
-                        @endforeach
+                <div class="grid">
+                    
+                    @foreach($todosProductos as $producto)
+                        <div class="gridItem">
+                            <div class="portfolio-item">
+                                <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                    </div>
+                                    <img class="img-fluid" src='{{asset("storage/$producto->id/$producto->image")}}' width="auto">
+                                </a>
+                                <div class="portfolio-caption">
+                                    <div class="portfolio-caption-heading">{{$producto->name}}</div>
+                                </div>
+                            </div>
                         </div>
+                    @endforeach
                     </div>
                 </div>
-            @endforeach
             </div>
+        </div>
+        </section>
 
-        </div>    
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
@@ -84,10 +86,6 @@
         <script src="js/scripts.js"></script>
         <!-- Nuestro js-->
         <script src="js/frontScripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 </html>
