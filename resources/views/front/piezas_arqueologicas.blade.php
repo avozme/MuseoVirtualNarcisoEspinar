@@ -23,8 +23,7 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-    <div class="hola">
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:#ada191">
             <div class="container">
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,16 +32,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Piezas Arqueológicas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Postales</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Buscador</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/piezas_arqueologicas">Piezas Arqueológicas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/postales">Postales</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Buscador</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
         <section class="page-section bg-light" id="portfolio">
         <div class=""> 
 

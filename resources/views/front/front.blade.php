@@ -32,11 +32,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#services">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Piezas Arqueológicas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Postales</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Buscador</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/piezas_arqueologicas">Piezas Arqueológicas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/postales">Postales</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Buscador</a></li>
                     </ul>
                 </div>
             </div>
