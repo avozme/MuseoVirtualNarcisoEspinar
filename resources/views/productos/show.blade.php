@@ -9,7 +9,7 @@
 <form id="formulario">
         <div class="container-fluid">
             Categoria:<input class="form-control" type="text" disabled name="categoria_id" value="{{$producto->categoria->name}}" id="categoria_id"><br>
-            
+            Nombre :<input class="form-control" type="text" disabled  name="name" value="{{$producto->name ?? '' }}" id="categoria_id"><br>
             @foreach ($producto->items as $item) 
             {{$item->name}} <input class="form-control" disabled type="text" value='{{$item->pivot->value}}'><br>
             @endforeach

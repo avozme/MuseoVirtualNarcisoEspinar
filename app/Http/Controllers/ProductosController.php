@@ -68,7 +68,7 @@ class ProductosController extends Controller
 
     public function update(Request $r, $id) {
         $p = Productos::find($id);
-        // $p->name = $r->name;
+        $p->name = $r->name;
         // $p->dimensions = $r->dimensions;
         $p->categoria_id = $r->categoria_id;
 
