@@ -284,9 +284,9 @@ padding-right: calc(var(--bs-gutter-x) * .1) !important;
   box-shadow: none;
 }
 .ps-5{
-  width: 97em !important;
+  width: 100em !important;
   padding-top: 1.5em !important;
-  padding-left: 55em !important;
+  padding-left: 41em !important;
 }
 /* Accordion */
 .accordion-item {
