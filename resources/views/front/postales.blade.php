@@ -71,23 +71,18 @@
                                 <div class="modal-body">
                                     <!-- Project details-->
                                     <h2 class="text-uppercase pb-4">{{$producto->name}}</h2>
+                                    @foreach($producto->imagenes as $image)
+                                    <img src='{{asset("storage/$producto->id/$image->image")}}' width="650" >
+                                    @endforeach
                                     <!-- <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p> -->
-                                    <img class="img-fluid d-block mx-auto" src='{{asset("storage/$producto->id/$producto->image")}}' alt="..." width="auto" />
-                                    <p>texto descriptivo</p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <strong>Client:</strong>
-                                            Threads
-                                        </li>
-                                        <li>
-                                            <strong>Category:</strong>
-                                            Illustration
-                                        </li>
-                                    </ul>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                    <img class="img-fluid d-block mx-auto" src='{{asset("storage/$producto->id/$producto->image")}}' alt="..." width="100" />
+                                    @foreach ($producto->items as $item) 
+                                    <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
+                                    @endforeach
+                                    <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-xmark me-1"></i>
                                         Close Project
-                                    </button>
+                                    </button> -->
                                 </div>
                             </div>
                         </div>

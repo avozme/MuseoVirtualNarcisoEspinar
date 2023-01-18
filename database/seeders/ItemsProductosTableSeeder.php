@@ -17,70 +17,46 @@ class ItemsProductosTableSeeder extends Seeder
     {
         DB::table('items_productos')->insert([
             'productos_id' => '1',
-            'items_id' => '1',
-            'value' => 'arcilla',
+            'items_id' => '8',
+            'value' => 'Este es un campo donde irán las observaciones',
         ]);
-
         DB::table('items_productos')->insert([
             'productos_id' => '1',
-            'items_id' => '2',
-            'value' => 'estampilla',
+            'items_id' => '9',
+            'value' => '10x14cm',
         ]);
-
         DB::table('items_productos')->insert([
             'productos_id' => '1',
-            'items_id' => '3',
-            'value' => 'Almería',
+            'items_id' => '10',
+            'value' => 'Sí',
         ]);
-
         DB::table('items_productos')->insert([
             'productos_id' => '1',
-            'items_id' => '4',
-            'value' => '1895',
+            'items_id' => '11',
+            'value' => 'Este es un campo donde irá la descripción',
         ]);
-
         DB::table('items_productos')->insert([
             'productos_id' => '1',
-            'items_id' => '5',
-            'value' => 'bibliografia',
+            'items_id' => '12',
+            'value' => 'Aquí irá el autor',
         ]);
-
         DB::table('items_productos')->insert([
             'productos_id' => '1',
-            'items_id' => '6',
-            'value' => 'observación',
+            'items_id' => '13',
+            'value' => 'Aquí irá la colección',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '1',
+            'items_id' => '14',
+            'value' => '17/02/1985',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '1',
+            'items_id' => '15',
+            'value' => 'Aquí irá el impresor',
         ]);
         
-        DB::table('items_productos')->insert([
-            'productos_id' => '2',
-            'items_id' => '7',
-            'value' => 'madera',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '2',
-            'items_id' => '8',
-            'value' => 'Postal del Paseo de almería',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '2',
-            'items_id' => '9',
-            'value' => 'autor',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '2',
-            'items_id' => '10',
-            'value' => 'colección',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '2',
-            'items_id' => '11',
-            'value' => '1876',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '2',
-            'items_id' => '12',
-            'value' => 'impresor',
-        ]);
+        
 
     }
 }

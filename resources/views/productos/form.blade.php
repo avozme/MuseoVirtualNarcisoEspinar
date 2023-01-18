@@ -24,14 +24,14 @@
                 <option value='{{$categoria->id}}' @if(isset($producto->categoria) && $producto->categoria->id == $categoria->id) selected @endif>{{$categoria->name}}</option>
             @endforeach
             </select> <br>
-            Nombre :<input class="form-control" type="text"  name="name" value="{{$producto->name ?? '' }}" id="categoria_id"><br>
+            Nombre :<input class="form-control" type="text"  name="name" value="{{$producto->name ?? '' }}" id="categoria_id" required><br>
             Foto principal: 
             @if(isset($image))
                 <div id="image">
                     <img src="{{$image}}" width=150>
                 </div> <br>
             @endif
-            <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}"><br>
+            <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}" required><br>
         
             <div id="image">
             @if (isset($producto))
