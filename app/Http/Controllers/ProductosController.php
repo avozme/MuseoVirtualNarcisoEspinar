@@ -69,7 +69,6 @@ class ProductosController extends Controller
     public function update(Request $r, $id) {
         $p = Productos::find($id);
         $p->name = $r->name;
-        // $p->dimensions = $r->dimensions;
         $p->categoria_id = $r->categoria_id;
 
         if(!blank($r->file('image'))){
@@ -81,17 +80,22 @@ class ProductosController extends Controller
             $p->image = $image_name;
         }
 
-
-        // $p->fill($r->all());
-        // $p->save();
-        // $p->items()->sync($r->items);
+        $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
+        foreach($itemsProductos as $ip){
+            $ip->delete();
+        }
 
         foreach($r->items as $item){ 
-            $itemProducto = ItemsProductos::where('items_id', $item['id'])->first();
+            // $itemProducto = ItemsProductos::where('items_id', $item['id'])->first();
+            $itemProducto = new ItemsProductos();
             $itemProducto->productos_id = $id;
+            $itemProducto->items_id = $item['id'];
             $itemProducto->value = $item['value'];
             $itemProducto->save();
         }
+
+
+
         $p->save();
         return redirect()->route('productos.index');
     }
