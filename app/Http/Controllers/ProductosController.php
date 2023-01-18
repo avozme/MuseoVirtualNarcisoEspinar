@@ -67,6 +67,7 @@ class ProductosController extends Controller
     }
 
     public function update(Request $r, $id) {
+        
         $p = Productos::find($id);
         $p->name = $r->name;
         $p->categoria_id = $r->categoria_id;
@@ -78,6 +79,28 @@ class ProductosController extends Controller
             $image_name = $image->getClientOriginalName();
             $image->storeAs("public/$p->id", $image_name);
             $p->image = $image_name;
+        }
+        
+        $deleteImages = $r->deleteImages ?? [];
+        foreach($deleteImages as $di){
+            $img = Imagenes::where('image', $di)->first();
+            Storage::delete("public/" . $img->producto_id . "/" . $di);
+            $img->delete();
+        }
+
+
+        
+        $images = $r->file('images');
+        if(!blank($images)){
+            foreach($images as $i){
+                $i_name = $i->getClientOriginalName();
+                $i->storeAs("public/$p->id", $i_name);
+
+                $img = new Imagenes();
+                $img->producto_id = $p->id;
+                $img->image = $i_name;
+                $img->save();
+            }
         }
 
         $itemsProductos = ItemsProductos::where('productos_id', $id)->get();

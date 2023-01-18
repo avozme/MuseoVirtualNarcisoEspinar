@@ -33,12 +33,18 @@
             @endif
             <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}"><br>
         
-            <div id="image">
+            <div id="image" class="row">
             @if (isset($producto))
                 @foreach($producto->imagenes as $image)
-                    <img src="/storage/{{$producto->id}}/{{$image->image}}" width="150">
+                    <div class="image-item d-flex justify-content-center align-items-center col-sm-2" onclick="deleteItem(this)" >
+                        <img src="/storage/{{$producto->id}}/{{$image->image}}" width="150">
+                        <input value="{{$image->image}}" class="inputDelete" name="images[]" type="hidden">
+                        <i class="fa-solid fa-trash fs-1 btnDelete"></i>
+                    </div>
                 @endforeach
             @endif
+            <div id="deleteImages">
+            </div>
             </div> <br>
                 
             Fotos Adicionales:
@@ -86,5 +92,13 @@
                     cont++;
                 });
             })
-        }  
+    }  
+    function deleteItem(este) {
+        let inputValue = este.querySelector('.inputDelete').value
+        if(confirm(`¿Desea borrar el archivo ${inputValue}?`)){
+            document.getElementById('deleteImages').innerHTML += `<input type="hidden" name="deleteImages[]" value="${inputValue}">`
+            este.remove()
+        } 
+    }
+
 </script>

@@ -1263,3 +1263,16 @@ padding-right: calc(var(--bs-gutter-x) * .1) !important;
   font-size: 13px;
   color: #012970;
 }
+
+.btnDelete{
+  position: absolute;
+  opacity: 0;
+  color: #ff4141;
+  transition: opacity 300ms linear;
+}
+.image-item{
+  cursor: pointer;
+}
+.image-item:hover .btnDelete{
+  opacity: 1;
+}

@@ -14,7 +14,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Mi fuente-->
-        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
         <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="/css/frontStyles.css" rel="stylesheet" type="text/css" />
         
@@ -67,15 +68,37 @@
                                     <div class="close-modal" data-bs-dismiss="modal"><svg id="Layer_1" data-name="Layer 1"  viewBox="0 0 579.74 579.74"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:6px;}</style></defs><line class="cls-1" x1="2.12" y1="2.12" x2="577.62" y2="577.62"/><line class="cls-1" x1="2.12" y1="577.62" x2="577.62" y2="2.12"/></svg></div>
                                     <div class="container">
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-12">
                                                 <div class="modal-body">
                                                     <!-- Project details-->
                                                     <h2 class="text-uppercase pb-4">{{$producto->name}}</h2>
-                                                    @foreach($producto->imagenes as $image)
-                                                    <img src='{{asset("storage/$producto->id/$image->image")}}' width="650" >
-                                                    @endforeach
+                                                    <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="true">
+                                                        <div class="carousel-indicators">
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                        </div>
+                                                        <div class="carousel-inner">
+                                                            <div class="carousel-item active">
+                                                                <img class="d-block w-100" src='{{asset("storage/$producto->id/$producto->image")}}' alt="..." />
+                                                            </div>
+                                                            @foreach($producto->imagenes as $image)
+                                                                <div class="carousel-item">
+                                                                    <img src='{{asset("storage/$producto->id/$image->image")}}' class="d-block w-100">
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Previous</span>
+                                                        </button>
+                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Next</span>
+                                                        </button>
+                                                    </div>
+                                                    
                                                     <!-- <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p> -->
-                                                    <img class="img-fluid d-block mx-auto" src='{{asset("storage/$producto->id/$producto->image")}}' alt="..." width="400" />
                                                     @foreach ($producto->items as $item) 
                                                     <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
                                                     @endforeach
