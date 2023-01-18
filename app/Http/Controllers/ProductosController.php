@@ -81,9 +81,10 @@ class ProductosController extends Controller
             $p->image = $image_name;
         }
         
+
         $deleteImages = $r->deleteImages ?? [];
         foreach($deleteImages as $di){
-            $img = Imagenes::where('image', $di)->first();
+            $img = Imagenes::where('image', $di)->where('producto_id', $p->id)->first();
             Storage::delete("public/" . $img->producto_id . "/" . $di);
             $img->delete();
         }
