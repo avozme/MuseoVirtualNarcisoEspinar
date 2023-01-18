@@ -59,5 +59,43 @@ class ProductosTableSeeder extends Seeder
             'image' => '',
             'categoria_id' => '2',
         ]);
+
+        DB::table('productos')->insert([
+            'name' => 'Vaso de los Blanquizares de Lébor',
+            'image' => '',
+            'categoria_id' => '1',
+        ]);
+        
+        DB::table('productos')->insert([
+            'name' => 'Vaso',
+            'image' => '',
+            'categoria_id' => '1',
+        ]);
+        DB::table('productos')->insert([
+            'name' => 'Inscripción funeraria',
+            'image' => '',
+            'categoria_id' => '1',
+        ]);
+        DB::table('productos')->insert([
+            'name' => 'Jarra',
+            'image' => '',
+            'categoria_id' => '1',
+        ]);
+        DB::table('productos')->insert([
+            'name' => 'Vaso de alabastro',
+            'image' => '',
+            'categoria_id' => '1',
+        ]);
+        DB::table('productos')->insert([
+            'name' => 'Cántaro con galbo de perfil ovoide',
+            'image' => '',
+            'categoria_id' => '1',
+        ]);
+        DB::table('productos')->insert([
+            'name' => 'Aríbalo esférico',
+            'image' => '',
+            'categoria_id' => '1',
+        ]);
+
     }
 }

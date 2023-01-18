@@ -384,5 +384,268 @@ class ItemsProductosTableSeeder extends Seeder
             'items_id' => '15',
             'value' => 'Aquí irá el impresor',
         ]);
+
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '10',
+            'items_id' => '1',
+            'value' => 'Este es un campo donde irán las observaciones',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '10',
+            'items_id' => '2',
+            'value' => '10x14cm',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '10',
+            'items_id' => '3',
+            'value' => 'Aqui va el material',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '10',
+            'items_id' => '4',
+            'value' => 'Aqui va la tecnica',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '10',
+            'items_id' => '5',
+            'value' => 'Aquí va la procedencia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '10',
+            'items_id' => '6',
+            'value' => 'Aquí va la cronologia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '10',
+            'items_id' => '7',
+            'value' => 'aqui va la bibliografia',
+        ]);
+
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '11',
+            'items_id' => '1',
+            'value' => 'Este es un campo donde irán las observaciones',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '11',
+            'items_id' => '2',
+            'value' => '10x14cm',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '11',
+            'items_id' => '3',
+            'value' => 'Aqui va el material',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '11',
+            'items_id' => '4',
+            'value' => 'Aqui va la tecnica',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '11',
+            'items_id' => '5',
+            'value' => 'Aquí va la procedencia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '11',
+            'items_id' => '6',
+            'value' => 'Aquí va la cronologia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '11',
+            'items_id' => '7',
+            'value' => 'aqui va la bibliografia',
+        ]);
+
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '12',
+            'items_id' => '1',
+            'value' => 'Este es un campo donde irán las observaciones',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '12',
+            'items_id' => '2',
+            'value' => '10x14cm',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '12',
+            'items_id' => '3',
+            'value' => 'Aqui va el material',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '12',
+            'items_id' => '4',
+            'value' => 'Aqui va la tecnica',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '12',
+            'items_id' => '5',
+            'value' => 'Aquí va la procedencia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '12',
+            'items_id' => '6',
+            'value' => 'Aquí va la cronologia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '12',
+            'items_id' => '7',
+            'value' => 'aqui va la bibliografia',
+        ]);
+
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '13',
+            'items_id' => '1',
+            'value' => 'Este es un campo donde irán las observaciones',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '13',
+            'items_id' => '2',
+            'value' => '10x14cm',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '13',
+            'items_id' => '3',
+            'value' => 'Aqui va el material',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '13',
+            'items_id' => '4',
+            'value' => 'Aqui va la tecnica',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '13',
+            'items_id' => '5',
+            'value' => 'Aquí va la procedencia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '13',
+            'items_id' => '6',
+            'value' => 'Aquí va la cronologia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '13',
+            'items_id' => '7',
+            'value' => 'aqui va la bibliografia',
+        ]);
+
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '14',
+            'items_id' => '1',
+            'value' => 'Este es un campo donde irán las observaciones',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '14',
+            'items_id' => '2',
+            'value' => '10x14cm',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '14',
+            'items_id' => '3',
+            'value' => 'Aqui va el material',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '14',
+            'items_id' => '4',
+            'value' => 'Aqui va la tecnica',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '14',
+            'items_id' => '5',
+            'value' => 'Aquí va la procedencia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '14',
+            'items_id' => '6',
+            'value' => 'Aquí va la cronologia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '14',
+            'items_id' => '7',
+            'value' => 'aqui va la bibliografia',
+        ]);
+
+
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '15',
+            'items_id' => '1',
+            'value' => 'Este es un campo donde irán las observaciones',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '15',
+            'items_id' => '2',
+            'value' => '10x14cm',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '15',
+            'items_id' => '3',
+            'value' => 'Aqui va el material',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '15',
+            'items_id' => '4',
+            'value' => 'Aqui va la tecnica',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '15',
+            'items_id' => '5',
+            'value' => 'Aquí va la procedencia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '15',
+            'items_id' => '6',
+            'value' => 'Aquí va la cronologia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '15',
+            'items_id' => '7',
+            'value' => 'aqui va la bibliografia',
+        ]);
+
+
+        DB::table('items_productos')->insert([
+            'productos_id' => '16',
+            'items_id' => '1',
+            'value' => 'Este es un campo donde irán las observaciones',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '16',
+            'items_id' => '2',
+            'value' => '10x14cm',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '16',
+            'items_id' => '3',
+            'value' => 'Aqui va el material',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '16',
+            'items_id' => '4',
+            'value' => 'Aqui va la tecnica',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '16',
+            'items_id' => '5',
+            'value' => 'Aquí va la procedencia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '16',
+            'items_id' => '6',
+            'value' => 'Aquí va la cronologia',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '16',
+            'items_id' => '7',
+            'value' => 'aqui va la bibliografia',
+        ]);
+
+
+     
     }
 }
