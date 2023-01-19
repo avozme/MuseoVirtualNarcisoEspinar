@@ -35,8 +35,7 @@
                         <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="/piezas_arqueologicas">Piezas Arqueológicas</a></li>
                         <li class="nav-item"><a class="nav-link" href="/postales">Postales</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Buscador</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/#about">Sobre Narciso</a></li>
                     </ul>
                 </div>
             </div>
