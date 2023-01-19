@@ -13,6 +13,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Mi fuente-->
         
         <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -20,6 +21,7 @@
         
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -42,6 +44,21 @@
         </nav>
         <section class="page-section bg-light" id="portfolio">
         <div class=""> 
+
+        <div class="pt-4  d-flex w-25">
+            <div class="input-group">
+                <input type="text" class="form-control" id="texto" placeholder="Ingrese nombre">
+                <div class="input-group-append"><span class="input-group-text">Buscar</span></div>
+            </div>
+            <div id="resultados" class=""></div>
+            </div>
+            <!-- <div class="pt-4 row justify-content-center align-items-center ms-5 me-5">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div> -->
+
 
                 <div class="grid">
                     
@@ -66,7 +83,7 @@
                                     <div class="close-modal" data-bs-dismiss="modal"><svg id="Layer_1" data-name="Layer 1"  viewBox="0 0 579.74 579.74"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:6px;}</style></defs><line class="cls-1" x1="2.12" y1="2.12" x2="577.62" y2="577.62"/><line class="cls-1" x1="2.12" y1="577.62" x2="577.62" y2="2.12"/></svg></div>
                                     <div class="container">
                                         <div class="row justify-content-center">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-8">
                                                 <div class="modal-body">
                                                     <!-- Project details-->
                                                     <h2 class="text-uppercase pb-4">{{$producto->name}}</h2>
