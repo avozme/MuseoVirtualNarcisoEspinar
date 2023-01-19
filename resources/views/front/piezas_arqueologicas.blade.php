@@ -79,11 +79,11 @@
                                                         </div>
                                                         <div class="carousel-inner">
                                                             <div class="carousel-item active">
-                                                                <img class="d-block w-100" src='{{asset("storage/$producto->id/$producto->image")}}' alt="..." />
+                                                                <img class="center-block w-40" src='{{asset("storage/$producto->id/$producto->image")}}' alt="..." />
                                                             </div>
                                                             @foreach($producto->imagenes as $image)
                                                                 <div class="carousel-item">
-                                                                    <img src='{{asset("storage/$producto->id/$image->image")}}' class="d-block w-100">
+                                                                    <img src='{{asset("storage/$producto->id/$image->image")}}' class="center-block w-40">
                                                                 </div>
                                                             @endforeach
                                                         </div>

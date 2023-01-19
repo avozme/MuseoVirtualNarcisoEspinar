@@ -1427,7 +1427,7 @@ progress {
     width: 91.66666667%;
   }
 
-  .col-lg-12 {
+  .col-lg-9 {
     flex: 0 0 auto;
     width: 100%;
   }
@@ -11541,7 +11541,7 @@ header.masthead .masthead-heading {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  width: 3rem;
+  width: 1.5rem;
   height: 3rem;
   cursor: pointer;
   background-color: transparent;
