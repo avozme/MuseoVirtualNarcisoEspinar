@@ -33,8 +33,9 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/piezas_arqueologicas">Piezas Arqueológicas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/postales">Postales</a></li>
+                        @foreach($categoriasList as $categoria)
+                        <li class="nav-item"><a class="nav-link" href="/categoria/{{$categoria->id}}">{{$categoria->name}}</a></li>
+                        @endforeach
                         <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso</a></li>
                         <li class="nav-item"><a class="nav-link" href="#team">Buscador</a></li>
                     </ul>
@@ -175,7 +176,7 @@
             </div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <!-- Nuestro js-->

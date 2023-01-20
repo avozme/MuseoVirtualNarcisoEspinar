@@ -10,7 +10,8 @@ class FrontController extends Controller
     public function index() {
         //$productosList = Productos::all(); //funcion
         $productosList = Productos::recuperarProductosFront();
-        return view('front.front', ['productosList'=>$productosList]);
+        $categoriasList = Productos::recuperarListaCategorias();
+        return view('front.front', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList]);
     }
 
     public function show($id) {
@@ -19,16 +20,16 @@ class FrontController extends Controller
         return view('categorias.show', $data);
     }
 
-    public function mostrarPostales() {
-        //$productosList = Productos::all(); //funcion
-        $todosProductos = Productos::recuperarPostales();
-        return view('front.postales', ['todosProductos'=>$todosProductos]);
+    public function mostrarCategorias($id) {
+        $categoriasList = Productos::recuperarListaCategorias();
+        $todosProductos = Productos::recuperarPorCategoria($id);
+        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList]);
     }
 
-    public function mostrarpiezasPiezasArqueologicas() {
+    public function buscadorPostales() {
         //$productosList = Productos::all(); //funcion
-        $todosProductos = Productos::recuperarPiezasArqueologicas();
-        return view('front.piezas_arqueologicas', ['todosProductos'=>$todosProductos]);
+        $resultadoBusqueda = Productos::busquedaPostales();
+        return view('front.postales', ['resultadoBusqueda'=>$resultadoBusqueda]);
     }
 }
  //categoria

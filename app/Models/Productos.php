@@ -33,18 +33,25 @@ class Productos extends Model
         $listaProductos = array();
         foreach ($listaCategorias as $categoria) {
             $listaProductos[] = $categoria->productos->random();
-            // $listaProductos[] = Productos::consultar_aleatoriamente_un_producto_de($categoria->id)  // SELECT * FROM productos WHERE cat='$categoria->id' LIMIT 1, $random
         }
         return $listaProductos;
     }
 
-    public static function recuperarPostales(){
-        $listaPostales = Productos::where('categoria_id', '2');
-        return $listaPostales->get();
+    public static function recuperarListaCategorias(){
+        $listaCategorias = Categorias::all();
+        return $listaCategorias;
     }
 
-    public static function recuperarPiezasArqueologicas(){
-        $listaPostales = Productos::where('categoria_id', '1');
-        return $listaPostales->get();
+    public static function recuperarPorCategoria($id){
+        $listaProductos = Productos::where('categoria_id', $id);
+        return $listaProductos->get();
     }
+
+    public static function busquedaPostales(){
+        $camposUnidos = DB::table("productos")->join("categorias", "productos.id", "=", "items.id_producto")->get();
+        $resultadoBusqueda = Productos::where('categoria_id', '1');
+        return $resultadoBusqueda->get();
+    }
+
+
 }
