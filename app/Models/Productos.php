@@ -47,10 +47,14 @@ class Productos extends Model
         return $listaProductos->get();
     }
 
-    public static function busquedaPostales(){
-        $camposUnidos = DB::table("productos")->join("categorias", "productos.id", "=", "items.id_producto")->get();
-        $resultadoBusqueda = Productos::where('categoria_id', '1');
+    public static function busquedaCategorias($idCategoria, $textoBusqueda){
+        $resultadoBusqueda = DB::table("productos")->join("categorias", "productos.categoria_id", "=", "categorias.id")->join("items", "items.categoria_id", "=",  "categorias.id")->
+                                 join("items_productos", "items.id", "=", "items_productos.items_id")->Where("categorias.id", "=", $idCategoria)->Where("items_productos.value", "LIKE", "%".$textoBusqueda."%");
         return $resultadoBusqueda->get();
+
+//SELECT xxxxxxxx WHERE categorias.id = "$idCategoria"  
+  //                AND (items_productos.value LIKE "%$textoBusqueda%" OR producto.titulo LIKE "%$textoBusqueda%" OR )
+
     }
 
 

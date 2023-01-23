@@ -23,14 +23,16 @@ class FrontController extends Controller
     public function mostrarCategorias($id) {
         $categoriasList = Productos::recuperarListaCategorias();
         $todosProductos = Productos::recuperarPorCategoria($id);
-        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList]);
+        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria'=>$id]);
     }
 
-    public function buscadorPostales() {
+    public function buscadorCategorias(Request $r) {
         //$productosList = Productos::all(); //funcion
         //FILTRAR POR ID DE CATEGORIA COMO LAFUNCION DE ARRIBA
-        $resultadoBusqueda = Productos::busquedaPostales();
-        return view('front.piezas_categorias', ['resultadoBusqueda'=>$resultadoBusqueda]);
+        $categoriasList = Productos::recuperarListaCategorias();
+        $todosProductos = Productos::recuperarPorCategoria($r->idCategoria);
+        $resultadoBusqueda = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
+        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'resultadoBusqueda'=>$resultadoBusqueda, 'idCategoria' => $r->idCategoria]);
     }
 }
  //categoria
