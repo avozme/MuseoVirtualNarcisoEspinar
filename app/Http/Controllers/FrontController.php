@@ -28,8 +28,9 @@ class FrontController extends Controller
 
     public function buscadorPostales() {
         //$productosList = Productos::all(); //funcion
+        //FILTRAR POR ID DE CATEGORIA COMO LAFUNCION DE ARRIBA
         $resultadoBusqueda = Productos::busquedaPostales();
-        return view('front.postales', ['resultadoBusqueda'=>$resultadoBusqueda]);
+        return view('front.piezas_categorias', ['resultadoBusqueda'=>$resultadoBusqueda]);
     }
 }
  //categoria
