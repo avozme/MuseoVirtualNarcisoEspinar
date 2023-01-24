@@ -40,7 +40,7 @@
                         <div class="input-group">
                             <form action="{{route('buscador')}}" action="POST">
                                 <input type="text" class="form-control" id="texto" name="textoBusqueda"
-                                    placeholder="Ingrese nombre">
+                                    placeholder="Ingrese nombre" value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
                                 <input type="hidden" name="idCategoria" value="{{$idCategoria}}">
                                 <input type="submit" value="Buscar">
                                 <!-- <div class="input-group-append"><span class="input-group-text">Buscar</span></div> -->
@@ -66,7 +66,7 @@
 <!-- #######################################################################################################################
                                     RECUPERAR ITEMS Y SU VALORES + AÑADIR FOTOS ADICIONALES
      ####################################################################################################################### -->
-
+  
                 @if(isset($resultadoBusqueda))
                 @foreach($resultadoBusqueda as $producto)
                 <div class="gridItem">

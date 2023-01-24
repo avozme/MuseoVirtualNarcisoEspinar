@@ -32,7 +32,8 @@ class FrontController extends Controller
         $categoriasList = Productos::recuperarListaCategorias();
         $todosProductos = Productos::recuperarPorCategoria($r->idCategoria);
         $resultadoBusqueda = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
-        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'resultadoBusqueda'=>$resultadoBusqueda, 'idCategoria' => $r->idCategoria]);
+        // dd($resultadoBusqueda);
+        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'resultadoBusqueda'=>$resultadoBusqueda, 'idCategoria' => $r->idCategoria]);
     }
 }
  //categoria

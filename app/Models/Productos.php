@@ -48,8 +48,16 @@ class Productos extends Model
     }
 
     public static function busquedaCategorias($idCategoria, $textoBusqueda){
-        $resultadoBusqueda = DB::table("productos")->join("categorias", "productos.categoria_id", "=", "categorias.id")->join("items", "items.categoria_id", "=",  "categorias.id")->
-                                 join("items_productos", "items.id", "=", "items_productos.items_id")->Where("categorias.id", "=", $idCategoria)->Where("items_productos.value", "LIKE", "%".$textoBusqueda."%");
+        // $resultadoBusqueda = ->join("categorias", "productos.cate')
+        ->leftjoin("items_productos", "productos.id", "items_productos.producgoria_id", "=", "categorias.id")->join("items", "items.categoria_id", "=",  "categorias.id")->
+        // join("items_productos", "items.id", "=", "items_productos.items_id")->Where("categorias.id", "=", $idCategoria)->Where("items_productos.value", "LIKE", "%".$textoBusqueda."%");
+        $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'items_productos.value->groupBy('productos_id")
+        ->where("productos.categoria_id", $idCategoria)
+        ->where(function($query) use ($textoBusqueda){
+            $query->where("productos.name", "like", "%$textoBusqueda%")
+            ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
+        })tos.id');
+        dd($resultadoBusqueda->get());
         return $resultadoBusqueda->get();
 
 //SELECT xxxxxxxx WHERE categorias.id = "$idCategoria"  
