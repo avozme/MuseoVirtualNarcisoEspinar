@@ -27,15 +27,8 @@ class FrontController extends Controller
     }
 
     public function buscadorCategorias(Request $r) {
-        //$productosList = Productos::all(); //funcion
-        //FILTRAR POR ID DE CATEGORIA COMO LAFUNCION DE ARRIBA
         $categoriasList = Productos::recuperarListaCategorias();
-        //$todosProductos = Productos::recuperarPorCategoria($r->idCategoria);
         $todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
-        // dd($resultadoBusqueda);
         return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria]);
     }
 }
- //categoria
-
- //foreach para recorrer los elementos que quiero mostrar

@@ -68,4 +68,9 @@ class Productos extends Model
     }
 
 
+    public static function busquedaProductos($textoBusqueda){
+        $resultadoBusqueda = Productos::with('categoria')
+        ->where("productos.name", "like", "%$textoBusqueda%");
+        return $resultadoBusqueda->get();
+    }
 }

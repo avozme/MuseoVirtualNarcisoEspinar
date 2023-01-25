@@ -27,6 +27,7 @@ Route::resource('imagenes', 'ImagenesController');
 Route::resource('usuarios', 'UsuariosController');
 
 Route::get('buscador', 'FrontController@buscadorCategorias')->name('buscador');
+Route::get('buscadorBack', 'ProductosController@buscadorProductos')->name('buscadorBack');
 
 Route::get('/categoria/{id}', 'FrontController@mostrarCategorias')->name('productoPorCategoria');
 

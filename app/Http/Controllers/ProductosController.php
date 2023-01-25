@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductosController extends Controller
 {   
     public function index() {
-        $productosList = Productos::all();
+        $productosList = Productos::with('categoria')->get();
     return view('productos.all', ['productosList'=>$productosList]);
     }
 
@@ -67,11 +67,9 @@ class ProductosController extends Controller
     }
 
     public function update(Request $r, $id) {
-        
         $p = Productos::find($id);
         $p->name = $r->name;
         $p->categoria_id = $r->categoria_id;
-
         if(!blank($r->file('image'))){
             $deleteImage = $p->image;
             Storage::delete("public/" . $id . "/" . $deleteImage);
@@ -80,17 +78,12 @@ class ProductosController extends Controller
             $image->storeAs("public/$p->id", $image_name);
             $p->image = $image_name;
         }
-        
-
         $deleteImages = $r->deleteImages ?? [];
         foreach($deleteImages as $di){
             $img = Imagenes::where('image', $di)->where('producto_id', $p->id)->first();
             Storage::delete("public/" . $img->producto_id . "/" . $di);
             $img->delete();
         }
-
-
-        
         $images = $r->file('images');
         if(!blank($images)){
             foreach($images as $i){
@@ -108,7 +101,6 @@ class ProductosController extends Controller
         foreach($itemsProductos as $ip){
             $ip->delete();
         }
-
         foreach($r->items as $item){ 
             // $itemProducto = ItemsProductos::where('items_id', $item['id'])->first();
             $itemProducto = new ItemsProductos();
@@ -117,9 +109,6 @@ class ProductosController extends Controller
             $itemProducto->value = $item['value'];
             $itemProducto->save();
         }
-
-
-
         $p->save();
         return redirect()->route('productos.index');
     }
@@ -139,5 +128,11 @@ class ProductosController extends Controller
             $bi->delete();
         }
         return redirect()->route('productos.index');
+    }
+
+    public function buscadorProductos(Request $r) {
+        $categoriasList = Productos::recuperarListaCategorias();
+        $productosList = Productos::busquedaProductos($r->textoBusqueda);
+        return view('productos.all', ['textoBusqueda'=> $r->textoBusqueda, 'productosList'=>$productosList, 'categoriasList'=>$categoriasList]);
     }
 }
