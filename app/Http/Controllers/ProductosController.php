@@ -13,7 +13,8 @@ class ProductosController extends Controller
 {   
     public function index() {
         $productosList = Productos::with('categoria')->get();
-    return view('productos.all', ['productosList'=>$productosList]);
+        $categorias = Categorias::all();
+    return view('productos.all', ['productosList'=>$productosList, 'categorias'=>$categorias]);
     }
 
     public function show($id) {
@@ -131,8 +132,8 @@ class ProductosController extends Controller
     }
 
     public function buscadorProductos(Request $r) {
-        $categoriasList = Productos::recuperarListaCategorias();
-        $productosList = Productos::busquedaProductos($r->textoBusqueda);
-        return view('productos.all', ['textoBusqueda'=> $r->textoBusqueda, 'productosList'=>$productosList, 'categoriasList'=>$categoriasList]);
+        $categorias = Categorias::all();
+        $productosList = Productos::busquedaProductos($r->idCategoria, $r->textoBusqueda);
+        return view('productos.all', ['textoBusqueda'=> $r->textoBusqueda, 'productosList'=>$productosList, 'categorias'=>$categorias]);
     }
 }
