@@ -37,11 +37,6 @@ class Productos extends Model
         return $listaProductos;
     }
 
-    public static function recuperarListaCategorias(){
-        $listaCategorias = Categorias::all();
-        return $listaCategorias;
-    }
-
     public static function recuperarPorCategoria($id){
         $listaProductos = Productos::where('categoria_id', $id);
         return $listaProductos->get();
@@ -68,9 +63,10 @@ class Productos extends Model
     }
 
 
-    public static function busquedaProductos($textoBusqueda){
+    public static function busquedaProductos($idCategoria, $textoBusqueda){
         $resultadoBusqueda = Productos::with('categoria')
-        ->where("productos.name", "like", "%$textoBusqueda%");
+        ->where("productos.categoria_id", $idCategoria)
+        ->where("productos.name", "like", "%$textoBusqueda%")->distinct();
         return $resultadoBusqueda->get();
     }
 }
