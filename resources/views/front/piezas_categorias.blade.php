@@ -38,9 +38,9 @@
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                    @foreach($categoriasList as $categoria)
+                    @foreach($categoriasList as $cat)
                     <li class="nav-item"><a class="nav-link"
-                            href="/categoria/{{$categoria->id}}">{{$categoria->name}}</a></li>
+                            href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
                     @endforeach
                     <li class="nav-item"><a class="nav-link" href="/#about">Sobre Narciso</a></li>
 
@@ -50,16 +50,15 @@
 
         </div>
         <!-- Buscador -->
-        <div class="d-flex">
-            <div class="input-group">
-                <form action="{{route('buscador')}}" action="POST">
-                    <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Ingrese nombre"
+        <div class="p-1" style="width:100%">
+            <form action="{{route('buscador')}}" action="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Buscar en {{$categoria->name ?? ''}}"
                         value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
-                    <input type="hidden" name="idCategoria" value="{{$idCategoria}}">
-                    <input type="submit" value="Buscar">
-                    <!-- <div class="input-group-append"><span class="input-group-text">Buscar</span></div> -->
-                </form>
-            </div>
+                    <input type="hidden" name="idCategoria" value="{{$categoria->id ?? ''}}">
+                    <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
         </div>
         <!-- Fin Buscador -->
     </nav>
