@@ -23,7 +23,7 @@
 </head>
 
 <body id="page-top">
-    <!-- Navigation-->
+    <!-- Menu-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:#ada191">
         <div class="container">
 
@@ -50,7 +50,7 @@
 
         </div>
         <!-- Buscador -->
-        <div class="d-flex w-100 pt-3">
+        <div class="d-flex">
             <div class="input-group">
                 <form action="{{route('buscador')}}" action="POST">
                     <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Ingrese nombre"
@@ -63,15 +63,12 @@
         </div>
         <!-- Fin Buscador -->
     </nav>
-
+    <!-- Fin menu -->
     <section class="page-section bg-light" id="portfolio">
+        
         <div class="">
             <div class="grid">
-
-                <!-- #######################################################################################################################
-                                    RECUPERAR ITEMS Y SU VALORES + AÑADIR FOTOS ADICIONALES
-     ####################################################################################################################### -->
-
+                <!-- Pintando los productos con su modal -->
                 @foreach($todosProductos as $producto)
                 <div class="gridItem">
                     <div class="portfolio-item">
@@ -165,12 +162,13 @@
                     </div>
                 </div>
                 @endforeach
+                <!--FIN Pintando los productos con su modal -->
             </div>
         </div>
         </div>
         </div>
     </section>
-
+<!-- FOOTER -->
     <footer class="footer py-4">
         <div class="container">
             <div class="row align-items-center">
@@ -183,6 +181,7 @@
             </div>
         </div>
     </footer>
+   <!-- FIN FOOTER --> 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
