@@ -31,6 +31,16 @@ h6 {
   font-family: "Nunito", sans-serif;
 }
 
+.active>.page-link, .page-link.active{
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+}
+
+.pagination{
+  --bs-pagination-color: #626262 !important;
+  --bs-pagination-hover-color: #043f8b !important;
+}
+
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
@@ -1069,18 +1079,7 @@ padding-right: calc(var(--bs-gutter-x) * .1) !important;
   max-width: 120px;
 }
 
-/*--------------------------------------------------------------
-# F.A.Q Page
---------------------------------------------------------------*/
-.faq .basic h6 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #4154f1;
-}
 
-.faq .basic p {
-  color: #6980aa;
-}
 
 /*--------------------------------------------------------------
 # Contact
@@ -1204,43 +1203,7 @@ padding-right: calc(var(--bs-gutter-x) * .1) !important;
   }
 }
 
-/*--------------------------------------------------------------
-# Error 404
---------------------------------------------------------------*/
-.error-404 {
-  padding: 30px;
-}
 
-.error-404 h1 {
-  font-size: 180px;
-  font-weight: 700;
-  color: #4154f1;
-  margin-bottom: 0;
-  line-height: 150px;
-}
-
-.error-404 h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #012970;
-  margin-bottom: 30px;
-}
-
-.error-404 .btn {
-  background: #51678f;
-  color: #fff;
-  padding: 8px 30px;
-}
-
-.error-404 .btn:hover {
-  background: #3e4f6f;
-}
-
-@media (min-width: 992px) {
-  .error-404 img {
-    max-width: 50%;
-  }
-}
 
 /*--------------------------------------------------------------
 # Footer

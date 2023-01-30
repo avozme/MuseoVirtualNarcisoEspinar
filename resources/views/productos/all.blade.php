@@ -22,7 +22,7 @@
                 <div class="d-flex ">
                 
                     @csrf
-                    <div class="input-group">
+                    <div class="input-group p-3">
                     <select class="form-select" name='idCategoria'>
                         <option value=''>Selecciona una categoría</option>
                         @foreach ($categorias as $categoria)
@@ -56,7 +56,7 @@
             <form action="{{route('productos.destroy', $producto->id)}}" method="POST">
                 @csrf
                 @method("DELETE")
-                <button class="btn btn-outline-danger" type="button" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
+                <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
             </form>
         </td>
         @endforeach
@@ -66,7 +66,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-{!! $productosList->links() !!}
+{!! $productosList->links() !!} <!--Que genere con get -->
 </div>
 
 @endsection

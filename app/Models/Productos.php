@@ -39,28 +39,21 @@ class Productos extends Model
 
     public static function recuperarPorCategoria($id){
         $listaProductos = Productos::where('categoria_id', $id);
-        return $listaProductos->paginate(8);
+        return $listaProductos->paginate(4);
     }
-
+    /*Buscador Front */
     public static function busquedaCategorias($idCategoria, $textoBusqueda){
-        // $resultadoBusqueda = ->join("categorias", "productos.cate')
-        // ->leftjoin("items_productos", "productos.id", "items_productos.producgoria_id", "=", "categorias.id")->join("items", "items.categoria_id", "=",  "categorias.id")->
-        // join("items_productos", "items.id", "=", "items_productos.items_id")->Where("categorias.id", "=", $idCategoria)->Where("items_productos.value", "LIKE", "%".$textoBusqueda."%");
-        $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
+         $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
         ->join("items_productos", "productos.id","items_productos.productos_id")
         ->where("productos.categoria_id", $idCategoria)->distinct()
         ->where(function($query) use ($textoBusqueda){
             $query->where("productos.name", "like", "%$textoBusqueda%")
             ->orwhere("items_productos.value", "like", "%$textoBusqueda%"); 
         });
-        return $resultadoBusqueda->paginate(8);
-
-//SELECT xxxxxxxx WHERE categorias.id = "$idCategoria"  
-  //                AND (items_productos.value LIKE "%$textoBusqueda%" OR producto.titulo LIKE "%$textoBusqueda%" OR )
-
+        return $resultadoBusqueda->paginate(4);
     }
 
-
+    /*Buscador Back */
     public static function busquedaProductos($idCategoria, $textoBusqueda){
         $resultadoBusqueda = Productos::with('categoria')
         ->where("productos.categoria_id", $idCategoria)
