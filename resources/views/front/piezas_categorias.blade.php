@@ -154,6 +154,7 @@
                 @endforeach
                 <!--FIN Pintando los productos con su modal -->
             </div>
+            
             <div class="d-flex justify-content-center">
                 {!! $todosProductos->links() !!}
             </div>

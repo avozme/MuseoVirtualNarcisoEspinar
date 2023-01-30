@@ -18,10 +18,10 @@
         <!-- Buscador -->
         <th scope="col" colspan="3">
         @section('buscador')
-            <form class="ms-auto pt-3   " action="{{route('buscadorBack')}}" method="POST">
+            <form class="ms-auto pt-3   " action="{{route('buscadorBack')}}" method="GET">
                 <div class="d-flex ">
                 
-                    @csrf
+                    <!-- @csrf -->
                     <div class="input-group p-3">
                     <select class="form-select" name='idCategoria'>
                         <option value=''>Selecciona una categoría</option>

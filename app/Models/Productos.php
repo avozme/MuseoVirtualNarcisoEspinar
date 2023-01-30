@@ -48,16 +48,17 @@ class Productos extends Model
         ->where("productos.categoria_id", $idCategoria)->distinct()
         ->where(function($query) use ($textoBusqueda){
             $query->where("productos.name", "like", "%$textoBusqueda%")
-            ->orwhere("items_productos.value", "like", "%$textoBusqueda%"); 
-        });
-        return $resultadoBusqueda->paginate(4);
+            ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
+        })->paginate(4);
+        
+        return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);
     }
 
     /*Buscador Back */
     public static function busquedaProductos($idCategoria, $textoBusqueda){
         $resultadoBusqueda = Productos::with('categoria')
         ->where("productos.categoria_id", $idCategoria)
-        ->where("productos.name", "like", "%$textoBusqueda%")->distinct();
-        return $resultadoBusqueda->paginate(3);
+        ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->paginate(3);
+        return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);
     }
 }
