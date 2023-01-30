@@ -15,3 +15,12 @@
   max-height: 215px;
 }
 
+.searchParent{
+  width:30%;
+}
+
+@media (max-width: 991px) {
+  .searchParent {
+    width: 100%;
+  }
+}

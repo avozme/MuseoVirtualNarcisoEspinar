@@ -39,7 +39,7 @@
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $cat)
-                    <li class="nav-item"><a class="nav-link" href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
+                        <li class="nav-item"><a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}" href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
                     @endforeach
                     <li class="nav-item"><a class="nav-link" href="/#about">Sobre Narciso</a></li>
 
@@ -49,13 +49,12 @@
 
         </div>
         <!-- Buscador -->
-        <div class="p-1" style="width:100%">
-            <form action="{{route('buscador')}}" action="POST">
+        <div class="p-1 searchParent">
+            <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" id="texto" name="textoBusqueda"
                         placeholder="Buscar en {{$categoria->name ?? ''}}"
                         value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
-                    <input type="hidden" name="idCategoria" value="{{$categoria->id ?? ''}}">
                     <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </form>

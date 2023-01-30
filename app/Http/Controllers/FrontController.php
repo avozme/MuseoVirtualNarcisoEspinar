@@ -21,11 +21,11 @@ class FrontController extends Controller
         return view('categorias.show', $data);
     }
 
-    public function mostrarCategorias($id) {
+    public function mostrarCategorias($id, Request $r) {
         $categoria = Categorias::find($id);
         $categoriasList = Categorias::all();
-        $todosProductos = Productos::recuperarPorCategoria($id);
-        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria]);
+        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
+        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria, 'textoBusqueda' => $r->textoBusqueda]);
     }
 
     public function buscadorCategorias(Request $r) {

@@ -39,26 +39,26 @@ class Productos extends Model
 
     public static function recuperarPorCategoria($id){
         $listaProductos = Productos::where('categoria_id', $id);
-        return $listaProductos->paginate(4);
+        return $listaProductos->paginate(9);
     }
     /*Buscador Front */
     public static function busquedaCategorias($idCategoria, $textoBusqueda){
          $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
         ->join("items_productos", "productos.id","items_productos.productos_id")
-        ->where("productos.categoria_id", $idCategoria)->distinct()
+        ->where("productos.categoria_id", $idCategoria)
         ->where(function($query) use ($textoBusqueda){
             $query->where("productos.name", "like", "%$textoBusqueda%")
             ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
-        })->paginate(4);
-        
-        return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);
+        })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
+
+        return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
     /*Buscador Back */
     public static function busquedaProductos($idCategoria, $textoBusqueda){
         $resultadoBusqueda = Productos::with('categoria')
         ->where("productos.categoria_id", $idCategoria)
-        ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->paginate(3);
+        ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->paginate(9);
         return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);
     }
 }
