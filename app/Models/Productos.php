@@ -39,7 +39,7 @@ class Productos extends Model
 
     public static function recuperarPorCategoria($id){
         $listaProductos = Productos::where('categoria_id', $id);
-        return $listaProductos->get();
+        return $listaProductos->paginate(8);
     }
 
     public static function busquedaCategorias($idCategoria, $textoBusqueda){
@@ -53,9 +53,7 @@ class Productos extends Model
             $query->where("productos.name", "like", "%$textoBusqueda%")
             ->orwhere("items_productos.value", "like", "%$textoBusqueda%"); 
         });
-        
-        
-        return $resultadoBusqueda->get();
+        return $resultadoBusqueda->paginate(8);
 
 //SELECT xxxxxxxx WHERE categorias.id = "$idCategoria"  
   //                AND (items_productos.value LIKE "%$textoBusqueda%" OR producto.titulo LIKE "%$textoBusqueda%" OR )

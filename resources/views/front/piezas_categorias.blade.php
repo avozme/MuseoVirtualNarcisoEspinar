@@ -39,8 +39,7 @@
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $cat)
-                    <li class="nav-item"><a class="nav-link"
-                            href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
                     @endforeach
                     <li class="nav-item"><a class="nav-link" href="/#about">Sobre Narciso</a></li>
 
@@ -53,7 +52,8 @@
         <div class="p-1" style="width:100%">
             <form action="{{route('buscador')}}" action="POST">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Buscar en {{$categoria->name ?? ''}}"
+                    <input type="text" class="form-control" id="texto" name="textoBusqueda"
+                        placeholder="Buscar en {{$categoria->name ?? ''}}"
                         value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
                     <input type="hidden" name="idCategoria" value="{{$categoria->id ?? ''}}">
                     <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -64,7 +64,7 @@
     </nav>
     <!-- Fin menu -->
     <section class="page-section bg-light" id="portfolio">
-        
+
         <div class="">
             <div class="grid">
                 <!-- Pintando los productos con su modal -->
@@ -163,11 +163,14 @@
                 @endforeach
                 <!--FIN Pintando los productos con su modal -->
             </div>
+            <div class="d-flex justify-content-center">
+                {!! $todosProductos->links() !!}
+            </div>
         </div>
         </div>
         </div>
     </section>
-<!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="footer py-4">
         <div class="container">
             <div class="row align-items-center">
@@ -179,8 +182,9 @@
                 </div>
             </div>
         </div>
+
     </footer>
-   <!-- FIN FOOTER --> 
+    <!-- FIN FOOTER -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
