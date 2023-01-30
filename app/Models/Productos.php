@@ -67,6 +67,6 @@ class Productos extends Model
         $resultadoBusqueda = Productos::with('categoria')
         ->where("productos.categoria_id", $idCategoria)
         ->where("productos.name", "like", "%$textoBusqueda%")->distinct();
-        return $resultadoBusqueda->get();
+        return $resultadoBusqueda->paginate(3);
     }
 }

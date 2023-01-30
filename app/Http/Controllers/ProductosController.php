@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductosController extends Controller
 {   
     public function index() {
-        $productosList = Productos::with('categoria')->get();
+        $productosList = Productos::with('categoria')->paginate(3);
         $categorias = Categorias::all();
     return view('productos.all', ['productosList'=>$productosList, 'categorias'=>$categorias]);
     }

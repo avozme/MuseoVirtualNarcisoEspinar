@@ -64,6 +64,11 @@
 <div class="d-grid gap-4 d-md-flex justify-content-md-start ms-2">
     <a class="btn btn-outline-success" href="{{ route('productos.create') }}">Nuevo</a>
 </div>
+
+<div class="d-flex justify-content-center">
+{!! $productosList->links() !!}
+</div>
+
 @endsection
 
 <script type="text/javascript">
