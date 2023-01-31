@@ -39,7 +39,7 @@ class Productos extends Model
 
     public static function recuperarPorCategoria($id){
         $listaProductos = Productos::where('categoria_id', $id);
-        return $listaProductos->paginate(9);
+        return $listaProductos->paginate(4);
     }
     /*Buscador Front */
     public static function busquedaCategorias($idCategoria, $textoBusqueda){

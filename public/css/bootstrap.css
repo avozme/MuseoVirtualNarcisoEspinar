@@ -4802,7 +4802,7 @@ textarea.form-control-lg {
 .page-link {
   position: relative;
   display: block;
-  color: #ffc800;
+  color: #ada191;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -4815,9 +4815,9 @@ textarea.form-control-lg {
 }
 .page-link:hover {
   z-index: 2;
-  color: #cca000;
-  background-color: #e9ecef;
-  border-color: #dee2e6;
+  color: #ffffff;
+  background-color: #ada191bf;
+  border-color: #ada191bf;
 }
 .page-link:focus {
   z-index: 3;
@@ -4833,14 +4833,14 @@ textarea.form-control-lg {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #ffc800;
-  border-color: #ffc800;
+  background-color: #ada191;
+  border-color: #ada191;
 }
 .page-item.disabled .page-link {
   color: #6c757d;
   pointer-events: none;
   background-color: #fff;
-  border-color: #dee2e6;
+  border-color: #ada191;
 }
 
 .page-link {
