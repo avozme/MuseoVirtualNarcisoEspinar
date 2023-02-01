@@ -8,6 +8,11 @@ use App\Models\Productos;
 
 class ImagenesController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware("auth");
+    }
+
     public function index() {
         $imagenesList = Imagenes::all();
         return view('imagenes.all', ['imagenesList'=>$imagenesList]);

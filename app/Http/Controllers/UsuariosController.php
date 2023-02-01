@@ -7,6 +7,10 @@ use App\Models\User;
 
 class UsuariosController extends Controller
 {
+    public function __construct() {
+        $this->middleware("auth");
+    }
+    
     public function index() {
         $usuariosList = User::all();
         return view('usuarios.all', ['usuariosList'=>$usuariosList]);
@@ -25,7 +29,7 @@ class UsuariosController extends Controller
     public function store(Request $r) {
         $p = new User();
         $p->name = $r->name;
-        $p->user = $r->user;
+        $p->email = $r->email;
         $p->password = $r->password;
         $p->save();
         return redirect()->route('usuarios.index');
@@ -39,7 +43,7 @@ class UsuariosController extends Controller
     public function update($id, Request $r) {
         $p = User::find($id);
         $p->name = $r->name;
-        $p->user = $r->user;
+        $p->email = $r->email;
         $p->password = $r->password;
         $p->save();
         return redirect()->route('usuarios.index');
@@ -49,5 +53,5 @@ class UsuariosController extends Controller
         $p = User::find($id);
         $p->delete();
         return redirect()->route('usuarios.index');
-}
+    }
 }

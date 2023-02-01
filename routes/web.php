@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'FrontController@index');
 
 Route::get('/categorias/get_items/{id_categoria}', 'CategoriasController@get_items');
@@ -31,6 +31,9 @@ Route::get('buscadorBack', 'ProductosController@buscadorProductos')->name('busca
 
 Route::get('/categoria/{id}', 'FrontController@mostrarCategorias')->name('productoPorCategoria');
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -16,14 +16,14 @@ class UsuariosTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'José Manuel',
-            'user' => 'joselito',
-            'password' => 'asdf',
+            'name' => 'José',
+            'email' => 'jose@gmail.com',
+            'password' => 'jose',
         ]);
 
         DB::table('users')->insert([
             'name' => 'Juan',
-            'user' => 'juan',
+            'email' => 'juan@gmail.com',
             'password' => 'juan',
         ]);
     }

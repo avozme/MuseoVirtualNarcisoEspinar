@@ -7,6 +7,11 @@ use App\Models\Etiquetas;
 
 class EtiquetasController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware("auth");
+    }
+
     public function index() {
         $etiquetasList = Etiquetas::all();
         return view('etiquetas.all', ['etiquetasList'=>$etiquetasList]);

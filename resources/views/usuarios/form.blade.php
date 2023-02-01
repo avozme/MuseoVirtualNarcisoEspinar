@@ -14,7 +14,7 @@
         @csrf
         <div class="container-fluid">
         Nombre :<input class="form-control" type="text" name="name" value="{{$usuario->name ?? '' }}"><br>
-        Usuario:<input class="form-control" type="text" name="user" value="{{$usuario->user ?? '' }}"><br>
+        Email:<input class="form-control" type="email" name="user" value="{{$usuario->email ?? '' }}"><br>
         Contraseña:<input class="form-control" type="text" name="password" value="{{$usuario->password ?? '' }}"><br>
         <input class="btn btn-dark center" type="submit" value="Enviar">
         </div>

@@ -5,6 +5,9 @@
 @section("header", "Administración de productos")
 
 @section("content")
+
+@auth
+
 <table class="table table-hover">
     <tr>
         <th scope="col">Nombre
@@ -68,6 +71,8 @@
 <div class="d-flex justify-content-center">
 {!! $productosList->links() !!} <!--Que genere con get -->
 </div>
+
+@endauth
 
 @endsection
 

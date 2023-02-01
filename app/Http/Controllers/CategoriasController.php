@@ -7,6 +7,10 @@ use App\Models\Categorias;
 
 class CategoriasController extends Controller
 {
+    public function __construct() {
+        $this->middleware("auth");
+    }
+
     public function index() {
         $categoriasList = Categorias::all();
         return view('categorias.all', ['categoriasList'=>$categoriasList]);

@@ -11,11 +11,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
 {   
+    
+    public function __construct() {
+        $this->middleware("auth");
+    }
+
     public function index() {
         $productosList = Productos::with('categoria')->paginate(6);
         $categorias = Categorias::all();
-        // dd($productosList);
-    return view('productos.all', ['productosList'=>$productosList, 'categorias'=>$categorias]);
+        return view('productos.all', ['productosList'=>$productosList, 'categorias'=>$categorias]);
     }
 
     public function show($id) {

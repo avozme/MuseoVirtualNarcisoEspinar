@@ -7,6 +7,10 @@ use App\Models\Opciones;
 
 class OpcionesController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware("auth");
+    }
     
     public function index() {
         $opcionesList = Opciones::all();

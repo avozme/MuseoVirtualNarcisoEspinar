@@ -9,7 +9,7 @@
     <table class="table table-hover">
     <tr>
       <th scope="col">Nombre</th>
-      <th scope="col">Usuario</th> 
+      <th scope="col">Email</th> 
       <th scope="col">Contraseña</th>
       <th scope="col"></th>  
       <th scope="col"></th> 
@@ -17,10 +17,9 @@
     @foreach ($usuariosList as $usuario)
         <tr>
             <td>{{$usuario->name}}</td>
-            <td>{{$usuario->user}}</td>
+            <td>{{$usuario->email}}</td>
             <td>{{$usuario->password}}</td>
             <td>
-                <a class="btn btn-outline-secondary" href="{{route('usuarios.edit', $usuario->id)}}">Modificar</a></td>
             <td>
                 <form action = "{{route('usuarios.destroy', $usuario->id)}}" method="POST">
                     @csrf
@@ -28,12 +27,8 @@
                     <input class="btn btn-outline-danger" type="submit" value="Borrar" onclick='destroy(event)'>
                 </form>
             </td>
-
     @endforeach
     </table>
-    <div class ="d-grid gap-4 d-md-flex justify-content-md-start ms-2">
-      <a class ="btn btn-outline-success" href="{{ route('usuarios.create') }}">Nuevo</a>
-    </div>
 @endsection
 
 <script type = "text/javascript">
