@@ -90,15 +90,16 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed">
+                <i class="bi-person-fill"></i>
+                Hola, {{ auth()->user()->name}}
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('logout') }}">
                     <!--meter ruta -->
                     <i class="bi bi-box-arrow-in-right"></i>
                     {{ __('Cerrar Sesión') }}
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <div :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                        <div>
-                    </form>
                 </a>
             </li>
 

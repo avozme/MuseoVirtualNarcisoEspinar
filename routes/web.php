@@ -31,9 +31,6 @@ Route::get('buscadorBack', 'ProductosController@buscadorProductos')->name('busca
 
 Route::get('/categoria/{id}', 'FrontController@mostrarCategorias')->name('productoPorCategoria');
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
