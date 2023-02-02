@@ -9,8 +9,9 @@
     <table class="table table-hover">
     <tr>
       <th scope="col">Nombre</th>
-      <th scope="col">Email</th> 
+      <th scope="col">Correo</th> 
       <th scope="col">Contraseña</th>
+      <th scope="col">Tipo</th>
       <th scope="col"></th>  
       <th scope="col"></th> 
     </tr>
@@ -19,7 +20,9 @@
             <td>{{$usuario->name}}</td>
             <td>{{$usuario->email}}</td>
             <td>{{$usuario->password}}</td>
+            <td>{{$usuario->type}}</td>
             <td>
+                <a class="btn btn-outline-secondary" href="{{route('usuarios.edit', $usuario->id)}}">Modificar</a></td>
             <td>
                 <form action = "{{route('usuarios.destroy', $usuario->id)}}" method="POST">
                     @csrf

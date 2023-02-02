@@ -24,7 +24,7 @@ Route::resource('etiquetas', 'EtiquetasController');
 Route::resource('items', 'ItemsController');
 Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');
-Route::resource('usuarios', 'UsuariosController');
+Route::resource('usuarios', 'UsersController');
 
 // Route::get('buscador', 'FrontController@buscadorCategorias')->name('buscador');
 Route::get('buscadorBack', 'ProductosController@buscadorProductos')->name('buscadorBack');
@@ -33,7 +33,7 @@ Route::get('/categoria/{id}', 'FrontController@mostrarCategorias')->name('produc
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('productos.all');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

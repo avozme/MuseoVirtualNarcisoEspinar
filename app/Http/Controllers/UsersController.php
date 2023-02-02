@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class UsuariosController extends Controller
+class UsersController extends Controller
 {
     public function __construct() {
         $this->middleware("auth");
@@ -31,6 +31,7 @@ class UsuariosController extends Controller
         $p->name = $r->name;
         $p->email = $r->email;
         $p->password = $r->password;
+        $p->type = $r->type;
         $p->save();
         return redirect()->route('usuarios.index');
     }
@@ -45,6 +46,7 @@ class UsuariosController extends Controller
         $p->name = $r->name;
         $p->email = $r->email;
         $p->password = $r->password;
+        $p->type = $r->type;
         $p->save();
         return redirect()->route('usuarios.index');
     }
