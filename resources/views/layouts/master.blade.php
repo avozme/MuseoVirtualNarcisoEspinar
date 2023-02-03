@@ -1,9 +1,3 @@
-@auth
-    @if (auth()->user()->type('administrador'))
-        <!-- Contenido visible solo para usuarios autenticados que son administradores -->
-    @endif
-
-
 <html>
 
 <head>
