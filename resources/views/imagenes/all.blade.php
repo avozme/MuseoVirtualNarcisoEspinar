@@ -31,7 +31,7 @@
               <form action = "{{route('imagenes.destroy', $imagene->id)}}" method="POST">
                   @csrf
                   @method("DELETE")
-                  <input class="btn btn-outline-danger"  type="submit" value="Borrar" onclick='destroy(event)'>
+                  <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
               </form>
           </td>
 

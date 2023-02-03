@@ -15,12 +15,12 @@
         <tr>
             <td>{{$categoria->name}}</td>
             <td>
-                <a class="btn btn-outline-secondary" href="{{route('categorias.edit', $categoria->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('categorias.edit', $categoria->id)}}"><i class="fa-solid fa-pen"></i></a></td>
             <td>
                 <form action = "{{route('categorias.destroy', $categoria->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input class="btn btn-outline-danger" type="submit" value="Borrar" onclick='destroy(event)'>
+                    <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
                 </form>
             </td>
     @endforeach

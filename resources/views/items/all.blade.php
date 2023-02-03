@@ -18,12 +18,12 @@
             <td>{{$item->name}}</td>
             <td>{{$item->categoria->name}}</td>
             <td>
-                <a class="btn btn-outline-secondary" href="{{route('items.edit', $item->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('items.edit', $item->id)}}"><i class="fa-solid fa-pen"></i></a></td>
             <td>
                 <form action = "{{route('items.destroy', $item->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input class="btn btn-outline-danger" type="submit" value="Borrar" onclick='destroy(event)'>
+                    <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
                 </form>
             </td>
 

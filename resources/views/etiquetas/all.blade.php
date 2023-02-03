@@ -16,13 +16,13 @@
         <tr>
             <td>{{$etiqueta->name}}</td>
             <td>
-                <a class="btn btn-outline-secondary" href="{{route('etiquetas.edit', $etiqueta->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('etiquetas.edit', $etiqueta->id)}}"><i class="fa-solid fa-pen"></i></a></td>
             <td>
                 <form action = "{{route('etiquetas.destroy', $etiqueta->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input class="btn btn-outline-danger" type="submit" value="Borrar" onclick='destroy(event)'>
-                </form>
+                    <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>  
+                  </form>
 
     @endforeach
     </table>

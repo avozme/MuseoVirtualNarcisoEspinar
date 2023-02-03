@@ -11,21 +11,24 @@
       <th scope="col">Tipo</th>
       <th scope="col"></th> 
       <th scope="col"></th>
-      <th scope="col"></th>  
+      <th scope="col"></th> 
+ 
     </tr>
     @foreach ($opcionesList as $opcion)
         <tr>
             <td>{{$opcion->value}}</td>
             <td>{{$opcion->key}}</td>
-            <td>
-                <a class="btn btn-outline-secondary" href="{{route('opciones.edit', $opcion->id)}}">Modificar</a></td>
+      
+                
             <td>
                 <form action = "{{route('opciones.destroy', $opcion->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input class="btn btn-outline-danger" type="submit" value="Borrar" onclick='destroy(event)'>
+                    <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
                 </form>
+                
             </td>
+            <td><a class="btn btn-outline-secondary" href="{{route('opciones.edit', $opcion->id)}}"><i class="fa-solid fa-pen"></i></a></td></td>
             
     @endforeach
     </table>

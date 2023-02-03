@@ -22,12 +22,12 @@
             <td>{{$usuario->password}}</td>
             <td>{{$usuario->type}}</td>
             <td>
-                <a class="btn btn-outline-secondary" href="{{route('usuarios.edit', $usuario->id)}}">Modificar</a></td>
+                <a class="btn btn-outline-secondary" href="{{route('usuarios.edit', $usuario->id)}}"><i class="fa-solid fa-pen"></i></a></td>
             <td>
                 <form action = "{{route('usuarios.destroy', $usuario->id)}}" method="POST">
                     @csrf
                     @method("DELETE")
-                    <input class="btn btn-outline-danger" type="submit" value="Borrar" onclick='destroy(event)'>
+                    <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
                 </form>
             </td>
     @endforeach
