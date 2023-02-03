@@ -38,7 +38,7 @@ class UsersController extends Controller
 
     public function edit($id) {
         $usuarios = User::find($id);
-        return view('usuarios.form', array('usuario' => $usuarios));
+        return view('usuarios.form', array('usuarios' => $usuarios));
     }
 
     public function update($id, Request $r) {
