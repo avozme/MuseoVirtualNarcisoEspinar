@@ -45,7 +45,7 @@
                     <span>Objetos</span>
                 </a>
             </li>
-
+            @if (auth()->user()->type == 'Admin' || auth()->user()->type ==  'SuperAdmin')
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('/categorias/') }}">
                     <i class="bi bi-folder"></i>
@@ -87,7 +87,7 @@
                     <span>Opciones</span>
                 </a>
             </li>
-
+            @endif
             <li class="nav-item">
                 <a class="nav-link collapsed">
                 <i class="bi-person-fill"></i>
