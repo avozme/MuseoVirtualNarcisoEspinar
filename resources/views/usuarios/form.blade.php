@@ -5,22 +5,22 @@
 @section("header", "Inserción de usuarios")
 
 @section("content")
-@isset($usuario)
-<form action="{{ route('usuarios.update', ['usuario' => $usuario->id]) }}" method="POST">
+@isset($usuarios)
+<form action="{{ route('usuarios.update', ['usuario' => $usuarios->id]) }}" method="POST">
     @method("PUT")
     @else
     <form action="{{ route('usuarios.store') }}" method="POST">
         @endisset
         @csrf
         <div class="container-fluid">
-            Nombre :<input class="form-control mb-3" type="text" name="name" value="{{$usuario->name ?? '' }}">
-            Correo:<input class="form-control mb-3" type="email" name="email" value="{{$usuario->email ?? '' }}">
-            <input type="hidden" name="password" value="{{$usuario->password ?? '' }}">
+            Nombre :<input class="form-control mb-3" type="text" name="name" value="{{$usuarios->name ?? '' }}">
+            Correo:<input class="form-control mb-3" type="email" name="email" value="{{$usuarios->email ?? '' }}">
+            <input type="hidden" name="password" value="{{$usuarios->password ?? '' }}">
             Tipo:
             <select class="form-select mb-3" name='type' >
-                <option @if ($usuario->type == 'SuperAdmin')  selected @endif value='SuperAdmin'>Super Admin</option>
-                <option @if ($usuario->type == 'Admin') selected @endif value='Admin'>Admin</option>
-                <option @if ($usuario->type == 'Basico') selected @endif value='Basico'>Basico</option>
+                <option @if ($usuarios->type == 'SuperAdmin')  selected @endif value='SuperAdmin'>Super Admin</option>
+                <option @if ($usuarios->type == 'Admin') selected @endif value='Admin'>Admin</option>
+                <option @if ($usuarios->type == 'Basico') selected @endif value='Basico'>Basico</option>
             </select>
 
 

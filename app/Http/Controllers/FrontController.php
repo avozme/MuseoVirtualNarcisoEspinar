@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Productos;
 use App\Models\Categorias;
+use App\Models\Opciones;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -11,7 +12,9 @@ class FrontController extends Controller
     public function index() {
         $productosList = Productos::recuperarProductosFront();
         $categoriasList = Categorias::all();
-        return view('front.front', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList]);
+        $fotoPrincipal = Opciones::where('key', 'fotoPrincipal')->first();
+        $logotipo = Opciones::where('key', 'logo')->first();
+        return view('front.front', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList,'fotoPrincipal' => $fotoPrincipal,'logotipo' => $logotipo]);
     }
 
     public function show($id) {

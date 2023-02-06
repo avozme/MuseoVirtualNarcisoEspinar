@@ -8,9 +8,10 @@
    
 <table class="table table-hover">
     <tr>
+      <th scope="col">Valor</th>
+      <th scope="col">Clave</th> 
       <th scope="col">Tipo</th>
       <th scope="col"></th> 
-      <th scope="col"></th>
       <th scope="col"></th> 
  
     </tr>
@@ -18,6 +19,7 @@
         <tr>
             <td>{{$opcion->value}}</td>
             <td>{{$opcion->key}}</td>
+            <td>{{$opcion->type}}</td>
       
                 
             <td>

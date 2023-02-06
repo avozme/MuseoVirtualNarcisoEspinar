@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('opciones', function (Blueprint $table) {
             $table->id();
-            $table->string('value', 45);
-            $table->string('key', 3); /*¿Cambiar a un tipo numerico? */
+            $table->string('value', 100);
+            $table->string('key', 35); /*¿Cambiar a un tipo numerico? */
+            $table->string('type', 60)->nullable();
             $table->timestamps();
         });
     }

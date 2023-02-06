@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Opciones;
 
 class OpcionesController extends Controller
@@ -31,6 +32,7 @@ class OpcionesController extends Controller
         $p = new Opciones();
         $p->value = $r->value;
         $p->key = $r->key;
+        $p->type = $r->type;
         $p->save();
         return redirect()->route('opciones.index');
     }
@@ -41,10 +43,16 @@ class OpcionesController extends Controller
     }
 
     public function update($id, Request $r) {
-        $p = Opciones::find($id);
-        $p->value = $r->value;
-        $p->key = $r->key;
-        $p->save();
+        $opcion = Opciones::find($id);
+        if($opcion->type == 'foto' && !blank($r->file('image'))){
+            Storage::delete("public/" . $opcion->key . "/" . $opcion->value );
+            $image = $r->file('image');
+            $image_name = $image->getClientOriginalName();
+            $image->storeAs("public/$opcion->key", $image_name);
+            $opcion->value = $image_name;
+        }
+        
+        $opcion->save();
         return redirect()->route('opciones.index');
     }
 

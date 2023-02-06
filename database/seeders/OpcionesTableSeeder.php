@@ -16,17 +16,20 @@ class OpcionesTableSeeder extends Seeder
     {
         DB::table('opciones')->insert([
             'value' => 'Vista 1 narciso',
-            'key' => '1',
+            'key' => 'Foto Principal',
+            'type' => 'logo.png'
         ]);
 
         DB::table('opciones')->insert([
             'value' => 'Vista 1 clara',
             'key' => '0',
+            'type' => 'x'
         ]);
 
         DB::table('opciones')->insert([
             'value' => 'footer 1 narciso',
             'key' => '2',
+            'type' => 'x'
         ]);
 
 
