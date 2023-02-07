@@ -33,7 +33,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
                     <!-- añadir ruta -->
-                    <img src="/storage/{{$logotipo->key}}/{{$logotipo->value}}" alt="logotipo" width="100" height="60">
+                    <img src="/storage/{{$logotipo->key}}/{{$logotipo->value}}" alt="logotipo" width="130">
                     <span class="d-none d-lg-block"> </span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>

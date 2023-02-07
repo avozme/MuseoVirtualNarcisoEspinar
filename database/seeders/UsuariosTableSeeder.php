@@ -17,17 +17,25 @@ class UsuariosTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Josema',
-            'email' => 'josemanuel@farmacias.dev',
+            'name' => 'JJ',
+            'email' => 'desarrollo@iescelia.dev',
             'password' => Hash::make('vivaespaña'),
             'type' => 'SuperAdmin'
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Juan',
-            'email' => 'juan.baronviciana@gmail.com',
+            'name' => 'Felix',
+            'email' => 'felix@iescelia.com',
             'password' => Hash::make('vivaespaña'),
-            'type' => 'SuperAdmin'
+            'type' => 'Admin'
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Narciso',
+            'email' => 'narciso@narciso.com',
+            'password' => Hash::make('vivaespaña'),
+            'type' => 'Basico'
+        ]);
+
     }
 }

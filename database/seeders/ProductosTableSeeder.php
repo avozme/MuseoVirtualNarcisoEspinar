@@ -16,84 +16,85 @@ class ProductosTableSeeder extends Seeder
     {
         DB::table('productos')->insert([
             'name' => 'Estación del Ferro-Carril',
-            'image' => '',
+            'image' => '01 - LSP 1 Narciso.jpg',
             'categoria_id' => '2',
         ]);
+
         DB::table('productos')->insert([
             'name' => 'Entrada Real de la Feria',
-            'image' => '',
+            'image' => '02 - LSP 2 Juan.jpg',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Plaza de Toros',
-            'image' => '',
+            'image' => '03 - LSP 3 Narciso.jpg',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Calle Real',
-            'image' => '',
+            'image' => '04 - LSP 4 Juan.jpg',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Cuevas del Puerto',
-            'image' => '',
+            'image' => '06 - LSP 6 Juan.jpg',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Vista Panorámica Almería',
-            'image' => '',
+            'image' => '07 - LSP 7 Juan.jpg',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Puerto de Almería',
-            'image' => '',
+            'image' => '08 - LSP 7 Juan.jpg',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Torre de vela',
-            'image' => '',
+            'image' => '09 - LSP 8 Narciso.jpg',
             'categoria_id' => '2',
         ]);
         DB::table('productos')->insert([
             'name' => 'Catedral, Fachada de los Perdones',
-            'image' => '',
+            'image' => '10 - LSP 9 Juan.jpg',
             'categoria_id' => '2',
         ]);
 
         DB::table('productos')->insert([
             'name' => 'Vaso de los Blanquizares de Lébor',
-            'image' => '',
+            'image' => 'Vaso de los Blanquizares de Lébor.png',
             'categoria_id' => '1',
         ]);
         
         DB::table('productos')->insert([
             'name' => 'Vaso',
-            'image' => '',
+            'image' => 'vaso.png',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Inscripción funeraria',
-            'image' => '',
+            'image' => 'Inscripción funeraria.png',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Jarra',
-            'image' => '',
+            'image' => 'jarra.png',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Vaso de alabastro',
-            'image' => '',
+            'image' => 'vaso de alabastro.png',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Cántaro con galbo de perfil ovoide',
-            'image' => '',
+            'image' => 'Cántaro con galbo de perfil ovoide.png',
             'categoria_id' => '1',
         ]);
         DB::table('productos')->insert([
             'name' => 'Aríbalo esférico',
-            'image' => '',
+            'image' => 'Aríbalo esférico.png',
             'categoria_id' => '1',
         ]);
 
