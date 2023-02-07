@@ -15,8 +15,18 @@ class ImagenesTableSeeder extends Seeder
     public function run()
     {
         DB::table('imagenes')->insert([
-            'image' => 'Gel de baño con avena - 750 ml',
+            'image' => 'prueba.png',
             'producto_id' => '1',
+        ]);
+
+        DB::table('imagenes')->insert([
+            'image' => 'prueba.png',
+            'producto_id' => '2',
+        ]);
+
+        DB::table('imagenes')->insert([
+            'image' => 'prueba.png',
+            'producto_id' => '3',
         ]);
     }
 }

@@ -64,7 +64,7 @@
         <div class="">
             <div class="grid">
                 <!-- Pintando los productos con su modal -->
-                @foreach($todosProductos as $producto)
+                @foreach($todosProductos as $key => $producto)
                 <div class="gridItem">
                     <div class="portfolio-item">
                         <a class="portfolio-link" data-bs-toggle="modal" href="#producto{{$producto->id}}">
@@ -105,8 +105,13 @@
                                         <div class="modal-body">
                                             <!-- Project details-->
                                             <h2 class="text-uppercase pb-4">{{$producto->name}}</h2>
-                                            <div id="carouselExampleIndicators" class="carousel carousel-dark slide"
-                                                data-bs-ride="true">
+                                            <div id="carouselExampleIndicators{{$key}}" class="carousel carousel-dark slide" data-bs-ride="true" >
+                                            <div class="carousel-indicators">
+                                                <button type="button" data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide-to="0" class="active"  aria-label="Slide 0"></button>
+                                            @foreach($producto->imagenes as $index => $image)
+                                                <button type="button" data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide-to="{{$index + 1}}"  aria-label="Slide {{$index + 1}}"></button>
+                                            @endforeach                                            
+                                            </div>
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active">
                                                         <img class="center-block w-40"
@@ -121,12 +126,12 @@
                                                     @endforeach
                                                 </div>
                                                 <button class="carousel-control-prev" type="button"
-                                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                                    data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                     <span class="visually-hidden">Previous</span>
                                                 </button>
                                                 <button class="carousel-control-next" type="button"
-                                                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                                    data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide="next">
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="visually-hidden">Next</span>
                                                 </button>

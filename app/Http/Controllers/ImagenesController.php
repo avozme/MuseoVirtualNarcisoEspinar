@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Imagenes;
 use App\Models\Productos;
+use Illuminate\Support\Facades\Storage;
 
 class ImagenesController extends Controller
 {
@@ -55,8 +56,9 @@ class ImagenesController extends Controller
     }
 
     public function destroy($id) {
-        $p = Imagenes::find($id);
-        $p->delete();
+        $img = Imagenes::find($id);
+        Storage::delete("public/" . $img->producto->id . "/" . $img->image);
+        $img->delete();
         return redirect()->route('imagenes.index');
     }
 }
