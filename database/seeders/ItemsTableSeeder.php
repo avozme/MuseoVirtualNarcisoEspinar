@@ -15,8 +15,17 @@ class ItemsTableSeeder extends Seeder
     public function run()
     {
 
+        ////////////////////////////////////////////////////////
+                        //PIEZAS ARQUEOLÓGICAS
+        ////////////////////////////////////////////////////////
+
         DB::table('items')->insert([
-            'name' => 'Observaciones',
+            'name' => 'Número',
+            'categoria_id' => '1',
+        ]);
+
+        DB::table('items')->insert([
+            'name' => 'Función',
             'categoria_id' => '1',
         ]);
 
@@ -26,12 +35,12 @@ class ItemsTableSeeder extends Seeder
         ]);
 
         DB::table('items')->insert([
-            'name' => 'Material',
+            'name' => 'Características Técnicas',
             'categoria_id' => '1',
         ]);
 
         DB::table('items')->insert([
-            'name' => 'Técnica',
+            'name' => 'Morfología',
             'categoria_id' => '1',
         ]);
 
@@ -46,9 +55,23 @@ class ItemsTableSeeder extends Seeder
         ]);
 
         DB::table('items')->insert([
-            'name' => 'Bibliografía',
+            'name' => 'Depósito',
             'categoria_id' => '1',
         ]);
+        
+        DB::table('items')->insert([
+            'name' => 'Bibliografía',
+            'categoria_id' => '1',
+        ]);  
+
+
+
+
+        ////////////////////////////////////////////////////////
+                            //POSTALES
+        ////////////////////////////////////////////////////////
+
+
 
 
         DB::table('items')->insert([
