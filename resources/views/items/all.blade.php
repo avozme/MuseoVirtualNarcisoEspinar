@@ -9,7 +9,7 @@
     <table class="table table-hover">
     <tr>
       <th scope="col">Item</th>
-      <th scope="col">Categoria</th>  
+      <th scope="col">Colección</th>  
       <th scope="col"></th> 
       <th scope="col"></th> 
     </tr>

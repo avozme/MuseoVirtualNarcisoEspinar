@@ -15,7 +15,7 @@
         </th>
         <th scope="col">Foto Principal
         </th>
-        <th scope="col">Categoría
+        <th scope="col">Colección
         </th>
 
         <!-- Buscador -->

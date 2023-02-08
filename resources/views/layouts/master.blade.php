@@ -49,7 +49,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('/categorias/') }}">
                     <i class="bi bi-folder"></i>
-                    <span>Categorias</span>
+                    <span>Colecciones</span>
                 </a>
             </li>
 

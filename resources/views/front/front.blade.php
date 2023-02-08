@@ -70,7 +70,7 @@
 
     <section class="page-section bg-light" id="portfolio">
         <div class="container">
-            <div class="Ticatego">CATEGORÍAS</div>
+            <div class="Ticatego">COLECCIONES</div>
             <div class="grid">
 
                 @foreach($productosList as $producto)
@@ -97,7 +97,7 @@
     <section class="page-section bg-light" id="team">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Colección perteneciente a</h2><br>
+                <h2 class="section-heading text-uppercase">Colecciónes perteneciente a</h2><br>
             </div>
             <div class="row">
                 <div class="col-lg-4">
