@@ -11408,13 +11408,14 @@ header.masthead {
   padding-bottom: 19rem !important;
   text-align: center;
   color: white;
-  filter:brightness(0.6);
+  filter:brightness(0.8);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
 }
-.tituloPrincipal{
+
+header.masthead.tituloPrincipal{
 color:white !important;
 }
 header.masthead .masthead-subheading {

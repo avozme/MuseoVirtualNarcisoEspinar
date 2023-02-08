@@ -1,29 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Museo arqueológico</title>
-    <!-- Font Awesome iconos-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Fuentes de google-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <!-- estilos propios-->
-    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="/css/frontStyles.css" rel="stylesheet" type="text/css" />
-
-
-</head>
-
-<body id="page-top">
+@extends('layouts.front')
+@section('content')
+<div id="page-top">
     <!-- Menu-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:#ada191">
         <div class="container">
-
+            <!-- Logo -->
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="" class="logo d-flex align-items-center">
+                    <!-- añadir ruta -->
+                    <img src="/storage/{{$logotipo->key}}/{{$logotipo->value}}" alt="logotipo" width="130">
+                    <span class="d-none d-lg-block"> </span>
+                </a>
+                <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
+            </div>
+            <!-- End Logo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -36,9 +26,10 @@
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $cat)
-                        <li class="nav-item"><a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}" href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
+                    <li class="nav-item"><a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
+                            href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
                     @endforeach
-                    <li class="nav-item"><a class="nav-link" href="/#about">Sobre Narciso</a></li>
+                    <li class="nav-item"><a class="nav-link"  href="{{route('vistaBuscador')}}">Buscador</a></li>
 
                 </ul>
 
@@ -105,13 +96,20 @@
                                         <div class="modal-body">
                                             <!-- Project details-->
                                             <h2 class="text-uppercase pb-4">{{$producto->name}}</h2>
-                                            <div id="carouselExampleIndicators{{$key}}" class="carousel carousel-dark slide" data-bs-ride="true" >
-                                            <div class="carousel-indicators">
-                                                <button type="button" data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide-to="0" class="active"  aria-label="Slide 0"></button>
-                                            @foreach($producto->imagenes as $index => $image)
-                                                <button type="button" data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide-to="{{$index + 1}}"  aria-label="Slide {{$index + 1}}"></button>
-                                            @endforeach                                            
-                                            </div>
+                                            <div id="carouselExampleIndicators{{$key}}"
+                                                class="carousel carousel-dark slide" data-bs-ride="true">
+                                                <div class="carousel-indicators">
+                                                    <button type="button"
+                                                        data-bs-target="#carouselExampleIndicators{{$key}}"
+                                                        data-bs-slide-to="0" class="active"
+                                                        aria-label="Slide 0"></button>
+                                                    @foreach($producto->imagenes as $index => $image)
+                                                    <button type="button"
+                                                        data-bs-target="#carouselExampleIndicators{{$key}}"
+                                                        data-bs-slide-to="{{$index + 1}}"
+                                                        aria-label="Slide {{$index + 1}}"></button>
+                                                    @endforeach
+                                                </div>
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active">
                                                         <img class="center-block w-40"
@@ -126,12 +124,14 @@
                                                     @endforeach
                                                 </div>
                                                 <button class="carousel-control-prev" type="button"
-                                                    data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide="prev">
+                                                    data-bs-target="#carouselExampleIndicators{{$key}}"
+                                                    data-bs-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                     <span class="visually-hidden">Previous</span>
                                                 </button>
                                                 <button class="carousel-control-next" type="button"
-                                                    data-bs-target="#carouselExampleIndicators{{$key}}" data-bs-slide="next">
+                                                    data-bs-target="#carouselExampleIndicators{{$key}}"
+                                                    data-bs-slide="next">
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="visually-hidden">Next</span>
                                                 </button>
@@ -155,33 +155,13 @@
                 @endforeach
                 <!--FIN Pintando los productos con su modal -->
             </div>
-            
+
             <div class="d-flex justify-content-center">
                 {!! $todosProductos->links() !!}
             </div>
         </div>
-        </div>
-        </div>
-    </section>
-    <!-- FOOTER -->
-    <footer class="footer py-4">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-lg-start">Copyright &copy; JJ</div>
-                <div class="col-lg-9 text-lg-end">
-                    <a class="link-dark text-decoration-none me-3" href="#!">Politica de privacidad</a>
-                    <a class="link-dark text-decoration-none me-3" href="#!">Terminos de uso</a>
-                    <a class="link-dark text-decoration-none me-3" href="#!">Aviso legal</a>
-                </div>
-            </div>
-        </div>
-
-    </footer>
-    <!-- FIN FOOTER -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+@endsection
