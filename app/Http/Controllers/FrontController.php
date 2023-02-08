@@ -27,14 +27,25 @@ class FrontController extends Controller
     public function mostrarCategorias($id, Request $r) {
         $categoria = Categorias::find($id);
         $categoriasList = Categorias::all();
+        $logotipo = Opciones::where('key', 'logo')->first();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
-        return view('front.piezas_categorias', ['todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria, 'textoBusqueda' => $r->textoBusqueda]);
+        return view('front.piezas_categorias', ['logotipo' => $logotipo,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria, 'textoBusqueda' => $r->textoBusqueda]);
     }
 
     public function buscadorCategorias(Request $r) {
         $categoria = Categorias::find($r->idCategoria);
         $categoriasList = Categorias::all();
+        $logotipo = Opciones::where('key', 'logo')->first();
         $todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
-        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria, 'categoria' => $categoria]);
+        return view('front.piezas_categorias', ['logotipo' => $logotipo,'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria, 'categoria' => $categoria]);
     }
+
+    /*Funciones vista buscador*/
+    public function vistaBuscador() {
+        $categoriasList = Categorias::all();
+        $logotipo = Opciones::where('key', 'logo')->first();
+        return view('front.buscador', ['categoriasList'=>$categoriasList,'logotipo' => $logotipo]);
+    }
+
+    /*Funcion buscador general*/ 
 }
