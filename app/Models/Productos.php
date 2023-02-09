@@ -56,9 +56,14 @@ class Productos extends Model
 
     /*Buscador Back */
     public static function busquedaProductos($idCategoria, $textoBusqueda){
-        $resultadoBusqueda = Productos::with('categoria')
-        ->where("productos.categoria_id", $idCategoria)
-        ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->paginate(9);
-        return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);
+
+        if($idCategoria != NULL){
+            $resultadoBusqueda = Productos::with('categoria')
+            ->where("productos.categoria_id", $idCategoria)
+            ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->paginate(9);
+            return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);  
+        }
+        else $resultadoBusqueda = Productos::where("productos.name", "like", "%$textoBusqueda%")->paginate(9);  
+        return $resultadoBusqueda;
     }
 }

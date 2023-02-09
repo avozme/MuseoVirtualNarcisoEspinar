@@ -27,7 +27,7 @@
                     <!-- @csrf -->
                     <div class="input-group p-3">
                     <select class="form-select" name='idCategoria'>
-                        <option value=''>Selecciona una categoría</option>
+                        <option value=''>Selecciona una colección</option>
                         @foreach ($categorias as $categoria)
                         <option value='{{$categoria->id}}' @if(isset($idCategoria) && $idCategoria == $categoria->id) selected @endif>{{$categoria->name}}</option>
                 

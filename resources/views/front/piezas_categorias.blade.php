@@ -29,7 +29,7 @@
                     <li class="nav-item"><a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
                             href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
                     @endforeach
-                    <li class="nav-item"><a class="nav-link"  href="{{route('vistaBuscador')}}">Buscador</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{route('vistaBuscador')}}">Buscador</a></li>
 
                 </ul>
 
@@ -112,9 +112,9 @@
                                                 </div>
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active">
-                                                        <img class="center-block w-40"
+                                                        <img id="mi_imagen" class="center-block w-40"
                                                             src='{{asset("storage/$producto->id/$producto->image")}}'
-                                                            alt="..." />
+                                                            alt="..." height="500"/>
                                                     </div>
                                                     @foreach($producto->imagenes as $image)
                                                     <div class="carousel-item">
@@ -151,7 +151,9 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+                
                 @endforeach
                 <!--FIN Pintando los productos con su modal -->
             </div>
