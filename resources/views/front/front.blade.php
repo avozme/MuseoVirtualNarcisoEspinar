@@ -72,7 +72,7 @@
     <section class="page-section bg-light" id="team">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Colecciónes perteneciente a</h2><br>
+                <h2 class="section-heading text-uppercase">Colecciónes pertenecientes a</h2><br>
             </div>
             <div class="row">
                 <div class="col-lg-4">

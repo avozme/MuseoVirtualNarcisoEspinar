@@ -36,22 +36,46 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="margin-top: 110px;">
+    <!-- Cheackbox categorias -->
+    @foreach ($categoriasList as $key => $categoria)
+    <label class="form-check-label"><input @if ($key == 0) checked @endif class="form-check-input" type="radio" id="categoria{{$key}}" name="categoria" onclick="showItems(this)"
+            value="{{$categoria->name}}"> {{$categoria->name}}</label> &nbsp
+    @endforeach
+    <!--Fin Cheackbox categorias -->
+
     <!-- Buscador General-->
-    <div class="p-1 searchParent">
+    <div class="p-1 searchParent w-50">
         <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
             <div class="input-group">
-                <input type="text" class="form-control" id="texto" name="textoBusqueda"
-                    placeholder="Buscar en {{$categoria->name ?? ''}}"
+                <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Busqueda general"
                     value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
                 <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </form>
     </div>
+    <!--Fin Buscador General-->
     <!-- Fin Buscador -->
-
-
+    <div class="d-flex" style="text-align:justify">
+        @foreach ($categoriasList as $key => $categoria)
+        <div class="@if ($key != 0) d-none @endif items categoria{{$key}} " >
+            @foreach($categoria->items as $items)
+            <label class="col-md-5"> {{$items->name}} <input class="form-control" type="text" name="{{$items->name}}"></label>
+            @endforeach
+        </div>
+        @endforeach
+    </div>
 
 </div>
 
 @endsection
+
+<script>
+    function showItems(element){
+        document.querySelectorAll('.items').forEach((el) => {
+            el.classList.add('d-none')
+        })
+        document.querySelector("."+element.id).classList.remove('d-none')
+        
+    }
+</script>

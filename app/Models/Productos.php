@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+
 class Productos extends Model
 {
 
     protected $fillable = ["name", "remarks", "dimensions", "image", "categoria_id"];
 
-
+    /* Relación tablas*/
     public function categoria() {
         return $this->belongsTo('App\Models\Categorias');
         }
@@ -26,8 +27,10 @@ class Productos extends Model
     public function imagenes() {
         return $this->hasMany('App\Models\Imagenes', 'producto_id');
     }
-        use HasFactory;
+    use HasFactory;
+   /*Fin Relación tablas*/
 
+    /*Te recupera todos los productos de todas las categorias y te saca un producto random para que vaya variando la foto del front de la zona de colecciones */
     public static function recuperarProductosFront(){
         $listaCategorias = Categorias::all();
         $listaProductos = array();
@@ -36,12 +39,12 @@ class Productos extends Model
         }
         return $listaProductos;
     }
-
+    /*Recupera los productos de una categoria y los pagina cada X objetos */
     public static function recuperarPorCategoria($id){
         $listaProductos = Productos::where('categoria_id', $id);
         return $listaProductos->paginate(4);
     }
-    /*Buscador Front */
+    /*Buscador Front que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     public static function busquedaCategorias($idCategoria, $textoBusqueda){
          $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
         ->join("items_productos", "productos.id","items_productos.productos_id")
@@ -54,7 +57,8 @@ class Productos extends Model
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
-    /*Buscador Back */
+    /*Buscador Back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
+    /*Si se deja vacio busca contra las dos categorias*/
     public static function busquedaProductos($idCategoria, $textoBusqueda){
 
         if($idCategoria != NULL){

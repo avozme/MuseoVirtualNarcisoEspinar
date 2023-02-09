@@ -41,11 +41,12 @@ class FrontController extends Controller
     }
 
     /*Funciones vista buscador*/
-    public function vistaBuscador() {
+    public function vistaBuscador(Request $r) {
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
         return view('front.buscador', ['categoriasList'=>$categoriasList,'logotipo' => $logotipo]);
     }
 
     /*Funcion buscador general*/ 
+    
 }
