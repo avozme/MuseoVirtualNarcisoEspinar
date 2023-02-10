@@ -23,7 +23,7 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '1',
@@ -33,32 +33,42 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '1',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '1',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
         ]);
         
         
@@ -66,7 +76,7 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '2',
@@ -76,40 +86,49 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
         ]);
-
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
+        ]);
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '3',
@@ -119,40 +138,49 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
         ]);
-
+        DB::table('items_productos')->insert([
+            'productos_id' => '3',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '3',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
+        ]);
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '4',
@@ -162,40 +190,49 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
         ]);
-
+        DB::table('items_productos')->insert([
+            'productos_id' => '4',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '4',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
+        ]);
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '5',
@@ -205,40 +242,49 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
-            'productos_id' => '5',
+            'productos_id' => '1',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
         ]);
-
+        DB::table('items_productos')->insert([
+            'productos_id' => '5',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '5',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
+        ]);
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '6',
@@ -248,40 +294,49 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
         ]);
-
+        DB::table('items_productos')->insert([
+            'productos_id' => '6',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '6',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
+        ]);
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '7',
@@ -291,40 +346,49 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
         ]);
-
+        DB::table('items_productos')->insert([
+            'productos_id' => '7',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '7',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
+        ]);
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '8',
@@ -334,40 +398,49 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
         ]);
-
+        DB::table('items_productos')->insert([
+            'productos_id' => '8',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '8',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
+        ]);
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irán las Observaciones',
+            'value' => 'Esto es un campo donde irá la Serie',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '9',
@@ -377,32 +450,42 @@ class ItemsProductosTableSeeder extends Seeder
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Soporte Original',
+            'value' => 'Esto es un campo donde irá el Anverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá la Descripción',
+            'value' => 'Este es un campo donde irá el Reverso',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Autor',
+            'value' => 'Esto es un campo donde irá el Editor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá la Colección',
+            'value' => 'Esto es un campo donde irá el Impresor',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá la Fecha de Emisión',
+            'value' => 'Esto es un campo donde irá el Ilustrador',
         ]);
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Esto es un campo donde irá la Impresión',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '9',
+            'items_id' => '18',
+            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+        ]);
+        DB::table('items_productos')->insert([
+            'productos_id' => '9',
+            'items_id' => '19',
+            'value' => 'Esto es un campo donde irá la Fecha de edición',
         ]);
 
 

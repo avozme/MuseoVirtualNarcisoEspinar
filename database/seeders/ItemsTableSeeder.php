@@ -75,7 +75,7 @@ class ItemsTableSeeder extends Seeder
 
 
         DB::table('items')->insert([
-            'name' => 'Observaciones',
+            'name' => 'Serie',
             'categoria_id' => '2',
         ]);
 
@@ -85,32 +85,42 @@ class ItemsTableSeeder extends Seeder
         ]);
 
         DB::table('items')->insert([
-            'name' => 'Soporte original',
+            'name' => 'Anverso',
             'categoria_id' => '2',
         ]);
 
         DB::table('items')->insert([
-            'name' => 'Descripción',
+            'name' => 'Reverso',
             'categoria_id' => '2',
         ]);
 
         DB::table('items')->insert([
-            'name' => 'Autor',
-            'categoria_id' => '2',
-        ]);
-
-        DB::table('items')->insert([
-            'name' => 'Colección',
-            'categoria_id' => '2',
-        ]);
-
-        DB::table('items')->insert([
-            'name' => 'Fecha Emisión',
+            'name' => 'Editor',
             'categoria_id' => '2',
         ]);
 
         DB::table('items')->insert([
             'name' => 'Impresor',
+            'categoria_id' => '2',
+        ]);
+
+        DB::table('items')->insert([
+            'name' => 'Ilustrador',
+            'categoria_id' => '2',
+        ]);
+
+        DB::table('items')->insert([
+            'name' => 'Impresión',
+            'categoria_id' => '2',
+        ]);   
+
+        DB::table('items')->insert([
+            'name' => 'Fecha más antigua',
+            'categoria_id' => '2',
+        ]);  
+
+        DB::table('items')->insert([
+            'name' => 'Fecha de edición',
             'categoria_id' => '2',
         ]);    
     }
