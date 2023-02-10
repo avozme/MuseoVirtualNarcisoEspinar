@@ -26,8 +26,12 @@
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $cat)
+                    @if(isset($categoria))
                     <li class="nav-item"><a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
                             href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
+                    @else <li class="nav-item"><a class="nav-link" href="/categoria/{{$cat->id}}">{{$cat->name}}</a>
+                    </li>
+                    @endif
                     @endforeach
                     <li class="nav-item"><a class="nav-link" href="{{route('vistaBuscador')}}">Buscador</a></li>
 
@@ -37,6 +41,7 @@
 
         </div>
         <!-- Buscador -->
+        @if(isset($categoria))
         <div class="p-1 searchParent">
             <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
                 <div class="input-group">
@@ -47,6 +52,7 @@
                 </div>
             </form>
         </div>
+        @endif
         <!-- Fin Buscador -->
     </nav>
     <!-- Fin menu -->
@@ -114,7 +120,7 @@
                                                     <div class="carousel-item active">
                                                         <img id="mi_imagen" class="center-block w-40"
                                                             src='{{asset("storage/$producto->id/$producto->image")}}'
-                                                            alt="..." height="500"/>
+                                                            alt="..." height="500" />
                                                     </div>
                                                     @foreach($producto->imagenes as $image)
                                                     <div class="carousel-item">
@@ -153,7 +159,7 @@
                     </div>
 
                 </div>
-                
+
                 @endforeach
                 <!--FIN Pintando los productos con su modal -->
             </div>

@@ -36,17 +36,10 @@
     </div>
 </nav>
 
-<div class="container" style="margin-top: 110px;">
-    <!-- Cheackbox categorias -->
-    @foreach ($categoriasList as $key => $categoria)
-    <label class="form-check-label"><input @if ($key == 0) checked @endif class="form-check-input" type="radio" id="categoria{{$key}}" name="categoria" onclick="showItems(this)"
-            value="{{$categoria->name}}"> {{$categoria->name}}</label> &nbsp
-    @endforeach
-    <!--Fin Cheackbox categorias -->
-
+<div class="container" style="margin-top: 120px;">
     <!-- Buscador General-->
     <div class="p-1 searchParent w-50">
-        <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
+        <form action="{{route('buscadorFront')}}" action="GET">
             <div class="input-group">
                 <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Busqueda general"
                     value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
@@ -55,27 +48,39 @@
         </form>
     </div>
     <!--Fin Buscador General-->
-    <!-- Fin Buscador -->
-    <div class="d-flex" style="text-align:justify">
+
+    <!-- Cheackbox categorias -->
+    <form action="" action="GET">
         @foreach ($categoriasList as $key => $categoria)
-        <div class="@if ($key != 0) d-none @endif items categoria{{$key}} " >
-            @foreach($categoria->items as $items)
-            <label class="col-md-5"> {{$items->name}} <input class="form-control" type="text" name="{{$items->name}}"></label>
+        <label class="form-check-label mb-3  mt-3"><input @if ($key==0) checked @endif class="form-check-input"
+                type="radio" id="categoria{{$key}}" name="categoria" onclick="showItems(this)"
+                value="{{$categoria->name}}"> {{$categoria->name}}</label> &nbsp
+        @endforeach
+        <!--Fin Cheackbox categorias -->
+
+        <!-- Fin Buscador -->
+        <div class="d-flex" style="text-align:justify">
+            @foreach ($categoriasList as $key => $categoria)
+            <div class="@if ($key != 0) d-none @endif items categoria{{$key}} ">
+                @foreach($categoria->items as $items)
+                <label class="col-md-5"> {{$items->name}} <input class="form-control" type="text"
+                        name="{{$items->name}}"></label>
+                @endforeach
+            </div>
             @endforeach
         </div>
-        @endforeach
-    </div>
+    </form>
 
 </div>
 
 @endsection
 
 <script>
-    function showItems(element){
-        document.querySelectorAll('.items').forEach((el) => {
-            el.classList.add('d-none')
-        })
-        document.querySelector("."+element.id).classList.remove('d-none')
-        
-    }
+function showItems(element) {
+    document.querySelectorAll('.items').forEach((el) => {
+        el.classList.add('d-none')
+    })
+    document.querySelector("." + element.id).classList.remove('d-none')
+
+}
 </script>
