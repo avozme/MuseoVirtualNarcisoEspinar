@@ -101,7 +101,7 @@
                                     <div class="col-lg-12">
                                         <div class="modal-body">
                                             <!-- Project details-->
-                                            <h2 class="text-uppercase pb-4">{{$producto->name}}</h2>
+                                            <h2 class="title text-uppercase pb-4">{{$producto->name}}</h2>
                                             <div id="carouselExampleIndicators{{$key}}"
                                                 class="carousel carousel-dark slide" data-bs-ride="true">
                                                 <div class="carousel-indicators">
@@ -117,8 +117,8 @@
                                                     @endforeach
                                                 </div>
                                                 <div class="carousel-inner">
-                                                    <div class="carousel-item active">
-                                                        <img id="mi_imagen" class="center-block w-40"
+                                                    <div class="carousel-item active w-100">
+                                                        <img id="mi_imagen{{$key}}" class="center-block w-40"
                                                             src='{{asset("storage/$producto->id/$producto->image")}}'
                                                             alt="..." height="500" />
                                                     </div>

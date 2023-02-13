@@ -39,7 +39,7 @@
 <div class="container" style="margin-top: 120px;">
     <!-- Buscador General-->
     <div class="p-1 searchParent w-50">
-        <form action="{{route('buscadorFront')}}" action="GET">
+        <form action="{{route('buscadorFront')}}" method="GET">
             <div class="input-group">
                 <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Busqueda general"
                     value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
@@ -50,7 +50,8 @@
     <!--Fin Buscador General-->
 
     <!-- Cheackbox categorias -->
-    <form action="" action="GET">
+    <form action="{{route('buscadorPorCampos')}}" method="POST">
+        @csrf
         @foreach ($categoriasList as $key => $categoria)
         <label class="form-check-label mb-3  mt-3"><input @if ($key==0) checked @endif class="form-check-input"
                 type="radio" id="categoria{{$key}}" name="categoria" onclick="showItems(this)"
@@ -64,10 +65,11 @@
             <div class="@if ($key != 0) d-none @endif items categoria{{$key}} ">
                 @foreach($categoria->items as $items)
                 <label class="col-md-5"> {{$items->name}} <input class="form-control" type="text"
-                        name="{{$items->name}}"></label>
+                        name="items[{{$items->id}}]"></label>
                 @endforeach
             </div>
             @endforeach
+            <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>
 

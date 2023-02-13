@@ -69,4 +69,14 @@ class Productos extends Model
         else $resultadoBusqueda = Productos::where("productos.name", "like", "%$textoBusqueda%")->paginate(2);  
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
+
+    public static function busquedaCampos($idCategoria, $items){
+        $listaCategorias = Categorias::find($idCategoria);
+        $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image');
+        ->join("items_productos", "productos.id", "items_productos.productos_id")
+        ->where("productos.categoria_id", $idCategoria)
+        foreach ($items as $item) {
+            $resultadoBusqueda->where($items like )
+        }
+    }
 }

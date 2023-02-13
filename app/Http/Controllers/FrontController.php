@@ -49,11 +49,16 @@ class FrontController extends Controller
     }
 
     /*Funcion buscador general front*/ 
-    
     public function buscadorGeneral(Request $r) {
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
         $todosProductos = Productos::busquedaProductos($r->idCategoria, $r->textoBusqueda);
         return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'logotipo' => $logotipo, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
+    }
+
+    /*Funcion por campos según categoría front*/ 
+
+    public function buscadorPorCampos(Request $r) {
+        dd($r->all());
     }
 }

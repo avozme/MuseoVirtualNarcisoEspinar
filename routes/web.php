@@ -35,6 +35,8 @@ Route::get('buscadorFront', 'FrontController@buscadorGeneral')->name('buscadorFr
 
 Route::get('buscador', 'FrontController@vistaBuscador')->name('vistaBuscador');
 
+Route::post('buscadorPorcampos', 'FrontController@buscadorPorCampos')->name('buscadorPorCampos');
+
 
 Route::get('/dashboard', function () {
     return view('productos.all');
