@@ -7,6 +7,7 @@ use App\Models\Productos;
 use App\Models\Categorias;
 use App\Models\ItemsProductos;
 use App\Models\Imagenes;
+use App\Models\Items;
 use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
@@ -67,9 +68,9 @@ class ProductosController extends Controller
     public function edit($id) {
         $producto = Productos::find($id);
         $categorias = Categorias::all();
-        $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
+        $items = Items::where('categoria_id', $producto->categoria_id)->get();
         $image = Storage::url("$producto->id/$producto->image");
-        return view('productos.form', compact('producto', 'categorias', 'itemsProductos', 'image'));
+        return view('productos.form', compact('producto', 'categorias', 'items', 'image'));
     }
 
     public function update(Request $r, $id) {

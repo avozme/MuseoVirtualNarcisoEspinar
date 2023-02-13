@@ -54,8 +54,8 @@
         @csrf
         @foreach ($categoriasList as $key => $categoria)
         <label class="form-check-label mb-3  mt-3"><input @if ($key==0) checked @endif class="form-check-input"
-                type="radio" id="categoria{{$key}}" name="categoria" onclick="showItems(this)"
-                value="{{$categoria->name}}"> {{$categoria->name}}</label> &nbsp
+                type="radio" id="categoria{{$key}}" name="categoria_id" onclick="showItems(this)"
+                value="{{$categoria->id}}"> {{$categoria->name}}</label> &nbsp
         @endforeach
         <!--Fin Cheackbox categorias -->
 

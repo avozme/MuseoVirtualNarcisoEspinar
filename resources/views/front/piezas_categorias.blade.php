@@ -165,7 +165,32 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                {!! $todosProductos->links() !!}
+                @if(isset($pages))
+                <form action="{{route('buscadorPorCampos')}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="categoria_id" value="{{$categoria_id}}">
+                    @foreach($items as $key => $item)
+                        <input type="hidden" name="items[{{$key}}]" value="{{$item}}">
+                    @endforeach
+                    <nav>
+                        <ul class="pagination">
+                        <li class="page-item {{$currentPage == 1 ? 'disabled' : ''}}">
+                            <button class="page-link" rel="next" aria-label="« Previous" name="page" value="{{$currentPage-1}}">‹</a>
+                        </li>
+                        @for($i = 1; $i <= $pages; $i++)
+                            <li class="page-item {{$currentPage == $i ? 'active' : ''}}">
+                                <button class="page-link" name="page" {{$currentPage == $i ? 'active' : ''}} value="{{$i}}">{{$i}}</button>
+                            </li>
+                        @endfor
+                            <li class="page-item {{$currentPage == $pages ? 'disabled' : ''}}">
+                                <button class="page-link" rel="next" aria-label="Next »" name="page" value="{{$currentPage+1}}">›</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </form>
+                @else
+                        {{$todosProductos->links()}}
+                @endif
             </div>
         </div>
 </div>

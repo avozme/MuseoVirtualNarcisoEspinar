@@ -59,6 +59,17 @@ class FrontController extends Controller
     /*Funcion por campos según categoría front*/ 
 
     public function buscadorPorCampos(Request $r) {
-        dd($r->all());
+        /*Si $r->page es null al convertirlo en intval es 0 y si es 0 por default es 1 */
+        $currentPage = intval($r->page) == 0 ? 1 : intval($r->page);
+        /*Cada cuanto pagina*/
+        $pagination = 8;
+        $productosList = Productos::busquedaCampos($r->categoria_id, $r->items);
+        /*El numero de pagina que tiene los productos  -Ceil redondea hacia arriba- */
+        $pages = ceil($productosList->get()->count() / $pagination);
+        /*Te hace un get de los productos y se salta los productos de la pagian en la que estas y coge el numero de productos que tiene la paginacion ($currentPage-1)  */
+        $todosProductos = $productosList->skip(($currentPage-1) * $pagination)->take($pagination)->get();
+        $categoriasList = Categorias::all();
+        $logotipo = Opciones::where('key', 'logo')->first();
+        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'currentPage' => $currentPage, 'pages' => $pages, 'items' => $r->items, 'textoBusqueda'=> $r->textoBusqueda, 'logotipo' => $logotipo, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 }

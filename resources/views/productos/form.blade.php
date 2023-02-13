@@ -52,11 +52,11 @@
            
 
             <div id="listItems">
-                @if(isset($itemsProductos))
-                    @foreach($itemsProductos as $key => $itemProducto)
-                        <label class="mt-4">{{$itemProducto->item->name}}</label>
-                        <input required class="form-control" type="text" name="items[{{$key}}][value]" value="{{$itemProducto->value ?? '' }}">
-                        <input type="hidden" name="items[{{$key}}][id]" value="{{$itemProducto->items_id ?? '' }}">
+                @if(isset($items))
+                    @foreach($items as $key => $item)
+                        <label class="mt-4">{{$item->name}}</label>
+                        <input required class="form-control" type="text" name="items[{{$key}}][value]" value="{{$item->itemsProducto->value ?? '' }}">
+                        <input type="hidden" name="items[{{$key}}][id]" value="{{$item->id ?? '' }}">
                     @endforeach
                 @endif
             </div>

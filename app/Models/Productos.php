@@ -72,11 +72,16 @@ class Productos extends Model
 
     public static function busquedaCampos($idCategoria, $items){
         $listaCategorias = Categorias::find($idCategoria);
-        $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image');
+        $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image', 'items_productos.value')
         ->join("items_productos", "productos.id", "items_productos.productos_id")
         ->where("productos.categoria_id", $idCategoria)
-        foreach ($items as $item) {
-            $resultadoBusqueda->where($items like )
+        ->groupBy('productos.id', 'productos.name','productos.image', 'items_productos.value')->distinct();
+        foreach ($items as $item_id => $value) {//item_id es la key y value son los valores de los input
+            if(!blank($value)){
+                $resultadoBusqueda->where('items_productos.items_id', $item_id)
+                ->where('items_productos.value','like', "%$value%");
+            }
         }
+        return $resultadoBusqueda;
     }
 }
