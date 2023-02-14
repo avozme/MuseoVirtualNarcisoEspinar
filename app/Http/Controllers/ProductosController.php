@@ -68,7 +68,9 @@ class ProductosController extends Controller
     public function edit($id) {
         $producto = Productos::find($id);
         $categorias = Categorias::all();
-        $items = Items::where('categoria_id', $producto->categoria_id)->get();
+        $items = Items::where('categoria_id', $producto->categoria_id)->with(['itemsProducto' => function($query) use ($id){
+            $query->where('productos_id', $id);
+        }])->get();
         $image = Storage::url("$producto->id/$producto->image");
         return view('productos.form', compact('producto', 'categorias', 'items', 'image'));
     }
@@ -103,18 +105,16 @@ class ProductosController extends Controller
                 $img->save();
             }
         }
-
-        $itemsProductos = ItemsProductos::where('productos_id', $id)->get();
-        foreach($itemsProductos as $ip){
-            $ip->delete();
-        }
+       
         foreach($r->items as $item){ 
-            // $itemProducto = ItemsProductos::where('items_id', $item['id'])->first();
-            $itemProducto = new ItemsProductos();
-            $itemProducto->productos_id = $id;
-            $itemProducto->items_id = $item['id'];
-            $itemProducto->value = $item['value'];
-            $itemProducto->save();
+            $itemProducto = ItemsProductos::where('items_id', $item['id'])->where('productos_id', $id)->first() ?? new ItemsProductos();
+            if(!blank($itemProducto)){
+                $itemProducto->value = $item['value'];
+                $itemProducto->productos_id = $id;
+                $itemProducto->items_id = $item['id'];
+                $itemProducto->save();
+            }
+
         }
         $p->save();
         return redirect()->route('productos.index');

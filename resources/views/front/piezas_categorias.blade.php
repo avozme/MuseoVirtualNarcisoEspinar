@@ -125,7 +125,7 @@
                                                     @foreach($producto->imagenes as $image)
                                                     <div class="carousel-item">
                                                         <img src='{{asset("storage/$producto->id/$image->image")}}'
-                                                            class="center-block w-40">
+                                                            class="center-block" height = "500">
                                                     </div>
                                                     @endforeach
                                                 </div>
