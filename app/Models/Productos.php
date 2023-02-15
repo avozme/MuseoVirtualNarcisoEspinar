@@ -70,18 +70,57 @@ class Productos extends Model
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
+    // public static function busquedaCampos($idCategoria, $items){
+    //     $itemsNoVacios = array_keys(array_filter($items, function($valor){
+    //         return $valor !== null;
+    //     }));
+    //     $listaCategorias = Categorias::find($idCategoria);
+    //     $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image', 'items_productos.value')
+    //     ->join("items_productos", "productos.id", "items_productos.productos_id")
+    //     ->where("productos.categoria_id", $idCategoria)
+    //     ->whereIn('items_productos.items_id', $itemsNoVacios)
+    //     ->groupBy('productos.id', 'productos.name','productos.image', 'items_productos.value')->distinct();
+    //     foreach ($items as $item_id => $value) {//item_id es la key y value son los valores de los input
+    //         if(!blank($value)){
+    //             $resultadoBusqueda->where('items_productos.value','like', "%$value%");
+    //         }
+    //     }
+    //     return $resultadoBusqueda->get();
+    // }
+
     public static function busquedaCampos($idCategoria, $items){
-        $listaCategorias = Categorias::find($idCategoria);
-        $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image', 'items_productos.value')
-        ->join("items_productos", "productos.id", "items_productos.productos_id")
-        ->where("productos.categoria_id", $idCategoria)
-        ->groupBy('productos.id', 'productos.name','productos.image', 'items_productos.value')->distinct();
+        $resultado = array();
+        $productos_ids = array();
+        $countItems = 0;
         foreach ($items as $item_id => $value) {//item_id es la key y value son los valores de los input
+            $valores = array();
             if(!blank($value)){
-                $resultadoBusqueda->where('items_productos.items_id', $item_id)
-                ->where('items_productos.value','like', "%$value%");
+                $countItems++;
+                $sql = "SELECT DISTINCT productos.id, productos.name,productos.image, items_productos.value
+                FROM productos
+                INNER JOIN items_productos ON productos.id = items_productos.productos_id
+                WHERE productos.categoria_id = '$idCategoria'";
+                $sql = $sql . " AND items_productos.items_id = '$item_id'
+                                AND items_productos.value LIKE '%$value%'";
+                
+                $valores = DB::select(DB::raw($sql));
+            }
+            foreach($valores as $valor){
+                array_push($resultado, $valor);
             }
         }
-        return $resultadoBusqueda;
+        $resultadoFinal = array();
+        foreach ($resultado as $res) {
+            $id = $res->id;
+            if($countItems <= 1){
+                $productos_ids[] = $id;
+            }else{
+                if (isset($resultadoFinal[$id])) {
+                    $productos_ids[] = $id;
+                }else $resultadoFinal[$id] = $res;
+            }
+        }
+        $productos = Productos::whereIn('id', $productos_ids)->get();
+        return $productos;
     }
 }
