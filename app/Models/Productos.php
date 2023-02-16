@@ -89,14 +89,28 @@ class Productos extends Model
     // }
 
     public static function busquedaCampos($idCategoria, $items){
-        $resultado = array();
+
+        // Vamos a contar el número de items que vienen rellenos en el formulario de búsqueda
+        $contador = 0;  
+        foreach($items as $item_id => $value){
+            if($value != null){
+                $contador++;
+            }
+        }
+
+        $productos_ids = array();       // Lista de ids de productos que cumplen algún requisito de búsqueda
         $productos_ids = array();
+        $max_producto_id = 10000;   // ID más alto de la tabla de productos --> Sustituir por SELECT MAX(producto.id) FROM productos
+        $aux = array($max_producto_id);
         $countItems = 0;
+
+        // Búsqueda principal. Vamos a sacar los ids de los productos que cumplen al menos un requisito de búsqueda
+        // y a construir un array con sus ids ($resultado)
         foreach ($items as $item_id => $value) {//item_id es la key y value son los valores de los input
             $valores = array();
             if(!blank($value)){
                 $countItems++;
-                $sql = "SELECT DISTINCT productos.id, productos.name,productos.image, items_productos.value
+                $sql = "SELECT DISTINCT productos.id
                 FROM productos
                 INNER JOIN items_productos ON productos.id = items_productos.productos_id
                 WHERE productos.categoria_id = '$idCategoria'";
@@ -105,22 +119,37 @@ class Productos extends Model
                 
                 $valores = DB::select(DB::raw($sql));
             }
+            
+            //Este foreach se encarga de guardar todos los array dentro de uno solo
             foreach($valores as $valor){
-                array_push($resultado, $valor);
+                array_push($productos_ids, $valor);
             }
+        }
+        
+        for($i = 0; $i<$max_producto_id; $i++) {
+            $aux[$i] = 0;
+        }
+        foreach ($productos_ids as $producto) {
+            $aux[$producto->id] = $aux[$producto->id] + 1;
         }
         $resultadoFinal = array();
-        foreach ($resultado as $res) {
-            $id = $res->id;
-            if($countItems <= 1){
-                $productos_ids[] = $id;
-            }else{
-                if (isset($resultadoFinal[$id])) {
-                    $productos_ids[] = $id;
-                }else $resultadoFinal[$id] = $res;
+        for($i = 0; $i<$max_producto_id; $i++) {
+            if ($aux[$i] == $contador) {
+                $producto = Productos::find($i);
+                $resultadoFinal[] = $producto;
             }
         }
-        $productos = Productos::whereIn('id', $productos_ids)->get();
-        return $productos;
+        // foreach ($resultado as $res) {
+        //     $id = $res->id;
+        //     if($countItems <= 1){
+        //         $productos_ids[] = $id;
+        //     }else{
+        //         if (isset($resultadoFinal[$id])) {
+        //             $productos_ids[] = $id;
+        //         }else $resultadoFinal[$id] = $res;
+        //     }
+        // }
+        // $productos = Productos::whereIn('id', $productos_ids)->get();
+        return $resultadoFinal;
     }
 }

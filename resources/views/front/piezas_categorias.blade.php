@@ -60,7 +60,7 @@
 
         <div class="">
             <div class="grid">
-                <!-- Pintando los productos con su modal -->
+                <!-- Pintando las cajas de los productos -->
                 @foreach($todosProductos as $key => $producto)
                 <div class="gridItem">
                     <div class="portfolio-item">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- Creando los cuadros modales de cada prodcto -->
                 <div class="portfolio-modal modal fade" id="producto{{$producto->id}}" tabindex="-1" role="dialog"
                     aria-hidden="true">
                     <div class="modal-dialog">

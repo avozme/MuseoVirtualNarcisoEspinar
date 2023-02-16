@@ -37,7 +37,7 @@
     <header class="masthead" style="background-image: url(/storage/{{$fotoPrincipal->key}}/{{$fotoPrincipal->value}})">
         <div class="container">
             <div class="tituloPrincipal">
-                <div class="masthead-subheading">Un poquito más cerca de Almería</div>
+                <div class="masthead-subheading">Un poco más cerca de Almería</div>
                 <div class="masthead-heading text-uppercase">Conoce su historia</div>
             </div>
         </div>
