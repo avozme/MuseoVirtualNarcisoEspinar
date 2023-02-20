@@ -143,14 +143,12 @@
                                                 </button>
                                             </div>
 
-                                            <!-- <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p> -->
-                                            @foreach ($producto->items as $item)
-                                            <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
-                                            @endforeach
-                                            <!-- <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                                        <i class="fas fa-xmark me-1"></i>
-                                                        Close Project
-                                                    </button> -->
+                                            <div class='items'>
+                                                @foreach ($producto->items as $item)
+                                                <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
+                                                @endforeach
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>

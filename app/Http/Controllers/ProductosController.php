@@ -68,7 +68,7 @@ class ProductosController extends Controller
     public function edit($id) {
         $producto = Productos::find($id);
         $categorias = Categorias::all();
-        $items = Items::where('categoria_id', $producto->categoria_id)->with(['itemsProducto' => function($query) use ($id){
+        $items = Items::where('categoria_id', $producto->categoria_id)->orderBy('name')->with(['itemsProducto' => function($query) use ($id){
             $query->where('productos_id', $id);
         }])->get();
         $image = Storage::url("$producto->id/$producto->image");

@@ -27,7 +27,7 @@
                     <li class="nav-item"><a class="nav-link"
                             href="/categoria/{{$categoria->id}}">{{$categoria->name}}</a></li>
                     @endforeach
-                    <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso Espinar</a></li>
                     <li class="nav-item"><a class="nav-link"  href="{{route('vistaBuscador')}}">Buscador</a></li>
                 </ul>
             </div>
@@ -72,7 +72,7 @@
     <section class="page-section bg-light" id="team">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-heading text-uppercase">Colecciónes pertenecientes a</h2><br>
+                <h2 class="section-heading text-uppercase">Colecciones de</h2><br>
             </div>
             <div class="row">
                 <div class="col-lg-4">

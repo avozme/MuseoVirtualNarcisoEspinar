@@ -14,7 +14,7 @@ class ItemsController extends Controller
     }
 
     public function index() {
-        $itemsList = Items::all();
+        $itemsList = Items::orderBy('name')->get();
         return view('items.all', ['itemsList'=>$itemsList]);
     }
 

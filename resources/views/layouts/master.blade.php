@@ -23,7 +23,7 @@
             <a href="" class="logo d-flex align-items-center">
                 <!-- añadir ruta -->
                 <img src="/logo.png" alt="Celia Viñas" width="40" height="50">
-                <span class="d-none d-lg-block">Colección Narciso Espinar</span>
+                <span class="d-none d-lg-block">Colecciones Narciso Espinar</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
         </div><!-- End Logo -->
@@ -56,7 +56,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ url('/items/') }}">
                     <i class="bi bi-folder"></i>
-                    <span>Items</span>
+                    <span>Campos</span>
                 </a>
             </li>
 
@@ -64,13 +64,6 @@
                 <a class="nav-link collapsed" href="{{ url('/imagenes/') }}">
                     <i class="bi bi-folder"></i>
                     <span>Imagenes</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('/etiquetas/') }}">
-                    <i class="bi bi-folder"></i>
-                    <span>Etiquetas</span>
                 </a>
             </li>
 

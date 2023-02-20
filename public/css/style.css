@@ -397,7 +397,7 @@ padding-right: calc(var(--bs-gutter-x) * .1) !important;
 }
 
 .logo span {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   color: #012970;
   font-family: "Nunito", sans-serif;

@@ -21,7 +21,7 @@ class Productos extends Model
         }
 
     public function items() {
-        return $this->belongsToMany('App\Models\Items')->withPivot('value');
+        return $this->belongsToMany('App\Models\Items')->orderBy('name')->withPivot('value');
     }
 
     public function imagenes() {
@@ -98,8 +98,7 @@ class Productos extends Model
             }
         }
 
-        $productos_ids = array();       // Lista de ids de productos que cumplen algún requisito de búsqueda
-        $productos_ids = array();
+        $productos_ids = array();    // Lista de ids de productos que cumplen algún requisito de búsqueda
         $max_producto_id = 10000;   // ID más alto de la tabla de productos --> Sustituir por SELECT MAX(producto.id) FROM productos
         $aux = array($max_producto_id);
         $countItems = 0;
