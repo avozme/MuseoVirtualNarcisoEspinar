@@ -24,7 +24,7 @@
                 <option value='{{$categoria->id}}' @if(isset($producto->categoria) && $producto->categoria->id == $categoria->id) selected @endif>{{$categoria->name}}</option>
             @endforeach
             </select> <br>
-            Nombre :<input class="form-control" type="text"  name="name" value="{{$producto->name ?? '' }}" id="categoria_id"><br>
+            Nombre :<input required class="form-control" type="text"  name="name" value="{{$producto->name ?? '' }}" id="categoria_id"><br>
             Foto principal: 
             @if(isset($image))
                 <div id="image">
@@ -55,11 +55,12 @@
                 @if(isset($items))
                     @foreach($items as $key => $item)
                         <label class="mt-4">{{$item->name}}</label>
-                        <input required class="form-control" type="text" name="items[{{$key}}][value]" value="{{$item->itemsProducto->value ?? '' }}">
+                        <input class="form-control" type="text" name="items[{{$key}}][value]" value="{{$item->itemsProducto->value ?? '' }}">
                         <input type="hidden" name="items[{{$key}}][id]" value="{{$item->id ?? '' }}">
                     @endforeach
                 @endif
             </div>
+
             <input class="btn btn-dark center mt-3" type="submit" value="Enviar" id="submitButton">    
         </div>
     </form>

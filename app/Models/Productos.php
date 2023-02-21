@@ -66,7 +66,7 @@ class Productos extends Model
             ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->paginate(9);
             return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);  
         }
-        else $resultadoBusqueda = Productos::where("productos.name", "like", "%$textoBusqueda%")->paginate(2);  
+        else $resultadoBusqueda = Productos::where("productos.name", "like", "%$textoBusqueda%")->paginate(9);  
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
@@ -132,23 +132,15 @@ class Productos extends Model
             $aux[$producto->id] = $aux[$producto->id] + 1;
         }
         $resultadoFinal = array();
+        $aux_ids = array();
         for($i = 0; $i<$max_producto_id; $i++) {
             if ($aux[$i] == $contador) {
                 $producto = Productos::find($i);
                 $resultadoFinal[] = $producto;
+                $aux_ids[] = $producto->id;
             }
         }
-        // foreach ($resultado as $res) {
-        //     $id = $res->id;
-        //     if($countItems <= 1){
-        //         $productos_ids[] = $id;
-        //     }else{
-        //         if (isset($resultadoFinal[$id])) {
-        //             $productos_ids[] = $id;
-        //         }else $resultadoFinal[$id] = $res;
-        //     }
-        // }
-        // $productos = Productos::whereIn('id', $productos_ids)->get();
-        return $resultadoFinal;
+        $productos = Productos::whereIn('id', $aux_ids);
+        return $productos;
     }
 }

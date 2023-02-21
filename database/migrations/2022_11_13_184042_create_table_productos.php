@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('image', 150);
+            $table->string('image', 150)->nullable();
             $table->integer('categoria_id');
             $table->timestamps();
         });

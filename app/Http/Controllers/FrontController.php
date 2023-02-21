@@ -65,12 +65,11 @@ class FrontController extends Controller
         $pagination = 8;
         $productosList = Productos::busquedaCampos($r->categoria_id, $r->items);
         /*El numero de pagina que tiene los productos  -Ceil redondea hacia arriba- */
-        $pages = ceil(count($productosList) / $pagination);
+        $pages = ceil(count($productosList->get()) / $pagination);
         /*Te hace un get de los productos y se salta los productos de la pagian en la que estas y coge el numero de productos que tiene la paginacion ($currentPage-1)  */
-        // for ($i = 0; $i < ($currentPage-1) * $pagination; $i++) {
-        //     array_shift($productosList); //= $productosList->skip(($currentPage-1) * $pagination)->take($pagination);
+        // for ($i = 0; $i < ($currentPage - 1) * $pagination; $i++) {
+            $todosProductos =  $productosList->skip(($currentPage - 1) * $pagination)->take($pagination)->get();
         // }
-        $todosProductos = $productosList;
 
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();

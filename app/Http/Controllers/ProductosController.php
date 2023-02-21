@@ -37,11 +37,14 @@ class ProductosController extends Controller
     public function store(Request $r) {
         $image = $r->file('image');
         $images = $r->file('images');
-        $image_name = $image->getClientOriginalName();
         $p = new Productos($r->all());
-        $p->image = $image_name;
+        if (!blank($image)) {
+            $image_name = $image->getClientOriginalName();
+            $p->save();
+            $image->storeAs("public/$p->id", $image_name);
+        }
+        $p->image = $image_name ?? '';
         $p->save();
-        $image->storeAs("public/$p->id", $image_name);
        
         if(!blank($images)){
             foreach($images as $i){
@@ -58,7 +61,7 @@ class ProductosController extends Controller
         foreach($r->items as $item){ 
             $itemProducto = new ItemsProductos();
             $itemProducto->productos_id = $p->id;
-            $itemProducto->value = $item['value'];
+            $itemProducto->value = $item['value'] ?? '-';
             $itemProducto->items_id = $item['id'];
             $itemProducto->save();
         }
@@ -109,7 +112,7 @@ class ProductosController extends Controller
         foreach($r->items as $item){ 
             $itemProducto = ItemsProductos::where('items_id', $item['id'])->where('productos_id', $id)->first() ?? new ItemsProductos();
             if(!blank($itemProducto)){
-                $itemProducto->value = $item['value'];
+                $itemProducto->value = $item['value'] ?? '-';
                 $itemProducto->productos_id = $id;
                 $itemProducto->items_id = $item['id'];
                 $itemProducto->save();
