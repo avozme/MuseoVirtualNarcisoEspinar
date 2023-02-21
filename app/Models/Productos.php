@@ -46,29 +46,55 @@ class Productos extends Model
     }
     /*Buscador Front que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     public static function busquedaCategorias($idCategoria, $textoBusqueda){
-         $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
-        ->join("items_productos", "productos.id","items_productos.productos_id")
-        ->where("productos.categoria_id", $idCategoria)
+        if (strpos($textoBusqueda, '"') === 0)  {
+            $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
+            $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
+            $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
+            $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
+            ->join("items_productos", "productos.id","items_productos.productos_id")
+            ->where("productos.categoria_id", $idCategoria)
+            ->where(function($query) use ($texto_entre_comillas){
+                $query->where("productos.name", "$texto_entre_comillas")
+                ->orwhere("items_productos.value", "$texto_entre_comillas");
+            })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
+        }else{
+            $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
+            ->join("items_productos", "productos.id","items_productos.productos_id")
+            ->where("productos.categoria_id", $idCategoria)
         ->where(function($query) use ($textoBusqueda){
             $query->where("productos.name", "like", "%$textoBusqueda%")
-            ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
+            ->orwhere("items_productos.value","like", "%$textoBusqueda%");
         })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
-
+    }
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
     /*Buscador Back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     /*Si se deja vacio busca contra las dos categorias*/
     public static function busquedaProductos($idCategoria, $textoBusqueda){
-        if($idCategoria != NULL){
-            $resultadoBusqueda = Productos::with('categoria')
-            ->where("productos.categoria_id", $idCategoria)
-            ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->paginate(9);
-            return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);  
+        if (strpos($textoBusqueda, '"') === 0) {
+            $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
+            $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
+            $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
+                if($idCategoria != NULL){
+                    $resultadoBusqueda = Productos::with('categoria')
+                    ->where("productos.categoria_id", $idCategoria)
+                    ->where("productos.name","$texto_entre_comillas")->distinct()->paginate(9);
+                    return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);  
+                }
+                else $resultadoBusqueda = Productos::where("productos.name", "like", "$texto_entre_comillas")->paginate(9);  
+                return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
+            }else{
+                if($idCategoria != NULL){
+                    $resultadoBusqueda = Productos::with('categoria')
+                    ->where("productos.categoria_id", $idCategoria)
+                    ->where("productos.name","like", "%$textoBusqueda%")->distinct()->paginate(9);
+                    return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusqueda]);  
+                }
+                else $resultadoBusqueda = Productos::where("productos.name","like", "%$textoBusqueda%")->paginate(9);  
+                return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
+            }
         }
-        else $resultadoBusqueda = Productos::where("productos.name", "like", "%$textoBusqueda%")->paginate(9);  
-        return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
-    }
 
     // public static function busquedaCampos($idCategoria, $items){
     //     $itemsNoVacios = array_keys(array_filter($items, function($valor){
@@ -106,18 +132,35 @@ class Productos extends Model
         // Búsqueda principal. Vamos a sacar los ids de los productos que cumplen al menos un requisito de búsqueda
         // y a construir un array con sus ids ($resultado)
         foreach ($items as $item_id => $value) {//item_id es la key y value son los valores de los input
-            $valores = array();
+            $valores = array(); 
             if(!blank($value)){
-                $countItems++;
-                $sql = "SELECT DISTINCT productos.id
-                FROM productos
-                INNER JOIN items_productos ON productos.id = items_productos.productos_id
-                WHERE productos.categoria_id = '$idCategoria'";
-                $sql = $sql . " AND items_productos.items_id = '$item_id'
-                                AND items_productos.value LIKE '%$value%'";
-                
-                $valores = DB::select(DB::raw($sql));
+                if (strpos($value, '"') === 0){
+                    $pos_comillas_inicio = strpos($value, '"') + 1;
+                    $pos_comillas_fin = strpos($value, '"', $pos_comillas_inicio);
+                    $texto_entre_comillas = substr($value, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
+                    $countItems++;
+                    $sql = "SELECT DISTINCT productos.id
+                    FROM productos
+                    INNER JOIN items_productos ON productos.id = items_productos.productos_id
+                    WHERE productos.categoria_id = '$idCategoria'";
+                    $sql = $sql . " AND items_productos.items_id = '$item_id'
+                                    AND items_productos.value LIKE '$texto_entre_comillas'";
+                    
+                    $valores = DB::select(DB::raw($sql));
+                }else{
+                    $countItems++;
+                    $sql = "SELECT DISTINCT productos.id
+                    FROM productos
+                    INNER JOIN items_productos ON productos.id = items_productos.productos_id
+                    WHERE productos.categoria_id = '$idCategoria'";
+                    $sql = $sql . " AND items_productos.items_id = '$item_id'
+                                    AND items_productos.value LIKE '%$value%'";
+                    
+                    $valores = DB::select(DB::raw($sql));
+                }
             }
+        
+    
             
             //Este foreach se encarga de guardar todos los array dentro de uno solo
             foreach($valores as $valor){

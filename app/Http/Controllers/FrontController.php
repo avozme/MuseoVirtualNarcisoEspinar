@@ -29,7 +29,8 @@ class FrontController extends Controller
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
-        return view('front.piezas_categorias', ['logotipo' => $logotipo,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria, 'textoBusqueda' => $r->textoBusqueda]);
+        $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
+        return view('front.piezas_categorias', ['logotipo' => $logotipo,'msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria, 'textoBusqueda' => $r->textoBusqueda]);
     }
 
     /*Funcion buscador categorías para que solo funcione en la vista de la categoria seleccionada*/
@@ -38,7 +39,8 @@ class FrontController extends Controller
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
         $todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
-        return view('front.piezas_categorias', ['logotipo' => $logotipo,'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria, 'categoria' => $categoria]);
+        $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
+        return view('front.piezas_categorias', ['logotipo' => $logotipo,'msg'=> $msg,'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria, 'categoria' => $categoria]);
     }
 
     /*Funcion vista buscador prepara todas las categorías e items para mostrarlos en la página del buscador*/
@@ -53,7 +55,9 @@ class FrontController extends Controller
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
         $todosProductos = Productos::busquedaProductos($r->idCategoria, $r->textoBusqueda);
-        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'logotipo' => $logotipo, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
+        $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
+        
+        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda,'msg'=> $msg, 'logotipo' => $logotipo, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 
     /*Funcion por campos según categoría front*/ 
@@ -73,6 +77,7 @@ class FrontController extends Controller
 
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
-        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'currentPage' => $currentPage, 'pages' => $pages, 'items' => $r->items, 'textoBusqueda'=> $r->textoBusqueda, 'logotipo' => $logotipo, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
+        $msg = count($productosList->get()) > 0 ? null : 'No hay resultados de búsqueda';
+        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'msg'=> $msg,'currentPage' => $currentPage, 'pages' => $pages, 'items' => $r->items, 'textoBusqueda'=> $r->textoBusqueda, 'logotipo' => $logotipo, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 }
