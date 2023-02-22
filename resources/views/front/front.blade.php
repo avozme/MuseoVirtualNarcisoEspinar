@@ -2,7 +2,7 @@
 @section('content')
 <div id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="--color_nav: {{$color_nav->value}}">
         <div class="container">
              <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">
@@ -20,7 +20,7 @@
                 Menu
                 <i class="fas fa-bars ms-1"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="collapse navbar-collapse" id="navbarResponsive" style="--color_raton_encima_elementos_menu: {{$color_raton_encima_elementos_menu->value}}">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $categoria)
@@ -37,8 +37,8 @@
     <header class="masthead" style="background-image: url(/storage/{{$fotoPrincipal->key}}/{{$fotoPrincipal->value}})">
         <div class="container">
             <div class="tituloPrincipal">
-                <div class="masthead-subheading">Un poco más cerca de Almería</div>
-                <div class="masthead-heading text-uppercase">Conoce su historia</div>
+                <div class="masthead-subheading" style="--color_titulo_subtitulo: {{$color_titulo_subtitulo->value}}">{{$titulo->value}}</div>
+                <div class="masthead-heading text-uppercase" style="--color_titulo_subtitulo: {{$color_titulo_subtitulo->value}}">{{$subTitulo->value}}</div>
             </div>
         </div>
     </header>

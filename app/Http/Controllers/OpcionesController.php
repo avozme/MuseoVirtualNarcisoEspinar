@@ -51,7 +51,11 @@ class OpcionesController extends Controller
             $image->storeAs("public/$opcion->key", $image_name);
             $opcion->value = $image_name;
         }
-        
+        elseif($opcion->type == 'color'){
+            $opcion->value = $r->color;
+        }
+
+        else $opcion->value = $r->value;
         $opcion->save();
         return redirect()->route('opciones.index');
     }

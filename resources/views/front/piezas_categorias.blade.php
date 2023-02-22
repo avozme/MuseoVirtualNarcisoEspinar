@@ -2,7 +2,7 @@
 @section('content')
 <div id="page-top">
     <!-- Menu-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:#ada191">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="--color_nav: {{$color_nav->value}}">
         <div class="container">
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">

@@ -44,6 +44,30 @@ class Productos extends Model
         $listaProductos = Productos::where('categoria_id', $id);
         return $listaProductos->paginate(4);
     }
+
+    //Función de limpieza para los buscadores
+        public static function limpiezaBuscador($textoBusqueda){
+        $diccionario = ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'e', 'o', 'u',
+            'a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante', 
+            'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según', 
+            'sin', 'sobre', 'tras', 'durante'];
+        
+        //Trocea la búsqueda y la comvierte en un array de strings
+        $busquedaTroceada = explode(" ", $textoBusqueda);
+
+        //Compara el array de string con el de palabras a limpiar y si encuentra una coincidencia lo borra
+        for ($i=0; $i < count($busquedaTroceada); $i++) { 
+            if (in_array($busquedaTroceada[$i], $diccionario)) {
+                unset($busquedaTroceada[$i]);
+            }
+            //Borra también en el caso que existan dos espacios juntos
+            else if ($busquedaTroceada[$i] == "") {
+                unset($busquedaTroceada[$i]);
+            }
+        }
+        dd($busquedaTroceada);
+    }
+
     /*Buscador Front que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     public static function busquedaCategorias($idCategoria, $textoBusqueda){
         if (strpos($textoBusqueda, '"') === 0)  {
@@ -72,6 +96,10 @@ class Productos extends Model
     /*Buscador Back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     /*Si se deja vacio busca contra las dos categorias*/
     public static function busquedaProductos($idCategoria, $textoBusqueda){
+
+        Productos::limpiezaBuscador($textoBusqueda);
+
+
         if (strpos($textoBusqueda, '"') === 0) {
             $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
             $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
@@ -115,6 +143,7 @@ class Productos extends Model
     // }
 
     public static function busquedaCampos($idCategoria, $items){
+
 
         // Vamos a contar el número de items que vienen rellenos en el formulario de búsqueda
         $contador = 0;  

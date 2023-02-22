@@ -16,11 +16,14 @@
                 <label class="control-label w-100 mt-2">Foto:</label>
                 <img class="mt-2" src="/storage/{{$opcion->key}}/{{$opcion->value}}" width=200 /><br>
                 <input class="form-control mt-2" type="file" accept="image/*" name="image" value="">
+                @elseif($opcion->type == 'color')
+                <label class="control-label w-100 mt-2">Color:</label>
+                <input type="color" id="color" name="color" value="{{$opcion->value}}">
                 @endif
                 <label class="control-label w-100 mt-2">Clave:</label>
-                 <input class="form-control mt-2"  type="text" name="key" value="{{$opcion->key ?? '' }}"> <!--Si se pone disabled en el input no se modifiquen los valores -->
+                 <input class="form-control mt-2"  type="text" name="key" disabled value="{{$opcion->key ?? '' }}"> <!--Si se pone disabled en el input no se modifiquen los valores -->
                  <label class="control-label w-100 mt-2">Tipo:</label>
-                  <input class="form-control mt-2"  type="text" name="type" value="{{$opcion->type ?? '' }}">
+                  <input class="form-control mt-2"  type="text" name="type" disabled value="{{$opcion->type ?? '' }}">
                 <input class="btn btn-dark center mt-2" type="submit" value="Enviar">
             </div>
         </form>
