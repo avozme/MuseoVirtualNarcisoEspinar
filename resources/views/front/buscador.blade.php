@@ -1,8 +1,8 @@
 @extends('layouts.front')
 @section('content')
 <!-- Menu-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:#ada191">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="menu" style="--color_nav: {{$color_nav->value}}">
+    <div class="container" id="buscador"  style="--color_raton_encima_elementos_menu: {{$color_raton_encima_elementos_menu->value}}; --color_elementos_menu: {{$color_elementos_menu->value}}">
         <!-- Logo -->
         <div class="d-flex align-items-center justify-content-between">
             <a href="" class="logo d-flex align-items-center">

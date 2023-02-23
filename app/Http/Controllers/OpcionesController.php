@@ -52,7 +52,7 @@ class OpcionesController extends Controller
             $opcion->value = $image_name;
         }
         elseif($opcion->type == 'color'){
-            $opcion->value = $r->color;
+            $opcion->value = $r->value;
         }
 
         else $opcion->value = $r->value;

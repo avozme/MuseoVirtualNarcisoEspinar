@@ -20,7 +20,7 @@
                 Menu
                 <i class="fas fa-bars ms-1"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive" style="--color_raton_encima_elementos_menu: {{$color_raton_encima_elementos_menu->value}}">
+            <div class="collapse navbar-collapse" id="navbarResponsive" style="--color_raton_encima_elementos_menu: {{$color_raton_encima_elementos_menu->value}}; --color_elementos_menu: {{$color_elementos_menu->value}}">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $categoria)

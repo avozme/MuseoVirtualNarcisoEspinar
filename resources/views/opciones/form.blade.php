@@ -11,14 +11,14 @@
             @csrf
             <div class="container-fluid">
                 <label class="control-label w-100 mt-2">Valor:</label>
-                <input class="form-control mt-2" type="text" name="value" value="{{$opcion->value ?? '' }}">
+                <input class="form-control mt-2" id="value" type="text" name="value" value="{{$opcion->value ?? '' }}">
                 @if($opcion->type == 'foto')
                 <label class="control-label w-100 mt-2">Foto:</label>
                 <img class="mt-2" src="/storage/{{$opcion->key}}/{{$opcion->value}}" width=200 /><br>
                 <input class="form-control mt-2" type="file" accept="image/*" name="image" value="">
                 @elseif($opcion->type == 'color')
                 <label class="control-label w-100 mt-2">Color:</label>
-                <input type="color" id="color" name="color" value="{{$opcion->value}}">
+                <input type="color" id="color" onChange="actualizarColor()" name="color" value="{{$opcion->value}}">
                 @endif
                 <label class="control-label w-100 mt-2">Clave:</label>
                  <input class="form-control mt-2"  type="text" name="key" disabled value="{{$opcion->key ?? '' }}"> <!--Si se pone disabled en el input no se modifiquen los valores -->
@@ -42,4 +42,11 @@
             </div>
         </form>
         @endisset
+
+        <script>
+            function actualizarColor(){
+                color=document.getElementById("color").value;
+                document.getElementById("value").value = color;
+            }
+        </script>
 @endsection

@@ -2,8 +2,9 @@
 @section('content')
 <div id="page-top">
     <!-- Menu-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="--color_nav: {{$color_nav->value}}">
-        <div class="container">
+    <div>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{$color_nav->value}}">
+        <div class="container" id="piezas_categorias" style="--color_raton_encima_elementos_menu: {{$color_raton_encima_elementos_menu->value}}; --color_elementos_menu: {{$color_elementos_menu->value}}">
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
@@ -56,7 +57,7 @@
         <!-- Fin Buscador -->
     </nav>
     <!-- Fin menu -->
-    <section class="page-section bg-light" id="portfolio">
+    <section class="page-section bg-light" id="portfolio" style="--paginacion: {{$paginacion->value}}">
 
         <div class="">
             <div class="grid">

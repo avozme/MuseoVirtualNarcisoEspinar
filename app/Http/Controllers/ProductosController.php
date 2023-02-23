@@ -44,7 +44,6 @@ class ProductosController extends Controller
             $image->storeAs("public/$p->id", $image_name);
             Storage::setVisibility("public/$p->id", "public");
             Storage::setVisibility("public/$p->id/$image_name", "public");
-
         }
         $p->image = $image_name ?? '';
         $p->save();

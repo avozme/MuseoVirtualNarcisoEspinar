@@ -20,10 +20,10 @@ class FrontController extends Controller
         $color_titulo_subtitulo = Opciones::where('key', 'color_titulo_subtitulo')->first();
         $color_raton_encima_elementos_menu = Opciones::where('key', 'color_raton_encima_elementos_menu')->first();
         $color_elementos_menu = Opciones::where('key', 'color_elementos_menu')->first();
-        $color_cuerpo = Opciones::where('key', 'color_cuerpo')->first();
+        $paginacion = Opciones::where('key', 'paginacion')->first();
         return view('front.front', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList,'fotoPrincipal' => $fotoPrincipal,'logotipo' => $logotipo, 'titulo' => $titulo,
         'color_nav' => $color_nav, 'subTitulo' => $subTitulo, 'color_titulo_subtitulo' => $color_titulo_subtitulo, 'color_raton_encima_elementos_menu' => $color_raton_encima_elementos_menu,
-        'color_elementos_menu' => $color_elementos_menu, 'color_cuerpo' => $color_cuerpo]);
+        'color_elementos_menu' => $color_elementos_menu, 'paginacion' => $paginacion]);
     }
 
     public function show($id) {
@@ -40,12 +40,12 @@ class FrontController extends Controller
         $color_nav = Opciones::where('key', 'color_nav')->first();
         $color_raton_encima_elementos_menu = Opciones::where('key', 'color_raton_encima_elementos_menu')->first();
         $color_elementos_menu = Opciones::where('key', 'color_elementos_menu')->first();
-        $color_cuerpo = Opciones::where('key', 'color_cuerpo')->first();
+        $paginacion = Opciones::where('key', 'paginacion')->first();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['logotipo' => $logotipo,'msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
         'textoBusqueda' => $r->textoBusqueda, 'color_nav' => $color_nav, 'color_raton_encima_elementos_menu' => $color_raton_encima_elementos_menu,
-        'color_elementos_menu' => $color_elementos_menu, 'color_cuerpo' => $color_cuerpo]);
+        'color_elementos_menu' => $color_elementos_menu, 'paginacion' => $paginacion]);
     }
 
     /*Funcion buscador categorías para que solo funcione en la vista de la categoria seleccionada*/
@@ -53,26 +53,44 @@ class FrontController extends Controller
         $categoria = Categorias::find($r->idCategoria);
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
+        $color_nav = Opciones::where('key', 'color_nav')->first();
+        $color_raton_encima_elementos_menu = Opciones::where('key', 'color_raton_encima_elementos_menu')->first();
+        $color_elementos_menu = Opciones::where('key', 'color_elementos_menu')->first();
+        $paginacion = Opciones::where('key', 'paginacion')->first();
+        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
         $todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
-        return view('front.piezas_categorias', ['logotipo' => $logotipo,'msg'=> $msg,'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria, 'categoria' => $categoria]);
+        return view('front.piezas_categorias', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList,'fotoPrincipal' => $fotoPrincipal,'logotipo' => $logotipo, 'titulo' => $titulo,
+        'color_nav' => $color_nav, 'subTitulo' => $subTitulo, 'color_titulo_subtitulo' => $color_titulo_subtitulo, 'color_raton_encima_elementos_menu' => $color_raton_encima_elementos_menu,
+        'color_elementos_menu' => $color_elementos_menu, 'paginacion' => $paginacion, 'msg'=> $msg,'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria, 'categoria' => $categoria]);
     }
 
     /*Funcion vista buscador prepara todas las categorías e items para mostrarlos en la página del buscador*/
     public function vistaBuscador(Request $r) {
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
-        return view('front.buscador', ['categoriasList'=>$categoriasList,'logotipo' => $logotipo]);
+        $color_nav = Opciones::where('key', 'color_nav')->first();
+        $color_raton_encima_elementos_menu = Opciones::where('key', 'color_raton_encima_elementos_menu')->first();
+        $color_elementos_menu = Opciones::where('key', 'color_elementos_menu')->first();
+        $paginacion = Opciones::where('key', 'paginacion')->first();
+        return view('front.buscador', ['categoriasList'=>$categoriasList, 'logotipo' => $logotipo,'categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'color_nav' => $color_nav, 'color_raton_encima_elementos_menu' => $color_raton_encima_elementos_menu,
+        'color_elementos_menu' => $color_elementos_menu, 'paginacion' => $paginacion]);
     }
 
     /*Funcion buscador general front*/ 
     public function buscadorGeneral(Request $r) {
         $categoriasList = Categorias::all();
         $logotipo = Opciones::where('key', 'logo')->first();
+        $color_nav = Opciones::where('key', 'color_nav')->first();
+        $color_raton_encima_elementos_menu = Opciones::where('key', 'color_raton_encima_elementos_menu')->first();
+        $color_elementos_menu = Opciones::where('key', 'color_elementos_menu')->first();
+        $paginacion = Opciones::where('key', 'paginacion')->first();
         $todosProductos = Productos::busquedaProductos($r->idCategoria, $r->textoBusqueda);
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
         
-        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda,'msg'=> $msg, 'logotipo' => $logotipo, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
+        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda,'msg'=> $msg, 'logotipo' => $logotipo,'msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
+        'textoBusqueda' => $r->textoBusqueda, 'color_nav' => $color_nav, 'color_raton_encima_elementos_menu' => $color_raton_encima_elementos_menu,
+        'color_elementos_menu' => $color_elementos_menu, 'paginacion' => $paginacion, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 
     /*Funcion por campos según categoría front*/ 
