@@ -35,7 +35,9 @@ class Productos extends Model
         $listaCategorias = Categorias::all();
         $listaProductos = array();
         foreach ($listaCategorias as $categoria) {
-            $listaProductos[] = $categoria->productos->random();
+            if ($categoria->productos->count() > 0) {
+                $listaProductos[] = $categoria->productos->random();
+            }
         }
         return $listaProductos;
     }
