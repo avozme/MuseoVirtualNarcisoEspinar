@@ -78,26 +78,7 @@
 
     <section class="page-section bg-light" id="team">
         <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">Colecciones de</h2><br>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-
-                </div>
-                <div class="col-lg-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="narciso_espinar_campra.jpg" alt="..." />
-                        <h4>Narciso Espinar Campra</h4>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-
-                </div>
-            </div>
-            <!-- <div class="row">
-                    <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
-                </div> -->
+            {!!$opciones->where('key', 'info_adicional_homepage')->pluck('value')->first()!!}
         </div>
         
     </section>

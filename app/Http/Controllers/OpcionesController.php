@@ -14,7 +14,7 @@ class OpcionesController extends Controller
     }
     
     public function index() {
-        $opcionesList = Opciones::all();
+        $opcionesList = Opciones::orderBy('key')->get();
         return view('opciones.all', ['opcionesList'=>$opcionesList]);
     }
 
@@ -54,7 +54,6 @@ class OpcionesController extends Controller
         elseif($opcion->type == 'color'){
             $opcion->value = $r->value;
         }
-
         else $opcion->value = $r->value;
         $opcion->save();
         return redirect()->route('opciones.index');
