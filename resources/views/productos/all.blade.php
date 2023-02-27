@@ -44,6 +44,11 @@
             <!-- Fin Buscador -->
         </th>
     </tr>
+    @if (count($productosList) == 0)
+    <tr>
+        <td colspan="6">No hay datos para mostrar</td>
+    </tr>
+    @endif
     @foreach ($productosList as $producto)
     <tr>
         <td>{{$producto->name}}</td>

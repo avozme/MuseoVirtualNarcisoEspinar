@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use DB;
 
 class Productos extends Model
@@ -75,35 +76,41 @@ class Productos extends Model
 
     
     /*Buscador front/back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
-    /*Si se deja vacio busca contra las dos categorias*/
+    /*Si el idCategoria es NULL, busca en todas las categorias*/
     public static function busquedaProductos($idCategoria, $textoBusquedaOG){
-        $textoLimpio = Productos::limpiezaBuscador($textoBusquedaOG);
-        $resultadoBusqueda = new \Illuminate\Database\Eloquent\Collection();
+        $textoLimpio = Productos::limpiezaBuscador($textoBusquedaOG); // Limpia el texto de palabras comunes (como artículos) y lo trocea en palabras individuales
+        $resultadoBusqueda = collect();  // Creamos colección vacía para ir añadiendo los resultados de las búsquedas
         foreach($textoLimpio as $textoBusqueda){
-            if (strpos($textoBusqueda, '"') === 0) {
+            if (strpos($textoBusqueda, '"') === false) {
+                // El texto de búsqueda NO contiene comillas --> Búsqueda LIKE
+                if($idCategoria != NULL){
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
+                    ->where("productos.categoria_id", "$idCategoria")
+                    ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->get());
+                }
+                else {
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name","like", "%$textoBusqueda%")->get());
+                }
+            }else{
+                // El texto de búsqueda SÍ contiene comillas --> Búsqueda EXACTA
                 $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
                 $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
                 $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-                    if($idCategoria != NULL){
-                        $resultadoBusqueda->appends(Productos::with('categoria') 
-                        ->where("productos.categoria_id", $idCategoria)
-                        ->where("productos.name","$texto_entre_comillas")->distinct()->paginate(9));
-                    }
-                    else $resultadoBusqueda->appends(Productos::where("productos.name", "like", "$texto_entre_comillas")->paginate(9));
-            }else{
                 if($idCategoria != NULL){
-                    $resultadoBusqueda->appends(Productos::with('categoria')
-                    ->where("productos.categoria_id", $idCategoria)
-                    ->where("productos.name","like", "%$textoBusqueda%")->distinct()->paginate(9));
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria') 
+                        ->where("productos.categoria_id", $idCategoria)
+                        ->where("productos.name","$texto_entre_comillas")->distinct()->get());
+                    }
+                else {
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "$texto_entre_comillas")->get());
                 }
-                else $resultadoBusqueda->appends(Productos::where("productos.name","like", "%$textoBusqueda%")->paginate(9));
             }
         }
-        if($idCategoria != NULL){
-            return $resultadoBusqueda->appends(['idCategoria' => $idCategoria, 'textoBusqueda' => $textoBusquedaOG]);  
-        }else{
-            return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusquedaOG]);            
-        }
+        // Paginamos el resultado
+        $resultadoPaginado = new LengthAwarePaginator($resultadoBusqueda, count($resultadoBusqueda), 9);
+        $resultadoPaginado->appends(['textoBusqueda' => $textoBusquedaOG]);
+        if ($idCategoria != NULL) $resultadoPaginado->appends(['idCategoria' => $idCategoria]);
+        return $resultadoPaginado;
     }
         
 
@@ -197,26 +204,61 @@ class Productos extends Model
         return $productos;
     }
 
-//Función de limpieza para los buscadores
-public static function limpiezaBuscador($textoBusqueda){
-    $diccionario = ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'e', 'o', 'u',
-        'a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante', 
-        'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según', 
-        'sin', 'sobre', 'tras', 'durante'];
-    
-    //Trocea la búsqueda y la comvierte en un array de strings
-    $busquedaTroceada = explode(" ", $textoBusqueda);
+    // Función de limpieza del texto de búsqueda para todos los buscadores.
+    // Recibe un string con el texto de búsqueda y devuelve un array con las palabras sueltas,
+    // excepto el texto entrecomillado, que se devuelve como un único elemento del array.
+    // Las palabras comunes (como artículos o preposiciones) se eliminan del array.
+    public static function limpiezaBuscador($textoBusqueda) {
+        // Diccionario de palabras comunes que eliminaremos de los términos de búsqueda
+        $diccionario = ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'e', 'o', 'u',
+                'a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante', 
+                'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según', 
+                'sin', 'sobre', 'tras', 'durante'];
+            
+        $trozos = [];           // Array con los trozos del texto (palabras sueltas o textos entrecomillados)
+        $trozoActual = '';      // Trozo que estamos procesando en cada momento
+        $enComillas = false;    // Indica si estamos dentro de una sección entrecomillada o no
 
-    //Compara el array de string con el de palabras a limpiar y si encuentra una coincidencia lo borra
-    for ($i=0; $i < count($busquedaTroceada); $i++) { 
-        if (in_array($busquedaTroceada[$i], $diccionario)) {
-            unset($busquedaTroceada[$i]);
+        // Recorreremos el texto carácter por carácter
+        for ($i = 0; $i < strlen($textoBusqueda); $i++) {
+            $caracter = $textoBusqueda[$i];
+
+            // Si encontramos una comilla, cambiamos el estado de enComillas
+            if ($caracter == '"') {
+                if ($enComillas) {
+                    // Si estamos dentro de una sección entrecomillada y encontramos otra comilla,
+                    // significa que hemos llegado al final de la sección entrecomillada,
+                    // así que agregamos el trozo actual al array de trozos y reiniciamos el trozo actual
+                    $trozos[] = $trozoActual;
+                    $trozoActual = '';
+                }
+                $enComillas = !$enComillas;  // Permutamos el valor de enComillas
+            }
+
+            // Si estamos fuera de una sección entrecomillada y encontramos un espacio,
+            // agregamos el trozo actual al array de trozos y reiniciamos el trozo actual
+            if (!$enComillas && $caracter == ' ') {
+                if (!empty($trozoActual)) {
+                    $trozos[] = $trozoActual;
+                    $trozoActual = '';
+                }
+            } else if ($caracter != '"') {
+                // Si el carácter no es un espacio ni una comilla, lo agregamos al trozo actual
+                $trozoActual .= $caracter;
+            }
         }
-        //Borra también en el caso que existan dos espacios juntos
-        else if ($busquedaTroceada[$i] == "") {
-            unset($busquedaTroceada[$i]);
+
+        // Agregamos el último trozo al array de trozos
+        if (!empty($trozoActual)) {
+            $trozos[] = $trozoActual;
+            $trozoActual = '';
         }
+
+        // Eliminamos del array las palabras comunes del diccionario
+        $trozos = array_diff($trozos, $diccionario);
+
+        // Devolvemos el array de trozos resultante
+        return $trozos;
     }
-    return $busquedaTroceada;
-}
+
 }

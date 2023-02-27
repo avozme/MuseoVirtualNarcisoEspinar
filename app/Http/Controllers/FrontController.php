@@ -60,7 +60,7 @@ class FrontController extends Controller
         $opciones = Opciones::all();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';       
         return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'msg'=> $msg, 'todosProductos'=>$todosProductos,
-                    'categoriasList'=>$categoriasList, 'categoria' => $categoria, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
+                    'categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
     }
 
     /*Funcion por campos según categoría front*/ 
