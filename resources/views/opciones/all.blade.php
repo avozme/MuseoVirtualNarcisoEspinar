@@ -17,21 +17,11 @@
     </tr>
     @foreach ($opcionesList as $opcion)
         <tr>
-            <td>{{$opcion->value}}</td>
             <td>{{$opcion->key}}</td>
+            <td>{{$opcion->value}}</td>
             <td>{{$opcion->type}}</td>
-      
-                
-            <td>
-                <form action = "{{route('opciones.destroy', $opcion->id)}}" method="POST">
-                    @csrf
-                    @method("DELETE")
-                    <button class="btn btn-outline-danger" type="submit" onclick='destroy(event)'><i class="fa-solid fa-trash-can"></i></button>
-                </form>
-                
-            </td>
             <td><a class="btn btn-outline-secondary" href="{{route('opciones.edit', $opcion->id)}}"><i class="fa-solid fa-pen"></i></a></td></td>
-            
+        </tr>    
     @endforeach
     </table>
     <div class ="d-grid gap-4 d-md-flex justify-content-md-start ms-2">
