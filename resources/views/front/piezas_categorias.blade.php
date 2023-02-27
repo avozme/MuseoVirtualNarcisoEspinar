@@ -3,13 +3,13 @@
 <div id="page-top">
     <!-- Menu-->
     <div>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{$color_nav->value}}">
-        <div class="container" id="piezas_categorias" style="--color_raton_encima_elementos_menu: {{$color_raton_encima_elementos_menu->value}}; --color_elementos_menu: {{$color_elementos_menu->value}}">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{$opciones->where('key', 'color_nav')->pluck('value')->first()}}">
+        <div class="container" id="piezas_categorias" style="--color_raton_encima_elementos_menu: {{$opciones->where('key', 'color_raton_encima_elementos_menu')->pluck('value')->first()}}; --color_elementos_menu: {{$opciones->where('key', 'color_elementos_menu')->pluck('value')->first()}}">
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
                     <!-- añadir ruta -->
-                    <img src="/storage/{{$logotipo->key}}/{{$logotipo->value}}" alt="logotipo" width="130">
+                    <img src="/storage/{{$opciones->where('key', 'logo')->pluck('key')->first()}}/{{$opciones->where('key', 'logo')->pluck('value')->first()}}" alt="logotipo" width="130">
                     <span class="d-none d-lg-block"> </span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
@@ -57,7 +57,7 @@
         <!-- Fin Buscador -->
     </nav>
     <!-- Fin menu -->
-    <section class="page-section bg-light" id="portfolio" style="--paginacion: {{$paginacion->value}}">
+    <section class="page-section bg-light" id="portfolio" style="--paginacion: {{$opciones->where('key', 'paginacion')->pluck('value')->first()}}">
 
         <div class="">
             <div class="grid">

@@ -2,13 +2,14 @@
 @section('content')
 <div id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="--color_nav: {{$color_nav->value}}">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" 
+        style="--color_nav: {{$opciones->where('key', 'color_nav')->pluck('value')->first()}}">
         <div class="container">
              <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
                     <!-- añadir ruta -->
-                    <img src="/storage/{{$logotipo->key}}/{{$logotipo->value}}" alt="logotipo" width="130">
+                    <img src="/storage/{{$opciones->where('key', 'logo')->pluck('key')->first()}}/{{$opciones->where('key', 'logo')->pluck('value')->first()}}" alt="logotipo" width="130">
                     <span class="d-none d-lg-block"> </span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
@@ -20,7 +21,9 @@
                 Menu
                 <i class="fas fa-bars ms-1"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive" style="--color_raton_encima_elementos_menu: {{$color_raton_encima_elementos_menu->value}}; --color_elementos_menu: {{$color_elementos_menu->value}}">
+            <div class="collapse navbar-collapse" id="navbarResponsive" 
+                 style="--color_raton_encima_elementos_menu: {{$opciones->where('key', 'color_raton_encima_elementos_menu')->pluck('value')->first()}}; 
+                        --color_elementos_menu: {{$opciones->where('key', 'color_elementos_menu')->pluck('value')->first()}}">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $categoria)
@@ -34,11 +37,15 @@
         </div>
     </nav>
     <!-- Masthead-->
-    <header class="masthead" style="background-image: url(/storage/{{$fotoPrincipal->key}}/{{$fotoPrincipal->value}})">
+    <header class="masthead" style="background-image: url(/storage/{{$opciones->where('key', 'fotoPrincipal')->pluck('key')->first()}}/{{$opciones->where('key', 'fotoPrincipal')->pluck('value')->first()}})">
         <div class="container">
             <div class="tituloPrincipal">
-                <div class="masthead-subheading" style="--color_titulo_subtitulo: {{$color_titulo_subtitulo->value}}">{{$titulo->value}}</div>
-                <div class="masthead-heading text-uppercase" style="--color_titulo_subtitulo: {{$color_titulo_subtitulo->value}}">{{$subTitulo->value}}</div>
+                <div class="masthead-subheading" style="--color_titulo_subtitulo: {{$opciones->where('key', 'color_titulo_subtitulo')->pluck('value')->first()}}">
+                    {{$opciones->where('key', 'titulo')->pluck('value')->first()}}
+                </div>
+                <div class="masthead-heading text-uppercase" style="--color_titulo_subtitulo: {{$opciones->where('key', 'color_titulo_subtitulo')->pluck('value')->first()}}">
+                    {{$opciones->where('key', 'subTitulo')->pluck('value')->first()}}
+                </div>
             </div>
         </div>
     </header>
