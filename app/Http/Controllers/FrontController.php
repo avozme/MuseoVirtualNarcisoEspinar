@@ -11,7 +11,7 @@ class FrontController extends Controller
 {
     public function index() {
         $productosList = Productos::recuperarProductosFront();
-        $categoriasList = Categorias::all();
+        $categoriasList = Categorias::orderBy('name')->get();
         $opciones = Opciones::all();
         return view('front.front', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList,'opciones' => $opciones]);
     }
@@ -25,7 +25,7 @@ class FrontController extends Controller
 
     public function mostrarCategorias($id, Request $r) {
         $categoria = Categorias::find($id);
-        $categoriasList = Categorias::all();
+        $categoriasList = Categorias::orderBy('name')->get();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
         $opciones = Opciones::all();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
@@ -36,7 +36,7 @@ class FrontController extends Controller
     /*Funcion buscador categorías para que solo funcione en la vista de la categoria seleccionada*/
     public function buscadorCategorias(Request $r) {
         $categoria = Categorias::find($r->idCategoria);
-        $categoriasList = Categorias::all();
+        $categoriasList = Categorias::orderBy('name')->get();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
         $todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
         $opciones = Opciones::all();
@@ -48,14 +48,14 @@ class FrontController extends Controller
 
     /*Funcion vista buscador prepara todas las categorías e items para mostrarlos en la página del buscador*/
     public function vistaBuscador(Request $r) {
-        $categoriasList = Categorias::all();
+        $categoriasList = Categorias::orderBy('name')->get();
         $opciones = Opciones::all();
         return view('front.buscador', ['categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
     }
 
     /*Funcion buscador general front*/ 
     public function buscadorGeneral(Request $r) {
-        $categoriasList = Categorias::all();
+        $categoriasList = Categorias::orderBy('name')->get();
         $todosProductos = Productos::busquedaProductos($r->idCategoria, $r->textoBusqueda);
         $opciones = Opciones::all();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';       
@@ -77,7 +77,7 @@ class FrontController extends Controller
             $todosProductos =  $productosList->skip(($currentPage - 1) * $pagination)->take($pagination)->get();
         // }
 
-        $categoriasList = Categorias::all();
+        $categoriasList = Categorias::orderBy('name')->get();
         $opciones = Opciones::all();
         $msg = count($productosList->get()) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'msg'=> $msg,'currentPage' => $currentPage, 
