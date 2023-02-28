@@ -1,13 +1,13 @@
 @extends('layouts.front')
 @section('content')
 <!-- Menu-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="menu" style="--color_nav: {{$opciones->where('key', 'color_nav')->pluck('value')->first()}}">
-    <div class="container" id="buscador"  style="--color_raton_encima_elementos_menu: {{$opciones->where('key', 'color_raton_encima_elementos_menu')->pluck('value')->first()}}; --color_elementos_menu: {{$opciones->where('key', 'color_elementos_menu')->pluck('value')->first()}}">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="menu" style="--color_nav: {{$opciones['color_nav']}}">
+    <div class="container" id="buscador"  style="--color_raton_encima_elementos_menu: {{$opciones['color_raton_encima_elementos_menu']}}; --color_elementos_menu: {{$opciones['color_elementos_menu']}}">
         <!-- Logo -->
         <div class="d-flex align-items-center justify-content-between">
             <a href="" class="logo d-flex align-items-center">
                 <!-- añadir ruta -->
-                <img src="/storage/{{$opciones->where('key', 'logo')->pluck('key')->first()}}/{{$opciones->where('key', 'logo')->pluck('value')->first()}}" alt="logotipo" width="130">
+                <img src="/storage/images/{{$opciones['logo']}}" alt="logotipo" width="130">
                 <span class="d-none d-lg-block"> </span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
