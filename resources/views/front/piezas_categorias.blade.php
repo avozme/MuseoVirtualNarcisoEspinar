@@ -4,7 +4,8 @@
     <!-- Menu-->
     <div>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{ $opciones['color_nav'] }}">
-        <div class="container" id="piezas_categorias" style="--color_raton_encima_elementos_menu: {{ $opciones['color_raton_encima_elementos_menu'] }}; --color_elementos_menu: {{ $opciones['color_elementos_menu'] }}">
+        <div class="container" id="piezas_categorias">
+             >
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
@@ -21,8 +22,10 @@
                 <i class="fas fa-bars ms-1"></i>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive" style="font-family: {{$opciones['tipografia1']}}">
-
+            <div class="collapse navbar-collapse" id="navbarResponsive" 
+                 style="font-family: {{$opciones['tipografia1']}};
+                        --color_raton_encima_elementos_menu: {{$opciones['color_raton_encima_elementos_menu']}};    
+                        --color_elementos_menu: {{$opciones['color_elementos_menu']}}">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" >
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
