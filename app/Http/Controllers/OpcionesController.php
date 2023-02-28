@@ -44,7 +44,7 @@ class OpcionesController extends Controller
 
     public function update($id, Request $r) {
         $opcion = Opciones::find($id);
-        if($opcion->type == 'foto' && !blank($r->file('image'))){
+        if($opcion->type == 'image' && !blank($r->file('image'))){
             Storage::delete("public/" . $opcion->key . "/" . $opcion->value );
             $image = $r->file('image');
             $image_name = $image->getClientOriginalName();
