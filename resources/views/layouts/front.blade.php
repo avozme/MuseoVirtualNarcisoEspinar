@@ -43,8 +43,9 @@
                             class="fab fa-linkedin-in"></i></a>
                 </div>
                 <div class="col-lg-4 text-lg-end">
-                    <a class="link-dark text-decoration-none me-3" href="#!">Politíca de Privacidad</a>
-                    <a class="link-dark text-decoration-none" href="#!">Terminos de uso</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca de Privacidad</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_cookies')}}">Política de cookies</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('terminos_uso')}}">Términos de uso</a>
                 </div>
             </div>
         </div>

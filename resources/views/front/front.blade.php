@@ -30,7 +30,9 @@
                     <li class="nav-item"><a class="nav-link"
                             href="/categoria/{{$categoria->id}}">{{$categoria->name}}</a></li>
                     @endforeach
-                    <li class="nav-item"><a class="nav-link" href="#contact">Sobre Narciso Espinar</a></li>
+                    @if ($opciones['acerca_de_visibilidad'] != 0)
+                        <li class="nav-item"><a class="nav-link" href="{{route('acerca_de')}}">{{$opciones['acerca_de_texto_menu']}}</a></li>
+                    @endif
                     <li class="nav-item"><a class="nav-link"  href="{{route('vistaBuscador')}}">Buscador</a></li>
                 </ul>
             </div>

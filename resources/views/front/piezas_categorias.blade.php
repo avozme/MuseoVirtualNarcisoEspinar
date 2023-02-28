@@ -5,7 +5,6 @@
     <div>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{ $opciones['color_nav'] }}">
         <div class="container" id="piezas_categorias">
-             >
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
@@ -16,6 +15,7 @@
                 <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
             </div>
             <!-- End Logo -->
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -26,15 +26,22 @@
                  style="font-family: {{$opciones['tipografia1']}};
                         --color_raton_encima_elementos_menu: {{$opciones['color_raton_encima_elementos_menu']}};    
                         --color_elementos_menu: {{$opciones['color_elementos_menu']}}">
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" >
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $cat)
                     @if(isset($categoria))
-                    <li class="nav-item"><a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
-                            href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
-                    @else <li class="nav-item"><a class="nav-link" href="/categoria/{{$cat->id}}">{{$cat->name}}</a>
-                    </li>
+                        <li class="nav-item">
+                                <a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}" href="/categoria/{{$cat->id}}">
+                                    {{$cat->name}}
+                                </a>
+                        </li>
+                    @else 
+                       <li class="nav-item">
+                            <a class="nav-link" href="/categoria/{{$cat->id}}">
+                                {{$cat->name}}
+                            </a>
+                       </li>
                     @endif
                     @endforeach
                     <li class="nav-item"><a class="nav-link" href="{{route('vistaBuscador')}}">Buscador</a></li>

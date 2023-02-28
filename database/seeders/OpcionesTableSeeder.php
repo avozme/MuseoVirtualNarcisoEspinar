@@ -149,7 +149,7 @@ class OpcionesTableSeeder extends Seeder
             array (
                 'id' => 15,
                 'value' => 'Aquí irá la página de términos de uso',
-                'key' => 'teminos_uso',
+                'key' => 'terminos_uso',
                 'type' => 'longText',
                 'created_at' => '2023-02-27 14:15:25',
                 'updated_at' => '2023-02-27 14:15:25',

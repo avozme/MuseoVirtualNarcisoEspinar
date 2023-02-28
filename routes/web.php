@@ -26,17 +26,18 @@ Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');
 Route::resource('usuarios', 'UsersController');
 
-// Route::get('buscador', 'FrontController@buscadorCategorias')->name('buscador');
+// Rutas para los buscadores
 Route::get('buscadorBack', 'ProductosController@buscadorProductos')->name('buscadorBack');
-
 Route::get('/categoria/{id}', 'FrontController@mostrarCategorias')->name('productoPorCategoria');
-
 Route::get('buscadorFront', 'FrontController@buscadorGeneral')->name('buscadorFront');
-
 Route::get('buscador', 'FrontController@vistaBuscador')->name('vistaBuscador');
-
 Route::post('buscadorPorcampos', 'FrontController@buscadorPorCampos')->name('buscadorPorCampos');
 
+// Rutas para las páginas de información legal
+Route::get('acerca_de', 'FrontController@acercaDe')->name('acerca_de');
+Route::get('politica_privacidad', 'FrontController@politicaPrivacidad')->name('politica_privacidad');
+Route::get('terminos_uso', 'FrontController@terminosUso')->name('terminos_uso');
+Route::get('politica_cookies', 'FrontController@politicaCookies')->name('politica_cookies');
 
 Route::get('/dashboard', function () {
     return view('productos.all');

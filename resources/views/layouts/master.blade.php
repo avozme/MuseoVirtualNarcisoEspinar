@@ -23,7 +23,7 @@
             <a href="" class="logo d-flex align-items-center">
                 <!-- añadir ruta -->
                 <img src="/logo.png" alt="Celia Viñas" width="40" height="50">
-                <span class="d-none d-lg-block">Colecciones Narciso Espinar</span>
+                <span class="d-none d-lg-block">Museo Virtual</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
         </div><!-- End Logo -->

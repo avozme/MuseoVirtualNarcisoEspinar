@@ -85,6 +85,31 @@ class FrontController extends Controller
                     'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 
+    // Muestra la vista de "acerca de"
+    public function acercaDe() {
+        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        return view('front.acerca_de', ['opciones' => $opciones]);
+    }
+
+    // Muestra la vista de "política de privacidad"
+    public function politicaPrivacidad() {
+        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        return view('front.politica_privacidad', ['opciones' => $opciones]);
+    }
+
+    // Muestra la vista de "política de cookies"
+    public function politicaCookies() {
+        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        return view('front.politica_cookies', ['opciones' => $opciones]);
+    }
+
+    // Muestra la vista de "términos de uso"
+    public function terminosUso() {
+        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        return view('front.terminos_uso', ['opciones' => $opciones]);
+    }
+    
+
     // Esta función convierte una colección en un array usando el campo llamado "key" como clave 
     // y el campo llamado "value" como valor. Está pensada para convertir la colección Opciones:all() en un array
     // indexado por el campo "key", para usarlo en las vistas con más comodidad de la colección.

@@ -45,7 +45,8 @@ class Productos extends Model
     /*Recupera los productos de una categoria y los pagina cada X objetos */
     public static function recuperarPorCategoria($id){
         $listaProductos = Productos::where('categoria_id', $id);
-        return $listaProductos->paginate(4);
+        $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
+        return $listaProductos->paginate($elementosPorPagina);
     }
 
 
