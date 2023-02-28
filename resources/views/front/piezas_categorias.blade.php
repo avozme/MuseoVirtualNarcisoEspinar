@@ -3,13 +3,13 @@
 <div id="page-top">
     <!-- Menu-->
     <div>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{$opciones->where('key', 'color_nav')->pluck('value')->first()}}">
-        <div class="container" id="piezas_categorias" style="--color_raton_encima_elementos_menu: {{$opciones->where('key', 'color_raton_encima_elementos_menu')->pluck('value')->first()}}; --color_elementos_menu: {{$opciones->where('key', 'color_elementos_menu')->pluck('value')->first()}}">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{ $opciones['color_nav'] }}">
+        <div class="container" id="piezas_categorias" style="--color_raton_encima_elementos_menu: {{ $opciones['color_raton_encima_elementos_menu'] }}; --color_elementos_menu: {{ $opciones['color_elementos_menu'] }}">
             <!-- Logo -->
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
                     <!-- añadir ruta -->
-                    <img src="/storage/{{$opciones->where('key', 'logo')->pluck('key')->first()}}/{{$opciones->where('key', 'logo')->pluck('value')->first()}}" alt="logotipo" width="130">
+                    <img src="/storage/images/{{ $opciones['logo'] }}" alt="logotipo" width="130">
                     <span class="d-none d-lg-block"> </span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
@@ -21,9 +21,9 @@
                 <i class="fas fa-bars ms-1"></i>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="collapse navbar-collapse" id="navbarResponsive" style="font-family: {{$opciones['tipografia1']}}">
 
-                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" >
 
                     <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
                     @foreach($categoriasList as $cat)
@@ -43,7 +43,7 @@
         </div>
         <!-- Buscador -->
         @if(isset($categoria))
-        <div class="p-1 searchParent">
+        <div class="p-1 searchParent" style="font-family: {{$opciones['tipografia1']}}">
             <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
                 <div class="input-group">
                     <input type="text" class="form-control" id="texto" name="textoBusqueda"
@@ -57,9 +57,9 @@
         <!-- Fin Buscador -->
     </nav>
     <!-- Fin menu -->
-    <section class="page-section bg-light" id="portfolio" style="--paginacion: {{$opciones->where('key', 'paginacion')->pluck('value')->first()}}">
+    <section class="page-section bg-light" id="portfolio" style="--paginacion: {{ $opciones['paginacion_color'] }}; background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
 
-        <div class="">
+        <div class="" style="font-family: {{$opciones['tipografia1']}}">
             <div class="grid">
                 @if (isset($msg) && !blank($msg))
                 <div class="text-center">

@@ -18,7 +18,12 @@
     @foreach ($opcionesList as $opcion)
         <tr>
             <td>{{$opcion->key}}</td>
-            <td>{{$opcion->value}}</td>
+            <td>
+              @if ($opcion->type=="color")
+                 <span style="background-color: {{$opcion->value}}; border: solid black 1px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              @endif
+              {{$opcion->value}}
+            </td>
             <td>{{$opcion->type}}</td>
             <td><a class="btn btn-outline-secondary" href="{{route('opciones.edit', $opcion->id)}}"><i class="fa-solid fa-pen"></i></a></td></td>
         </tr>    

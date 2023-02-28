@@ -11,10 +11,10 @@
         @method("PUT")
             @csrf
             <div class="container-fluid">
-                @if($opcion->type == 'foto')
-                    <!-- Opción de tipo "foto" -->
+                @if($opcion->type == 'image')
+                    <!-- Opción de tipo "image" -->
                     <label class="control-label w-100 mt-2">Foto:</label>
-                    <img class="mt-2" src="/storage/{{$opcion->key}}/{{$opcion->value}}" width=200 /><br>
+                    <img class="mt-2" src="/storage/images/{{$opcion->value}}" width=200 /><br>
                     <input class="form-control mt-2" type="file" accept="image/*" name="image" value="">
                 @elseif($opcion->type == 'color')
                 <!-- Opción de tipo "color" -->
@@ -27,7 +27,7 @@
                     <label class="control-label w-100 mt-2">Texto:</label>
                     <textarea name="value" id="value" cols="50" rows="20">{{$opcion->value}}</textarea>
                 @else
-                <!-- Opción de otro tipo. Todas se tratarán como "text" -->
+                <!-- Opción de otro tipo ("text" o "number", se tratan igual, como input de tipo text) -->
                     <label class="control-label w-100 mt-2">Valor:</label>
                     <input class="form-control mt-2" id="value" type="text" name="value" value="{{$opcion->value ?? '' }}">
                 @endif
@@ -46,9 +46,15 @@
                 <label class="control-label w-100 mt-2">Valor:</label>
                 <input class="form-control mt-2" type="text" name="value">
                 <label class="control-label w-100 mt-2">Clave:</label>
-                <input class="form-control mt-2"  type="text" name="key" > <!--Si se pone disabled en el input no se modifiquen los valores -->
+                <input class="form-control mt-2"  type="text" name="key" >
                 <label class="control-label w-100 mt-2">Tipo:</label>
-                <input class="form-control mt-2"  type="text" name="type" >
+                <select class="form-control mt-2" name="type">
+                    <option value="number">Número</option>
+                    <option value="text">Texto</option>
+                    <option value="longText">Texto largo</option>
+                    <option value="color">Color</option>
+                    <option value="image">Imagen</option>
+                </select>
                 <input class="btn btn-dark center mt-2" type="submit" value="Enviar">
             </div>
         </form>
