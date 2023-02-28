@@ -34,7 +34,10 @@ class OpcionesController extends Controller
         $p->key = $r->key;
         $p->type = $r->type;
         $p->save();
-        return redirect()->route('opciones.index');
+        if ($p->type == 'image' || $p->type=='color')
+            return redirect()->route('opciones.edit', $p->id);
+        else
+            return redirect()->route('opciones.index');
     }
 
     public function edit($id) {
@@ -45,10 +48,10 @@ class OpcionesController extends Controller
     public function update($id, Request $r) {
         $opcion = Opciones::find($id);
         if($opcion->type == 'image' && !blank($r->file('image'))){
-            Storage::delete("public/" . $opcion->key . "/" . $opcion->value );
+            Storage::delete("public/images/" . $opcion->value );
             $image = $r->file('image');
             $image_name = $image->getClientOriginalName();
-            $image->storeAs("public/$opcion->key", $image_name);
+            $image->storeAs("public/images/", $image_name);
             $opcion->value = $image_name;
         }
         elseif($opcion->type == 'color'){
