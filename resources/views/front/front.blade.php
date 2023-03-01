@@ -9,7 +9,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
                     <!-- añadir ruta -->
-                    <img src="/storage/images/{{$opciones['logo']}}" alt="logotipo" width="130">
+                    <img src="/storage/images/{{$opciones['logo']}}" alt="logotipo" width="{{$opciones['width']}}" height="{{$opciones['height']}}">
                     <span class="d-none d-lg-block"> </span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
