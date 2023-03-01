@@ -1,41 +1,5 @@
 @extends('layouts.front')
 @section('content')
-<!-- Menu-->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="menu" style="--color_nav: {{$opciones['color_nav']}}">
-    <div class="container" id="buscador"  style="--color_raton_encima_elementos_menu: {{$opciones['color_raton_encima_elementos_menu']}}; --color_elementos_menu: {{$opciones['color_elementos_menu']}}">
-        <!-- Logo -->
-        <div class="d-flex align-items-center justify-content-between">
-            <a href="" class="logo d-flex align-items-center">
-                <!-- añadir ruta -->
-                <img src="/storage/images/{{$opciones['logo']}}" alt="logotipo" width="130">
-                <span class="d-none d-lg-block"> </span>
-            </a>
-            <i class="bi bi-list toggle-sidebar-btn d-flex justify-content-start"></i>
-        </div>
-        <!-- End Logo -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-
-            <i class="fas fa-bars ms-1"></i>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-
-            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-
-                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                @foreach($categoriasList as $cat)
-                <li class="nav-item"><a class="nav-link" href="/categoria/{{$cat->id}}">{{$cat->name}}</a></li>
-                @endforeach
-                <li class="nav-item"><a class="nav-link active" href="{{route('vistaBuscador')}}">Buscador</a></li>
-
-            </ul>
-
-        </div>
-
-    </div>
-</nav>
-
 <div class="container" style="margin-top: 120px;">
     <!-- Buscador General-->
     <div class="p-1 searchParent w-50">
@@ -49,7 +13,7 @@
     </div>
     <!--Fin Buscador General-->
 
-    <!-- Cheackbox categorias -->
+    <!-- Checkbox categorias -->
     <form action="{{route('buscadorPorCampos')}}" method="POST">
         @csrf
         @foreach ($categoriasList as $key => $categoria)
@@ -57,7 +21,7 @@
                 type="radio" id="categoria{{$key}}" name="categoria_id" onclick="showItems(this)"
                 value="{{$categoria->id}}"> {{$categoria->name}}</label> &nbsp
         @endforeach
-        <!--Fin Cheackbox categorias -->
+        <!--Fin Checkbox categorias -->
 
         <!-- Fin Buscador -->
         <div class="d-flex" style="text-align:justify">
