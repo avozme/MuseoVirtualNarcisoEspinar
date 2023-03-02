@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-<div class="container" style="margin-top: 120px;">
+<div class="container" style="margin-top: 120px">
     <!-- Buscador General-->
     <div class="p-1 searchParent w-50">
         <form action="{{route('buscadorFront')}}" method="GET">

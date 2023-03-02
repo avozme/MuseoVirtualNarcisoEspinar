@@ -31,9 +31,9 @@
 @yield('content')
 
 @if(Route::current()->getName() == 'home')
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav" style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
     @else 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
 @endif
 
  

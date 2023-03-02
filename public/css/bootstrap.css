@@ -11361,7 +11361,7 @@ p {
 #mainNav .navbar-brand img {
   height: 1.5rem;
 }
-#mainNav .navbar-nav .nav-item .nav-link , #menu .navbar-nav .nav-item .nav-link{
+#mainNav .navbar-nav .nav-item .nav-link , #menu .navbar-nav .nav-item .nav-link , #buscador_nav .navbar-nav .nav-item .nav-link{
   font-family: var(--tipografia1), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.95rem;
   color: 	var(--color_elementos_menu);
