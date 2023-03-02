@@ -7,11 +7,13 @@
                    --tipografia2: {{$opciones['tipografia2'] }}">
         <div class="container">
             <div class="tituloPrincipal">
-                <div class="masthead-subheading" style="--color_titulo_subtitulo: {{$opciones['color_titulo_subtitulo']}};
+                <div class="masthead-subheading" 
+                     style="--color_titulo_subtitulo: {{$opciones['color_titulo_subtitulo']}};
                             --color_sombra_titulo_subtitulo: {{$opciones['color_sombra_titulo_subtitulo']}};">
                     {{$opciones['home_titulo']}}
                 </div>
-                <div class="masthead-heading text-uppercase" style="--color_titulo_subtitulo: {{$opciones['color_titulo_subtitulo']}};
+                <div class="masthead-heading text-uppercase" 
+                     style="--color_titulo_subtitulo: {{$opciones['color_titulo_subtitulo']}};
                             --color_sombra_titulo_subtitulo: {{$opciones['color_sombra_titulo_subtitulo']}};">
                     {{$opciones['home_subtitulo']}}
                 </div>
