@@ -13,26 +13,31 @@ class Productos extends Model
     protected $fillable = ["name", "remarks", "dimensions", "image", "categoria_id"];
 
     /* Relación tablas*/
-    public function categoria() {
+    public function categoria()
+    {
         return $this->belongsTo('App\Models\Categorias');
-        }
+    }
 
-    public function etiquetas() {
+    public function etiquetas()
+    {
         return $this->belongsToMany('App\Models\Etiquetas');
-        }
+    }
 
-    public function items() {
+    public function items()
+    {
         return $this->belongsToMany('App\Models\Items')->orderBy('name')->withPivot('value');
     }
 
-    public function imagenes() {
+    public function imagenes()
+    {
         return $this->hasMany('App\Models\Imagenes', 'producto_id');
     }
     use HasFactory;
-   /*Fin Relación tablas*/
+    /*Fin Relación tablas*/
 
     /*Te recupera todos los productos de todas las categorias y te saca un producto random para que vaya variando la foto del front de la zona de colecciones */
-    public static function recuperarProductosFront(){
+    public static function recuperarProductosFront()
+    {
         $listaCategorias = Categorias::all();
         $listaProductos = array();
         foreach ($listaCategorias as $categoria) {
@@ -43,7 +48,8 @@ class Productos extends Model
         return $listaProductos;
     }
     /*Recupera los productos de una categoria y los pagina cada X objetos */
-    public static function recuperarPorCategoria($id){
+    public static function recuperarPorCategoria($id)
+    {
         $listaProductos = Productos::where('categoria_id', $id);
         $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
         return $listaProductos->paginate($elementosPorPagina);
@@ -51,59 +57,69 @@ class Productos extends Model
 
 
     /*Buscador Front que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
-    public static function busquedaCategorias($idCategoria, $textoBusqueda){
-        if (strpos($textoBusqueda, '"') === 0)  {
+    public static function busquedaCategorias($idCategoria, $textoBusqueda)
+    {
+        if (strpos($textoBusqueda, '"') === 0) {
             $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
             $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
             $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
-            ->join("items_productos", "productos.id","items_productos.productos_id")
-            ->where("productos.categoria_id", $idCategoria)
-            ->where(function($query) use ($texto_entre_comillas){
-                $query->where("productos.name", "$texto_entre_comillas")
-                ->orwhere("items_productos.value", "$texto_entre_comillas");
-            })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
-        }else{
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image')
-            ->join("items_productos", "productos.id","items_productos.productos_id")
-            ->where("productos.categoria_id", $idCategoria)
-        ->where(function($query) use ($textoBusqueda){
-            $query->where("productos.name", "like", "%$textoBusqueda%")
-            ->orwhere("items_productos.value","like", "%$textoBusqueda%");
-        })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
-    }
+            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
+                ->join("items_productos", "productos.id", "items_productos.productos_id")
+                ->where("productos.categoria_id", $idCategoria)
+                ->where(function ($query) use ($texto_entre_comillas) {
+                    $query->where("productos.name", "$texto_entre_comillas")
+                        ->orwhere("items_productos.value", "$texto_entre_comillas");
+                })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
+        } else {
+            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
+                ->join("items_productos", "productos.id", "items_productos.productos_id")
+                ->where("productos.categoria_id", $idCategoria)
+                ->where(function ($query) use ($textoBusqueda) {
+                    $query->where("productos.name", "like", "%$textoBusqueda%")
+                        ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
+                })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
+        }
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
-    
-    /*Buscador front/back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
-    /*Si el idCategoria es NULL, busca en todas las categorias*/
-    public static function busquedaProductos($idCategoria, $textoBusquedaOG){
-        $textoLimpio = Productos::limpiezaBuscador($textoBusquedaOG); // Limpia el texto de palabras comunes (como artículos) y lo trocea en palabras individuales
+
+    /* Buscador front/back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
+    /* Si el idCategoria es NULL, busca en todas las categorias*/
+    public static function busquedaProductos($idCategoria, $textoBusquedaOG)
+    {
         $resultadoBusqueda = collect();  // Creamos colección vacía para ir añadiendo los resultados de las búsquedas
-        foreach($textoLimpio as $textoBusqueda){
-            if (strpos($textoBusqueda, '"') === false) {
-                // El texto de búsqueda NO contiene comillas --> Búsqueda LIKE
-                if($idCategoria != NULL){
-                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
-                    ->where("productos.categoria_id", "$idCategoria")
-                    ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->get());
-                }
-                else {
-                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name","like", "%$textoBusqueda%")->get());
-                }
-            }else{
-                // El texto de búsqueda SÍ contiene comillas --> Búsqueda EXACTA
-                $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
-                $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
-                $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-                if($idCategoria != NULL){
-                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria') 
-                        ->where("productos.categoria_id", $idCategoria)
-                        ->where("productos.name","$texto_entre_comillas")->distinct()->get());
+        if ($textoBusquedaOG == "" && $idCategoria != NULL) {
+            // CASO 1: No hay texto de búsqueda, pero sí hay categoría --> Buscamos todos los productos de la categoría
+            $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
+                ->where("productos.categoria_id", "$idCategoria")->distinct()->get());
+        } else if ($textoBusquedaOG == "" && $idCategoria == NULL) {
+            // CASO 2: No hay texto de búsqueda ni categoría --> Buscamos todos los productos
+            $resultadoBusqueda = $resultadoBusqueda->merge(Productos::all());
+        } else {
+            // CASO 3: Hay texto de búsqueda --> Buscamos productos que coincidan con el texto de búsqueda
+            $textoLimpio = Productos::limpiezaBuscador($textoBusquedaOG); // Limpia el texto de palabras comunes (como artículos) y lo trocea en palabras individuales
+            foreach ($textoLimpio as $textoBusqueda) {
+                if (strpos($textoBusqueda, '"') === false) {
+                    // CASO 3A: El texto de búsqueda NO contiene comillas --> Búsqueda LIKE
+                    if ($idCategoria != NULL) {
+                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
+                            ->where("productos.categoria_id", "$idCategoria")
+                            ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->get());
+                    } else {
+                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "like", "%$textoBusqueda%")->get());
                     }
-                else {
-                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "$texto_entre_comillas")->get());
+                } else {
+                    // CASO 3B: El texto de búsqueda SÍ contiene comillas --> Búsqueda EXACTA
+                    $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
+                    $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
+                    $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
+                    if ($idCategoria != NULL) {
+                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
+                            ->where("productos.categoria_id", $idCategoria)
+                            ->where("productos.name", "$texto_entre_comillas")->distinct()->get());
+                    } else {
+                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "$texto_entre_comillas")->get());
+                    }
                 }
             }
         }
@@ -113,7 +129,7 @@ class Productos extends Model
         if ($idCategoria != NULL) $resultadoPaginado->appends(['idCategoria' => $idCategoria]);
         return $resultadoPaginado;
     }
-        
+
 
     // public static function busquedaCampos($idCategoria, $items){
     //     $itemsNoVacios = array_keys(array_filter($items, function($valor){
@@ -133,11 +149,12 @@ class Productos extends Model
     //     return $resultadoBusqueda->get();
     // }
 
-    public static function busquedaCampos($idCategoria, $items){
+    public static function busquedaCampos($idCategoria, $items)
+    {
         // Vamos a contar el número de items que vienen rellenos en el formulario de búsqueda
-        $contador = 0;  
-        foreach($items as $item_id => $value){
-            if($value != null){
+        $contador = 0;
+        foreach ($items as $item_id => $value) {
+            if ($value != null) {
                 $contador++;
             }
         }
@@ -149,10 +166,10 @@ class Productos extends Model
 
         // Búsqueda principal. Vamos a sacar los ids de los productos que cumplen al menos un requisito de búsqueda
         // y a construir un array con sus ids ($resultado)
-        foreach ($items as $item_id => $value) {//item_id es la key y value son los valores de los input
-            $valores = array(); 
-            if(!blank($value)){
-                if (strpos($value, '"') === 0){
+        foreach ($items as $item_id => $value) { //item_id es la key y value son los valores de los input
+            $valores = array();
+            if (!blank($value)) {
+                if (strpos($value, '"') === 0) {
                     $pos_comillas_inicio = strpos($value, '"') + 1;
                     $pos_comillas_fin = strpos($value, '"', $pos_comillas_inicio);
                     $texto_entre_comillas = substr($value, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
@@ -163,9 +180,9 @@ class Productos extends Model
                     WHERE productos.categoria_id = '$idCategoria'";
                     $sql = $sql . " AND items_productos.items_id = '$item_id'
                                     AND items_productos.value LIKE '$texto_entre_comillas'";
-                    
+
                     $valores = DB::select(DB::raw($sql));
-                }else{
+                } else {
                     $countItems++;
                     $sql = "SELECT DISTINCT productos.id
                     FROM productos
@@ -173,20 +190,20 @@ class Productos extends Model
                     WHERE productos.categoria_id = '$idCategoria'";
                     $sql = $sql . " AND items_productos.items_id = '$item_id'
                                     AND items_productos.value LIKE '%$value%'";
-                    
+
                     $valores = DB::select(DB::raw($sql));
                 }
             }
-        
-    
-            
+
+
+
             //Este foreach se encarga de guardar todos los array dentro de uno solo
-            foreach($valores as $valor){
+            foreach ($valores as $valor) {
                 array_push($productos_ids, $valor);
             }
         }
-        
-        for($i = 0; $i<$max_producto_id; $i++) {
+
+        for ($i = 0; $i < $max_producto_id; $i++) {
             $aux[$i] = 0;
         }
         foreach ($productos_ids as $producto) {
@@ -194,7 +211,7 @@ class Productos extends Model
         }
         $resultadoFinal = array();
         $aux_ids = array();
-        for($i = 0; $i<$max_producto_id; $i++) {
+        for ($i = 0; $i < $max_producto_id; $i++) {
             if ($aux[$i] == $contador) {
                 $producto = Productos::find($i);
                 $resultadoFinal[] = $producto;
@@ -209,13 +226,16 @@ class Productos extends Model
     // Recibe un string con el texto de búsqueda y devuelve un array con las palabras sueltas,
     // excepto el texto entrecomillado, que se devuelve como un único elemento del array.
     // Las palabras comunes (como artículos o preposiciones) se eliminan del array.
-    public static function limpiezaBuscador($textoBusqueda) {
+    public static function limpiezaBuscador($textoBusqueda)
+    {
         // Diccionario de palabras comunes que eliminaremos de los términos de búsqueda
-        $diccionario = ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'e', 'o', 'u',
-                'a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante', 
-                'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según', 
-                'sin', 'sobre', 'tras', 'durante'];
-            
+        $diccionario = [
+            'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'e', 'o', 'u',
+            'a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante',
+            'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según',
+            'sin', 'sobre', 'tras', 'durante'
+        ];
+
         $trozos = [];           // Array con los trozos del texto (palabras sueltas o textos entrecomillados)
         $trozoActual = '';      // Trozo que estamos procesando en cada momento
         $enComillas = false;    // Indica si estamos dentro de una sección entrecomillada o no
@@ -261,5 +281,4 @@ class Productos extends Model
         // Devolvemos el array de trozos resultante
         return $trozos;
     }
-
 }
