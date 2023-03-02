@@ -27,7 +27,7 @@
                 @foreach($productosList as $producto)
                 <div class="gridItem">
                     <div class="portfolio-item">
-                        <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                        <a class="portfolio-link" href="/categoria/{{$producto->categoria->id}}">
                             <div class="portfolio-hover">
                                 <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
