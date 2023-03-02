@@ -88,25 +88,29 @@ class FrontController extends Controller
     // Muestra la vista de "acerca de"
     public function acercaDe() {
         $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
-        return view('front.acerca_de', ['opciones' => $opciones]);
+        $categoriasList = Categorias::orderBy('name')->get();
+        return view('front.acerca_de', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "política de privacidad"
     public function politicaPrivacidad() {
         $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
-        return view('front.politica_privacidad', ['opciones' => $opciones]);
+        $categoriasList = Categorias::orderBy('name')->get();
+        return view('front.politica_privacidad', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "política de cookies"
     public function politicaCookies() {
         $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
-        return view('front.politica_cookies', ['opciones' => $opciones]);
+        $categoriasList = Categorias::orderBy('name')->get();
+        return view('front.politica_cookies', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "términos de uso"
     public function terminosUso() {
         $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
-        return view('front.terminos_uso', ['opciones' => $opciones]);
+        $categoriasList = Categorias::orderBy('name')->get();
+        return view('front.terminos_uso', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
     
 
