@@ -66,18 +66,19 @@
         <form action="{{ route('opciones.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="container-fluid">
-                <label class="control-label w-100 mt-2">Valor:</label>
-                <input class="form-control mt-2" type="text" name="value">
                 <label class="control-label w-100 mt-2">Clave:</label>
                 <input class="form-control mt-2"  type="text" name="key" >
                 <label class="control-label w-100 mt-2">Tipo:</label>
                 <select class="form-control mt-2" name="type">
-                    <option value="number">Número</option>
-                    <option value="text">Texto</option>
-                    <option value="longText">Texto largo</option>
-                    <option value="color">Color</option>
-                    <option value="image">Imagen</option>
+                    <option value="number">Número (number)</option>
+                    <option value="text">Texto (text)</option>
+                    <option value="longText">Texto largo (longText)</option>
+                    <option value="font">Fuente (font)</option>
+                    <option value="color">Color (color)</option>
+                    <option value="image">Imagen (image)</option>
                 </select>
+                <label class="control-label w-100 mt-2">Valor:</label>
+                <input class="form-control mt-2" type="text" name="value">
                 <input class="btn btn-dark center mt-2" type="submit" value="Enviar">
             </div>
         </form>

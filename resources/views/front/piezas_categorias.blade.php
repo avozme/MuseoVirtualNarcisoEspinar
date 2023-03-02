@@ -4,7 +4,7 @@
         <section class="page-section bg-light" id="portfolio"
             style="--paginacion: {{ $opciones['paginacion_color'] }}; background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
 
-            <div class="" style="font-family: {{$opciones['tipografia1']}}">
+            <div class="" style="font-family: {{$opciones['tipografia3']}}">
                 <div class="grid">
                     @if (isset($msg) && !blank($msg))
                     <div class="text-center">

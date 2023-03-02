@@ -22,7 +22,7 @@
     </header>
 
     <section class="page-section bg-light" id="portfolio"
-        style="background-color: {{ $opciones['color_fondo'] }} !IMPORTANT; --tipografia1: {{$opciones['tipografia1']}}">
+        style="background-color: {{ $opciones['color_fondo'] }} !IMPORTANT; --tipografia1: {{$opciones['tipografia1']}}; --tipografia3: {{$opciones['tipografia3']}}">
         <div class="container">
             <div class="Ticatego">COLECCIONES</div>
             <div class="grid">

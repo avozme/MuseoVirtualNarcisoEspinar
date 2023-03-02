@@ -226,6 +226,15 @@ class OpcionesTableSeeder extends Seeder
                 'created_at' => '2023-02-28 07:31:40',
                 'updated_at' => '2023-02-28 07:31:40',
             ),
+            23 => 
+            array (
+                'id' => 24,
+                'value' => 'Roboto',
+                'key' => 'tipografia3',
+                'type' => 'font',
+                'created_at' => '2023-02-28 07:31:40',
+                'updated_at' => '2023-02-28 07:31:40',
+            ),
         ));
         
         
