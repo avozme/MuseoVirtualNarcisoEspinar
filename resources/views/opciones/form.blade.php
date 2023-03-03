@@ -31,12 +31,11 @@
                     <label class="control-label w-100 mt-2" style="font-family: Montserrat">Valor:</label>
                     <!-- Lista de fuentes de Google fonts que se pueden usar -->
                     @php
-                        $fonts = array('Lato', 'Lora', 'Merriweather', 'Montserrat', 'Open Sans', 'Oswald', 'Playfair Display', 'Raleway', 
-                                       'Roboto', 'Roboto Slab', 'Mina', 'Fasthand', 'Patrick Hand', 'MedievalSharp', 'Great Vibes', 
-                                       'Concert One', 'Special Elite', 'Unbounded', 'Bungee', 'Kalam',
-                                       'EB Garamond', 'Cinzel');
-                        sort($fonts);
+                    // Convertimos la cadena en un array separándola por los saltos de línea
+                    $fonts = explode(PHP_EOL, $opciones['tipografias_disponibles']);
+                    sort($fonts);
                     @endphp
+
                     @foreach ($fonts as $font)
                     <link href="https://fonts.googleapis.com/css?family={{$font}}" rel="stylesheet">
                     @endforeach
