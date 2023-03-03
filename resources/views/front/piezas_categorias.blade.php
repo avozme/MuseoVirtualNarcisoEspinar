@@ -98,7 +98,7 @@
                                                     </button>
                                                 </div>
 
-                                                <div class='items'>
+                                                <div class='items' style="padding-left: 27%; padding-right: 10%; text-align: left">
                                                     @foreach ($producto->items as $item)
                                                     <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
                                                     @endforeach
