@@ -12,7 +12,7 @@ class FrontController extends Controller
     public function index() {
         $productosList = Productos::recuperarProductosFront();
         $categoriasList = Categorias::orderBy('name')->get();
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         return view('front.front', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList,'opciones' => $opciones]);
     }
 
@@ -27,7 +27,7 @@ class FrontController extends Controller
         $categoria = Categorias::find($id);
         $categoriasList = Categorias::orderBy('name')->get();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
         'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
@@ -39,7 +39,7 @@ class FrontController extends Controller
         $categoriasList = Categorias::orderBy('name')->get();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
         $todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList, 'opciones' => $opciones, 
                     'msg'=> $msg,'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,
@@ -49,7 +49,7 @@ class FrontController extends Controller
     /*Funcion vista buscador prepara todas las categorías e items para mostrarlos en la página del buscador*/
     public function vistaBuscador(Request $r) {
         $categoriasList = Categorias::orderBy('name')->get();
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         return view('front.buscador', ['categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
     }
 
@@ -57,7 +57,7 @@ class FrontController extends Controller
     public function buscadorGeneral(Request $r) {
         $categoriasList = Categorias::orderBy('name')->get();
         $todosProductos = Productos::busquedaProductos($r->idCategoria, $r->textoBusqueda);
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';       
         return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'msg'=> $msg, 'todosProductos'=>$todosProductos,
                     'categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
@@ -78,7 +78,7 @@ class FrontController extends Controller
         // }
 
         $categoriasList = Categorias::orderBy('name')->get();
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $msg = count($productosList->get()) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'msg'=> $msg,'currentPage' => $currentPage, 
                     'pages' => $pages, 'items' => $r->items, 'textoBusqueda'=> $r->textoBusqueda, 
@@ -87,41 +87,30 @@ class FrontController extends Controller
 
     // Muestra la vista de "acerca de"
     public function acercaDe() {
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $categoriasList = Categorias::orderBy('name')->get();
         return view('front.acerca_de', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "política de privacidad"
     public function politicaPrivacidad() {
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $categoriasList = Categorias::orderBy('name')->get();
         return view('front.politica_privacidad', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "política de cookies"
     public function politicaCookies() {
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $categoriasList = Categorias::orderBy('name')->get();
         return view('front.politica_cookies', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "términos de uso"
     public function terminosUso() {
-        $opciones = $this->convertToArray(Opciones::all(), 'key', 'value');
+        $opciones = Opciones::convertToArray();
         $categoriasList = Categorias::orderBy('name')->get();
         return view('front.terminos_uso', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
-    }
-    
-
-    // Esta función convierte una colección en un array usando el campo llamado "key" como clave 
-    // y el campo llamado "value" como valor. Está pensada para convertir la colección Opciones:all() en un array
-    // indexado por el campo "key", para usarlo en las vistas con más comodidad de la colección.
-    private function convertToArray($collection, $key_column, $value_column){
-        $keys=$collection->pluck($key_column)->all();
-        $values=$collection->pluck($value_column)->all();
-        return array_combine($keys, $values);
-        // style="--color_nav: {{$opciones->where('key', 'color_nav')->pluck('value')->first()}}"
     }
 
 }

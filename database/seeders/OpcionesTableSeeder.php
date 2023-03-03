@@ -235,6 +235,15 @@ class OpcionesTableSeeder extends Seeder
                 'created_at' => '2023-02-28 07:31:40',
                 'updated_at' => '2023-02-28 07:31:40',
             ),
+            24 => 
+            array (
+                'id' => 25,
+                'value' => "Lato\nMerriweather\nMontserrat\nOpen Sans\nOswald\nRoboto\nRoboto\nFasthand\nPatrick Hand\nMedievalSharp\nUnbounded\nCinzel",
+                'key' => 'tipografias_disponibles',
+                'type' => 'longText',
+                'created_at' => '2023-02-28 07:31:40',
+                'updated_at' => '2023-02-28 07:31:40',
+            ),
         ));
         
         

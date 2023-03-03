@@ -41,8 +41,9 @@ class OpcionesController extends Controller
     }
 
     public function edit($id) {
-        $opciones = Opciones::find($id);
-        return view('opciones.form', array('opcion' => $opciones));
+        $opcion = Opciones::find($id);
+        $opciones = Opciones::convertToArray();
+        return view('opciones.form', array('opcion' => $opcion, 'opciones' => $opciones));
     }
 
     public function update($id, Request $r) {
