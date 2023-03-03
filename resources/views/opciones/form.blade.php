@@ -51,7 +51,7 @@
                 @elseif($opcion->type == 'longText')
                 <!-- Opción de tipo "longText" -->
                     <label class="control-label w-100 mt-2">Texto:</label>
-                    <textarea name="value" id="value" cols="50" rows="20">{{$opcion->value}}</textarea>
+                    <textarea name="value" id="value" cols="100" rows="20">{{$opcion->value}}</textarea>
                 @else
                 <!-- Opción de otro tipo ("text" o "number", se tratan igual, como input de tipo text) -->
                     <label class="control-label w-100 mt-2">Valor:</label>
@@ -95,4 +95,24 @@
             }
         </script>
 
+<!-- Carga Suneditor: editor de texto Wysisyg -->
+<link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+<!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor.css" rel="stylesheet"> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+<!-- languages (Basic Language: English/en) -->
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
+
+<!-- Lanza Suneditor: editor de texto Wysisyg -->
+<script>
+const editor = SUNEDITOR.create((document.getElementById('value') || 'value'),{
+    // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
+    // Insert options
+    // Language global object (default: en)
+    lang: SUNEDITOR_LANG['es']
+});
+document.querySelector('form').addEventListener('submit', function() {
+  editor.save();
+});
+</script>
 @endsection
