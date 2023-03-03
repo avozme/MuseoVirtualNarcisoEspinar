@@ -33,6 +33,7 @@
                     @php
                     // Convertimos la cadena en un array separándola por los saltos de línea
                     $fonts = explode(PHP_EOL, $opciones['tipografias_disponibles']);
+                    sort($fonts);
                     @endphp
 
                     @foreach ($fonts as $font)
