@@ -102,8 +102,8 @@
                                                     @foreach ($producto->items as $item)
                                                     <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
                                                     @endforeach
+                                                    <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="javascript:window.print()">
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
