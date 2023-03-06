@@ -13,7 +13,7 @@ class FrontController extends Controller
         $productosList = Productos::recuperarProductosFront();
         $categoriasList = Categorias::orderBy('name')->get();
         $opciones = Opciones::convertToArray();
-        return view('front.front', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList,'opciones' => $opciones]);
+        return view('front.front', ['home'=>true, 'productosList'=>$productosList, 'categoriasList'=>$categoriasList,'opciones' => $opciones]);
     }
 
     public function show($id) {

@@ -28,7 +28,8 @@
 <!-- Menu-->
 @yield('content')
 
-@if(Route::current()->getName() == 'home')
+
+@if (isset($home))
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
 @else 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav" style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
