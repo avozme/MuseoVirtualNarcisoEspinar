@@ -22,7 +22,7 @@
               @if ($opcion->type=="color")
                  <span style="background-color: {{$opcion->value}}; border: solid black 1px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
               @endif
-              {!! Str::limit($opcion->value, 100) !!}
+              {{strip_tags(Str::limit($opcion->value, 100))}}
             </td>
             <td>{{$opcion->type}}</td>
             <td><a class="btn btn-outline-secondary" href="{{route('opciones.edit', $opcion->id)}}"><i class="fa-solid fa-pen"></i></a></td></td>

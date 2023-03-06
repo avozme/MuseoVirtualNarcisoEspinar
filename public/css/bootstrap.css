@@ -11387,7 +11387,7 @@ p {
   padding-left: 10px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1px) {
   #mainNav {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
