@@ -20,7 +20,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src='{{asset("storage/$producto->id/mini_$producto->image")}}'
+                                <img class="img-fluid" src='{{asset("storage/$producto->id/$producto->image")}}'
                                     width="auto">
                             </a>
                             <div class="portfolio-caption">
@@ -71,12 +71,12 @@
                                                     <div class="carousel-inner">
                                                         <div class="carousel-item active w-100">
                                                             <img id="mi_imagen{{$key}}" class="center-block w-40"
-                                                                src='{{asset("storage/$producto->id/mini_$producto->image")}}'
+                                                                src='{{asset("storage/$producto->id/$producto->image")}}'
                                                                 alt="{{$producto->image}}" height="500" />
                                                         </div>
                                                         @foreach($producto->imagenes as $image)
                                                         <div class="carousel-item">
-                                                            <img src='{{asset("storage/$producto->id/mini_$image->image")}}'
+                                                            <img src='{{asset("storage/$producto->id/$image->image")}}'
                                                                 class="center-block" height="500"
                                                                 alt="{{$image->image}}">
                                                         </div>
