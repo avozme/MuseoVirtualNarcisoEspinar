@@ -9,6 +9,7 @@ use App\Models\ItemsProductos;
 use App\Models\Imagenes;
 use App\Models\Items;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ProductosController extends Controller
 {   
@@ -44,6 +45,13 @@ class ProductosController extends Controller
             $image->storeAs("public/$p->id", $image_name);
             Storage::setVisibility("public/$p->id", "public");
             Storage::setVisibility("public/$p->id/$image_name", "public");
+
+            // Genera miniatura
+            $miniatura = Image::make($image);
+            $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+            $miniatura_name = 'mini_' . $image_name;
+            $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
+            Storage::setVisibility("public/$p->id/$miniatura_name", "public");            
         }
         $p->image = $image_name ?? '';
         $p->save();
@@ -56,6 +64,12 @@ class ProductosController extends Controller
                 $img->producto_id = $p->id;
                 $img->image = $i_name;
                 $img->save();
+                // Genera miniatura
+                $miniatura = Image::make($i);
+                $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+                $miniatura_name = 'mini_' . $i_name;
+                $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
+                Storage::setVisibility("public/$p->id/$miniatura_name", "public");            
             }
         }
         //$p->etiquetas()->attach($r->etiquetas);
