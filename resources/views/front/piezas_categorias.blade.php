@@ -56,6 +56,7 @@
                                                 <h2 class="title text-uppercase pb-4">{{$producto->name}}</h2>
                                                 <div id="carouselExampleIndicators{{$key}}"
                                                     class="carousel carousel-dark slide" data-bs-ride="true">
+                                                    <!-- Indicadores de las imagenes (flechas) -->
                                                     <div class="carousel-indicators">
                                                         <button type="button"
                                                             data-bs-target="#carouselExampleIndicators{{$key}}"
@@ -69,13 +70,28 @@
                                                         @endforeach
                                                     </div>
                                                     <div class="carousel-inner">
+                                                        <!-- Imagen principal -->
                                                         <div class="carousel-item active w-100">
+                                                            <!-- Botones de descarga e impresión de la imagen principal -->
+                                                            <div class="d-flex justify-content-center" style="padding-bottom: 5px">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{$producto->id}}', '{{$producto->name}}', '{{asset("storage/$producto->id/$producto->image")}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$producto->image")}}','{{$producto->image}}')">
+                                                            </div>   
+                                                            <!-- Imagen -->                                                    
                                                             <img id="mi_imagen{{$key}}" class="center-block w-40"
                                                                 src='{{asset("storage/$producto->id/mini_$producto->image")}}'
                                                                 alt="{{$producto->image}}" height="500" />
                                                         </div>
+
+                                                        <!-- Imagenes secundarias -->
                                                         @foreach($producto->imagenes as $image)
                                                         <div class="carousel-item">
+                                                            <!-- Botones de descarga e impresión de la imagen secundaria -->
+                                                            <div class="d-flex justify-content-center"  style="padding-bottom: 5px">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{$producto->id}}', '{{$producto->name}}', '{{asset("storage/$producto->id/$image->image")}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$image->image")}}','{{$image->image}}')">
+                                                            </div>
+                                                            <!-- Imagen -->
                                                             <img src='{{asset("storage/$producto->id/mini_$image->image")}}'
                                                                 class="center-block" height="500"
                                                                 alt="{{$image->image}}">
@@ -98,11 +114,14 @@
                                                     </button>
                                                 </div>
 
-                                                <div class='items' style="padding-left: 27%; padding-right: 10%; text-align: left">
+                                                <div class='items' id='item{{$producto->id}}' style="padding-left: 25%; padding-right: 20%; text-align: left">
                                                     @foreach ($producto->items as $item)
                                                     <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
                                                     @endforeach
+                                                    <!--
                                                     <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="javascript:window.print()">
+                                                    <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$producto->image")}}','{{$producto->image}}')">
+                                                    -->
                                                 </div>
                                             </div>
                                         </div>
@@ -153,3 +172,55 @@
 </section>
 <!-- FOOTER -->
 @endsection
+
+<!-- Librerías para crear PDFs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- Mis scripts -->
+<script>
+    
+    window.jsPDF = window.jspdf.jsPDF;      // Debe ser una variable global para que funcione html2canvas
+
+    // Imprime el contenido de la etiqueta con id indicado en el parámetro id_imprimir
+    function imprimir(product_id, product_name, url_image) {
+        // Creamos un documento PDF en blanco
+        var doc = new jsPDF();
+        window.html2canvas = html2canvas;
+
+        // Calculamos la geometría del documento para colocar los elementos bien
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const pageHeight = doc.internal.pageSize.getHeight();
+	
+        // Añadimos el nombre del producto como cabecera del documento PDF
+        doc.setFont("helvetica", "bold");
+        doc.text(product_name, 20, 20, { align: 'left' });
+
+        // Ahora añadimos la imagen
+        doc.addImage(url_image, 'JPEG', 20, 30, 100, 100);
+
+        // Cogemos todo el HTML de los items y lo añadimos al documento PDF
+        var elementHTML = document.getElementById('item' + product_id);
+        doc.html(elementHTML, {
+            callback: function(doc) {
+                // Añadimos el nombre del producto y la imagen al documento PDF
+                doc.save(product_name + '.pdf');            // Save the PDF
+            },
+            x: 15,
+            y: 120,
+            width: pageWidth/2, 
+            windowWidth: 650 
+        });
+
+    }
+
+    // Descarga la imagen del producto como un archivo. 
+    // Forzamos la descarga mediante Javascript para evitar que el navegador la abra en una nueva pestaña.
+    function download(url_file, filename) {
+        const link = document.createElement('a');
+        link.href = url_file;
+        link.setAttribute('download', filename);
+        link.click();
+    }
+
+</script>

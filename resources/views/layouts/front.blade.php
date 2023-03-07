@@ -24,6 +24,7 @@
     @yield('css')
 </head>
 
+<body>
 
 <!-- Menu-->
 @yield('content')
@@ -102,7 +103,6 @@
     @endif
 </nav>
 <!-- Fin menu -->
-<body>
     <!-- Footer-->
     <footer class="footer py-4">
         <div class="container" style="font-family: {{$opciones['tipografia1']}}">

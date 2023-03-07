@@ -52,7 +52,7 @@
     @foreach ($productosList as $producto)
     <tr>
         <td>{{$producto->name}}</td>
-        <td><img src='{{asset("storage/$producto->id/$producto->image")}}' width="120"></td>
+        <td><img src='{{asset("storage/$producto->id/mini_$producto->image")}}' width="120"></td>
         <td>{{$producto->categoria->name}}</td>
         <td>
             <a class="btn btn-outline-secondary" href="{{route('productos.edit', $producto->id)}}"><i class="fa-solid fa-pen"></i></a>
