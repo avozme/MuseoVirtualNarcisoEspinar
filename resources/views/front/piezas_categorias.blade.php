@@ -20,7 +20,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src='{{asset("storage/$producto->id/$producto->image")}}'
+                                <img class="img-fluid" src='{{asset("storage/$producto->id/mini_$producto->image")}}'
                                     width="auto">
                             </a>
                             <div class="portfolio-caption">
@@ -79,7 +79,7 @@
                                                             </div>   
                                                             <!-- Imagen -->                                                    
                                                             <img id="mi_imagen{{$key}}" class="center-block w-40"
-                                                                src='{{asset("storage/$producto->id/$producto->image")}}'
+                                                                src='{{asset("storage/$producto->id/mini_$producto->image")}}'
                                                                 alt="{{$producto->image}}" height="500" />
                                                         </div>
 
