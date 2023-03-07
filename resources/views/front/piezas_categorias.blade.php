@@ -20,7 +20,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src='{{asset("storage/$producto->id/mini_$producto->image")}}'
+                                <img class="img-fluid" src='{{asset("storage/$producto->id/$producto->image")}}'
                                     width="auto">
                             </a>
                             <div class="portfolio-caption">
@@ -79,13 +79,14 @@
                                                             </div>   
                                                             <!-- Imagen -->                                                    
                                                             <img id="mi_imagen{{$key}}" class="center-block w-40"
-                                                                src='{{asset("storage/$producto->id/mini_$producto->image")}}'
+                                                                src='{{asset("storage/$producto->id/$producto->image")}}'
                                                                 alt="{{$producto->image}}" height="500" />
                                                         </div>
 
                                                         <!-- Imagenes secundarias -->
                                                         @foreach($producto->imagenes as $image)
                                                         <div class="carousel-item">
+<<<<<<< HEAD
                                                             <!-- Botones de descarga e impresión de la imagen secundaria -->
                                                             <div class="d-flex justify-content-center"  style="padding-bottom: 5px">
                                                                 <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{$producto->id}}', '{{$producto->name}}', '{{asset("storage/$producto->id/$image->image")}}')">
@@ -93,6 +94,9 @@
                                                             </div>
                                                             <!-- Imagen -->
                                                             <img src='{{asset("storage/$producto->id/mini_$image->image")}}'
+=======
+                                                            <img src='{{asset("storage/$producto->id/$image->image")}}'
+>>>>>>> e23fb5406f5cbf89b274a42c70a392ecf3f8d3a6
                                                                 class="center-block" height="500"
                                                                 alt="{{$image->image}}">
                                                         </div>
