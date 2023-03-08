@@ -177,12 +177,14 @@
 <!-- Librerías para crear PDFs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
 
 <!-- Mis scripts -->
 <script>
 
     window.jsPDF = window.jspdf.jsPDF;      // Debe ser una variable global para que funcione html2canvas
 
+/*
     // Genera un PDF con los datos del producto y la imagen del carrusel.
     // Recibe como parámetros el JSON del producto, la URL  de la imagen, el ID de la imagen en el árbol DOM, un JSON con los items del producto y el nombre de la categoría.
     function imprimir(json_product, image_id, json_items, category) {
@@ -191,7 +193,7 @@
         var items = JSON.parse(json_items);
 
         // Creamos un documento PDF en blanco
-        var doc = new jsPDF();
+        var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
         window.html2canvas = html2canvas;
         console.log(product);
 
@@ -208,13 +210,13 @@
         // Calculamos las dimensiones que debe tener la imagen en el PDF
         var width = document.getElementById(image_id).naturalWidth;     // Dimensiones reales de la imagen (en píxeles)
         var height = document.getElementById(image_id).naturalHeight;
-        var anchuraImgEnDoc = 0;                                        // Dimensiones que debe tener la imagen en el PDF (en unidades)
+        var anchuraImgEnDoc = 0;                                        // Dimensiones que debe tener la imagen en el PDF (en unidades del PDF, es decir, mm)
         var alturaImgEnDoc = 0;
         if (width > height) {
-            anchuraImgEnDoc = 160;   // Si la imagen es más ancha que alta, limitamos la anchura a 160 unidades en el PDF para que no se salga de la página
+            anchuraImgEnDoc = 160;   // Si la imagen es más ancha que alta, limitamos la anchura a 160 unidades (mm) en el PDF para que no se salga de la página
             alturaImgEnDoc = (anchuraImgEnDoc * height) / width;
         } else {
-            alturaImgEnDoc = 160;    // Si la imagen es más alta que ancha, limitamos la altura a 160 unidades en el PDF para que no se salga de la página
+            alturaImgEnDoc = 160;    // Si la imagen es más alta que ancha, limitamos la altura a 160 unidades (mm) en el PDF para que no se salga de la página
             anchuraImgEnDoc = (alturaImgEnDoc * width) / height;
         }
 
@@ -222,21 +224,68 @@
         doc.addImage(document.getElementById(image_id).src, 'JPEG', 20, 30, anchuraImgEnDoc, alturaImgEnDoc);
 
         // Añadimos el nombre de la categoría
-        doc.setFont("helvetica", "normal");
         doc.setFontSize(10);
-        doc.text("Categoría: " + category, 20, alturaImgEnDoc + 40, { align: 'left' });
+        doc.setFont("helvetica", "bold");
+        doc.text("Categoría: ", 20, alturaImgEnDoc + 40, { align: 'left' });
+        doc.setFont("helvetica", "normal");
+        doc.text(category, 20, alturaImgEnDoc + 46, { align: 'left' });
 
         // Recorremos todos los items del producto y los enviamos al PDF        
-        var y = alturaImgEnDoc + 48;
+        var y = alturaImgEnDoc + 52;
         for (var i = 0; i < items.length; i++) {
-            doc.setFont("helvetica", "normal");
             doc.setFontSize(10);
-            doc.text(items[i].name + ": " + items[i].pivot.value, 20, y, { align: 'left' });
-            y += 8;
+            doc.setFont("helvetica", "bold");
+            doc.text(items[i].name + ": ", 20, y, { align: 'left' });
+            doc.setFont("helvetica", "normal");
+            var lines = doc.splitTextToSize(items[i].pivot.value, 160);   // Limitamos la anchura de cada línea a 160 unidades (mm) en el PDF para que no se salga de la página
+            doc.text(lines, 20, y+6, { align: 'left' });
+            y += 6 * lines.length + 6;
+            if (y > 210) {
+                doc.addPage();
+                y = 20;
+            }
 
         }
         doc.save(product.name + '.pdf');    // Forzamos la descarga del PDF
     }
+*/
+
+    // Genera un PDF con los datos del producto y la imagen del carrusel.
+    // Recibe como parámetros el JSON del producto, la URL  de la imagen, el ID de la imagen en el árbol DOM, un JSON con los items del producto y el nombre de la categoría.
+    function imprimir(json_product, image_id, json_items, category) {
+        // Convertimos los JSON a objetos
+        var product = JSON.parse(json_product);
+        var items = JSON.parse(json_items);
+
+        // Creamos un documento PDF en blanco
+        var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
+        window.html2canvas = html2canvas;
+        console.log(product);
+
+        // Creamos un HTML con el contenido que queremos que tenga el PDF
+        var html = '<div style="font-family: helvetica; font-size: 10pt">';
+        html += '{{$opciones['home_titulo']}} {{$opciones['home_subtitulo']}}<br><hr>';
+        html += '<p style="font-size: 150%"><strong>' + product.name + '</strong> [' + category + ']</p>';
+        html += '<img src="' + document.getElementById(image_id).src + '" width="100%">';
+        for (var i = 0; i < items.length; i++) {
+            html += '<strong>' + items[i].name + ': </strong>' + items[i].pivot.value + '<br>';
+        }
+
+        // Enviamos el HTML al PDF y forzamos la descarga
+        doc.html(html, {
+            callback: function(doc) {
+                // Save the PDF
+                doc.save(product.name + '.pdf');
+            },
+            x: 15,
+            y: 15,
+            margin: [10, 10, 10, 10],
+            autoPaging: 'text',
+            width: 170, //target width in the PDF document
+            windowWidth: 650 //window width in CSS pixels
+        });
+    }
+
 
     // Descarga la imagen del producto como un archivo. 
     // Forzamos la descarga mediante Javascript para evitar que el navegador la abra en una nueva pestaña.
