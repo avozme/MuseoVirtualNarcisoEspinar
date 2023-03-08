@@ -74,7 +74,7 @@
                                                         <div class="carousel-item active w-100">
                                                             <!-- Botones de descarga e impresión de la imagen principal -->
                                                             <div class="d-flex justify-content-center" style="padding-bottom: 5px">
-                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{$producto->id}}', '{{$producto->name}}', '{{asset("storage/$producto->id/$producto->image")}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'mi_imagen{{$key}}', '{{json_encode($producto->items)}}', '{{$producto->categoria->name}}')">
                                                                 <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$producto->image")}}','{{$producto->image}}')">
                                                             </div>   
                                                             <!-- Imagen -->                                                    
@@ -84,15 +84,16 @@
                                                         </div>
 
                                                         <!-- Imagenes secundarias -->
-                                                        @foreach($producto->imagenes as $image)
+                                                        @foreach($producto->imagenes as $key=>$image)
                                                         <div class="carousel-item">
                                                             <!-- Botones de descarga e impresión de la imagen secundaria -->
                                                             <div class="d-flex justify-content-center"  style="padding-bottom: 5px">
-                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{$producto->id}}', '{{$producto->name}}', '{{asset("storage/$producto->id/$image->image")}}')">
-                                                                <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$image->image")}}','{{$image->image}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'img_secundaria_{{$producto->id}}_{{$key}}', '{{json_encode($producto->items)}}', '{{$producto->categoria->name}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{ asset("storage/$producto->id/$image->image")}}' , '{{$image->image}}' )">
                                                             </div>
                                                             <!-- Imagen -->
-                                                            <img src='{{asset("storage/$producto->id/mini_$image->image")}}'
+                                                            <img id="img_secundaria_{{$producto->id}}_{{$key}}"
+                                                                src='{{asset("storage/$producto->id/mini_$image->image")}}'
                                                                 class="center-block" height="500"
                                                                 alt="{{$image->image}}">
                                                         </div>
@@ -179,39 +180,62 @@
 
 <!-- Mis scripts -->
 <script>
-    
+
     window.jsPDF = window.jspdf.jsPDF;      // Debe ser una variable global para que funcione html2canvas
 
-    // Imprime el contenido de la etiqueta con id indicado en el parámetro id_imprimir
-    function imprimir(product_id, product_name, url_image) {
+    // Genera un PDF con los datos del producto y la imagen del carrusel.
+    // Recibe como parámetros el JSON del producto, la URL  de la imagen, el ID de la imagen en el árbol DOM, un JSON con los items del producto y el nombre de la categoría.
+    function imprimir(json_product, image_id, json_items, category) {
+        // Convertimos los JSON a objetos
+        var product = JSON.parse(json_product);
+        var items = JSON.parse(json_items);
+
         // Creamos un documento PDF en blanco
         var doc = new jsPDF();
         window.html2canvas = html2canvas;
+        console.log(product);
 
-        // Calculamos la geometría del documento para colocar los elementos bien
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-	
+        // Creamos la cabecera del documento con el títoulo y el subtítulo de la homepage
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("{{$opciones['home_titulo']}}" + " " + "{{$opciones['home_subtitulo']}}", 20, 12, { align: 'left' });
+
         // Añadimos el nombre del producto como cabecera del documento PDF
         doc.setFont("helvetica", "bold");
-        doc.text(product_name, 20, 20, { align: 'left' });
+        doc.setFontSize(14);
+        doc.text(product.name, 20, 20, { align: 'left' });
 
-        // Ahora añadimos la imagen
-        doc.addImage(url_image, 'JPEG', 20, 30, 100, 100);
+        // Calculamos las dimensiones que debe tener la imagen en el PDF
+        var width = document.getElementById(image_id).naturalWidth;     // Dimensiones reales de la imagen (en píxeles)
+        var height = document.getElementById(image_id).naturalHeight;
+        var anchuraImgEnDoc = 0;                                        // Dimensiones que debe tener la imagen en el PDF (en unidades)
+        var alturaImgEnDoc = 0;
+        if (width > height) {
+            anchuraImgEnDoc = 160;   // Si la imagen es más ancha que alta, limitamos la anchura a 160 unidades en el PDF para que no se salga de la página
+            alturaImgEnDoc = (anchuraImgEnDoc * height) / width;
+        } else {
+            alturaImgEnDoc = 160;    // Si la imagen es más alta que ancha, limitamos la altura a 160 unidades en el PDF para que no se salga de la página
+            anchuraImgEnDoc = (alturaImgEnDoc * width) / height;
+        }
 
-        // Cogemos todo el HTML de los items y lo añadimos al documento PDF
-        var elementHTML = document.getElementById('item' + product_id);
-        doc.html(elementHTML, {
-            callback: function(doc) {
-                // Añadimos el nombre del producto y la imagen al documento PDF
-                doc.save(product_name + '.pdf');            // Save the PDF
-            },
-            x: 15,
-            y: 120,
-            width: pageWidth/2, 
-            windowWidth: 650 
-        });
+        // Añadimos la imagen del producto
+        doc.addImage(document.getElementById(image_id).src, 'JPEG', 20, 30, anchuraImgEnDoc, alturaImgEnDoc);
 
+        // Añadimos el nombre de la categoría
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text("Categoría: " + category, 20, alturaImgEnDoc + 40, { align: 'left' });
+
+        // Recorremos todos los items del producto y los enviamos al PDF        
+        var y = alturaImgEnDoc + 48;
+        for (var i = 0; i < items.length; i++) {
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.text(items[i].name + ": " + items[i].pivot.value, 20, y, { align: 'left' });
+            y += 8;
+
+        }
+        doc.save(product.name + '.pdf');    // Forzamos la descarga del PDF
     }
 
     // Descarga la imagen del producto como un archivo. 
