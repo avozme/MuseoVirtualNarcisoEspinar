@@ -51,7 +51,7 @@
                 @elseif($opcion->type == 'longText')
                 <!-- Opción de tipo "longText" -->
                     <label class="control-label w-100 mt-2">Texto:</label>
-                    <textarea name="value" id="value" cols="100" rows="20">{{$opcion->value}}</textarea>
+                    <textarea name="value" id="valueTextarea" cols="100" rows="20">{{$opcion->value}}</textarea>
                 @else
                 <!-- Opción de otro tipo ("text" o "number", se tratan igual, como input de tipo text) -->
                     <label class="control-label w-100 mt-2">Valor:</label>
@@ -105,7 +105,7 @@
 
 <!-- Lanza Suneditor: editor de texto Wysisyg -->
 <script>
-const editor = SUNEDITOR.create((document.getElementById('value') || 'value'),{
+const editor = SUNEDITOR.create((document.getElementById('valueTextarea') || 'valueTextarea'),{
     // All of the plugins are loaded in the "window.SUNEDITOR" object in dist/suneditor.min.js file
     // Insert options
     // Language global object (default: en)
