@@ -58,6 +58,7 @@ class ImagenesController extends Controller
     public function destroy($id) {
         $img = Imagenes::find($id);
         Storage::delete("public/" . $img->producto->id . "/" . $img->image);
+        Storage::delete("public/" . $img->producto->id . "/mini_" . $img->image);
         $img->delete();
         return redirect()->route('imagenes.index');
     }
