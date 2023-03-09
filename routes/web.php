@@ -21,7 +21,8 @@ Route::get('/categorias/get_items/{id_categoria}', 'CategoriasController@get_ite
 Route::resource('productos', 'ProductosController');
 Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
-Route::get('/items/category/{id}', 'ItemsController@indexPorCategoria')->name('items.porCategoria');
+Route::get('/items/category/{id}', 'ItemsController@index')->name('items.indexPorCategoria');
+Route::get('/items/cambiar-orden/{id}/{orden}/{cantidad}', 'ItemsController@cambiarOrden')->name('items.changeOrder');
 Route::resource('items', 'ItemsController');
 Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');

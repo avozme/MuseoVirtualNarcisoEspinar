@@ -25,7 +25,7 @@ class Productos extends Model
 
     public function items()
     {
-        return $this->belongsToMany('App\Models\Items')->orderBy('name')->withPivot('value');
+        return $this->belongsToMany('App\Models\Items')->orderBy('order')->withPivot('value');
     }
 
     public function imagenes()

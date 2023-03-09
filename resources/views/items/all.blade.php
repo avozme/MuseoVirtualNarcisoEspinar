@@ -11,6 +11,7 @@
     <tr>
       <th scope="col">Campo</th>
       <th scope="col">Colección</th>  
+      <th scope="col">Orden</th>  
       <th scope="col"></th> 
       <th scope="col"></th> 
 
@@ -36,12 +37,33 @@
         <!-- Fin Buscador -->
         
     </tr>
+    @php
+        $i = 1;
+    @endphp
     @foreach ($itemsList as $item)
         <tr>
             <td>{{$item->name}}</td>
             <td>{{$item->categoria->name}}</td>
             <td>
-                <a class="btn btn-outline-secondary" href="{{route('items.edit', $item->id)}}"><i class="fa-solid fa-pen"></i></a></td>
+                @if ($i == 1)
+                <i class="btn btn-outline-secondary fa-solid fa-ban"></i>
+                @endif
+                @if ($i > 1)
+                <a class="btn btn-outline-secondary" href="{{route('items.changeOrder', ['id' => $item->id, 'orden' => $item->order, 'cantidad' =>-1])}}"><i class="fa-solid fa-arrow-circle-up"></i></a>
+                @endif
+                @if ($i < count($itemsList))
+                <a class="btn btn-outline-secondary" href="{{route('items.changeOrder', ['id' => $item->id, 'orden' => $item->order, 'cantidad' => 1])}}"><i class="fa-solid fa-arrow-circle-down"></i></a>
+                @endif
+                @if ($i == count($itemsList))
+                <i class="btn btn-outline-secondary fa-solid fa-ban"></i>
+                @endif
+                @php
+                    $i++;
+                @endphp
+            </td>
+            <td>
+                <a class="btn btn-outline-secondary" href="{{route('items.edit', $item->id)}}"><i class="fa-solid fa-pen"></i></a>
+            </td>
             <td>
                 <form action = "{{route('items.destroy', $item->id)}}" method="POST">
                     @csrf
