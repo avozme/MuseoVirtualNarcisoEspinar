@@ -15,7 +15,19 @@ class ItemsController extends Controller
 
     public function index() {
         $itemsList = Items::orderBy('name')->get();
-        return view('items.all', ['itemsList'=>$itemsList]);
+        $categorias = Categorias::orderBy('name')->get();
+        return view('items.all', ['itemsList'=>$itemsList, 'categorias'=>$categorias]);
+    }
+
+    public function indexPorCategoria($idCategoria) {
+        // Obtener solo los items de la categoria $idCategoria
+        if ($idCategoria == -1) {
+            $itemsList = Items::orderBy('name')->get();
+        } else {
+            $itemsList = Items::where('categoria_id', $idCategoria)->orderBy('name')->get();
+        }
+        $categorias = Categorias::orderBy('name')->get();
+        return view('items.all', ['itemsList'=>$itemsList, 'categorias'=>$categorias, 'idCategoria'=>$idCategoria]);
     }
 
     public function show($id) {
@@ -25,7 +37,7 @@ class ItemsController extends Controller
     }
 
     public function create() {
-        $data ['categoriasList'] = Categorias::all();
+        $categorias = Categorias::orderBy('name')->get();
         return view('items.form', $data);
     }
 
@@ -39,7 +51,7 @@ class ItemsController extends Controller
 
     public function edit($id) {
         $items = Items::find($id);
-        $categorias = Categorias::all();
+        $categorias = Categorias::orderBy('name')->get();
         return view('items.form', array('item' => $items, 'categoriasList' => $categorias));
     }
 

@@ -21,6 +21,7 @@ Route::get('/categorias/get_items/{id_categoria}', 'CategoriasController@get_ite
 Route::resource('productos', 'ProductosController');
 Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
+Route::get('/items/category/{id}', 'ItemsController@indexPorCategoria')->name('items.porCategoria');
 Route::resource('items', 'ItemsController');
 Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');
