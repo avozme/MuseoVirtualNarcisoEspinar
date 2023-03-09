@@ -87,18 +87,18 @@
                                                         @php 
                                                             $contador = 0;
                                                         @endphp
-                                                        @foreach($producto->imagenes as $image)
+                                                        @foreach($producto->imagenes as $key=>$image)
                                                         @php
                                                             $contador++;
                                                         @endphp
                                                         <div class="carousel-item">
                                                             <!-- Botones de descarga e impresión de la imagen secundaria -->
                                                             <div class="d-flex justify-content-center"  style="padding-bottom: 5px">
-                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'img_secundaria_{{$producto->id}}_{{$contador}}', '{{json_encode($producto->items)}}', '{{$producto->categoria->name}}')">
-                                                                <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{ asset("storage/$producto->id/$image->image")}}' , '{{$image->image}}', '{{$producto->name}}', {{$contador}})">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'img_secundaria_{{$producto->id}}_{{$key}}', '{{json_encode($producto->items)}}', '{{$producto->categoria->name}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{ asset("storage/$producto->id/$image->image")}}' , '{{$image->image}}', {{$contador}})">
                                                             </div>
                                                             <!-- Imagen -->
-                                                            <img id="img_secundaria_{{$producto->id}}_{{$contador}}"
+                                                            <img id="img_secundaria_{{$producto->id}}_{{$key}}"
                                                                 src='{{asset("storage/$producto->id/mini_$image->image")}}'
                                                                 class="center-block" height="500"
                                                                 alt="{{$image->image}}">
