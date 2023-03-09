@@ -19,7 +19,7 @@
         </th>
 
         <!-- Buscador -->
-        <th scope="col" colspan="3">
+        <th scope="col" colspan="2">
         @section('buscador')
             <form class="ms-auto pt-3   " action="{{route('buscadorBack')}}" method="GET">
                 <div class="d-flex ">
@@ -42,6 +42,11 @@
             </form>
         @endsection
             <!-- Fin Buscador -->
+        </th>
+        <th scope="col">
+            <div class="align-left">
+                <a class="btn btn-outline-success" href="{{ route('productos.create') }}">Nuevo</a>
+            </div>
         </th>
     </tr>
     @if (count($productosList) == 0)

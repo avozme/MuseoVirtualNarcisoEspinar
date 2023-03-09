@@ -12,7 +12,11 @@
       <th scope="col"></th>
       <th scope="col">Producto</th>
       <th scope="col"></th> 
-      <th scope="col"></th> 
+      <th scope="col">
+        <div class ="align-left">
+          <a class ="btn btn-outline-success" href="{{ route('imagenes.create') }}">Nuevo</a>
+        </div>
+      </th> 
     </tr>
     @foreach ($imagenesList as $imagene)
         <tr>
@@ -37,9 +41,6 @@
 
     @endforeach
     </table>
-    <div class ="d-grid gap-4 d-md-flex justify-content-md-start ms-2">
-      <a class ="btn btn-outline-success" href="{{ route('imagenes.create') }}">Nuevo</a>
-    </div>
 @endsection
 
 <script type = "text/javascript">

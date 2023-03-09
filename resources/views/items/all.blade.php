@@ -13,7 +13,11 @@
       <th scope="col">Colección</th>  
       <th scope="col">Orden</th>  
       <th scope="col"></th> 
-      <th scope="col"></th> 
+      <th scope="col">
+          <div class ="align-left">
+              <a class ="btn btn-outline-success" href="{{ route('items.create') }}">Nuevo</a>
+          </div>
+      </th> 
 
         <!-- Buscador -->
         <th scope="col" colspan="3">
@@ -75,9 +79,6 @@
 
     @endforeach
     </table>
-    <div class ="d-grid gap-4 d-md-flex justify-content-md-start ms-2">
-      <a class ="btn btn-outline-success" href="{{ route('items.create') }}">Nuevo</a>
-    </div>
 @endsection
 
 <script type = "text/javascript">
