@@ -105,6 +105,13 @@ class ProductosController extends Controller
             $image_name = $image->getClientOriginalName();
             $image->storeAs("public/$p->id", $image_name);
             $p->image = $image_name;
+            // Genera miniatura
+            $miniatura = Image::make($image);
+            $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+            $miniatura_name = 'mini_' . $image_name;
+            $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
+            Storage::setVisibility("public/$p->id/$miniatura_name", "public");            
+
         }
         $deleteImages = $r->deleteImages ?? [];
         foreach($deleteImages as $di){
@@ -117,11 +124,16 @@ class ProductosController extends Controller
             foreach($images as $i){
                 $i_name = $i->getClientOriginalName();
                 $i->storeAs("public/$p->id", $i_name);
-
                 $img = new Imagenes();
                 $img->producto_id = $p->id;
                 $img->image = $i_name;
                 $img->save();
+                // Genera miniatura
+                $miniatura = Image::make($i);
+                $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+                $miniatura_name = 'mini_' . $i_name;
+                $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
+                Storage::setVisibility("public/$p->id/$miniatura_name", "public");            
             }
         }
        
