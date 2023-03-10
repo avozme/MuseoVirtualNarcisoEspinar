@@ -48,7 +48,14 @@ class ProductosController extends Controller
 
             // Genera miniatura
             $miniatura = Image::make($image);
-            $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+            // Vamos a hacer que la imagen miniatura mida 1000 px en su lado más largo
+            if ($miniatura->height() > $miniatura->width()) {
+                // Altura = 1000, anchura proporcional
+                $miniatura->resize(1000, null, function ($constraint) {$constraint->aspectRatio();});
+            } else {
+                // Anchura = 1000, altura proporcional
+                $miniatura->resize(null, 1000, function ($constraint) {$constraint->aspectRatio();});  
+            }
             $miniatura_name = 'mini_' . $image_name;
             $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
             Storage::setVisibility("public/$p->id/$miniatura_name", "public");            
@@ -66,7 +73,14 @@ class ProductosController extends Controller
                 $img->save();
                 // Genera miniatura
                 $miniatura = Image::make($i);
-                $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+                // Vamos a hacer que la imagen miniatura mida 1000 px en su lado más largo
+                if ($miniatura->height() > $miniatura->width()) {
+                    // Altura = 1000, anchura proporcional
+                    $miniatura->resize(1000, null, function ($constraint) {$constraint->aspectRatio();});
+                } else {
+                    // Anchura = 1000, altura proporcional
+                    $miniatura->resize(null, 1000, function ($constraint) {$constraint->aspectRatio();});  
+                }
                 $miniatura_name = 'mini_' . $i_name;
                 $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
                 Storage::setVisibility("public/$p->id/$miniatura_name", "public");            
@@ -90,7 +104,7 @@ class ProductosController extends Controller
         $items = Items::where('categoria_id', $producto->categoria_id)->orderBy('order')->with(['itemsProducto' => function($query) use ($id){
             $query->where('productos_id', $id);
         }])->get();
-        $image = Storage::url("$producto->id/$producto->image");
+        $image = Storage::url("$producto->id/mini_$producto->image");
         return view('productos.form', compact('producto', 'categorias', 'items', 'image'));
     }
 
@@ -107,7 +121,14 @@ class ProductosController extends Controller
             $p->image = $image_name;
             // Genera miniatura
             $miniatura = Image::make($image);
-            $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+            // Vamos a hacer que la imagen miniatura mida 1000 px en su lado más largo
+            if ($miniatura->height() > $miniatura->width()) {
+                // Altura = 1000, anchura proporcional
+                $miniatura->resize(1000, null, function ($constraint) {$constraint->aspectRatio();});
+            } else {
+                // Anchura = 1000, altura proporcional
+                $miniatura->resize(null, 1000, function ($constraint) {$constraint->aspectRatio();});  
+            }
             $miniatura_name = 'mini_' . $image_name;
             $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
             Storage::setVisibility("public/$p->id/$miniatura_name", "public");            
@@ -130,7 +151,14 @@ class ProductosController extends Controller
                 $img->save();
                 // Genera miniatura
                 $miniatura = Image::make($i);
-                $miniatura->fit(1000, 1000);    // Para que la imagen quepa en una caja de 1000x1000 como máximo
+                // Vamos a hacer que la imagen miniatura mida 1000 px en su lado más largo
+                if ($miniatura->height() > $miniatura->width()) {
+                    // Altura = 1000, anchura proporcional
+                    $miniatura->resize(1000, null, function ($constraint) {$constraint->aspectRatio();});
+                } else {
+                    // Anchura = 1000, altura proporcional
+                    $miniatura->resize(null, 1000, function ($constraint) {$constraint->aspectRatio();});  
+                }
                 $miniatura_name = 'mini_' . $i_name;
                 $miniatura->save(storage_path("app/public/$p->id/$miniatura_name"));
                 Storage::setVisibility("public/$p->id/$miniatura_name", "public");            

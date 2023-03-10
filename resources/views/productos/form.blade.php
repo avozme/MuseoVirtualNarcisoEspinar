@@ -37,7 +37,7 @@
             @if (isset($producto))
                 @foreach($producto->imagenes as $image)
                     <div class="image-item d-flex justify-content-center align-items-center col-sm-2" onclick="deleteItem(this)" >
-                        <img src="/storage/{{$producto->id}}/{{$image->image}}" width="150">
+                        <img src="/storage/{{$producto->id}}/mini_{{$image->image}}" width="150">
                         <input value="{{$image->image}}" class="inputDelete" name="images[]" type="hidden">
                         <i class="fa-solid fa-trash fs-1 btnDelete"></i>
                     </div>
