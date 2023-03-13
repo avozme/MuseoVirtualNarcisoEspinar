@@ -118,6 +118,8 @@ class ProductosController extends Controller
             $image = $r->file('image');
             $image_name = $image->getClientOriginalName();
             $image->storeAs("public/$p->id", $image_name);
+            Storage::setVisibility("public/$p->id", "public");
+            Storage::setVisibility("public/$p->id/$image_name", "public");
             $p->image = $image_name;
             // Genera miniatura
             $miniatura = Image::make($image);
