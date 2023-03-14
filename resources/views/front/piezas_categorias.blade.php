@@ -74,7 +74,7 @@
                                                         <div class="carousel-item active w-100">
                                                             <!-- Botones de descarga e impresión de la imagen principal -->
                                                             <div class="d-flex justify-content-center" style="padding-bottom: 5px">
-                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'mi_imagen{{$key}}', '{{json_encode($producto->items)}}', '{{$producto->categoria->name}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'mi_imagen{{$key}}', '{{json_encode($producto->items)}}', '{{$producto->categoriaName}}')">
                                                                 <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$producto->image")}}','{{$producto->image}}', '{{$producto->name}}', 0)">
                                                             </div>   
                                                             <!-- Imagen -->                                                    
@@ -94,7 +94,7 @@
                                                         <div class="carousel-item">
                                                             <!-- Botones de descarga e impresión de la imagen secundaria -->
                                                             <div class="d-flex justify-content-center"  style="padding-bottom: 5px">
-                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'img_secundaria_{{$producto->id}}_{{$contador}}', '{{json_encode($producto->items)}}', '{{$producto->categoria->name}}')">
+                                                                <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'img_secundaria_{{$producto->id}}_{{$contador}}', '{{json_encode($producto->items)}}', '{{$producto->categoriaName}}')">
                                                                 <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{ asset("storage/$producto->id/$image->image")}}' , '{{$image->image}}', '{{$producto->name}}', {{$contador}})">
                                                             </div>
                                                             <!-- Imagen -->

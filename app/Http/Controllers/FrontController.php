@@ -37,8 +37,8 @@ class FrontController extends Controller
     public function buscadorCategorias(Request $r) {
         $categoria = Categorias::find($r->idCategoria);
         $categoriasList = Categorias::orderBy('name')->get();
-        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
-        $todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
+        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
+        //$todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
         $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList, 'opciones' => $opciones, 
@@ -56,7 +56,7 @@ class FrontController extends Controller
     /*Funcion buscador general front*/ 
     public function buscadorGeneral(Request $r) {
         $categoriasList = Categorias::orderBy('name')->get();
-        $todosProductos = Productos::busquedaProductos($r->idCategoria, $r->textoBusqueda);
+        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
         $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';       
         return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'msg'=> $msg, 'todosProductos'=>$todosProductos,
