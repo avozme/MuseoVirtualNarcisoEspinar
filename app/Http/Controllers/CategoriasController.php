@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categorias;
+use App\Models\Productos;
 
 class CategoriasController extends Controller
 {
@@ -48,6 +49,7 @@ class CategoriasController extends Controller
     }
 
     public function destroy($id) {
+        
         $p = Categorias::find($id);
         $p->delete();
         return redirect()->route('categorias.index');

@@ -11380,6 +11380,9 @@ p {
   color: var(--color_raton_encima_elementos_menu);
 }
 
+a.nav-link.active{
+  color: var(--color_cat_activa) !important;
+}
 
 #buscador_general_front{
   position: relative;

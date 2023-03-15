@@ -244,6 +244,13 @@ class OpcionesTableSeeder extends Seeder
                 'created_at' => '2023-02-28 07:31:40',
                 'updated_at' => '2023-02-28 07:31:40',
             ),
+            25 => 
+            array (
+                'id' => 26,
+                'value' => '#6a645c',
+                'key' => 'color_cat_activa',
+                'type' => 'color',
+            ),
         ));
         
         
