@@ -47,14 +47,14 @@ class Productos extends Model
         }
         return $listaProductos;
     }
-    /*Recupera los productos de una categoria y los pagina cada X objetos */
+
+    /*Recupera los productos de una categoria ordenados aleatoriamente y los pagina cada X objetos */
     public static function recuperarPorCategoria($id)
     {
-        $listaProductos = Productos::where('categoria_id', $id);
+        $listaProductos = Productos::where('categoria_id', $id)->inRandomOrder();
         $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
         return $listaProductos->paginate($elementosPorPagina);
     }
-
 
     /*Buscador Front que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     public static function busquedaCategorias($idCategoria, $textoBusqueda)
@@ -83,7 +83,6 @@ class Productos extends Model
         }
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
-
 
     /* Buscador front/back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     /* Si el idCategoria es NULL, busca en todas las categorias*/
@@ -131,7 +130,6 @@ class Productos extends Model
         if ($idCategoria != NULL) $resultadoPaginado->appends(['idCategoria' => $idCategoria]);
         return $resultadoPaginado;
     }
-
 
     // public static function busquedaCampos($idCategoria, $items){
     //     $itemsNoVacios = array_keys(array_filter($items, function($valor){
