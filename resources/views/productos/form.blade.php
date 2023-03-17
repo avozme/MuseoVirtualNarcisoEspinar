@@ -100,6 +100,7 @@
                 cont++;
             });
         })
+        // Desactiva el botón de enviar hasta que se selecciona una categoría
         if (id_categoria !== "") {
             document.getElementById("submitButton").disabled = false;
         } else {
