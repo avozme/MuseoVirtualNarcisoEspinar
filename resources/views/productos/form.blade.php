@@ -32,7 +32,7 @@
             Foto principal:
             @if(isset($image))
             <div id="image">
-                <img src="{{$image}}" width=150>
+                <img src="{{$image}}" width=150 onload="activar_btn()">
             </div> <br>
             @endif
             <input class="form-control" type="file" accept="image/*" name="image"
@@ -73,8 +73,6 @@
     </form>
     @endsection
 
-
-
     <script>
     function actualizar_items() {
         id_categoria = document.getElementById("categoria_id").value;
@@ -100,21 +98,24 @@
                 cont++;
             });
         })
-        // Desactiva el botón de enviar hasta que se selecciona una categoría
-        if (id_categoria !== "") {
-            document.getElementById("submitButton").disabled = false;
-        } else {
-            document.getElementById("submitButton").disabled = true;
-        }
-
+        activar_btn();
     }
-
+    
     function deleteItem(este) {
         let inputValue = este.querySelector('.inputDelete').value
         if (confirm(`¿Desea borrar el archivo ${inputValue}?`)) {
             document.getElementById('deleteImages').innerHTML +=
-                `<input type="hidden" name="deleteImages[]" value="${inputValue}">`
+            `<input type="hidden" name="deleteImages[]" value="${inputValue}">`
             este.remove()
+        }
+    }
+    
+    function activar_btn(){       
+        // Desactiva el botón de enviar hasta que se selecciona una categoría
+        if (document.getElementById("categoria_id").value !== "") {
+            document.getElementById("submitButton").disabled = false;
+        } else {
+            document.getElementById("submitButton").disabled = true;
         }
     }
     </script>
