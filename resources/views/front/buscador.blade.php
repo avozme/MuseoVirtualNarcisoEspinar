@@ -26,12 +26,13 @@
             <!--Fin Checkbox categorias -->
 
             <!-- Fin Buscador -->
-            <div class="d-flex" style="text-align:justify">
+            <div class="d-flex" style="text-align:left">
                 @foreach ($categoriasList as $key => $categoria)
                 <div class="@if ($key != 0) d-none @endif items categoria{{$key}} ">
                     @foreach($categoria->items as $items)
-                    <label class="col-md-5"> {{$items->name}} <input class="form-control" type="text"
-                            name="items[{{$items->id}}]"></label>
+                    <label class="col-md-4" style="margin-right:7%"> {{$items->name}} 
+                        <input class="form-control" type="text" name="items[{{$items->id}}]">
+                    </label>
                     @endforeach
                 </div>
                 @endforeach
