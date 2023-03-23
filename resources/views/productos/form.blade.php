@@ -5,44 +5,46 @@
 @section("header", "Modificación de productos")
 
 @section("content")
+
 @isset($producto)
-<form action="{{ route('productos.update', ['producto' => $producto->id]) }}" method="POST" id="formulario"
-    enctype="multipart/form-data">
+<!-- CASO 1: Vamos a hacer update de un producto que ya existe -->
+<form action="{{ route('productos.update', ['producto' => $producto->id]) }}" method="POST" id="formulario" enctype="multipart/form-data">
     <div class="container-fluid" id="miFormulario">
         <!-- @foreach ($producto->items as $item) 
-                {{$item->name}} <input class="form-control" type="text" value='{{$item->pivot->value}}'><br>
-                @endforeach -->
+                    {{$item->name}} <input class="form-control" type="text" value='{{$item->pivot->value}}'><br>
+                    @endforeach -->
     </div>
+    <script>
+        var editor = []; // Array de editores de texto wysiwyg (habrá que crear uno por cada ítem)
+    </script>
     @method("PUT")
-    @else
+@else
+<!-- CASO 2: Vamos a hacer insert de un producto nuevo -->
     <form action="{{ route('productos.store') }}" method="POST" id="formulario" enctype="multipart/form-data">
-        @endisset
+@endisset
+
         @csrf
         <div class="container-fluid" id="miFormulario">
-            Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id"
-                onchange="actualizar_items()">
+            Categoria:<select class="form-select" type="text" name="categoria_id" id="categoria_id" onchange="actualizar_items()">
                 <option value=''>Selecciona</option>
                 @foreach ($categorias as $categoria) {
                 <option value='{{$categoria->id}}' @if(isset($producto->categoria) && $producto->categoria->id ==
                     $categoria->id) selected @endif>{{$categoria->name}}</option>}
                 @endforeach
             </select> <br>
-            Nombre :<input required class="form-control" type="text" name="name" value="{{$producto->name ?? '' }}"
-                id="categoria_id"><br>
+            Nombre :<input required class="form-control" type="text" name="name" value="{{$producto->name ?? '' }}" id="categoria_id"><br>
             Foto principal:
             @if(isset($image))
             <div id="image">
-                <img src="{{$image}}" width=150 onload="activar_btn()">
+                <img src="{{$image}}" width=150>
             </div> <br>
             @endif
-            <input class="form-control" type="file" accept="image/*" name="image"
-                value="{{$producto->image ?? '' }}"><br>
+            <input class="form-control" type="file" accept="image/*" name="image" value="{{$producto->image ?? '' }}"><br>
 
             <div id="image" class="row">
                 @if (isset($producto))
                 @foreach($producto->imagenes as $image)
-                <div class="image-item d-flex justify-content-center align-items-center col-sm-2"
-                    onclick="deleteItem(this)">
+                <div class="image-item d-flex justify-content-center align-items-center col-sm-2" onclick="deleteItem(this)">
                     <img src="/storage/{{$producto->id}}/mini_{{$image->image}}" width="150">
                     <input value="{{$image->image}}" class="inputDelete" name="images[]" type="hidden">
                     <i class="fa-solid fa-trash fs-1 btnDelete"></i>
@@ -59,63 +61,113 @@
 
             <div id="listItems">
                 @if(isset($items))
-                @foreach($items as $key => $item)
-                <label class="mt-4">{{$item->name}}</label>
-                <input class="form-control" type="text" name="items[{{$key}}][value]"
-                    value="{{$item->itemsProducto->value ?? '' }}">
-                <input type="hidden" name="items[{{$key}}][id]" value="{{$item->id ?? '' }}">
-                @endforeach
+                    <!-- CASO 1: Vamos a hacer update de un producto que ya existe, y por lo tanto ya tiene valor en sus ítems.
+                        Vamos a mostrar esos items en editores wysiwyg -->
+                    @foreach($items as $key => $item)
+                        <label class="mt-4">{{$item->name}}</label>
+                        <textarea name="items[{{$key}}][value]" id="textarea-{{$item->id}}" class="form-control">
+                            {{$item->itemsProducto->value ?? ''}}
+                        </textarea>
+                        <input type="hidden" name="items[{{$key}}][id]" value="{{$item->id ?? '' }}">
+                        <script>
+                            // Este script asigna un editor wysiwyg a cada textarea
+                            editor[{{$item->id}}] = SUNEDITOR.create((document.getElementById("textarea-{{$item->id}}") || "textarea-{{$item->id}}"), {
+                                lang: SUNEDITOR_LANG['es']
+                            });
+                        </script>
+                    @endforeach
+                    <script>
+                        // Hacemos que con el submit se guarde el contenido de todos los editores de texto wysiwyg que hemos creado
+                        document.querySelector('form').addEventListener('submit', function() {
+                            @foreach($items as $key => $item)
+                                editor[{{$item->id}}].save();
+                            @endforeach
+                        });
+                    </script>
                 @endif
             </div>
-
-            <input class="btn btn-dark center mt-3" type="submit" value="Enviar" id="submitButton" disabled>
+            @if (isset($producto))
+                <input class="btn btn-dark center mt-3" type="submit" value="Enviar" id="submitButton">
+            @else
+                <input class="btn btn-dark center mt-3" type="submit" value="Enviar" id="submitButton" disabled>
+            @endif
         </div>
     </form>
     @endsection
 
     <script>
-    function actualizar_items() {
-        id_categoria = document.getElementById("categoria_id").value;
-        var listItems = document.getElementById("listItems");
-        listItems.innerHTML = "";
-        var cont = 0;
-        fetch("/categorias/get_items/" + id_categoria).then(data => data.json()).then(json => {
-            json.forEach(item => {
-                var input = document.createElement("input");
-                var hidden = document.createElement("input");
-                var label = document.createElement("label");
-                input.type = "text";
-                hidden.type = "hidden";
-                input.name = `items[${cont}][value]`;
-                hidden.name = `items[${cont}][id]`;
-                hidden.value = item.id;
-                label.innerHTML = item.name;
-                input.classList.add("form-control");
-                label.classList.add("mt-4");
-                listItems.appendChild(label);
-                listItems.appendChild(hidden);
-                listItems.appendChild(input);
-                cont++;
-            });
-        })
-        activar_btn();
-    }
-    
-    function deleteItem(este) {
-        let inputValue = este.querySelector('.inputDelete').value
-        if (confirm(`¿Desea borrar el archivo ${inputValue}?`)) {
-            document.getElementById('deleteImages').innerHTML +=
-            `<input type="hidden" name="deleteImages[]" value="${inputValue}">`
-            este.remove()
+        var editor = []; // Creamos un array para guardar los editores de texto wysiwyg
+
+        // Esta función se ejecuta cuando se selecciona una categoría. Carga de forma asíncrona todos los ítems de 
+        // esa categoría y los muestra como textareas en el formulario.
+        function actualizar_items() {
+            id_categoria = document.getElementById("categoria_id").value;
+            var listItems = document.getElementById("listItems");
+            listItems.innerHTML = "";
+            var cont = 0;
+            fetch("/categorias/get_items/" + id_categoria).then(data => data.json()).then(json => {
+                json.forEach(item => {
+                    //var input = document.createElement("input");
+                    var textarea = document.createElement("textarea");
+                    var hidden = document.createElement("input");
+                    var label = document.createElement("label");
+                    //input.type = "text";
+                    hidden.type = "hidden";
+                    //input.name = `items[${cont}][value]`;
+                    textarea.name = `items[${cont}][value]`;
+                    textarea.id = 'textarea-' + item.id;
+                    hidden.name = `items[${cont}][id]`;
+                    hidden.value = item.id;
+                    label.innerHTML = item.name;
+                    //input.classList.add("form-control");
+                    textarea.classList.add("form-control");
+                    label.classList.add("mt-4");
+                    listItems.appendChild(label);
+                    listItems.appendChild(hidden);
+                    //listItems.appendChild(input);
+                    listItems.appendChild(textarea);
+                    // Carga Suneditor (editor Wysiswyg) en el textarea recién creado
+                    editor[cont] = SUNEDITOR.create((document.getElementById(textarea.id) || textarea.id), {
+                        lang: SUNEDITOR_LANG['es']
+                    });
+                    cont++;
+                });
+                // Hacemos que con el submit se guarde el contenido de todos los editores de texto wysiwyg
+                document.querySelector('form').addEventListener('submit', function() {
+                    for ($i = 0; $i < cont; $i++) {
+                        editor[$i].save();
+                    }
+                });
+            })
+            activar_btn();
         }
-    }
-    
-    function activar_btn(){       
-        // Desactiva el botón de enviar hasta que se selecciona una categoría
-        if (document.getElementById("categoria_id").value !== "") {
-            document.getElementById("submitButton").disabled = false;
-        } else {
-            document.getElementById("submitButton").disabled = true;
+
+        function deleteItem(este) {
+            let inputValue = este.querySelector('.inputDelete').value
+            if (confirm(`¿Desea borrar el archivo ${inputValue}?`)) {
+                document.getElementById('deleteImages').innerHTML +=
+                    `<input type="hidden" name="deleteImages[]" value="${inputValue}">`
+                este.remove()
+            }
         }
-    }
+
+        function activar_btn() {
+            // Desactiva el botón de enviar hasta que se selecciona una categoría
+            if (document.getElementById("categoria_id").value !== "") {
+                document.getElementById("submitButton").disabled = false;
+            } else {
+                document.getElementById("submitButton").disabled = true;
+            }
+        }
     </script>
+
+
+
+    <!-- Carga Suneditor: editor de texto Wysisyg -->
+
+    <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor.css" rel="stylesheet"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/assets/css/suneditor-contents.css" rel="stylesheet"> -->
+    <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
+    <!-- languages (Basic Language: English/en) -->
+    <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/ko.js"></script>
