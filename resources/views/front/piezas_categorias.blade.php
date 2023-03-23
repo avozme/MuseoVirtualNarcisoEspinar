@@ -123,7 +123,7 @@
 
                                                 <div class='items' style="padding-left: 25%; padding-right: 20%; text-align: left">
                                                     @foreach ($producto->items as $item)
-                                                    <strong>{{$item->name}}:</strong> {{$item->pivot->value}}<br>
+                                                    <strong>{!!$item->name!!}:</strong> {!!$item->pivot->value!!}<br>
                                                     @endforeach
                                                     <!--
                                                     <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="javascript:window.print()">

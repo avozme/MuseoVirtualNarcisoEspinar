@@ -8,6 +8,7 @@ use App\Models\Categorias;
 use App\Models\ItemsProductos;
 use App\Models\Imagenes;
 use App\Models\Items;
+use App\Models\Opciones;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -31,6 +32,7 @@ class ProductosController extends Controller
 
     public function create() {
         $data ['categorias'] = Categorias::all();
+        $data['opciones'] = Opciones::convertToArray();
         return view('productos.form', $data);
     }
 
@@ -101,11 +103,12 @@ class ProductosController extends Controller
     public function edit($id) {
         $producto = Productos::find($id);
         $categorias = Categorias::all();
+        $opciones = Opciones::convertToArray();
         $items = Items::where('categoria_id', $producto->categoria_id)->orderBy('order')->with(['itemsProducto' => function($query) use ($id){
             $query->where('productos_id', $id);
         }])->get();
         $image = Storage::url("$producto->id/mini_$producto->image");
-        return view('productos.form', compact('producto', 'categorias', 'items', 'image'));
+        return view('productos.form', compact('producto', 'categorias', 'items', 'image', 'opciones'));
     }
 
     public function update(Request $r, $id) {

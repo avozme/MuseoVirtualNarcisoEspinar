@@ -253,6 +253,15 @@ class OpcionesTableSeeder extends Seeder
                 'created_at' => '2023-02-28 07:31:40',
                 'updated_at' => '2023-02-28 07:31:40',
             ),
+            26 => 
+            array (
+                'id' => 27,
+                'value' => '1',
+                'key' => 'texto_enriquecido',
+                'type' => 'number',
+                'created_at' => '2023-02-28 07:31:40',
+                'updated_at' => '2023-02-28 07:31:40',
+            ),
         ));
         
         

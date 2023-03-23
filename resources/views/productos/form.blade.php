@@ -65,17 +65,24 @@
                         Vamos a mostrar esos items en editores wysiwyg -->
                     @foreach($items as $key => $item)
                         <label class="mt-4">{{$item->name}}</label>
-                        <textarea name="items[{{$key}}][value]" id="textarea-{{$item->id}}" class="form-control">
-                            {{$item->itemsProducto->value ?? ''}}
-                        </textarea>
-                        <input type="hidden" name="items[{{$key}}][id]" value="{{$item->id ?? '' }}">
-                        <script>
-                            // Este script asigna un editor wysiwyg a cada textarea
-                            editor[{{$item->id}}] = SUNEDITOR.create((document.getElementById("textarea-{{$item->id}}") || "textarea-{{$item->id}}"), {
-                                lang: SUNEDITOR_LANG['es']
-                            });
-                        </script>
+                        @if ($opciones["texto_enriquecido"] == 1)
+                            <textarea name="items[{{$key}}][value]" id="textarea-{{$item->id}}" class="form-control">
+                                {{$item->itemsProducto->value ?? ''}}
+                            </textarea>
+                            <input type="hidden" name="items[{{$key}}][id]" value="{{$item->id ?? '' }}">
+                            <script>
+                                // Este script asigna un editor wysiwyg a cada textarea
+                                editor[{{$item->id}}] = SUNEDITOR.create((document.getElementById("textarea-{{$item->id}}") || "textarea-{{$item->id}}"), {
+                                    lang: SUNEDITOR_LANG['es']
+                                });
+                            </script>
+                        @else
+                            <input class="form-control" type="text" name="items[{{$key}}][value]"
+                                    value="{{$item->itemsProducto->value ?? '' }}">
+                            <input type="hidden" name="items[{{$key}}][id]" value="{{$item->id ?? '' }}">   
+                        @endif                     
                     @endforeach
+                    @if ($opciones["texto_enriquecido"] == 1)
                     <script>
                         // Hacemos que con el submit se guarde el contenido de todos los editores de texto wysiwyg que hemos creado
                         document.querySelector('form').addEventListener('submit', function() {
@@ -84,6 +91,7 @@
                             @endforeach
                         });
                     </script>
+                    @endif
                 @endif
             </div>
             @if (isset($producto))
@@ -107,37 +115,48 @@
             var cont = 0;
             fetch("/categorias/get_items/" + id_categoria).then(data => data.json()).then(json => {
                 json.forEach(item => {
-                    //var input = document.createElement("input");
-                    var textarea = document.createElement("textarea");
                     var hidden = document.createElement("input");
                     var label = document.createElement("label");
-                    //input.type = "text";
+                    @if ($opciones["texto_enriquecido"] == 0)
+                        var input = document.createElement("input");
+                        input.type = "text";
+                        input.name = `items[${cont}][value]`;
+                        input.classList.add("form-control");
+                    @else
+                        var textarea = document.createElement("textarea");
+                        textarea.name = `items[${cont}][value]`;
+                        textarea.id = 'textarea-' + item.id;
+                        textarea.classList.add("form-control");
+                    @endif
                     hidden.type = "hidden";
-                    //input.name = `items[${cont}][value]`;
-                    textarea.name = `items[${cont}][value]`;
-                    textarea.id = 'textarea-' + item.id;
                     hidden.name = `items[${cont}][id]`;
                     hidden.value = item.id;
                     label.innerHTML = item.name;
-                    //input.classList.add("form-control");
-                    textarea.classList.add("form-control");
                     label.classList.add("mt-4");
                     listItems.appendChild(label);
                     listItems.appendChild(hidden);
-                    //listItems.appendChild(input);
-                    listItems.appendChild(textarea);
+                    @if ($opciones["texto_enriquecido"] == 0)
+                        listItems.appendChild(input);
+                    @else
+                        listItems.appendChild(textarea);
+                    @endif
                     // Carga Suneditor (editor Wysiswyg) en el textarea recién creado
-                    editor[cont] = SUNEDITOR.create((document.getElementById(textarea.id) || textarea.id), {
-                        lang: SUNEDITOR_LANG['es']
-                    });
+
+                    @if ($opciones["texto_enriquecido"] == 1)
+                        editor[cont] = SUNEDITOR.create((document.getElementById(textarea.id) || textarea.id), {
+                            lang: SUNEDITOR_LANG['es']
+                        });
+                    @endif
                     cont++;
                 });
                 // Hacemos que con el submit se guarde el contenido de todos los editores de texto wysiwyg
-                document.querySelector('form').addEventListener('submit', function() {
-                    for ($i = 0; $i < cont; $i++) {
-                        editor[$i].save();
-                    }
-                });
+                @if ($opciones["texto_enriquecido"] == 1)
+                    document.querySelector('form').addEventListener('submit', function() {
+                        for ($i = 0; $i < cont; $i++) {
+                            editor[$i].save();
+                        }
+                    });
+                @endif
             })
             activar_btn();
         }
