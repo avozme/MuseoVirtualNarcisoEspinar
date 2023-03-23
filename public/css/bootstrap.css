@@ -232,13 +232,12 @@ sub {
 sup {
   top: -0.5em;
 }
-
 a {
-  color: #ffc800;
+  color: #333;
   text-decoration: underline;
 }
 a:hover {
-  color: #cca000;
+  color: #666;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -11498,6 +11497,7 @@ header.masthead .masthead-heading {
   margin: 0 auto;
   background-color: white;
   padding: 1em;
+  text-decoration: none;
 }
 #portfolio .portfolio-item .portfolio-link .portfolio-hover {
   display: flex;

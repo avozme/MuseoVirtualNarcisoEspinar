@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Productos;
 use App\Models\Categorias;
 use App\Models\Opciones;
+use App\Models\Items;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -23,15 +24,47 @@ class FrontController extends Controller
         return view('categorias.show', $data);
     }
 
+    /* Muestra todos los productos de una categoría. Si la categoría tiene un ítem destacado, muestra un selector
+       con todos los valores de ese ítem */
     public function mostrarCategorias($id, Request $r) {
         $categoria = Categorias::find($id);
+        $destacados = $categoria->items()->where('destacado', 1)->get();
+        if (count($destacados) > 0) {
+            // Si algún ítem de esta categoría está marcado como "destacado", se mostrará una vista para elegir
+            // entre todos los valores de ese ítem.
+
+            // Recuperamos todos los valores del item destacado
+            $idItemDestacado = $destacados[0]->id;
+            $valores = Items::recuperarValores($idItemDestacado);
+            $data['valores'] = $valores;
+            $data['categoria'] = $categoria;
+            $data['idItem'] = $idItemDestacado;
+            $data['opciones'] = Opciones::convertToArray();
+            $data['categoriasList'] = Categorias::orderBy('name')->get();
+            return view('front.categorias_destacados', $data);
+        }
+        else {
+            // Si no hay ningún producto destacado en esta categoría, se mostrarán todos los productos de la categoría.
+            $categoriasList = Categorias::orderBy('name')->get();
+            $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
+            $opciones = Opciones::convertToArray();
+            $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
+            return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
+            'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);    
+        }
+    }
+
+    /* Muestra todos los productos de una categoría, filtrados por el valor de un ítem destacado */
+    public function buscadorPorItemDestacado($idCategoria, $iditem, $valueItem) {
+        $categoria = Categorias::find($idCategoria);
         $categoriasList = Categorias::orderBy('name')->get();
-        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
+        $todosProductos = Productos::recuperarPorCategoriaDestacado($idCategoria, $iditem, $valueItem);
         $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
-        'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
+        'opciones' => $opciones]);    
     }
+
 
     /*Funcion buscador categorías para que solo funcione en la vista de la categoria seleccionada*/
     public function buscadorCategorias(Request $r) {

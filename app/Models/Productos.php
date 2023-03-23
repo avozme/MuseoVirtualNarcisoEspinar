@@ -281,4 +281,20 @@ class Productos extends Model
         // Devolvemos el array de trozos resultante
         return $trozos;
     }
+
+
+    // Función que devuelve los productos que coinciden con un valor concreto de un ítem
+    public static function recuperarPorCategoriaDestacado($idCategoria, $iditem, $valueItem) {
+        $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
+        $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                                ->join("categorias", "productos.categoria_id", "categorias.id")
+                                ->join("items_productos", "productos.id", "items_productos.productos_id")
+                                ->where("productos.categoria_id", $idCategoria)
+                                ->where("items_productos.items_id", $iditem)
+                                ->where("items_productos.value", "like", "%$valueItem%")
+                                ->distinct()->paginate($elementosPorPagina);
+        return $productos;
+    }
+
+    
 }
