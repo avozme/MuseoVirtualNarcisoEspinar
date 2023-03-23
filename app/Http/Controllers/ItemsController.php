@@ -91,4 +91,22 @@ class ItemsController extends Controller
         }
         return redirect()->route('items.indexPorCategoria', $categoria_id);
     }
+
+        // Permite cambiar el ítem destacado de una categoría.
+        // $destacado contiene el valor que hay que poner al ítem (1 = destacar, 0 = quitar el destacado)
+        // Solo puede haber un item destacado por categoría, así que si $destacado == 1, hay que asegurarse de que
+        // ese es el único item destacado de la categoría.
+        public function destacar($id, $destacado) {
+            $item = Items::find($id);
+            $categoria_id = $item->categoria_id;
+            if ($destacado == 1) {
+                // Si se quiere destacar, primero quitamos el destacado a todos los items de la categoría
+                Items::where('categoria_id', $categoria_id)->update(['destacado' => 0]);
+            }
+            $item->destacado = $destacado;
+            $item->save();
+            // Devolvemos un JSON con el resultado de la operación
+            return response()->json(['success' => true, 'destacado' => $destacado]);
+        }
+
 }

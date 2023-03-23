@@ -10,6 +10,7 @@
     <table class="table table-hover">
     <tr>
       <th scope="col">Campo</th>
+      <th scope="col">Destacado</th>
       <th scope="col">Colección</th>  
       <th scope="col">Orden</th>  
       <th scope="col"></th> 
@@ -47,6 +48,13 @@
     @foreach ($itemsList as $item)
         <tr>
             <td>{{$item->name}}</td>
+            <td>
+                <!-- creamos un checkbox para el campo "destacado". Si el ítem está destacado, el check aparecerá marcado -->
+                <input type="checkbox" name="destacado" value="{{$item->destacado}}" 
+                       class="checkbox-destacado" id="destacado-{{$item->id}}"
+                       @if ($item->destacado == 1) checked @endif
+                       onchange = 'destacarItem({{$item->id}}, {{$item->destacado}})'>
+            </td>
             <td>{{$item->categoria->name}}</td>
             <td>
                 @if ($i == 1)
@@ -91,5 +99,36 @@
   function filtrarPorCategoria() {
       var idCategoria = document.getElementById('idCategoria').value;
       window.location.href = "{{url('items/category')}}" + "/" + idCategoria;
+  }
+
+
+  // Cambia el valor del campo "destacado" mediante una llamada asíncrona al servidor.
+  // Si el ítem estaba destacado, lo desdestaca y viceversa.
+  // Solo puede haber un ítem destacado por categoría.
+  function destacarItem(itemId, itemDestacado) {
+        var checkItem;
+        if (itemDestacado == 1) {
+            itemDestacado = 0;
+            checkItem = false;
+        } else {
+            itemDestacado = 1;
+            checkItem = true;
+        }
+        // llamada asíncrona al servidor usando fetch
+        fetch("{{url('items/destacar')}}/" + itemId + "/" + itemDestacado)
+        .then(function(response) {
+            // si la respuesta es correcta, actualizamos el valor del checkbox
+            if (response.ok == true) {
+                // Eliminamos el "checked" de todos los checkboxes de la clase checbox-destacado
+                var checkboxes = document.getElementsByClassName("checkbox-destacado");
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                // Ponemos el "checked" en el checkbox que ha sido modificado
+                document.getElementById("destacado-" + itemId).checked = checkItem;
+            } else {
+                alert("No se puede conectar con el servidor. El campo no ha podido modificarse. Si el error persiste, recargue la página o contacte con su administrador de sistemas.");
+            }
+        })
   }
   </script>

@@ -23,6 +23,7 @@ Route::resource('categorias', 'CategoriasController');
 Route::resource('etiquetas', 'EtiquetasController');
 Route::get('/items/category/{id}', 'ItemsController@index')->name('items.indexPorCategoria');
 Route::get('/items/cambiar-orden/{id}/{orden}/{cantidad}', 'ItemsController@cambiarOrden')->name('items.changeOrder');
+Route::get('/items/destacar/{id}/{destacado}', 'ItemsController@destacar')->name('items.destacar');
 Route::resource('items', 'ItemsController');
 Route::resource('opciones', 'OpcionesController');
 Route::resource('imagenes', 'ImagenesController');
