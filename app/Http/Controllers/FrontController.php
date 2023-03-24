@@ -55,14 +55,27 @@ class FrontController extends Controller
     }
 
     /* Muestra todos los productos de una categoría, filtrados por el valor de un ítem destacado */
-    public function buscadorPorItemDestacado($idCategoria, $iditem, $valueItem) {
-        $categoria = Categorias::find($idCategoria);
-        $categoriasList = Categorias::orderBy('name')->get();
-        $todosProductos = Productos::recuperarPorCategoriaDestacado($idCategoria, $iditem, $valueItem);
-        $opciones = Opciones::convertToArray();
-        $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
-        return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
-        'opciones' => $opciones]);    
+    public function buscadorPorItemDestacado($idCategoria, $idItem, $valueItem) {
+        if ($idItem == -1) {
+            // Si el id del item destacado es -1, se mostrarán todos los productos de la categoría (sin filtrar por ítem)
+            $categoria = Categorias::find($idCategoria);
+            $categoriasList = Categorias::orderBy('name')->get();
+            $todosProductos = Productos::recuperarPorCategoria($idCategoria);
+            $opciones = Opciones::convertToArray();
+            $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
+            return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
+            'opciones' => $opciones]);    
+        } 
+        else {
+            // Si el id del item destacado es distinto de -1, se mostrarán todos los productos de la categoría que tengan el valor seleccionado en $valueItem
+            $categoria = Categorias::find($idCategoria);
+            $categoriasList = Categorias::orderBy('name')->get();
+            $todosProductos = Productos::recuperarPorCategoriaDestacado($idCategoria, $idItem, $valueItem);
+            $opciones = Opciones::convertToArray();
+            $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
+            return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
+            'opciones' => $opciones]);    
+        }
     }
 
 
