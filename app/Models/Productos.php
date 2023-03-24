@@ -292,7 +292,7 @@ class Productos extends Model
                                 ->where("productos.categoria_id", $idCategoria)
                                 ->where("items_productos.items_id", $iditem)
                                 ->where("items_productos.value", "like", "%$valueItem%")
-                                ->distinct()->paginate($elementosPorPagina);
+                                ->distinct()->inRandomOrder()->paginate($elementosPorPagina);
         return $productos;
     }
 
