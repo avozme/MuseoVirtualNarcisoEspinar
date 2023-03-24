@@ -53,7 +53,7 @@
                 <input type="checkbox" name="destacado" value="{{$item->destacado}}" 
                        class="checkbox-destacado" id="destacado-{{$item->id}}"
                        @if ($item->destacado == 1) checked @endif
-                       onchange = 'destacarItem({{$item->id}}, {{$item->destacado}})'>
+                       onchange = 'destacarItem({{$item->id}})'>
             </td>
             <td>{{$item->categoria->name}}</td>
             <td>
@@ -105,16 +105,17 @@
   // Cambia el valor del campo "destacado" mediante una llamada asíncrona al servidor.
   // Si el ítem estaba destacado, lo desdestaca y viceversa.
   // Solo puede haber un ítem destacado por categoría.
-  function destacarItem(itemId, itemDestacado) {
-        var checkItem;
+  function destacarItem(itemId) {
+        var checked, itemDestacado;
+        itemDestacado = document.getElementById("destacado-" + itemId).value;
         if (itemDestacado == 1) {
             itemDestacado = 0;
-            checkItem = false;
+            checked = false;
         } else {
             itemDestacado = 1;
-            checkItem = true;
+            checked = true;
         }
-        // llamada asíncrona al servidor usando fetch
+        // Llamada asíncrona al servidor usando fetch
         fetch("{{url('items/destacar')}}/" + itemId + "/" + itemDestacado)
         .then(function(response) {
             // si la respuesta es correcta, actualizamos el valor del checkbox
@@ -125,7 +126,8 @@
                     checkboxes[i].checked = false;
                 }
                 // Ponemos el "checked" en el checkbox que ha sido modificado
-                document.getElementById("destacado-" + itemId).checked = checkItem;
+                document.getElementById("destacado-" + itemId).checked = checked;
+                document.getElementById("destacado-" + itemId).value = itemDestacado;
             } else {
                 alert("No se puede conectar con el servidor. El campo no ha podido modificarse. Si el error persiste, recargue la página o contacte con su administrador de sistemas.");
             }
