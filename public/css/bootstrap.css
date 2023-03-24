@@ -11389,6 +11389,11 @@ a.nav-link.active{
   padding-left: 10px;
 }
 
+.informacion_busquedas{
+  color: grey;
+  font-size: 12px;
+}
+
 @media (min-width: 1px) {
   #mainNav {
     padding-top: 1.5rem;
