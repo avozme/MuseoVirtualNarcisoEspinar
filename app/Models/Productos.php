@@ -51,7 +51,7 @@ class Productos extends Model
     /*Recupera los productos de una categoria ordenados aleatoriamente y los pagina cada X objetos */
     public static function recuperarPorCategoria($id)
     {
-        $listaProductos = Productos::where('categoria_id', $id)->inRandomOrder();
+        $listaProductos = Productos::where('categoria_id', $id)->orderBy('name');
         $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
         return $listaProductos->paginate($elementosPorPagina);
     }
@@ -292,7 +292,7 @@ class Productos extends Model
                                 ->where("productos.categoria_id", $idCategoria)
                                 ->where("items_productos.items_id", $iditem)
                                 ->where("items_productos.value", "like", "%$valueItem%")
-                                ->distinct()->inRandomOrder()->paginate($elementosPorPagina);
+                                ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
         return $productos;
     }
 
