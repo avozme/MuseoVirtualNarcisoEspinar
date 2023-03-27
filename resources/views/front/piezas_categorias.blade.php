@@ -158,7 +158,7 @@
                                         value="{{$currentPage-1}}">‹</a>
                                 </li>
                                 @for($i = 1; $i <= $pages; $i++) <li>
-                                    class="page-item {{$currentPage == $i ? 'active' : ''}}">
+                                    <class="page-item {{$currentPage == $i ? 'active' : ''}}">
                                     <button class="page-link" name="page" {{$currentPage == $i ? 'active' : ''}}
                                         value="{{$i}}">{{$i}}</button>
                                     </li>

@@ -19,6 +19,7 @@ class ItemsController extends Controller
             $idCategoria = Categorias::min('id');
         $itemsList = Items::where('categoria_id', $idCategoria)->orderBy('order')->get();
         $categorias = Categorias::orderBy('name')->get();
+        session(['id_categoria' => $idCategoria]);
         return view('items.all', ['itemsList'=>$itemsList, 'categorias'=>$categorias, 'idCategoria'=>$idCategoria]);
     }
 
