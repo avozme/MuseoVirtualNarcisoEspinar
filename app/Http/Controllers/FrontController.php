@@ -29,9 +29,10 @@ class FrontController extends Controller
     public function mostrarCategorias($id, Request $r) {
         $categoria = Categorias::find($id);
         $destacados = $categoria->items()->where('destacado', 1)->get();
-        if (count($destacados) > 0) {
+        if (blank($r->textoBusqueda) && count($destacados) > 0) {
             // Si algún ítem de esta categoría está marcado como "destacado", se mostrará una vista para elegir
-            // entre todos los valores de ese ítem.
+            // entre todos los valores de ese ítem. Excepto si estamos usando el buscador, en cuyo caso lanzaremos la búsqueda
+            // en el else ignorando el ítem destacado.
 
             // Recuperamos todos los valores del item destacado
             $idItemDestacado = $destacados[0]->id;
