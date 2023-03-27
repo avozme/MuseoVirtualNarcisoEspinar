@@ -73,7 +73,7 @@ class ItemsController extends Controller
         $categoria_id = $item->categoria_id;
         $order = $item->order;
         if ($cantidad == -1) {
-            $itemAnterior = Items::where('categoria_id', $categoria_id)->where('order', '<', $order)->first();
+            $itemAnterior = Items::where('categoria_id', $categoria_id)->where('order', '<', $order)->orderBy('order', 'desc')->first();
             if ($itemAnterior) {
                 $item->order = $itemAnterior->order;
                 $item->save();
@@ -81,7 +81,7 @@ class ItemsController extends Controller
                 $itemAnterior->save();
             }
         } else {
-            $itemSiguiente = Items::where('categoria_id', $categoria_id)->where('order', '>', $order)->first();
+            $itemSiguiente = Items::where('categoria_id', $categoria_id)->where('order', '>', $order)->orderBy('order')->first();
             if ($itemSiguiente) {
                 $item->order = $itemSiguiente->order;
                 $item->save();
