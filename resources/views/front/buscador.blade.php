@@ -23,7 +23,7 @@
         <form action="{{route('buscadorPorCampos')}}" method="POST" style="font-family: {{$opciones['tipografia3']}}">
             BÚSQUEDA POR CAMPOS: <br>
             <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}">
-                El buscador por campos realizará la búsqueda en el/los campo/s deseado/s de la categoría seleccionada.<br>
+                El buscador por campos realizará la búsqueda en el/los campo/s deseado/s de la categoría seleccionada (casillas redondas).<br>
                 Además, el resultado buscará coincidencias parecidas a su búsqueda.<br>
                 Para buscar coincidencias exactas existe la posibilidad de buscar el texto entre comillas "".</div>
             @csrf
