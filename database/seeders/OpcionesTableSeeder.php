@@ -177,7 +177,7 @@ class OpcionesTableSeeder extends Seeder
                 'id' => 18,
                 'value' => 'Aquí irá el contenido de la página "Acerca de"',
                 'key' => 'acerca_de_contenido',
-                'type' => 'text',
+                'type' => 'longText',
                 'created_at' => '2023-02-27 14:17:00',
                 'updated_at' => '2023-02-27 16:28:46',
             ),
