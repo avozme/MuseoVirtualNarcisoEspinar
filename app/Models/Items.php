@@ -25,6 +25,11 @@ class Items extends Model
         return $this->hasOne('App\Models\ItemsProductos', 'items_id');
     }
 
+    public function itemsProductos()
+    {
+        return $this->hasMany('App\Models\ItemsProductos', 'items_id');
+    }
+
     // Recupera todos los valores de un ítem
     public static function recuperarValores($idItem) {
         $valores = DB::select(DB::raw("SELECT value FROM items_productos WHERE items_id = '$idItem' GROUP BY value ORDER BY value"));

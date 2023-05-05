@@ -175,6 +175,7 @@ class ProductosController extends Controller
             $itemProducto = ItemsProductos::where('items_id', $item['id'])->where('productos_id', $id)->first() ?? new ItemsProductos();
             if(!blank($itemProducto)){
                 $itemProducto->value = $item['value'] ?? '-';
+                if($itemProducto->item->destacado) $itemProducto->value = rtrim(strip_tags($itemProducto->value));
                 $itemProducto->productos_id = $id;
                 $itemProducto->items_id = $item['id'];
                 $itemProducto->save();
