@@ -4,7 +4,6 @@
 
     <!-- Buscador General-->
     <div class="w-50 pb-5" id="buscador_general_front">
-        
         <form action="{{route('buscadorFront')}}" method="GET">
             <div class="input-group" style="font-family: {{$opciones['tipografia3']}}">
                 <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Busqueda general"
