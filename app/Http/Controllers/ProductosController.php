@@ -20,7 +20,8 @@ class ProductosController extends Controller
     }
 
     public function index() {
-        $productosList = Productos::with('categoria')->paginate(6);
+        $elementosPorPagina = Opciones::where('key', 'paginacion_back')->first()->value;
+        $productosList = Productos::with('categoria')->paginate($elementosPorPagina);
         $categorias = Categorias::orderBy('name')->get();
         return view('productos.all', ['productosList'=>$productosList, 'categorias'=>$categorias]);
     }
