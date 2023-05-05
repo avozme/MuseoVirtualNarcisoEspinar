@@ -196,7 +196,6 @@
         // Convertimos los JSON a objetos
         var product = JSON.parse(json_product);
         var items = JSON.parse(json_items);
-        console.log(product);
 
         // Creamos un documento PDF en blanco
         var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
