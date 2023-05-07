@@ -26,6 +26,7 @@
 </head>
 
 <body>
+    <div id="container" style="padding-bottom: 100px;">
 
     <!-- Menu-->
     @yield('content')
@@ -132,7 +133,15 @@
         </nav>
         <!-- Fin menu -->
         <!-- Footer-->
-        <footer class="footer py-4">
+        <style>
+            .fixed-footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+            }
+        </style>
+        <footer id="main-footer" class="footer fixed-footer py-4">
             <div class="container" style="font-family: {{$opciones['tipografia1']}}">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright &copy; JJ</div>
@@ -151,12 +160,34 @@
                 </div>
             </div>
         </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var footer = document.getElementById('main-footer');
+
+                function toggleFooterVisibility() {
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        // Mostrar el footer cuando se alcance el final de la página
+                        footer.style.display = 'block';
+                    } else {
+                        // Ocultar el footer cuando no se alcance el final de la página
+                        footer.style.display = 'none';
+                    }
+                }
+
+                // Verificar la visibilidad del footer al cargar la página y al hacer scroll
+                window.addEventListener('scroll', toggleFooterVisibility);
+                window.addEventListener('resize', toggleFooterVisibility);
+                toggleFooterVisibility(); // Para comprobar la visibilidad inicial del footer
+            });
+        </script>
+
         <script src="/js/main.js"></script>
         <!-- Nuestro js-->
         <script src="/js/frontScripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
+    </div>
 </body>
 
 </html>

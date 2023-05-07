@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-<div class="container" style="margin-top: 120px">
+<div class="container" style="margin-top: 120px; margin-bottom: 40px;">
 
     <!-- Buscador General-->
     <div class="w-50 pb-5" id="buscador_general_front">
