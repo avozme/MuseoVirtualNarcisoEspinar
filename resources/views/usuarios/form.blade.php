@@ -15,7 +15,7 @@
         <div class="container-fluid">
             Nombre :<input class="form-control mb-3" type="text" name="name" value="{{$usuarios->name ?? '' }}">
             Correo:<input class="form-control mb-3" type="email" name="email" value="{{$usuarios->email ?? '' }}">
-            <input type="hidden" name="password" value="{{$usuarios->password ?? '' }}">
+            Contraseña:<input class="form-control mb-3" type="password" name="password" value="{{$usuarios->password ?? '' }}">
             Tipo:
             <select class="form-select mb-3" name='type'>
                 <option @if (isset($usuarios) && $usuarios->type == 'SuperAdmin')  selected @endif value='SuperAdmin'>Super Admin</option>
