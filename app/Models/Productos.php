@@ -286,13 +286,29 @@ class Productos extends Model
     // Función que devuelve los productos que coinciden con un valor concreto de un ítem
     public static function recuperarPorCategoriaDestacado($idCategoria, $iditem, $valueItem) {
         $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
-        $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                                ->join("categorias", "productos.categoria_id", "categorias.id")
-                                ->join("items_productos", "productos.id", "items_productos.productos_id")
-                                ->where("productos.categoria_id", $idCategoria)
-                                ->where("items_productos.items_id", $iditem)
-                                ->where("items_productos.value", "like", "%$valueItem%")
-                                ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
+        // Si el valor del ítem destacado tiene algo asignado, buscamos todos los productos con ese valor en ese ítem.
+        // En cambio, si el ítem destacado no tiene valor asignado, buscamos todos los productos con una cadena vacía en ese ítem.
+        if ($valueItem == "Sin Valor" || $valueItem == "Sin valor") {
+            $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                                    ->join("categorias", "productos.categoria_id", "categorias.id")
+                                    ->join("items_productos", "productos.id", "items_productos.productos_id")
+                                    ->where("productos.categoria_id", $idCategoria)
+                                    ->where("items_productos.items_id", $iditem)
+                                    ->where("items_productos.value", "=", "")
+                                    ->orWhere("items_productos.value", "=", "<p><br></p>")
+                                    ->orWhere("items_productos.value", "=", "<p></p>")
+                                    ->orWhereNull("items_productos.value")
+                                    ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
+                                }
+        else {
+            $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                                    ->join("categorias", "productos.categoria_id", "categorias.id")
+                                    ->join("items_productos", "productos.id", "items_productos.productos_id")
+                                    ->where("productos.categoria_id", $idCategoria)
+                                    ->where("items_productos.items_id", $iditem)
+                                    ->where("items_productos.value", "like", "%$valueItem%")
+                                    ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
+        }
         return $productos;
     }
 

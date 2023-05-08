@@ -15,12 +15,16 @@
                     
                     <!-- Muestra una "tarjeta" por cada valor del ítem destacado de la categoría actual -->
                     @foreach($valores as $key => $valor)
+                    @php
+                        $valorItem = $valor->value == "" ? "Sin Valor" : $valor->value;
+                    @endphp
                     <div class="gridItem">
                         <div class="portfolio-item">
-                            <a class="portfolio-link" 
-                               href="{{route('front.porItemDestacado', ['idCategoria' => $categoria->id, 'idItem' => $idItem, 'valorItem' => strip_tags($valor->value)])}}">
+                            <a class="portfolio-link"
+                               href="{{route('front.porItemDestacado', ['idCategoria' => $categoria->id, 'idItem' => $idItem, 'valorItem' => $valorItem])}}">
+
                                 <div class="portfolio-caption">
-                                    <div class="portfolio-caption-heading">{{strip_tags($valor->value)}}</div>
+                                    <div class="portfolio-caption-heading">{{$valorItem}}</div>
                                 </div>
                             </a>
                         </div>
