@@ -123,8 +123,13 @@
 
                                                 <div class='items' style="padding-left: 25%; padding-right: 20%; text-align: left">
                                                     @foreach ($producto->items as $item)
-                                                    <strong>{!!$item->name!!}:</strong> {!!$item->pivot->value!!}<br>
+                                                        <strong>{!! $item->name !!}:</strong>
+                                                        <div class="truncar">{!! $item->pivot->value !!}
+
+                                                        </div>
+                                                        <br>
                                                     @endforeach
+
                                                     <!--
                                                     <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="javascript:window.print()">
                                                     <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$producto->image")}}','{{$producto->image}}')">
@@ -236,5 +241,44 @@
         link.setAttribute('download', product_name + ' - ' + contador + '.' + extension);
         link.click();
     }
+
+    //Script de truncar el valor de los items >200 con el boton ver mas
+    document.addEventListener('DOMContentLoaded', function() {
+    var truncarElems = document.querySelectorAll('.truncar');
+    truncarElems.forEach(function(elem) {
+        var contenidoCompleto = elem.innerHTML.trim();
+        var contenidoTruncado = contenidoCompleto.slice(0, 200);
+        var contenidoRestante = contenidoCompleto.slice(200);
+
+        if (contenidoCompleto.length > 200) {
+            var botonVerMas = document.createElement('button');
+            botonVerMas.textContent = 'Ver más...';
+            botonVerMas.classList.add('btn', 'btn-dark'); 
+
+            elem.innerHTML = contenidoTruncado;
+            elem.insertAdjacentElement('afterend', botonVerMas);
+
+            botonVerMas.addEventListener('click', function() {
+                elem.innerHTML = contenidoCompleto;
+                botonVerMas.parentNode.removeChild(botonVerMas);
+
+                var botonVerMenos = document.createElement('button');
+                botonVerMenos.textContent = 'Ver menos...';
+                botonVerMenos.classList.add('btn', 'btn-dark');
+
+                elem.insertAdjacentElement('afterend', botonVerMenos);
+
+                botonVerMenos.addEventListener('click', function() {
+                    elem.innerHTML = contenidoTruncado;
+                    botonVerMenos.parentNode.removeChild(botonVerMenos);
+                    elem.insertAdjacentElement('afterend', botonVerMas);
+                });
+            });
+
+            botonVerMas.insertAdjacentHTML('afterend', '<br>'); 
+        }
+    });
+});
+
 
 </script>
