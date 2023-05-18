@@ -312,19 +312,20 @@ class Productos extends Model
         return $productos;
     }
 
+    //funcion nueva busqueda general vista buscador
     public static function busquedaGeneral($idCategoria, $textoBusqueda)
     {
         if (strpos($textoBusqueda, '"') === 0) {
             $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
             $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
             $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
                 ->join("items_productos", "productos.id", "items_productos.productos_id")
                 ->join("categorias", "productos.categoria_id", "categorias.id")
                 ->where(function ($query) use ($texto_entre_comillas) {
                     $query->where("productos.name", "$texto_entre_comillas")
                         ->orwhere("items_productos.value", "$texto_entre_comillas");
-                })->groupBy('productos.id', 'name', 'image', 'categorias.name')->distinct()->paginate(9);
+                })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
         } else {
             $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
                 ->join("items_productos", "productos.id", "items_productos.productos_id")
@@ -332,7 +333,7 @@ class Productos extends Model
                 ->where(function ($query) use ($textoBusqueda) {
                     $query->where("productos.name", "like", "%$textoBusqueda%")
                         ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
-                })->groupBy('productos.id', 'name', 'image', 'categorias.name')->distinct()->paginate(9);
+                })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
         }
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
