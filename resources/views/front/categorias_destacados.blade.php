@@ -14,9 +14,11 @@
                     @endif
                     
                     <!-- Muestra una "tarjeta" por cada valor del ítem destacado de la categoría actual -->
+                    <!-- html_entity_decode hace que values como &nbsp; se muestre como tabulación y no se imprima -->
                     @foreach($valores as $key => $valor)
                     @php
-                        $valorItem = $valor->value == "" ? "Sin Valor" : $valor->value;
+                        $valorDecoded = html_entity_decode($valor->value);
+                        $valorItem = $valorDecoded == "" ? "Sin Valor" : $valorDecoded;
                     @endphp
                     <div class="gridItem">
                         <div class="portfolio-item">
