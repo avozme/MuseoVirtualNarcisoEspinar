@@ -70,7 +70,7 @@
 
                         <div class="dropdown">
                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-bottom: 1em;margin-right: 2em;">
-                                Colecciones
+                                COLECCIONES
                             </button>
 
                             <ul class="dropdown-menu">
