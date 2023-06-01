@@ -174,14 +174,14 @@ class Productos extends Model
                     $pos_comillas_fin = strpos($value, '"', $pos_comillas_inicio);
                     $texto_entre_comillas = substr($value, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
                     $countItems++;
-                    $sql = "SELECT DISTINCT productos.id
-                    FROM productos
-                    INNER JOIN items_productos ON productos.id = items_productos.productos_id
-                    WHERE productos.categoria_id = '$idCategoria'";
-                    $sql = $sql . " AND items_productos.items_id = '$item_id'
-                                    AND strip_tags(items_productos.value) LIKE '$texto_entre_comillas'";
+                    $valores = Productos::select('productos.id')->distinct()
+                        ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
+                        ->where('productos.categoria_id', $idCategoria)
+                        ->where('items_productos.items_id', $item_id)
+                        ->where(DB::raw('strip_tags(items_productos.value)'), 'LIKE', $texto_entre_comillas)
+                        ->get();
 
-                    $valores = DB::select(DB::raw($sql));
+                    
                 } else {
                     $countItems++;
                     $sql = "SELECT DISTINCT productos.id
