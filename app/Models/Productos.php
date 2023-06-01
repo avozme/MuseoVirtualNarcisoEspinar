@@ -179,7 +179,7 @@ class Productos extends Model
                     INNER JOIN items_productos ON productos.id = items_productos.productos_id
                     WHERE productos.categoria_id = '$idCategoria'";
                     $sql = $sql . " AND items_productos.items_id = '$item_id'
-                                    AND items_productos.value LIKE '$texto_entre_comillas'";
+                                    AND strip_tags(items_productos.value) LIKE '$texto_entre_comillas'";
 
                     $valores = DB::select(DB::raw($sql));
                 } else {
@@ -194,8 +194,6 @@ class Productos extends Model
                     $valores = DB::select(DB::raw($sql));
                 }
             }
-
-
 
             //Este foreach se encarga de guardar todos los array dentro de uno solo
             foreach ($valores as $valor) {
@@ -323,8 +321,11 @@ class Productos extends Model
                 ->join("categorias", "productos.categoria_id", "categorias.id")
                 ->where(function ($query) use ($texto_entre_comillas) {
                     $query->where("productos.name", "$texto_entre_comillas")
-                        ->orwhere("items_productos.value", "$texto_entre_comillas");
-                })->groupBy('productos.id', 'name', 'image', 'categorias.name')->distinct()->paginate(9);
+                        ->orWhere(DB::raw("strip_tags(items_productos.value)"), "$texto_entre_comillas");
+                })
+                ->groupBy('productos.id', 'name', 'image', 'categorias.name')
+                ->distinct()
+                ->paginate(9);
         } else {
             $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
                 ->join("items_productos", "productos.id", "items_productos.productos_id")
