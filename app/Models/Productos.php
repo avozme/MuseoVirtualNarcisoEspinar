@@ -174,14 +174,14 @@ class Productos extends Model
                     $pos_comillas_fin = strpos($value, '"', $pos_comillas_inicio);
                     $texto_entre_comillas = substr($value, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
                     $countItems++;
-                    $sql = "SELECT DISTINCT productos.id
-                    FROM productos
-                    INNER JOIN items_productos ON productos.id = items_productos.productos_id
-                    WHERE productos.categoria_id = '$idCategoria'";
-                    $sql = $sql . " AND items_productos.items_id = '$item_id'
-                                    AND items_productos.value LIKE '$texto_entre_comillas'";
+                    $valores = Productos::select('productos.id')->distinct()
+                        ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
+                        ->where('productos.categoria_id', $idCategoria)
+                        ->where('items_productos.items_id', $item_id)
+                        ->where(DB::raw('strip_tags(items_productos.value)'), 'LIKE', $texto_entre_comillas)
+                        ->get();
 
-                    $valores = DB::select(DB::raw($sql));
+                    
                 } else {
                     $countItems++;
                     $sql = "SELECT DISTINCT productos.id
@@ -194,8 +194,6 @@ class Productos extends Model
                     $valores = DB::select(DB::raw($sql));
                 }
             }
-
-
 
             //Este foreach se encarga de guardar todos los array dentro de uno solo
             foreach ($valores as $valor) {
@@ -312,20 +310,22 @@ class Productos extends Model
         return $productos;
     }
 
-    //funcion nueva busqueda general vista buscador
     public static function busquedaGeneral($idCategoria, $textoBusqueda)
     {
         if (strpos($textoBusqueda, '"') === 0) {
             $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
             $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
             $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
+            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
                 ->join("items_productos", "productos.id", "items_productos.productos_id")
                 ->join("categorias", "productos.categoria_id", "categorias.id")
                 ->where(function ($query) use ($texto_entre_comillas) {
                     $query->where("productos.name", "$texto_entre_comillas")
-                        ->orwhere("items_productos.value", "$texto_entre_comillas");
-                })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
+                        ->orWhere(DB::raw("strip_tags(items_productos.value)"), "$texto_entre_comillas");
+                })
+                ->groupBy('productos.id', 'name', 'image', 'categorias.name')
+                ->distinct()
+                ->paginate(9);
         } else {
             $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
                 ->join("items_productos", "productos.id", "items_productos.productos_id")
@@ -333,7 +333,7 @@ class Productos extends Model
                 ->where(function ($query) use ($textoBusqueda) {
                     $query->where("productos.name", "like", "%$textoBusqueda%")
                         ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
-                })->groupBy('productos.id', 'name', 'image')->distinct()->paginate(9);
+                })->groupBy('productos.id', 'name', 'image', 'categorias.name')->distinct()->paginate(9);
         }
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
