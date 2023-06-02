@@ -1,5 +1,10 @@
 <x-guest-layout>
+    <div class="logo" style="margin: auto;
+  width: 80%;">
+        <img src="/storage/images/{{ $opciones['logo_login'] }}" class="img-fluid"></img>   
+    </div>
     <!-- Estado de la sesión -->
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">

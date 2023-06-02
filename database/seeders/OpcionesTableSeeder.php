@@ -262,11 +262,31 @@ class OpcionesTableSeeder extends Seeder
                 'created_at' => '2023-02-28 07:31:40',
                 'updated_at' => '2023-02-28 07:31:40',
             ),
+            27 =>
             array (
                 'id' => 28,
                 'value' => '9',
                 'key' => 'paginacion_back',
                 'type' => 'number',
+                'created_at' => '2023-02-27 14:14:02',
+                'updated_at' => '2023-02-27 14:14:02',
+            ),
+            28 =>
+            array (
+                'id' => 29,
+                'value' => 'noimage.jpg',
+                'key' => 'favicon',
+                'type' => 'image',
+                'created_at' => '2023-02-27 14:14:02',
+                'updated_at' => '2023-02-27 14:14:02',
+            ),
+
+            29 =>
+            array (
+                'id' => 230,
+                'value' => 'noimage.jpg',
+                'key' => 'logo_login',
+                'type' => 'image',
                 'created_at' => '2023-02-27 14:14:02',
                 'updated_at' => '2023-02-27 14:14:02',
             ),

@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>{{$opciones['home_titulo']}} | {{$opciones['home_subtitulo']}}</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/storage/images/{{ $opciones['favicon'] }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -157,10 +157,11 @@
         <footer id="main-footer" class="footer fixed-footer py-4">
             <div class="container" style="font-family: {{$opciones['tipografia1']}}">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; JJ</div>
+                    <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br> </br> <div class="colores" style="color: blue">juan.baronviciana@gmail.com <br>josemanuelgallurt24@gmail.com</b></div></div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <!-- AQUÍ IBAN LAS REDES SOCIALES -->
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">licencia de Creative Commons Reconocimiento-NoComercial 4.0 Internacional</a>.
                     </div>
+                    
                     <div class="col-lg-4 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca
                             de
