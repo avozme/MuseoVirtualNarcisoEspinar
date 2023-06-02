@@ -65,14 +65,23 @@
                     style="--color_raton_encima_elementos_menu: {{$opciones['color_raton_encima_elementos_menu']}};    
                         --color_elementos_menu: {{$opciones['color_elementos_menu']}}; --color_cat_activa: {{$opciones['color_cat_activa']}}">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                        @foreach($categoriasList as $cat)
-                        @if(isset($categoria))
+                       
 
-                        @if(Request::segment(2) == $cat->id)
-                        <li class="nav-item">
-                            <a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
-                                href="/categoria/{{$cat->id}}">
+
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-bottom: 1em;margin-right: 2em;">
+                                COLECCIONES
+                            </button>
+
+                            <ul class="dropdown-menu">
+                                
+                                @foreach($categoriasList as $cat)
+                                @if(isset($categoria))
+                                
+                                @if(Request::segment(2) == $cat->id)
+                                <li class="nav-item"  style="color:black; width:auto">
+                                    <a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
+                                    href="/categoria/{{$cat->id}}"  style="color:black">
                                 {{$cat->name}}
                             </a>
                         </li>
@@ -89,11 +98,15 @@
                         </li>
                         @endif
                         @endforeach
-                        @if ($opciones['acerca_de_visibilidad'] != 0)
+
+                        </ul>
+                        
+                    </div>
+                    @if ($opciones['acerca_de_visibilidad'] != 0)
                         @if (Route::current()->getName() == 'acerca_de')
                         <li class="nav-item">
                             <a class="nav-link active"
-                                href="{{route('acerca_de')}}">{{$opciones['acerca_de_texto_menu']}}</a>
+                            href="{{route('acerca_de')}}">{{$opciones['acerca_de_texto_menu']}}</a>
                         </li>
                         @else
                         <li class="nav-item">
@@ -110,8 +123,7 @@
                             <a class="nav-link" href="{{route('vistaBuscador')}}">Buscador</a>
                         </li>
                         @endif
-                    </ul>
-                </div>
+                </ul>
             </div>
             @if((Route::current()->getName() != 'home') && (Route::current()->getName() != 'vistaBuscador'))
             <!-- Buscador -->
@@ -120,8 +132,8 @@
                 <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" id="texto" name="textoBusqueda"
-                            placeholder="Buscar en {{$categoria->name ?? ''}}"
-                            value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
+                        placeholder="Buscar en {{$categoria->name ?? ''}}"
+                        value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
                         <button class="btn btn-light" type="submit"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
@@ -130,6 +142,7 @@
             @endif
             <!-- Fin Buscador -->
             @endif
+        </div>
         </nav>
         <!-- Fin menu -->
         <!-- Footer-->
