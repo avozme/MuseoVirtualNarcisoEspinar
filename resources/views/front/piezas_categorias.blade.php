@@ -200,8 +200,10 @@
     function imprimir(json_product, image_id, json_items, category) {
         // Convertimos los JSON a objetos
         var product = JSON.parse(json_product);
+        json_items = json_items.replace(/(\r\n|\n|\r)/gm, "");  // Limpiamos el JSON de posibles saltos de línea
+        console.log(json_items);
         var items = JSON.parse(json_items);
-
+        
         // Creamos un documento PDF en blanco
         var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
         window.html2canvas = html2canvas;
