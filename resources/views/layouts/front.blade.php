@@ -37,7 +37,7 @@
         style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
         @else
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav"
-            style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
+            style="--color_nav: {{ $opciones['color_nav'] }}; font-family: {{$opciones['tipografia1']}}">
             @endif
 
 
@@ -69,11 +69,11 @@
 
 
                         <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-bottom: 1em;margin-right: 2em;">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style=" font-family: {{ $opciones['tipografia1'] }} !IMPORTANT; margin-bottom: 1em; margin-right: 2em">
                                 COLECCIONES
                             </button>
 
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" style="background-color: {{ $opciones['color_nav'] }}; font-family: {{ $opciones['tipografia1'] }} !IMPORTANT">
                                 
                                 @foreach($categoriasList as $cat)
                                 @if(isset($categoria))
