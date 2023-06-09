@@ -61,7 +61,7 @@
     <!-- Checkbox categorias -->
     
     <div class="buscador_por_campos pt-5">
-        <form action="{{route('buscadorPorCampos')}}" method="POST" style="font-family: {{$opciones['tipografia3']}}">
+        <form action="{{route('buscadorPorCampos')}}" method="POST" id="formBusqueda" style="font-family: {{$opciones['tipografia3']}}">
             BÚSQUEDA POR CAMPOS: <br>
             <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}">
                 El buscador por campos realizará la búsqueda en el/los campo/s deseado/s de la categoría seleccionada
@@ -88,12 +88,26 @@
                 </div>
                 @endforeach
             </div>
-            <button class="mt-3 btn btn-dark" type="submit">Buscar &nbsp;&nbsp;&nbsp;<i
+            <p class="text-danger" id="sendError"></p>
+            <button id="botonBusquedaCampos" class="mt-3 btn btn-dark" type="submit">Buscar &nbsp;&nbsp;&nbsp;<i
                     class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     </div>
 </div>
-
+<script>
+    const botonBusquedaCampos = document.getElementById('botonBusquedaCampos')
+    const form = document.getElementById('formBusqueda')
+    botonBusquedaCampos.addEventListener('click',(event)=>{
+        let sendForm = false
+        form.querySelectorAll('input[name^="items"]').forEach((el) => {
+            if(el.value != '') sendForm = true
+        })
+        if(!sendForm){
+            event.preventDefault()
+            document.getElementById('sendError').innerHTML = 'Tienes que rellenar al menos un campo'
+        } 
+    })
+</script>
 @endsection
 
 <script>

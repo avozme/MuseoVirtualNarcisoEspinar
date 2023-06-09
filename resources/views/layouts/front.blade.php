@@ -149,12 +149,13 @@
         <style>
             .fixed-footer {
                 position: fixed;
+                margin-top:2em;
                 left: 0;
                 bottom: 0;
                 width: 100%;
             }
         </style>
-        <footer id="main-footer" class="footer fixed-footer py-4">
+        <footer id="main-footer" class="footer py-4" >
             <div class="container" style="font-family: {{$opciones['tipografia1']}}">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br> </br> <div class="colores" style="color: blue">juan.baronviciana@gmail.com <br>josemanuelgallurt24@gmail.com</b></div></div>
@@ -174,26 +175,6 @@
                 </div>
             </div>
         </footer>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var footer = document.getElementById('main-footer');
-
-                function toggleFooterVisibility() {
-                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                        // Mostrar el footer cuando se alcance el final de la página
-                        footer.style.display = 'block';
-                    } else {
-                        // Ocultar el footer cuando no se alcance el final de la página
-                        footer.style.display = 'none';
-                    }
-                }
-
-                // Verificar la visibilidad del footer al cargar la página y al hacer scroll
-                window.addEventListener('scroll', toggleFooterVisibility);
-                window.addEventListener('resize', toggleFooterVisibility);
-                toggleFooterVisibility(); // Para comprobar la visibilidad inicial del footer
-            });
-        </script>
 
         <script src="/js/main.js"></script>
         <!-- Nuestro js-->

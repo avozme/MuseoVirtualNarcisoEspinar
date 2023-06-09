@@ -98,7 +98,7 @@ class ProductosController extends Controller
             $itemProducto->items_id = $item['id'];
             $itemProducto->save();
         }
-        return redirect()->route('productos.index');
+        return redirect()->route('buscadorBack', ['idCategoria' => $p->categoria_id]);
     }
 
     public function edit($id) {
@@ -175,7 +175,7 @@ class ProductosController extends Controller
             $itemProducto = ItemsProductos::where('items_id', $item['id'])->where('productos_id', $id)->first() ?? new ItemsProductos();
             if(!blank($itemProducto)){
                 $itemProducto->value = $item['value'] ?? '-';
-                if($itemProducto->item->destacado) $itemProducto->value = rtrim(strip_tags($itemProducto->value));
+                if(!blank($itemProducto->item) && $itemProducto->item->destacado) $itemProducto->value = rtrim(strip_tags($itemProducto->value));
                 $itemProducto->productos_id = $id;
                 $itemProducto->items_id = $item['id'];
                 $itemProducto->save();
@@ -183,7 +183,7 @@ class ProductosController extends Controller
 
         }
         $p->save();
-        return redirect()->route('productos.index');
+        return redirect()->route('buscadorBack', ['idCategoria' => $p->categoria_id]);
     }
 
     public function destroy($id) {
@@ -200,7 +200,8 @@ class ProductosController extends Controller
         foreach($borrarImagenes as $bi){
             $bi->delete();
         }
-        return redirect()->route('productos.index');
+        return redirect()->route('buscadorBack', ['idCategoria' => $p->categoria_id]);
+
     }
 
     public function buscadorProductos(Request $r) {

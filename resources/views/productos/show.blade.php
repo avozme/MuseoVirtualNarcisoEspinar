@@ -23,8 +23,7 @@
 <div class="d-grid gap-4 d-md-flex justify-content-md-start ms-2">
     <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{$producto->name}}', '{{json_encode($producto->items)}}', 'mi_imagen')">
 </div>
-{{$item->name}}
-{{$item->pivot->value}}
+
 @endsection
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

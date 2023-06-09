@@ -175,7 +175,7 @@ class Productos extends Model
                     $texto_entre_comillas = substr($value, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
                     $countItems++;
                     $valores = Productos::select('productos.id')->distinct()
-                        ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
+                        ->join('items_product   os', 'productos.id', '=', 'items_productos.productos_id')
                         ->where('productos.categoria_id', $idCategoria)
                         ->where('items_productos.items_id', $item_id)
                         ->where(DB::raw('strip_tags(items_productos.value)'), 'LIKE', $texto_entre_comillas)
@@ -219,6 +219,7 @@ class Productos extends Model
         $productos = Productos::whereIn('id', $aux_ids);
         return $productos;
     }
+    
 
     // Función de limpieza del texto de búsqueda para todos los buscadores.
     // Recibe un string con el texto de búsqueda y devuelve un array con las palabras sueltas,
