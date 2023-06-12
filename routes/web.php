@@ -35,7 +35,7 @@ Route::get('/categoria/{id}', 'FrontController@mostrarCategorias')->name('produc
 Route::get('buscadorFront', 'FrontController@buscadorGeneral')->name('buscadorFront');
 Route::get('buscador', 'FrontController@vistaBuscador')->name('vistaBuscador');
 Route::post('buscadorPorcampos', 'FrontController@buscadorPorCampos')->name('buscadorPorCampos');
-Route::get('/buscadorPorItemDestacado/{idCategoria}/{idItem}/{valorItem}', 'FrontController@buscadorPorItemDestacado')->name('front.porItemDestacado');
+Route::get('/vistaPorItemDestacado/{idCategoria}/{idItem}/{valorItem}', 'FrontController@vistaPorItemDestacado')->name('front.porItemDestacado');
 
 // Rutas para las páginas de información legal
 Route::get('acerca_de', 'FrontController@acercaDe')->name('acerca_de');

@@ -48,6 +48,37 @@ class Productos extends Model
         return $listaProductos;
     }
 
+    // Función que devuelve los productos que coinciden con un valor concreto de un ítem
+    public static function recuperarPorCategoriaDestacado($idCategoria, $iditem, $valueItem) {
+        $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
+        // Si el valor del ítem destacado tiene algo asignado, buscamos todos los productos con ese valor en ese ítem.
+        // En cambio, si el ítem destacado no tiene valor asignado, buscamos todos los productos con una cadena vacía en ese ítem.
+        if ($valueItem == "Sin Valor" || $valueItem == "Sin valor") {
+            $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                                    ->join("categorias", "productos.categoria_id", "categorias.id")
+                                    ->join("items_productos", "productos.id", "items_productos.productos_id")
+                                    ->where("productos.categoria_id", $idCategoria)
+                                    ->where("items_productos.items_id", $iditem)
+                                    ->where("items_productos.value", "=", "")
+                                    ->orWhere("items_productos.value", "=", "<p><br></p>")
+                                    ->orWhere("items_productos.value", "=", "<p></p>")
+                                    ->orWhereNull("items_productos.value")
+                                    ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
+                                }
+        else {
+            $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                                    ->join("categorias", "productos.categoria_id", "categorias.id")
+                                    ->join("items_productos", "productos.id", "items_productos.productos_id")
+                                    ->where("productos.categoria_id", $idCategoria)
+                                    ->where("items_productos.items_id", $iditem)
+                                    ->where("items_productos.value", "like", "%$valueItem%")
+                                    ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
+        }
+        return $productos;
+    }
+
+    
+
     /*Recupera los productos de una categoria ordenados aleatoriamente y los pagina cada X objetos */
     public static function recuperarPorCategoria($id)
     {
@@ -55,6 +86,8 @@ class Productos extends Model
         $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
         return $listaProductos->paginate($elementosPorPagina);
     }
+
+    //Inicio buscador
 
     /*Buscador Front que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     public static function busquedaCategorias($idCategoria, $textoBusqueda)
@@ -131,24 +164,6 @@ class Productos extends Model
         return $resultadoPaginado;
     }
 
-    // public static function busquedaCampos($idCategoria, $items){
-    //     $itemsNoVacios = array_keys(array_filter($items, function($valor){
-    //         return $valor !== null;
-    //     }));
-    //     $listaCategorias = Categorias::find($idCategoria);
-    //     $resultadoBusqueda = Productos::select('productos.id', 'productos.name','productos.image', 'items_productos.value')
-    //     ->join("items_productos", "productos.id", "items_productos.productos_id")
-    //     ->where("productos.categoria_id", $idCategoria)
-    //     ->whereIn('items_productos.items_id', $itemsNoVacios)
-    //     ->groupBy('productos.id', 'productos.name','productos.image', 'items_productos.value')->distinct();
-    //     foreach ($items as $item_id => $value) {//item_id es la key y value son los valores de los input
-    //         if(!blank($value)){
-    //             $resultadoBusqueda->where('items_productos.value','like', "%$value%");
-    //         }
-    //     }
-    //     return $resultadoBusqueda->get();
-    // }
-
     public static function busquedaCampos($idCategoria, $items)
     {
         // Vamos a contar el número de items que vienen rellenos en el formulario de búsqueda
@@ -180,8 +195,6 @@ class Productos extends Model
                         ->where('items_productos.items_id', $item_id)
                         ->where(DB::raw('strip_tags(items_productos.value)'), 'LIKE', $texto_entre_comillas)
                         ->get();
-
-                    
                 } else {
                     $countItems++;
                     $sql = "SELECT DISTINCT productos.id
@@ -194,6 +207,8 @@ class Productos extends Model
                     $valores = DB::select(DB::raw($sql));
                 }
             }
+
+
 
             //Este foreach se encarga de guardar todos los array dentro de uno solo
             foreach ($valores as $valor) {
@@ -219,7 +234,6 @@ class Productos extends Model
         $productos = Productos::whereIn('id', $aux_ids);
         return $productos;
     }
-    
 
     // Función de limpieza del texto de búsqueda para todos los buscadores.
     // Recibe un string con el texto de búsqueda y devuelve un array con las palabras sueltas,
@@ -281,36 +295,6 @@ class Productos extends Model
         return $trozos;
     }
 
-
-    // Función que devuelve los productos que coinciden con un valor concreto de un ítem
-    public static function recuperarPorCategoriaDestacado($idCategoria, $iditem, $valueItem) {
-        $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
-        // Si el valor del ítem destacado tiene algo asignado, buscamos todos los productos con ese valor en ese ítem.
-        // En cambio, si el ítem destacado no tiene valor asignado, buscamos todos los productos con una cadena vacía en ese ítem.
-        if ($valueItem == "Sin Valor" || $valueItem == "Sin valor") {
-            $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                                    ->join("categorias", "productos.categoria_id", "categorias.id")
-                                    ->join("items_productos", "productos.id", "items_productos.productos_id")
-                                    ->where("productos.categoria_id", $idCategoria)
-                                    ->where("items_productos.items_id", $iditem)
-                                    ->where("items_productos.value", "=", "")
-                                    ->orWhere("items_productos.value", "=", "<p><br></p>")
-                                    ->orWhere("items_productos.value", "=", "<p></p>")
-                                    ->orWhereNull("items_productos.value")
-                                    ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
-                                }
-        else {
-            $productos = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                                    ->join("categorias", "productos.categoria_id", "categorias.id")
-                                    ->join("items_productos", "productos.id", "items_productos.productos_id")
-                                    ->where("productos.categoria_id", $idCategoria)
-                                    ->where("items_productos.items_id", $iditem)
-                                    ->where("items_productos.value", "like", "%$valueItem%")
-                                    ->distinct()->orderBy('productos.name')->paginate($elementosPorPagina);
-        }
-        return $productos;
-    }
-
     public static function busquedaGeneral($idCategoria, $textoBusqueda)
     {
         if (strpos($textoBusqueda, '"') === 0) {
@@ -339,4 +323,49 @@ class Productos extends Model
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
+    public static function separarString($cadena) {
+        $valores = explode('"', $cadena);
+        $general = [];
+        $especifica = [];
+    
+        foreach ($valores as $index => $valor) {
+            $valor = trim($valor);
+    
+            if($valor!=""){
+                if ($index % 2 === 0) {
+                    $general[] = $valor; 
+                } else {
+                    $especifica[] = $valor; 
+                }
+            }
+            
+        }
+    
+        $data = [
+            'general' => $general,
+            'especifica' => $especifica
+        ];
+    
+        return $data;
+    }
+    
+
+    public static function buscador($data){
+        $txt = $data['txt'] ?? null;
+        $idCategoria = $data['idCategoria'] ?? null;
+        $items = $data['items'] ?? null;
+
+        $textosBusquedas = self::separarString($txt);
+
+        if (!empty($items)) {
+            dd('buscador por CAMPOS');
+        }elseif ($idCategoria!=null) {
+            dd('buscador por categoria');
+        }else{
+            dd($textosBusquedas);
+            dd('buscadorGeneral');
+        }
+        
+        dd($data);
+    }
 }

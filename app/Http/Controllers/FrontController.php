@@ -46,8 +46,11 @@ class FrontController extends Controller
         }
         else {
             // Si no hay ningún producto destacado en esta categoría, se mostrarán todos los productos de la categoría.
+            $data['idCategoria'] = $id;
+            $data['txt'] = $r->textoBusqueda;
+
             $categoriasList = Categorias::orderBy('name')->get();
-            $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($id, $r->textoBusqueda);
+            $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::buscador($data);
             $opciones = Opciones::convertToArray();
             $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
             return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
@@ -56,7 +59,7 @@ class FrontController extends Controller
     }
 
     /* Muestra todos los productos de una categoría, filtrados por el valor de un ítem destacado */
-    public function buscadorPorItemDestacado($idCategoria, $idItem, $valueItem) {
+    public function vistaPorItemDestacado($idCategoria, $idItem, $valueItem) {
         if ($idItem == -1) {
             // Si el id del item destacado es -1, se mostrarán todos los productos de la categoría (sin filtrar por ítem)
             $categoria = Categorias::find($idCategoria);
@@ -71,7 +74,7 @@ class FrontController extends Controller
             // Si el id del item destacado es distinto de -1, se mostrarán todos los productos de la categoría que tengan el valor seleccionado en $valueItem
             $categoria = Categorias::find($idCategoria);
             $categoriasList = Categorias::orderBy('name')->get();
-            $todosProductos = Productos::recuperarPorCategoriaDestacado($idCategoria, $idItem, $valueItem);
+            $todosProductos = Productos::recuperarPorItemDestacado($idCategoria, $idItem, $valueItem);
             $opciones = Opciones::convertToArray();
             $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
             return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
@@ -83,9 +86,11 @@ class FrontController extends Controller
     /*Funcion buscador categorías para que solo funcione en la vista de la categoria seleccionada*/
     public function buscadorCategorias(Request $r) {
         $categoria = Categorias::find($r->idCategoria);
+        $data['idCategoria'] = $r->idCategoria;
+        $data['txt'] = $r->textoBusqueda;
+
         $categoriasList = Categorias::orderBy('name')->get();
-        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
-        //$todosProductos = Productos::busquedaCategorias($r->idCategoria, $r->textoBusqueda);
+        $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::buscador($data);
         $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList, 'opciones' => $opciones, 
@@ -102,13 +107,15 @@ class FrontController extends Controller
 
     /*Funcion buscador general front*/ 
     public function buscadorGeneral(Request $r) {
+        $data['txt'] = $r->textoBusqueda;
         $categoriasList = Categorias::orderBy('name')->get();
-        $todosProductos =  Productos::busquedaGeneral($r->idCategoria, $r->textoBusqueda);
+        $todosProductos =  Productos::buscador($data);
         $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';       
         return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'msg'=> $msg, 'todosProductos'=>$todosProductos,
                     'categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
     }
+
 
     /*Funcion por campos según categoría front*/ 
     public function buscadorPorCampos(Request $r) {
@@ -116,7 +123,10 @@ class FrontController extends Controller
         $currentPage = intval($r->page) == 0 ? 1 : intval($r->page);
         /*Cada cuanto pagina*/
         $pagination = 8;
-        $productosList = Productos::busquedaCampos($r->categoria_id, $r->items);
+        $data['categoria_id'] = $r->categoria_id;
+        $data['items'] = $r->items;
+
+        $productosList = Productos::buscador($data);
         /*El numero de pagina que tiene los productos  -Ceil redondea hacia arriba- */
         $pages = ceil(count($productosList->get()) / $pagination);
         /*Te hace un get de los productos y se salta los productos de la pagian en la que estas y coge el numero de productos que tiene la paginacion ($currentPage-1)  */
