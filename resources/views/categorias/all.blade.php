@@ -34,7 +34,7 @@
 
 <script type = "text/javascript">
   function destroy(e){
-    if (!confirm('¿Seguro que desea borrar este recurso?')){
+    if (!confirm('¿Seguro que desea borrar este recurso? ->IMPORTANTE<- Se borraran todos los datos que contenga esta categoria.')){
     e.preventDefault();
     }
 

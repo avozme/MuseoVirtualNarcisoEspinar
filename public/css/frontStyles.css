@@ -31,3 +31,23 @@
     font-size: 1.5rem;
   }
 }
+
+#mainNav .navbar-nav .nav-item .nav-link, #menu .navbar-nav .nav-item .nav-link, #buscador_nav .navbar-nav .nav-item .nav-link{
+  color: #000000;
+}
+
+
+
+.nav-link{
+  margin-right: 2em;
+}
+
+@media (min-width: 1400px){
+.container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+  max-width: 1900px;
+}
+}
+
+.carousel-dark .carousel-control-prev-icon, .carousel-dark .carousel-control-next-icon{
+  display:none !important;
+}

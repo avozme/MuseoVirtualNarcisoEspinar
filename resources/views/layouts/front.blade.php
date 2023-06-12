@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>{{$opciones['home_titulo']}} | {{$opciones['home_subtitulo']}}</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/storage/images/{{ $opciones['favicon'] }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -37,7 +37,7 @@
         style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
         @else
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="buscador_nav"
-            style="--color_nav: {{ $opciones['color_nav'] }}; --tipografia1: {{$opciones['tipografia1']}}">
+            style="--color_nav: {{ $opciones['color_nav'] }}; font-family: {{$opciones['tipografia1']}}">
             @endif
 
 
@@ -65,14 +65,23 @@
                     style="--color_raton_encima_elementos_menu: {{$opciones['color_raton_encima_elementos_menu']}};    
                         --color_elementos_menu: {{$opciones['color_elementos_menu']}}; --color_cat_activa: {{$opciones['color_cat_activa']}}">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
-                        @foreach($categoriasList as $cat)
-                        @if(isset($categoria))
+                       
 
-                        @if(Request::segment(2) == $cat->id)
-                        <li class="nav-item">
-                            <a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
-                                href="/categoria/{{$cat->id}}">
+
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style=" font-family: {{ $opciones['tipografia1'] }} !IMPORTANT; margin-bottom: 1em; margin-right: 2em">
+                                COLECCIONES
+                            </button>
+
+                            <ul class="dropdown-menu" style="background-color: {{ $opciones['color_nav'] }}; font-family: {{ $opciones['tipografia1'] }} !IMPORTANT">
+                                
+                                @foreach($categoriasList as $cat)
+                                @if(isset($categoria))
+                                
+                                @if(Request::segment(2) == $cat->id)
+                                <li class="nav-item"  style="color:black; width:auto">
+                                    <a class="nav-link {{optional($categoria)->id == $cat->id ? 'active' : ''}}"
+                                    href="/categoria/{{$cat->id}}"  style="color:black">
                                 {{$cat->name}}
                             </a>
                         </li>
@@ -89,11 +98,15 @@
                         </li>
                         @endif
                         @endforeach
-                        @if ($opciones['acerca_de_visibilidad'] != 0)
+
+                        </ul>
+                        
+                    </div>
+                    @if ($opciones['acerca_de_visibilidad'] != 0)
                         @if (Route::current()->getName() == 'acerca_de')
                         <li class="nav-item">
                             <a class="nav-link active"
-                                href="{{route('acerca_de')}}">{{$opciones['acerca_de_texto_menu']}}</a>
+                            href="{{route('acerca_de')}}">{{$opciones['acerca_de_texto_menu']}}</a>
                         </li>
                         @else
                         <li class="nav-item">
@@ -110,8 +123,7 @@
                             <a class="nav-link" href="{{route('vistaBuscador')}}">Buscador</a>
                         </li>
                         @endif
-                    </ul>
-                </div>
+                </ul>
             </div>
             @if((Route::current()->getName() != 'home') && (Route::current()->getName() != 'vistaBuscador'))
             <!-- Buscador -->
@@ -120,8 +132,8 @@
                 <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
                     <div class="input-group">
                         <input type="text" class="form-control" id="texto" name="textoBusqueda"
-                            placeholder="Buscar en {{$categoria->name ?? ''}}"
-                            value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
+                        placeholder="Buscar en {{$categoria->name ?? ''}}"
+                        value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
                         <button class="btn btn-light" type="submit"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
@@ -130,24 +142,27 @@
             @endif
             <!-- Fin Buscador -->
             @endif
+        </div>
         </nav>
         <!-- Fin menu -->
         <!-- Footer-->
         <style>
             .fixed-footer {
                 position: fixed;
+                margin-top:2em;
                 left: 0;
                 bottom: 0;
                 width: 100%;
             }
         </style>
-        <footer id="main-footer" class="footer fixed-footer py-4">
+        <footer id="main-footer" class="footer py-4" >
             <div class="container" style="font-family: {{$opciones['tipografia1']}}">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; JJ</div>
+                    <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br> </br> <div class="colores" style="color: blue">juan.baronviciana@gmail.com <br>josemanuelgallurt24@gmail.com</b></div></div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <!-- AQUÍ IBAN LAS REDES SOCIALES -->
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">licencia de Creative Commons Reconocimiento-NoComercial 4.0 Internacional</a>.
                     </div>
+                    
                     <div class="col-lg-4 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca
                             de
@@ -160,26 +175,6 @@
                 </div>
             </div>
         </footer>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var footer = document.getElementById('main-footer');
-
-                function toggleFooterVisibility() {
-                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                        // Mostrar el footer cuando se alcance el final de la página
-                        footer.style.display = 'block';
-                    } else {
-                        // Ocultar el footer cuando no se alcance el final de la página
-                        footer.style.display = 'none';
-                    }
-                }
-
-                // Verificar la visibilidad del footer al cargar la página y al hacer scroll
-                window.addEventListener('scroll', toggleFooterVisibility);
-                window.addEventListener('resize', toggleFooterVisibility);
-                toggleFooterVisibility(); // Para comprobar la visibilidad inicial del footer
-            });
-        </script>
 
         <script src="/js/main.js"></script>
         <!-- Nuestro js-->
