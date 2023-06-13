@@ -252,6 +252,7 @@ class Productos extends Model
         $results = null;
 
         if (!empty($items)) {
+            //buscador por campos
             $filteredItems = array_filter($items, function ($item) use ($idCategoria) {
                 return $item['categoria_id'] == $idCategoria && !empty($item['texto']);
             });
