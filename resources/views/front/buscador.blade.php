@@ -79,14 +79,18 @@
             <!-- Fin Buscador -->
             <div class="d-flex" style="text-align:left">
                 @foreach ($categoriasList as $key => $categoria)
-                <div class="@if ($key != 0) d-none @endif items categoria{{$key}} ">
-                    @foreach($categoria->items as $items)
-                    <label class="col-md-4" style="margin-right:7%"> {{$items->name}}
-                        <input class="form-control" type="text" name="items[{{$items->id}}]">
-                    </label>
-                    @endforeach
-                </div>
+                    <div class="@if ($key != 0) d-none @endif items categoria{{$key}} ">
+                        @foreach($categoria->items as $item)
+                            <label class="col-md-4" style="margin-right:7%">
+                                {{$item->name}}
+                                <input class="form-control" type="text" name="items[{{$item->id}}][texto]">
+                                <input type="hidden" name="items[{{$item->id}}][categoria_id]" value="{{$item->categoria->id}}">
+                                <input type="hidden" name="items[{{$item->id}}][item_id]" value="{{$item->id}}">
+                            </label>
+                        @endforeach
+                    </div>
                 @endforeach
+
             </div>
             <p class="text-danger" id="sendError"></p>
             <button id="botonBusquedaCampos" class="mt-3 btn btn-dark" type="submit">Buscar &nbsp;&nbsp;&nbsp;<i

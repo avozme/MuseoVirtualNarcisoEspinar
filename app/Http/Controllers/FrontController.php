@@ -52,8 +52,8 @@ class FrontController extends Controller
             $categoriasList = Categorias::orderBy('name')->get();
             $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::buscador($data);
             $opciones = Opciones::convertToArray();
-            $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
-            return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
+            if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
+            return view('front.piezas_categorias', ['msg'=> $msg??"",'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
             'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);    
         }
     }
@@ -66,8 +66,8 @@ class FrontController extends Controller
             $categoriasList = Categorias::orderBy('name')->get();
             $todosProductos = Productos::recuperarPorCategoria($idCategoria);
             $opciones = Opciones::convertToArray();
-            $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
-            return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
+            if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
+            return view('front.piezas_categorias', ['msg'=> $msg??"",'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
             'opciones' => $opciones]);    
         } 
         else {
@@ -76,8 +76,8 @@ class FrontController extends Controller
             $categoriasList = Categorias::orderBy('name')->get();
             $todosProductos = Productos::recuperarPorItemDestacado($idCategoria, $idItem, $valueItem);
             $opciones = Opciones::convertToArray();
-            $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
-            return view('front.piezas_categorias', ['msg'=> $msg,'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
+            if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
+            return view('front.piezas_categorias', ['msg'=> $msg??"",'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
             'opciones' => $opciones]);    
         }
     }
@@ -88,13 +88,15 @@ class FrontController extends Controller
         $categoria = Categorias::find($r->idCategoria);
         $data['idCategoria'] = $r->idCategoria;
         $data['txt'] = $r->textoBusqueda;
+        $data['page'] = $r->page;
+
 
         $categoriasList = Categorias::orderBy('name')->get();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::buscador($data);
         $opciones = Opciones::convertToArray();
-        $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';
+        if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
         return view('front.piezas_categorias', ['productosList'=>$productosList, 'categoriasList'=>$categoriasList, 'opciones' => $opciones, 
-                    'msg'=> $msg,'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,
+                    'msg'=> $msg??"",'textoBusqueda'=> $r->textoBusqueda, 'todosProductos'=>$todosProductos,
                     'categoriasList'=>$categoriasList, 'idCategoria' => $r->idCategoria, 'categoria' => $categoria]);
     }
 
@@ -113,35 +115,33 @@ class FrontController extends Controller
         
         $todosProductos =  Productos::buscador($data);
         $opciones = Opciones::convertToArray();
-        $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';       
-        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'msg'=> $msg, 'todosProductos'=>$todosProductos,
-                    'categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
+        if(empty($todosProductos)) $msg = 'No hay resultados de búsqueda';       
+        return view('front.piezas_categorias', 
+        [
+            'textoBusqueda'=> $r->textoBusqueda,
+            'msg'=> $msg??"", 'todosProductos'=>$todosProductos,
+            'categoriasList'=>$categoriasList,
+            'textoBusqueda' => $r->textoBusqueda, 
+            'opciones' => $opciones
+        ]);
     }
 
 
     /*Funcion por campos según categoría front*/ 
     public function buscadorPorCampos(Request $r) {
-        /*Si $r->page es null al convertirlo en intval es 0 y si es 0 por default es 1 */
-        $currentPage = intval($r->page) == 0 ? 1 : intval($r->page);
-        /*Cada cuanto pagina*/
-        $pagination = 8;
-        $data['categoria_id'] = $r->categoria_id;
+        $data['idCategoria'] = $r->categoria_id;
         $data['items'] = $r->items;
+        $data['page'] = $r->page;
 
-        $productosList = Productos::buscador($data);
-        /*El numero de pagina que tiene los productos  -Ceil redondea hacia arriba- */
-        $pages = ceil(count($productosList->get()) / $pagination);
-        /*Te hace un get de los productos y se salta los productos de la pagian en la que estas y coge el numero de productos que tiene la paginacion ($currentPage-1)  */
-        // for ($i = 0; $i < ($currentPage - 1) * $pagination; $i++) {
-            $todosProductos =  $productosList->skip(($currentPage - 1) * $pagination)->take($pagination)->get();
-        // }
+        $todosProductos = Productos::buscador($data);
 
         $categoriasList = Categorias::orderBy('name')->get();
         $opciones = Opciones::convertToArray();
-        $msg = count($productosList->get()) > 0 ? null : 'No hay resultados de búsqueda';
-        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'msg'=> $msg,'currentPage' => $currentPage, 
-                    'pages' => $pages, 'items' => $r->items, 'textoBusqueda'=> $r->textoBusqueda, 
-                    'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
+        if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';       
+        return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'msg'=> $msg??"", 'todosProductos'=>$todosProductos,
+            'categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
+
+        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id, 'items' => $r->items,'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "acerca de"

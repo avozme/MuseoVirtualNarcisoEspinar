@@ -86,36 +86,7 @@ class Productos extends Model
         $elementosPorPagina = Opciones::where('key', 'paginacion_cantidad_elementos')->first()->value;
         return $listaProductos->paginate($elementosPorPagina);
     }
-
-    //Inicio buscador
-
-    /*Buscador Front que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
-    public static function busquedaCategorias($idCategoria, $textoBusqueda)
-    {
-        if (strpos($textoBusqueda, '"') === 0) {
-            $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
-            $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
-            $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                ->join("items_productos", "productos.id", "items_productos.productos_id")
-                ->join("categorias", "productos.categoria_id", "categorias.id")
-                ->where("productos.categoria_id", $idCategoria)
-                ->where(function ($query) use ($texto_entre_comillas) {
-                    $query->where("productos.name", "$texto_entre_comillas")
-                        ->orwhere("items_productos.value", "$texto_entre_comillas");
-                })->groupBy('productos.id', 'name', 'image', 'categorias.name')->distinct()->paginate(9);
-        } else {
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                ->join("items_productos", "productos.id", "items_productos.productos_id")
-                ->join("categorias", "productos.categoria_id", "categorias.id")
-                ->where("productos.categoria_id", $idCategoria)
-                ->where(function ($query) use ($textoBusqueda) {
-                    $query->where("productos.name", "like", "%$textoBusqueda%")
-                        ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
-                })->groupBy('productos.id', 'name', 'image', 'categorias.name')->distinct()->paginate(9);
-        }
-        return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
-    }
+    /*_______________________________________buscador productos backoffice__________________________________________________ */
 
     /* Buscador front/back que segun en la categoria en la que se encuentra ejecutara la consulta contra esa categoria */
     /* Si el idCategoria es NULL, busca en todas las categorias*/
@@ -163,6 +134,10 @@ class Productos extends Model
         if ($idCategoria != NULL) $resultadoPaginado->appends(['idCategoria' => $idCategoria]);
         return $resultadoPaginado;
     }
+    /*_______________________________________buscador productos backoffice__________________________________________________ */
+
+
+    /*__________________________________________________buscador usuario__________________________________________________ */    
 
     public static function busquedaCampos($idCategoria, $items)
     {
@@ -235,94 +210,6 @@ class Productos extends Model
         return $productos;
     }
 
-    // Función de limpieza del texto de búsqueda para todos los buscadores.
-    // Recibe un string con el texto de búsqueda y devuelve un array con las palabras sueltas,
-    // excepto el texto entrecomillado, que se devuelve como un único elemento del array.
-    // Las palabras comunes (como artículos o preposiciones) se eliminan del array.
-    public static function limpiezaBuscador($textoBusqueda)
-    {
-        // Diccionario de palabras comunes que eliminaremos de los términos de búsqueda
-        $diccionario = [
-            'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'e', 'o', 'u',
-            'a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante',
-            'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según',
-            'sin', 'sobre', 'tras', 'durante'
-        ];
-
-        $trozos = [];           // Array con los trozos del texto (palabras sueltas o textos entrecomillados)
-        $trozoActual = '';      // Trozo que estamos procesando en cada momento
-        $enComillas = false;    // Indica si estamos dentro de una sección entrecomillada o no
-
-        // Recorreremos el texto carácter por carácter
-        for ($i = 0; $i < strlen($textoBusqueda); $i++) {
-            $caracter = $textoBusqueda[$i];
-
-            // Si encontramos una comilla, cambiamos el estado de enComillas
-            if ($caracter == '"') {
-                if ($enComillas) {
-                    // Si estamos dentro de una sección entrecomillada y encontramos otra comilla,
-                    // significa que hemos llegado al final de la sección entrecomillada,
-                    // así que agregamos el trozo actual al array de trozos y reiniciamos el trozo actual
-                    $trozos[] = $trozoActual;
-                    $trozoActual = '';
-                }
-                $enComillas = !$enComillas;  // Permutamos el valor de enComillas
-            }
-
-            // Si estamos fuera de una sección entrecomillada y encontramos un espacio,
-            // agregamos el trozo actual al array de trozos y reiniciamos el trozo actual
-            if (!$enComillas && $caracter == ' ') {
-                if (!empty($trozoActual)) {
-                    $trozos[] = $trozoActual;
-                    $trozoActual = '';
-                }
-            } else if ($caracter != '"') {
-                // Si el carácter no es un espacio ni una comilla, lo agregamos al trozo actual
-                $trozoActual .= $caracter;
-            }
-        }
-
-        // Agregamos el último trozo al array de trozos
-        if (!empty($trozoActual)) {
-            $trozos[] = $trozoActual;
-            $trozoActual = '';
-        }
-
-        // Eliminamos del array las palabras comunes del diccionario
-        $trozos = array_diff($trozos, $diccionario);
-
-        // Devolvemos el array de trozos resultante
-        return $trozos;
-    }
-
-    public static function busquedaGeneral($idCategoria, $textoBusqueda)
-    {
-        if (strpos($textoBusqueda, '"') === 0) {
-            $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
-            $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
-            $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                ->join("items_productos", "productos.id", "items_productos.productos_id")
-                ->join("categorias", "productos.categoria_id", "categorias.id")
-                ->where(function ($query) use ($texto_entre_comillas) {
-                    $query->where("productos.name", "$texto_entre_comillas")
-                        ->orWhere(DB::raw("strip_tags(items_productos.value)"), "$texto_entre_comillas");
-                })
-                ->groupBy('productos.id', 'name', 'image', 'categorias.name')
-                ->distinct()
-                ->paginate(9);
-        } else {
-            $resultadoBusqueda = Productos::select('productos.id', 'productos.name', 'productos.image')
-                ->join("items_productos", "productos.id", "items_productos.productos_id")
-                ->join("categorias", "productos.categoria_id", "categorias.id")
-                ->where(function ($query) use ($textoBusqueda) {
-                    $query->where("productos.name", "like", "%$textoBusqueda%")
-                        ->orwhere("items_productos.value", "like", "%$textoBusqueda%");
-                })->groupBy('productos.id', 'name', 'image', 'categorias.name')->distinct()->paginate(9);
-        }
-        return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
-    }
-
     public static function preparacionString($cadena) {
         $valores = explode('"', $cadena);
         $txtReady = [];
@@ -337,10 +224,9 @@ class Productos extends Model
         foreach ($valores as $index => $valor) {
             $valor = trim($valor);
     
-            if ($valor != "") {
+            if (!empty($valor)) {
                 if ($index % 2 === 0) {
-                    $palabras = explode(' ', $valor);
-                    $palabrasFiltradas = array_diff($palabras, $diccionario);
+                    $palabrasFiltradas = array_diff(explode(' ', $valor), $diccionario);
                     $txtReady = array_merge($txtReady, $palabrasFiltradas);
                 } else {
                     $txtReady[] = $valor;
@@ -351,21 +237,81 @@ class Productos extends Model
         return $txtReady;
     }
     
-    
-
-    public static function buscador($data){
+    public static function buscador($data)
+    {
         $txt = $data['txt'] ?? null;
         $idCategoria = $data['idCategoria'] ?? null;
         $items = $data['items'] ?? null;
+        $page = $data['page']??null;
 
-        $txtReady = self::preparacionString($txt);
+        $txtReady = null;
+        if (!empty($txt)) {
+            $txtReady = self::preparacionString($txt);
+        }
+
+        $results = null;
 
         if (!empty($items)) {
-            dd('buscador por CAMPOS');
-        }elseif ($idCategoria!=null) {
-            dd('buscador por categoria');
-        }else{
-            //buscador general
+            $filteredItems = array_filter($items, function ($item) use ($idCategoria) {
+                return $item['categoria_id'] == $idCategoria && !empty($item['texto']);
+            });
+
+            if (!empty($filteredItems)) {
+                $results = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                    ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
+                    ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
+                    ->where('categorias.id', $idCategoria)
+                    ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name');
+
+                foreach ($filteredItems as $key => $item) {
+                    $txtReadyItem = self::preparacionString($item['texto']);
+
+                    $results->orwhere(function ($query) use ($item, $txtReadyItem) {
+                        foreach ($txtReadyItem as $value) {
+                            $query->orWhere(function ($query) use ($value, $item) {
+                                $query->where('items_productos.items_id', $item['item_id'])
+                                    ->whereRaw("MATCH(`value`) AGAINST (?)", [$value])
+                                    ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                            });
+                        }
+                    });
+                }
+
+                $results = $results->distinct()->paginate(3);
+                if (!empty($page)) {
+                    $results->setPageName('page')->appends(['page' => $page]);
+                }
+
+                return $results->appends(['items' => $filteredItems, 'categoria_id' => $idCategoria]);
+
+            }
+        } elseif (!empty($idCategoria)) {
+            //buscador categorias
+            if (!empty($txtReady)) {
+                $results = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                    ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
+                    ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
+                    ->where('categorias.id', $idCategoria)
+                    ->where(function ($query) use ($txtReady) {
+                        foreach ($txtReady as $value) {
+                            $query->orWhere(function ($query) use ($value) {
+                                $query->whereRaw("MATCH(`value`) AGAINST (?)", [$value])
+                                    ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                            });
+                        }
+                    })
+                    ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
+                    ->distinct()
+                    ->paginate(3);
+
+                if (!empty($page)) {
+                    $results->setPageName('page')->appends(['page' => $page]);
+                }
+
+                return $results->appends(['textoBusqueda' => $data['txt']]);
+            }
+        } else {
+            // Buscador general
             if (!empty($txtReady)) {
                 $results = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
                     ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
@@ -380,38 +326,21 @@ class Productos extends Model
                     })
                     ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
                     ->distinct()
-                    ->paginate(9);
-
-                return $results->appends(['textoBusqueda' => $data['txt']]);
-            } 
-        }
-        dd($data);
-    }
-}
-/*
-buscador general query sql
-                $sql = "SELECT DISTINCT(productos.id), productos.name, productos.image, categorias.name as categoriaName
-                        FROM productos
-                        JOIN items_productos ON productos.id = items_productos.productos_id
-                        JOIN categorias ON productos.categoria_id = categorias.id";
-                $endsql = "GROUP BY productos.id, productos.name, productos.image, categorias.name";
-                $addOr = false;
+                    ->paginate(3);
             
-                $sql .= " WHERE ";
-        
-                foreach ($txtReady as $value) {
-                    if ($addOr) {
-                        $sql .= " OR ";
-                    }
-                    $sql .= "(MATCH(`value`) AGAINST ('" . $value . "')  AND cleanText(items_productos.value) LIKE '%" . $value . "%')
-                    ";
-                    $addOr = true;
+                if (!empty($page)) {
+                    $results->setPageName('page')->appends(['page' => $page]);
                 }
-                
-            
-                $sql .= $endsql;
-                dd($sql);
+                                
+                return $results->appends(['textoBusqueda' => $data['txt']]);
+            }
+                       
+        }
 
-                $results = DB::select($sql);
-                return $results;
-                */
+        return null;
+    }
+
+
+    /*__________________________________________________buscador usuario__________________________________________________ */
+
+}
