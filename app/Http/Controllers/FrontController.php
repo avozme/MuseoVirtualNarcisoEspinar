@@ -133,10 +133,10 @@ class FrontController extends Controller
         $data['items'] = $r->items;
         $data['page'] = $r->page;
 
-        $todosProductos = Productos::buscador($data);
-
         $categoriasList = Categorias::orderBy('name')->get();
         $opciones = Opciones::convertToArray();
+        $todosProductos = Productos::buscador($data);
+
         if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';       
         return view('front.piezas_categorias', ['textoBusqueda'=> $r->textoBusqueda, 'msg'=> $msg??"", 'todosProductos'=>$todosProductos,
             'categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);

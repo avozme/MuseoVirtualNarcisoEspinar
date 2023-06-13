@@ -252,7 +252,6 @@ class Productos extends Model
         $results = null;
 
         if (!empty($items)) {
-            //buscador por campos
             $filteredItems = array_filter($items, function ($item) use ($idCategoria) {
                 return $item['categoria_id'] == $idCategoria && !empty($item['texto']);
             });
@@ -267,7 +266,7 @@ class Productos extends Model
                 foreach ($filteredItems as $key => $item) {
                     $txtReadyItem = self::preparacionString($item['texto']);
 
-                    $results->orwhere(function ($query) use ($item, $txtReadyItem) {
+                    $results->where(function ($query) use ($item, $txtReadyItem) {
                         foreach ($txtReadyItem as $value) {
                             $query->orWhere(function ($query) use ($value, $item) {
                                 $query->where('items_productos.items_id', $item['item_id'])
@@ -280,7 +279,7 @@ class Productos extends Model
 
                 $results = $results->distinct()->paginate(3);
                 if (!empty($page)) {
-                    $results->setPageName('page')->appends(['page' => $page]);
+                    $results->setPage($page);
                 }
 
                 return $results->appends(['items' => $filteredItems, 'categoria_id' => $idCategoria]);
@@ -305,8 +304,8 @@ class Productos extends Model
                     ->distinct()
                     ->paginate(3);
 
-                if (!empty($page)) {
-                    $results->setPageName('page')->appends(['page' => $page]);
+                    if (!empty($page)) {
+                        $results->setPageName('page')->appends(['page' => $page]);
                 }
 
                 return $results->appends(['textoBusqueda' => $data['txt']]);
