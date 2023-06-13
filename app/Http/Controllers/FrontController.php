@@ -108,7 +108,9 @@ class FrontController extends Controller
     /*Funcion buscador general front*/ 
     public function buscadorGeneral(Request $r) {
         $data['txt'] = $r->textoBusqueda;
+        $data['page'] = $r->page;
         $categoriasList = Categorias::orderBy('name')->get();
+        
         $todosProductos =  Productos::buscador($data);
         $opciones = Opciones::convertToArray();
         $msg = count($todosProductos) > 0 ? null : 'No hay resultados de búsqueda';       

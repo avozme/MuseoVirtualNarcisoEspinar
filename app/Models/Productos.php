@@ -323,31 +323,34 @@ class Productos extends Model
         return $resultadoBusqueda->appends(['textoBusqueda' => $textoBusqueda]);
     }
 
-    public static function separarString($cadena) {
+    public static function preparacionString($cadena) {
         $valores = explode('"', $cadena);
-        $general = [];
-        $especifica = [];
+        $txtReady = [];
+    
+        $diccionario = [
+            'el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas', 'y', 'e', 'o', 'u',
+            'a', 'ante', 'bajo', 'cabe', 'con', 'contra', 'de', 'desde', 'durante',
+            'en', 'entre', 'hacia', 'hasta', 'mediante', 'para', 'por', 'según',
+            'sin', 'sobre', 'tras', 'durante'
+        ];
     
         foreach ($valores as $index => $valor) {
             $valor = trim($valor);
     
-            if($valor!=""){
+            if ($valor != "") {
                 if ($index % 2 === 0) {
-                    $general[] = $valor; 
+                    $palabras = explode(' ', $valor);
+                    $palabrasFiltradas = array_diff($palabras, $diccionario);
+                    $txtReady = array_merge($txtReady, $palabrasFiltradas);
                 } else {
-                    $especifica[] = $valor; 
+                    $txtReady[] = $valor;
                 }
             }
-            
         }
     
-        $data = [
-            'general' => $general,
-            'especifica' => $especifica
-        ];
-    
-        return $data;
+        return $txtReady;
     }
+    
     
 
     public static function buscador($data){
@@ -355,17 +358,60 @@ class Productos extends Model
         $idCategoria = $data['idCategoria'] ?? null;
         $items = $data['items'] ?? null;
 
-        $textosBusquedas = self::separarString($txt);
+        $txtReady = self::preparacionString($txt);
 
         if (!empty($items)) {
             dd('buscador por CAMPOS');
         }elseif ($idCategoria!=null) {
             dd('buscador por categoria');
         }else{
-            dd($textosBusquedas);
-            dd('buscadorGeneral');
+            //buscador general
+            if (!empty($txtReady)) {
+                $results = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
+                    ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
+                    ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
+                    ->where(function ($query) use ($txtReady) {
+                        foreach ($txtReady as $value) {
+                            $query->orWhere(function ($query) use ($value) {
+                                $query->whereRaw("MATCH(`value`) AGAINST (?)", [$value])
+                                    ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                            });
+                        }
+                    })
+                    ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
+                    ->distinct()
+                    ->paginate(9);
+
+                return $results->appends(['textoBusqueda' => $data['txt']]);
+            } 
         }
-        
         dd($data);
     }
 }
+/*
+buscador general query sql
+                $sql = "SELECT DISTINCT(productos.id), productos.name, productos.image, categorias.name as categoriaName
+                        FROM productos
+                        JOIN items_productos ON productos.id = items_productos.productos_id
+                        JOIN categorias ON productos.categoria_id = categorias.id";
+                $endsql = "GROUP BY productos.id, productos.name, productos.image, categorias.name";
+                $addOr = false;
+            
+                $sql .= " WHERE ";
+        
+                foreach ($txtReady as $value) {
+                    if ($addOr) {
+                        $sql .= " OR ";
+                    }
+                    $sql .= "(MATCH(`value`) AGAINST ('" . $value . "')  AND cleanText(items_productos.value) LIKE '%" . $value . "%')
+                    ";
+                    $addOr = true;
+                }
+                
+            
+                $sql .= $endsql;
+                dd($sql);
+
+                $results = DB::select($sql);
+                return $results;
+                */
