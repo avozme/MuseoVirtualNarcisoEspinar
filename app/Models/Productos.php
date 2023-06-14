@@ -139,76 +139,7 @@ class Productos extends Model
 
     /*__________________________________________________buscador usuario__________________________________________________ */    
 
-    public static function busquedaCampos($idCategoria, $items)
-    {
-        // Vamos a contar el número de items que vienen rellenos en el formulario de búsqueda
-        $contador = 0;
-        foreach ($items as $item_id => $value) {
-            if ($value != null) {
-                $contador++;
-            }
-        }
-
-        $productos_ids = array();    // Lista de ids de productos que cumplen algún requisito de búsqueda
-        $max_producto_id = 10000;   // ID más alto de la tabla de productos --> Sustituir por SELECT MAX(producto.id) FROM productos
-        $aux = array($max_producto_id);
-        $countItems = 0;
-
-        // Búsqueda principal. Vamos a sacar los ids de los productos que cumplen al menos un requisito de búsqueda
-        // y a construir un array con sus ids ($resultado)
-        foreach ($items as $item_id => $value) { //item_id es la key y value son los valores de los input
-            $valores = array();
-            if (!blank($value)) {
-                if (strpos($value, '"') === 0) {
-                    $pos_comillas_inicio = strpos($value, '"') + 1;
-                    $pos_comillas_fin = strpos($value, '"', $pos_comillas_inicio);
-                    $texto_entre_comillas = substr($value, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-                    $countItems++;
-                    $valores = Productos::select('productos.id')->distinct()
-                        ->join('items_product   os', 'productos.id', '=', 'items_productos.productos_id')
-                        ->where('productos.categoria_id', $idCategoria)
-                        ->where('items_productos.items_id', $item_id)
-                        ->where(DB::raw('strip_tags(items_productos.value)'), 'LIKE', $texto_entre_comillas)
-                        ->get();
-                } else {
-                    $countItems++;
-                    $sql = "SELECT DISTINCT productos.id
-                    FROM productos
-                    INNER JOIN items_productos ON productos.id = items_productos.productos_id
-                    WHERE productos.categoria_id = '$idCategoria'";
-                    $sql = $sql . " AND items_productos.items_id = '$item_id'
-                                    AND items_productos.value LIKE '%$value%'";
-
-                    $valores = DB::select(DB::raw($sql));
-                }
-            }
-
-
-
-            //Este foreach se encarga de guardar todos los array dentro de uno solo
-            foreach ($valores as $valor) {
-                array_push($productos_ids, $valor);
-            }
-        }
-
-        for ($i = 0; $i < $max_producto_id; $i++) {
-            $aux[$i] = 0;
-        }
-        foreach ($productos_ids as $producto) {
-            $aux[$producto->id] = $aux[$producto->id] + 1;
-        }
-        $resultadoFinal = array();
-        $aux_ids = array();
-        for ($i = 0; $i < $max_producto_id; $i++) {
-            if ($aux[$i] == $contador) {
-                $producto = Productos::find($i);
-                $resultadoFinal[] = $producto;
-                $aux_ids[] = $producto->id;
-            }
-        }
-        $productos = Productos::whereIn('id', $aux_ids);
-        return $productos;
-    }
+   
 
     public static function preparacionString($cadena) {
         $valores = explode('"', $cadena);
