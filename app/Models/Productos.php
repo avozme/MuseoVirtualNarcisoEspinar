@@ -278,9 +278,12 @@ class Productos extends Model
                 }
 
                 $results = $results->distinct()->paginate(3);
+
+
                 if (!empty($page)) {
-                    $results->setPage($page);
+                        $results->setPageName('page')->appends(['page' => $page]);
                 }
+
 
                 return $results->appends(['items' => $filteredItems, 'categoria_id' => $idCategoria]);
 
