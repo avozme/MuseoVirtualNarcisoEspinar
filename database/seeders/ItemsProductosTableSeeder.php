@@ -19,814 +19,887 @@ class ItemsProductosTableSeeder extends Seeder
         ////////////////////////////////////////////////////////
                             //POSTALES
         ////////////////////////////////////////////////////////
-
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'DEF456', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '8 cm x 12 cm x 3 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 2', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 2', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Emma Johnson', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'David Smith', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Michael Davis', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en blanco y negro', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2020-05-01', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '1',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-01-10', // Ejemplo de fecha de edición
         ]);
         
         
+        DB::table('items_productos')->insert([
+            'productos_id' => '2',
+            'items_id' => '10',
+            'value' => 'GHI789', // Ejemplo de código de serie
+        ]);
         
         DB::table('items_productos')->insert([
             'productos_id' => '2',
-            'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '2',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '15 cm x 20 cm x 6 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 3', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 3', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Olivia Wilson', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Sophia Brown', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Emily Anderson', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en escala de grises', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2019-11-15', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '2',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2022-09-30', // Ejemplo de fecha de edición
         ]);
-
-
+        
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'JKL012', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '12 cm x 18 cm x 4 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 4', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 4', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'James Thompson', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'William Harris', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Daniel Clark', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en tonos sepia', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2021-07-20', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '3',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-03-18', // Ejemplo de fecha de edición
         ]);
-
-
+        
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'MNO345', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '10 cm x 15 cm x 2 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 5', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 5', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Ava Roberts', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Ethan Wilson', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Sophia Davis', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en color', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2022-02-10', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '4',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-05-25', // Ejemplo de fecha de edición
         ]);
-
+        
 
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'PQR678', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '8 cm x 12 cm x 1 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 6', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 6', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Oliver Johnson', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
-            'productos_id' => '1',
+            'productos_id' => '5',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Sophia White', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Mia Anderson', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en blanco y negro', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2023-01-05', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '5',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-04-12', // Ejemplo de fecha de edición
         ]);
-
-
+        
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'STU901', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '15 cm x 20 cm x 3 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 7', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 7', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Noah Thompson', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Emma Martinez', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Avery Turner', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en tonos sepia', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2022-12-20', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '6',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-03-08', // Ejemplo de fecha de edición
         ]);
+        
 
 
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'XYZ123', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '18 cm x 24 cm x 2 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 8', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 8', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Sophie Harris', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'James Wilson', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Ella Thompson', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión a color', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2022-11-10', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '7',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-02-18', // Ejemplo de fecha de edición
         ]);
-
-
+        
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'ABC456', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '10 cm x 15 cm x 0.5 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 9', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 9', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Oliver Clark', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Emily Davis', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Liam Turner', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en blanco y negro', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2022-10-05', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '8',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-01-12', // Ejemplo de fecha de edición
         ]);
-
-
+        
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '10',
-            'value' => 'Esto es un campo donde irá la Serie',
+            'value' => 'PQR789', // Ejemplo de código de serie
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '11',
-            'value' => 'Esto es un campo donde irán las Dimensiones',
+            'value' => '30 cm x 40 cm x 3 cm', // Ejemplo de dimensiones del producto
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '12',
-            'value' => 'Esto es un campo donde irá el Anverso',
+            'value' => 'Imagen del anverso del producto 10', // Ejemplo del contenido del anverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '13',
-            'value' => 'Este es un campo donde irá el Reverso',
+            'value' => 'Imagen del reverso del producto 10', // Ejemplo del contenido del reverso
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '14',
-            'value' => 'Esto es un campo donde irá el Editor',
+            'value' => 'Harper Anderson', // Ejemplo del nombre del editor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '15',
-            'value' => 'Esto es un campo donde irá el Impresor',
+            'value' => 'Ethan Thompson', // Ejemplo del nombre del impresor
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '16',
-            'value' => 'Esto es un campo donde irá el Ilustrador',
+            'value' => 'Ava White', // Ejemplo del nombre del ilustrador
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '17',
-            'value' => 'Esto es un campo donde irá la Impresión',
+            'value' => 'Impresión en tonos sepia', // Ejemplo del tipo de impresión
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '18',
-            'value' => 'Esto es un campo donde irá la Fecha más antigua',
+            'value' => '2022-09-01', // Ejemplo de fecha más antigua
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '9',
             'items_id' => '19',
-            'value' => 'Esto es un campo donde irá la Fecha de edición',
+            'value' => '2023-03-25', // Ejemplo de fecha de edición
         ]);
-
-
+        
 
         ////////////////////////////////////////////////////////
                         //PIEZAS ARQUEOLÓGICAS
         ////////////////////////////////////////////////////////
 
-
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '1',
-            'value' => 'Este es un campo donde irá el Número',
+            'value' => '98765', // Ejemplo del número
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '2',
-            'value' => 'Este es un campo donde irá la Función',
+            'value' => 'Función de prueba', // Ejemplo de la función
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '3',
-            'value' => 'Este es un campo donde irán las Dimensiones',
+            'value' => '15 cm x 25 cm x 3 cm', // Ejemplo de las dimensiones
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '4',
-            'value' => 'Este es un campo donde irán las Características Técnicas',
+            'value' => 'Características técnicas ficticias', // Ejemplo de las características técnicas
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '5',
-            'value' => 'Este es un campo donde irá la Morfología',
+            'value' => 'Morfología de prueba', // Ejemplo de la morfología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '6',
-            'value' => 'Este es un campo donde irá la Procedencia',
+            'value' => 'Origen imaginario', // Ejemplo de la procedencia
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '7',
-            'value' => 'Este es un campo donde irá la Cronología',
+            'value' => 'Siglo XXI', // Ejemplo de la cronología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '8',
-            'value' => 'Este es un campo donde irá el Depósito',
+            'value' => 'Depósito temporal', // Ejemplo del depósito
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '10',
             'items_id' => '9',
-            'value' => 'Este es un campo donde irá la Bibliografía',
+            'value' => 'Referencia bibliográfica no válida', // Ejemplo de la bibliografía
         ]);
-
-
-
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '1',
-            'value' => 'Este es un campo donde irá el Número',
+            'value' => '54321', // Ejemplo del número
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '2',
-            'value' => 'Este es un campo donde irá la Función',
+            'value' => 'Otra función de prueba', // Ejemplo de la función
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '3',
-            'value' => 'Este es un campo donde irán las Dimensiones',
+            'value' => '10 cm x 20 cm x 2 cm', // Ejemplo de las dimensiones
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '4',
-            'value' => 'Este es un campo donde irán las Características Técnicas',
+            'value' => 'Otras características técnicas ficticias', // Ejemplo de las características técnicas
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '5',
-            'value' => 'Este es un campo donde irá la Morfología',
+            'value' => 'Otra morfología de prueba', // Ejemplo de la morfología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '6',
-            'value' => 'Este es un campo donde irá la Procedencia',
+            'value' => 'Otro origen imaginario', // Ejemplo de la procedencia
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '7',
-            'value' => 'Este es un campo donde irá la Cronología',
+            'value' => 'Siglo XX', // Ejemplo de la cronología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '8',
-            'value' => 'Este es un campo donde irá el Depósito',
+            'value' => 'Depósito permanente', // Ejemplo del depósito
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '11',
             'items_id' => '9',
-            'value' => 'Este es un campo donde irá la Bibliografía',
+            'value' => 'Otra referencia bibliográfica', // Ejemplo de la bibliografía
         ]);
-
-
 
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '1',
-            'value' => 'Este es un campo donde irá el Número',
+            'value' => '13579', // Ejemplo del número
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '2',
-            'value' => 'Este es un campo donde irá la Función',
+            'value' => 'Función principal', // Ejemplo de la función
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '3',
-            'value' => 'Este es un campo donde irán las Dimensiones',
+            'value' => '18 cm x 30 cm x 5 cm', // Ejemplo de las dimensiones
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '4',
-            'value' => 'Este es un campo donde irán las Características Técnicas',
+            'value' => 'Características técnicas detalladas', // Ejemplo de las características técnicas
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '5',
-            'value' => 'Este es un campo donde irá la Morfología',
+            'value' => 'Esferoidal', // Ejemplo de la morfología real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '6',
-            'value' => 'Este es un campo donde irá la Procedencia',
+            'value' => 'Procedencia histórica', // Ejemplo de la procedencia real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '7',
-            'value' => 'Este es un campo donde irá la Cronología',
+            'value' => 'Siglo XIX', // Ejemplo de la cronología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '8',
-            'value' => 'Este es un campo donde irá el Depósito',
+            'value' => 'Depósito de colección', // Ejemplo del depósito
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '12',
             'items_id' => '9',
-            'value' => 'Este es un campo donde irá la Bibliografía',
+            'value' => 'Referencia bibliográfica válida', // Ejemplo de la bibliografía
         ]);
-
-
 
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '1',
-            'value' => 'Este es un campo donde irá el Número',
+            'value' => '24680', // Ejemplo del número
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '2',
-            'value' => 'Este es un campo donde irá la Función',
+            'value' => 'Función secundaria', // Ejemplo de la función
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '3',
-            'value' => 'Este es un campo donde irán las Dimensiones',
+            'value' => '12 cm x 20 cm x 2 cm', // Ejemplo de las dimensiones
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '4',
-            'value' => 'Este es un campo donde irán las Características Técnicas',
+            'value' => 'Características técnicas resumidas', // Ejemplo de las características técnicas
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '5',
-            'value' => 'Este es un campo donde irá la Morfología',
+            'value' => 'Cúbica', // Ejemplo de la morfología real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '6',
-            'value' => 'Este es un campo donde irá la Procedencia',
+            'value' => 'Procedencia contemporánea', // Ejemplo de la procedencia real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '7',
-            'value' => 'Este es un campo donde irá la Cronología',
+            'value' => 'Siglo XX', // Ejemplo de la cronología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '8',
-            'value' => 'Este es un campo donde irá el Depósito',
+            'value' => 'Depósito temporal', // Ejemplo del depósito
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '13',
             'items_id' => '9',
-            'value' => 'Este es un campo donde irá la Bibliografía',
+            'value' => 'Referencia bibliográfica actual', // Ejemplo de la bibliografía
         ]);
-
-
-
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '1',
-            'value' => 'Este es un campo donde irá el Número',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '2',
-            'value' => 'Este es un campo donde irá la Función',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '3',
-            'value' => 'Este es un campo donde irán las Dimensiones',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '4',
-            'value' => 'Este es un campo donde irán las Características Técnicas',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '5',
-            'value' => 'Este es un campo donde irá la Morfología',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '6',
-            'value' => 'Este es un campo donde irá la Procedencia',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '7',
-            'value' => 'Este es un campo donde irá la Cronología',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '8',
-            'value' => 'Este es un campo donde irá el Depósito',
-        ]);
-        DB::table('items_productos')->insert([
-            'productos_id' => '14',
-            'items_id' => '9',
-            'value' => 'Este es un campo donde irá la Bibliografía',
-        ]);
-
-
-
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '1',
-            'value' => 'Este es un campo donde irá el Número',
+            'value' => '13579', // Ejemplo del número
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '2',
-            'value' => 'Este es un campo donde irá la Función',
+            'value' => 'Función principal', // Ejemplo de la función
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '3',
-            'value' => 'Este es un campo donde irán las Dimensiones',
+            'value' => '18 cm x 30 cm x 5 cm', // Ejemplo de las dimensiones
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '4',
-            'value' => 'Este es un campo donde irán las Características Técnicas',
+            'value' => 'Características técnicas detalladas', // Ejemplo de las características técnicas
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '5',
-            'value' => 'Este es un campo donde irá la Morfología',
+            'value' => 'Esférica', // Ejemplo de la morfología real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '6',
-            'value' => 'Este es un campo donde irá la Procedencia',
+            'value' => 'Procedencia histórica', // Ejemplo de la procedencia real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '7',
-            'value' => 'Este es un campo donde irá la Cronología',
+            'value' => 'Siglo XIX', // Ejemplo de la cronología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '8',
-            'value' => 'Este es un campo donde irá el Depósito',
+            'value' => 'Depósito permanente', // Ejemplo del depósito
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '15',
             'items_id' => '9',
-            'value' => 'Este es un campo donde irá la Bibliografía',
+            'value' => 'Referencia bibliográfica clásica', // Ejemplo de la bibliografía
         ]);
-
-
 
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '1',
-            'value' => 'Este es un campo donde irá el Número',
+            'value' => '75391', // Ejemplo del número
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '2',
-            'value' => 'Este es un campo donde irá la Función',
+            'value' => 'Función adicional', // Ejemplo de la función
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '3',
-            'value' => 'Este es un campo donde irán las Dimensiones',
+            'value' => '8 cm x 8 cm x 8 cm', // Ejemplo de las dimensiones
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '4',
-            'value' => 'Este es un campo donde irán las Características Técnicas',
+            'value' => 'Características técnicas mejoradas', // Ejemplo de las características técnicas
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '5',
-            'value' => 'Este es un campo donde irá la Morfología',
+            'value' => 'Ovalada', // Ejemplo de la morfología real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '6',
-            'value' => 'Este es un campo donde irá la Procedencia',
+            'value' => 'Procedencia local', // Ejemplo de la procedencia real
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '7',
-            'value' => 'Este es un campo donde irá la Cronología',
+            'value' => 'Siglo XVIII', // Ejemplo de la cronología
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '8',
-            'value' => 'Este es un campo donde irá el Depósito',
+            'value' => 'Depósito permanente', // Ejemplo del depósito
         ]);
+        
         DB::table('items_productos')->insert([
             'productos_id' => '16',
             'items_id' => '9',
-            'value' => 'Este es un campo donde irá la Bibliografía',
+            'value' => 'Referencia bibliográfica histórica', // Ejemplo de la bibliografía
         ]);
+        
+        
+        
+        
+
     }
 }
