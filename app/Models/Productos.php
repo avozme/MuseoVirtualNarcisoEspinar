@@ -201,7 +201,7 @@ class Productos extends Model
                         foreach ($txtReadyItem as $value) {
                             $query->orWhere(function ($query) use ($value, $item) {
                                 $query->where('items_productos.items_id', $item['item_id'])
-                                    ->whereRaw("MATCH(`value`) AGAINST (?)", [$value])
+                                    
                                     ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
                             });
                         }
@@ -229,7 +229,7 @@ class Productos extends Model
                     ->where(function ($query) use ($txtReady) {
                         foreach ($txtReady as $value) {
                             $query->orWhere(function ($query) use ($value) {
-                                $query->whereRaw("MATCH(`value`) AGAINST (?)", [$value])
+                                $query
                                     ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
                             });
                         }
@@ -253,7 +253,7 @@ class Productos extends Model
                     ->where(function ($query) use ($txtReady) {
                         foreach ($txtReady as $value) {
                             $query->orWhere(function ($query) use ($value) {
-                                $query->whereRaw("MATCH(`value`) AGAINST (?)", [$value])
+                                $query
                                     ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
                             });
                         }
