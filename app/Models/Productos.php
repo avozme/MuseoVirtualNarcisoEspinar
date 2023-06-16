@@ -102,30 +102,16 @@ class Productos extends Model
             $resultadoBusqueda = $resultadoBusqueda->merge(Productos::all());
         } else {
             // CASO 3: Hay texto de búsqueda --> Buscamos productos que coincidan con el texto de búsqueda
-            $textoLimpio = Productos::limpiezaBuscador($textoBusquedaOG); // Limpia el texto de palabras comunes (como artículos) y lo trocea en palabras individuales
+            $textoLimpio = self::preparacionString($textoBusquedaOG); // Limpia el texto de palabras comunes (como artículos) y lo trocea en palabras individuales
             foreach ($textoLimpio as $textoBusqueda) {
-                if (strpos($textoBusqueda, '"') === false) {
-                    // CASO 3A: El texto de búsqueda NO contiene comillas --> Búsqueda LIKE
-                    if ($idCategoria != NULL) {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
-                            ->where("productos.categoria_id", "$idCategoria")
-                            ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->get());
-                    } else {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "like", "%$textoBusqueda%")->get());
-                    }
+                if ($idCategoria != NULL) {
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
+                        ->where("productos.categoria_id", "$idCategoria")
+                        ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->get());
                 } else {
-                    // CASO 3B: El texto de búsqueda SÍ contiene comillas --> Búsqueda EXACTA
-                    $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
-                    $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
-                    $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-                    if ($idCategoria != NULL) {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
-                            ->where("productos.categoria_id", $idCategoria)
-                            ->where("productos.name", "$texto_entre_comillas")->distinct()->get());
-                    } else {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "$texto_entre_comillas")->get());
-                    }
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "like", "%$textoBusqueda%")->get());
                 }
+                
             }
         }
         // Paginamos el resultado
