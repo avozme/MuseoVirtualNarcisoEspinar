@@ -225,6 +225,10 @@ class Productos extends Model
                                 $query
                                     ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
                             });
+                            $query->orWhere(function ($query) use ($value) {
+                                $query
+                                    ->whereRaw("productos.name LIKE ?", ['%' . $value . '%']);
+                            });
                         }
                     })
                     ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
@@ -248,6 +252,10 @@ class Productos extends Model
                             $query->orWhere(function ($query) use ($value) {
                                 $query
                                     ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                            });
+                            $query->orWhere(function ($query) use ($value) {
+                                $query
+                                    ->whereRaw("productos.name LIKE ?", ['%' . $value . '%']);
                             });
                         }
                     })
