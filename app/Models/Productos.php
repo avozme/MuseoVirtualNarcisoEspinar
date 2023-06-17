@@ -208,7 +208,6 @@ class Productos extends Model
                         $results->setPageName('page')->appends(['page' => $page]);
                 }
 
-
                 return $results->appends(['items' => $filteredItems, 'categoria_id' => $idCategoria]);
 
             }

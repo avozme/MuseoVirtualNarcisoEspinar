@@ -115,11 +115,14 @@ class FrontController extends Controller
         
         $todosProductos =  Productos::buscador($data);
         $opciones = Opciones::convertToArray();
-        if(empty($todosProductos)) $msg = 'No hay resultados de búsqueda';       
+        if ($todosProductos->isEmpty()) {
+            $msg = 'No hay resultados de búsqueda';   
+        } 
         return view('front.piezas_categorias', 
         [
             'textoBusqueda'=> $r->textoBusqueda,
-            'msg'=> $msg??"", 'todosProductos'=>$todosProductos,
+            'msg'=> $msg??"",
+            'todosProductos'=>$todosProductos,
             'categoriasList'=>$categoriasList,
             'textoBusqueda' => $r->textoBusqueda, 
             'opciones' => $opciones
@@ -137,8 +140,9 @@ class FrontController extends Controller
         $opciones = Opciones::convertToArray();
         $todosProductos = Productos::buscador($data);
 
-        if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';       
-        
+        if ($todosProductos->isEmpty()) {
+            $msg = 'No hay resultados de búsqueda';   
+        }        
 
         return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'msg'=>$msg??"", 'items' => $r->items,'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
