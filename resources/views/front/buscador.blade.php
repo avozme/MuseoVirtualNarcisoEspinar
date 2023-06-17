@@ -93,9 +93,14 @@
 
             </div>
             <p class="text-danger" id="sendError"></p>
-            <button id="botonBusquedaCampos" class="mt-3 btn btn-dark" type="submit">Buscar &nbsp;&nbsp;&nbsp;<i
-                    class="fa-solid fa-magnifying-glass"></i></button>
+            <button id="botonBusquedaCampos" class="mt-3 btn btn-dark" type="submit" >
+                Buscar &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </form>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
 </div>
 <script>
