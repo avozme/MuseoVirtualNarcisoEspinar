@@ -140,7 +140,7 @@ class FrontController extends Controller
         if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';       
         
 
-        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id, 'items' => $r->items,'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
+        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'msg'=>$msg??"", 'items' => $r->items,'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "acerca de"
