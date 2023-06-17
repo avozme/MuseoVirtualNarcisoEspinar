@@ -174,25 +174,32 @@ class Productos extends Model
             });
 
             if (!empty($filteredItems)) {
-                $results = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                    ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
-                    ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
-                    ->where('categorias.id', $idCategoria)
-                    ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name');
-
-                foreach ($filteredItems as $key => $item) {
-                    $txtReadyItem = self::preparacionString($item['texto']);
-
-                    $results->where(function ($query) use ($item, $txtReadyItem) {
-                        foreach ($txtReadyItem as $value) {
-                            $query->orWhere(function ($query) use ($value, $item) {
-                                $query->where('items_productos.items_id', $item['item_id'])
-                                    
-                                    ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                 $results = Productos::select('prod1.id', 'prod1.name', 'prod1.image', 'categorias.name as categoriaName')
+                ->from('productos as prod1')
+                ->join('items_productos', 'prod1.id', '=', 'items_productos.productos_id')
+                ->join('categorias', 'prod1.categoria_id', '=', 'categorias.id')
+                ->where('categorias.id', $idCategoria)
+                ->where(function ($query) use ($filteredItems) {
+                    foreach ($filteredItems as $key => $item) {
+                        $txtReadyItem = self::preparacionString($item['texto']);
+                        $query->where(function ($query) use ($item, $txtReadyItem) {
+                            $query->whereIn('prod1.id', function ($subquery) use ($item, $txtReadyItem) {
+                                $subquery->select('items_productos.productos_id')
+                                    ->from('items_productos')
+                                    ->join('productos', 'productos.id', '=', 'items_productos.productos_id')
+                                    ->join('items', 'items.id', '=', 'items_productos.items_id')
+                                    ->where('items_productos.items_id', $item['item_id'])
+                                    ->where('productos.id', DB::raw('prod1.id'))
+                                    ->where(function ($subquery) use ($txtReadyItem) {
+                                        foreach ($txtReadyItem as $value) {
+                                            $subquery->orWhereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                                        }
+                                    });
                             });
-                        }
-                    });
-                }
+                        });
+                    }
+                })
+                ->groupBy('prod1.id', 'prod1.name', 'prod1.image', 'categorias.name');
 
                 $results = $results->distinct()->paginate(3);
 
