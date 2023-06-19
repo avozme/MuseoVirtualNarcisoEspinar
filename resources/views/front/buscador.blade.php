@@ -1,85 +1,90 @@
 @extends('layouts.front')
+
 @section('content')
-<div class="container" style="margin-top: 120px; margin-bottom: 40px;">
-
-    <!-- Buscador General-->
-    <div class="w-50 pb-5" id="buscador_general_front">
-        <form action="{{route('buscadorFront')}}" method="GET">
-            <div class="input-group" style="font-family: {{$opciones['tipografia3']}}">
-                <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Busqueda general"
-                    value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
-                <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-            <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}">
-                La búsqueda se realizará en todos los campos de todas las categorías.<br>
-                El resultado de su búsqueda es una aproximación, para buscar coincidencias exactas existe la posibilidad
-                de buscar el texto entre comillas "".</div>
-        </form>
-        <div class="signos_diacriticos">
-        <div style="font-family: Roboto">Signos Diacríticos:</div>
-
-        <table style="font-size:36px">
+<div class="container" style="margin-top: 120px; margin-bottom: 4em;padding-left: 2em; padding-right:2em; padding-bottom:4em">
+    
+    <div style="float: right;">
+        <table style="font-size: 13px;">
             <tr>
-                <td>Ā</td>
-                <td>Ī</td>
-                <td>Ū</td>
-                <td>Š</td>
-                <td>Ŷ</td>
-                <td>Ḥ</td>
-                <td>Ṣ</td>
-                <td>Ḍ</td>
-                <td>Ẓ</td>
-                <td>Ṭ</td>
-                <td>Ḏ</td>
-                <td>Ṯ</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>ā</td>
-                <td>ī</td>
-                <td>ū</td>
-                <td>š</td>
-                <td>ŷ</td>
-                <td>ḥ</td>
-                <td>ṣ</td>
-                <td>ḍ</td>
-                <td>ẓ</td>
-                <td>ṭ</td>
-                <td>ḏ</td>
-                <td>ṯ</td>
-                <td>ʿ</td>
-                <td>’</td>
+                <td>Signos diacriticos:  </td>
+                <td>Ī</td><td>  </td>
+                <td>Ū</td><td>  </td>
+                <td>Š</td><td>  </td>
+                <td>Ŷ</td><td>  </td>
+                <td>Ḥ</td><td>  </td>
+                <td>Ṣ</td><td>  </td>
+                <td>Ḍ</td><td>  </td>
+                <td>Ẓ</td><td>  </td>
+                <td>Ṭ</td><td>  </td>
+                <td>Ḏ</td><td>  </td>
+                <td>Ṯ</td><td>  </td>
+                <td>ā</td><td>  </td>
+                <td>ī</td><td>  </td>
+                <td>ū</td><td>  </td>
+                <td>š</td><td>  </td>
+                <td>ŷ</td><td>  </td>
+                <td>ḥ</td><td>  </td>
+                <td>ṣ</td><td>  </td>
+                <td>ḍ</td><td>  </td>
+                <td>ẓ</td><td>  </td>
+                <td>ṭ</td><td>  </td>
+                <td>ḏ</td><td>  </td>
+                <td>ṯ</td><td>  </td>
+                <td>ʿ</td><td>  </td>
+                <td>’</td><td>  </td>
             </tr>
         </table>
-    </div>
-    </div>
-    <!--Fin Buscador General-->
-    <br>
-    <br>
-    <br>
-    <!-- Checkbox categorias -->
+    </div>  
     
-    <div class="buscador_por_campos pt-5">
-        <form action="{{route('buscadorPorCampos')}}" method="POST" id="formBusqueda" style="font-family: {{$opciones['tipografia3']}}">
-            BÚSQUEDA POR CAMPOS: <br>
-            <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}">
-                El buscador por campos realizará la búsqueda en el/los campo/s deseado/s de la categoría seleccionada
-                (casillas redondas).<br>
-                Además, el resultado buscará coincidencias parecidas a su búsqueda.<br>
-                Para buscar coincidencias exactas existe la posibilidad de buscar el texto entre comillas "".</div>
-            @csrf
-            @foreach ($categoriasList as $key => $categoria)
-            <label class="form-check-label mb-3  mt-3"><input @if ($key==0) checked @endif class="form-check-input"
-                    type="radio" id="categoria{{$key}}" name="categoria_id" onclick="showItems(this)"
-                    value="{{$categoria->id}}"> {{$categoria->name}}</label> &nbsp
-            @endforeach
-            <!--Fin Checkbox categorias -->
+    <!-- Buscador General -->
+    <div class="container" id="buscador_general_front" style="padding-bottom: 2em">
+        
+        <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}; text-align: justify;">
+            <h5>BÚSQUEDA GENERAL: <br><br></h5>
 
-            <!-- Fin Buscador -->
+            <form action="{{route('buscadorFront')}}" method="GET" style="padding-bottom: 2em; padding-left:2em">
+                <div class="input-group" style="font-family: {{$opciones['tipografia3']}}">
+                    <input type="text" class="form-control" id="texto" name="textoBusqueda" placeholder="Busqueda general" value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
+                    <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div> 
+            </form>
+            <p style="padding-left: 2em;">
+                El buscador general realiza una búsqueda en todos los campos de todas las categorías y el nombre de los objetos. El resultado de la búsqueda es una aproximación, lo que significa que mostrará los objetos que contengan de alguna manera alguna de las palabras ingresadas en el campo de búsqueda.<br>
+                
+                Para buscar coincidencias exactas, puedes utilizar comillas "". Por ejemplo, si buscas "hola pepe 33" entre comillas, el buscador mostrará los objetos que contengan esa combinación de palabras.<br> 
+            </p>
+        </div>
+    </div>
+    <!-- Fin Buscador General -->
+</div>
+    <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
+    <!-- Checkbox categorias -->
+        
+<div class="container" id="buscador_por_campos" style="padding-bottom: 2em; padding-left:2em;">
+    <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}; text-align: justify;">
+        <h5>BÚSQUEDA POR CAMPOS: <br></h5>
+        <p style="padding-left: 2em;">
+            El buscador por campos realizará la búsqueda en el/los campo/s deseado/s de la categoría seleccionada (casillas redondas).<br>
+            El buscador por campos funciona de manera similar al buscador general, pero con una diferencia importante: si no hay coincidencias en todos los campos rellenados, el objeto no aparecerá en los resultados.            
+        </P>
+    </div>
+
+        <form action="{{route('buscadorPorCampos')}}" method="POST" id="formBusqueda" style="font-family: {{$opciones['tipografia3']}}">
+            
+            @csrf
+
+            @foreach ($categoriasList as $key => $categoria)
+                <label class="form-check-label mb-1  mt-2">
+                    <input {{ $key == 0 ? 'checked' : '' }} class="form-check-input" type="radio" id="categoria{{$key}}" name="categoria_id" onclick="showItems(this)" value="{{$categoria->id}}">
+                    {{$categoria->name}}
+                </label> 
+            @endforeach
+            <!-- Fin Checkbox categorias -->
+            
+            <!-- Buscador por campos -->
             <div class="d-flex" style="text-align:left">
                 @foreach ($categoriasList as $key => $categoria)
-                    <div class="@if ($key != 0) d-none @endif items categoria{{$key}} ">
+                    <div class="{{ $key != 0 ? 'd-none' : '' }} items categoria{{$key}} ">
                         @foreach($categoria->items as $item)
                             <label class="col-md-4" style="margin-right:7%">
                                 {{$item->name}}
@@ -90,41 +95,40 @@
                         @endforeach
                     </div>
                 @endforeach
-
             </div>
+            <!-- Fin Buscador por campos -->
             <p class="text-danger" id="sendError"></p>
-            <button id="botonBusquedaCampos" class="mt-3 btn btn-dark" type="submit" >
+
+            <button id="botonBusquedaCampos" class="mb-3 btn btn-dark" type="submit">
                 Buscar &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
-        <br>
-        <br>
-        <br>
-        <br>
     </div>
 </div>
+
+
 <script>
-    const botonBusquedaCampos = document.getElementById('botonBusquedaCampos')
-    const form = document.getElementById('formBusqueda')
-    botonBusquedaCampos.addEventListener('click',(event)=>{
-        let sendForm = false
+    // Función para mostrar los items según la categoría seleccionada
+    function showItems(element) {
+        document.querySelectorAll('.items').forEach((el) => {
+            el.classList.add('d-none');
+        });
+        document.querySelector("." + element.id).classList.remove('d-none');
+    }
+
+    // Validación para enviar el formulario de búsqueda por campos
+    const botonBusquedaCampos = document.getElementById('botonBusquedaCampos');
+    const form = document.getElementById('formBusqueda');
+    botonBusquedaCampos.addEventListener('click',(event) => {
+        let sendForm = false;
         form.querySelectorAll('input[name^="items"]').forEach((el) => {
-            if(el.value != '') sendForm = true
-        })
-        if(!sendForm){
-            event.preventDefault()
-            document.getElementById('sendError').innerHTML = 'Tienes que rellenar al menos un campo'
+            if (el.value != '') sendForm = true;
+        });
+        if (!sendForm) {
+            event.preventDefault();
+            document.getElementById('sendError').innerHTML = 'Tienes que rellenar al menos un campo';
         } 
-    })
+    });
 </script>
+
 @endsection
-
-<script>
-function showItems(element) {
-    document.querySelectorAll('.items').forEach((el) => {
-        el.classList.add('d-none')
-    })
-    document.querySelector("." + element.id).classList.remove('d-none')
-
-}
-</script>
