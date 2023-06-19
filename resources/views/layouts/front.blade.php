@@ -128,17 +128,19 @@
             @if((Route::current()->getName() != 'home') && (Route::current()->getName() != 'vistaBuscador'))
             <!-- Buscador -->
             @if(isset($categoria))
-            <div class="p-1 searchParent" style="font-family: {{$opciones['tipografia1']}}">
-                <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="texto" name="textoBusqueda"
-                        placeholder="Buscar en {{$categoria->name ?? ''}}"
-                        value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
-                        <button class="btn btn-light" type="submit"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </form>
-            </div>
+                <div class="p-1 searchParent" style="font-family: {{$opciones['tipografia1']}}">
+                    <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="texto" name="textoBusqueda"
+                                placeholder="Buscar en {{$categoria->name ?? ''}}"
+                                value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
+                            <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="btn btn-light" type="button" onclick="showInfoMessage()">
+                               i
+                            </button>
+                        </div>
+                    </form>
+                </div>
             @endif
             <!-- Fin Buscador -->
             @endif
@@ -199,6 +201,43 @@
         <script src="/js/frontScripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+
+        <style>
+            /* Estilos para el mensaje emergente */
+            #info-message {
+                position: fixed;
+                top: 80px;
+                right: 10px;
+                padding: 5px 10px;
+                background-color: #ffffff;
+                color: #000000;
+                font-size: 12px;
+                z-index: 9999;
+                display: none;
+            }
+        </style>
+
+        <script>
+            // Función para mostrar el mensaje de información durante unos segundos
+            function showInfoMessage() {
+                var message = 'Para buscar coincidencias exactas, puedes utilizar comillas "". Por ejemplo, si buscas "hola pepe 33" entre comillas, el buscador mostrará los objetos que contengan esa combinación de palabras.';
+                var duration = 5000; // Duración en milisegundos (5 segundos)
+
+                // Crear y mostrar el elemento del mensaje
+                var infoMessage = document.createElement('div');
+                infoMessage.id = 'info-message';
+                infoMessage.textContent = message;
+                document.body.appendChild(infoMessage);
+
+                // Mostrar el mensaje
+                infoMessage.style.display = 'block';
+
+                // Ocultar el mensaje después de la duración especificada
+                setTimeout(function () {
+                    infoMessage.style.display = 'none';
+                }, duration);
+            }
         </script>
     </div>
 </body>
