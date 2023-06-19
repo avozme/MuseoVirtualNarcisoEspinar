@@ -74,7 +74,7 @@ class FrontController extends Controller
             // Si el id del item destacado es distinto de -1, se mostrarán todos los productos de la categoría que tengan el valor seleccionado en $valueItem
             $categoria = Categorias::find($idCategoria);
             $categoriasList = Categorias::orderBy('name')->get();
-            $todosProductos = Productos::recuperarPorItemDestacado($idCategoria, $idItem, $valueItem);
+            $todosProductos = Productos::recuperarPorCategoriaDestacado($idCategoria, $idItem, $valueItem);
             $opciones = Opciones::convertToArray();
             if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
             return view('front.piezas_categorias', ['msg'=> $msg??"",'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
