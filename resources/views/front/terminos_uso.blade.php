@@ -1,13 +1,17 @@
 @extends('layouts.front')
 @section('content')
 <style>
-    p{
-      text-align: justify;
-    }
+  p{
+    text-align: justify;
+  }
 </style>
-  
-<div class="container" style="margin-top: 1.5in  --tipografia3: {{$opciones['tipografia3']}}">
-    {!! $opciones['terminos_uso'] !!}
+<div class="container">
+  <div class="avisos_legales" style="padding-top: 1.4in;  --tipografia3: {{$opciones['tipografia3']}}">
+    <p> 
+      {!! $opciones['terminos_uso'] !!}
+    </p>
+      
+  </div>
 </div>
 @endsection
 
