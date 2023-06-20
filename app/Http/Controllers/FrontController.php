@@ -12,7 +12,7 @@ class FrontController extends Controller
 {
     public function index() {
         $productosList = Productos::recuperarProductosFront();
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         $opciones = Opciones::convertToArray();
         return view('front.front', ['home'=>true, 'productosList'=>$productosList, 'categoriasList'=>$categoriasList,'opciones' => $opciones]);
     }
@@ -41,7 +41,7 @@ class FrontController extends Controller
             $data['categoria'] = $categoria;
             $data['idItem'] = $idItemDestacado;
             $data['opciones'] = Opciones::convertToArray();
-            $data['categoriasList'] = Categorias::orderBy('name')->get();
+            $data['categoriasList'] = Categorias::orderBy('order')->get();
             return view('front.categorias_destacados', $data);
         }
         else {
@@ -49,7 +49,7 @@ class FrontController extends Controller
             $data['idCategoria'] = $id;
             $data['txt'] = $r->textoBusqueda;
 
-            $categoriasList = Categorias::orderBy('name')->get();
+            $categoriasList = Categorias::orderBy('order')->get();
             $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::buscador($data);
             $opciones = Opciones::convertToArray();
             if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
@@ -63,7 +63,7 @@ class FrontController extends Controller
         if ($idItem == -1) {
             // Si el id del item destacado es -1, se mostrarán todos los productos de la categoría (sin filtrar por ítem)
             $categoria = Categorias::find($idCategoria);
-            $categoriasList = Categorias::orderBy('name')->get();
+            $categoriasList = Categorias::orderBy('order')->get();
             $todosProductos = Productos::recuperarPorCategoria($idCategoria);
             $opciones = Opciones::convertToArray();
             if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
@@ -73,7 +73,7 @@ class FrontController extends Controller
         else {
             // Si el id del item destacado es distinto de -1, se mostrarán todos los productos de la categoría que tengan el valor seleccionado en $valueItem
             $categoria = Categorias::find($idCategoria);
-            $categoriasList = Categorias::orderBy('name')->get();
+            $categoriasList = Categorias::orderBy('order')->get();
             $todosProductos = Productos::recuperarPorCategoriaDestacado($idCategoria, $idItem, $valueItem);
             $opciones = Opciones::convertToArray();
             if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
@@ -91,7 +91,7 @@ class FrontController extends Controller
         $data['page'] = $r->page;
 
 
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         $todosProductos = blank($r->textoBusqueda) ? Productos::recuperarPorCategoria($id) : Productos::buscador($data);
         $opciones = Opciones::convertToArray();
         if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
@@ -102,7 +102,7 @@ class FrontController extends Controller
 
     /*Funcion vista buscador prepara todas las categorías e items para mostrarlos en la página del buscador*/
     public function vistaBuscador(Request $r) {
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         $opciones = Opciones::convertToArray();
         return view('front.buscador', ['categoriasList'=>$categoriasList, 'textoBusqueda' => $r->textoBusqueda, 'opciones' => $opciones]);
     }
@@ -111,7 +111,7 @@ class FrontController extends Controller
     public function buscadorGeneral(Request $r) {
         $data['txt'] = $r->textoBusqueda;
         $data['page'] = $r->page;
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         
         $todosProductos =  Productos::buscador($data);
         $opciones = Opciones::convertToArray();
@@ -137,7 +137,7 @@ class FrontController extends Controller
         $data['items'] = $r->items;
         $data['page'] = $r->page;
 
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         $opciones = Opciones::convertToArray();
         $todosProductos = Productos::buscador($data);
 
@@ -151,28 +151,28 @@ class FrontController extends Controller
     // Muestra la vista de "acerca de"
     public function acercaDe() {
         $opciones = Opciones::convertToArray();
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         return view('front.acerca_de', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "política de privacidad"
     public function politicaPrivacidad() {
         $opciones = Opciones::convertToArray();
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         return view('front.politica_privacidad', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "política de cookies"
     public function politicaCookies() {
         $opciones = Opciones::convertToArray();
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         return view('front.politica_cookies', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "términos de uso"
     public function terminosUso() {
         $opciones = Opciones::convertToArray();
-        $categoriasList = Categorias::orderBy('name')->get();
+        $categoriasList = Categorias::orderBy('order')->get();
         return view('front.terminos_uso', ['opciones' => $opciones, 'categoriasList'=>$categoriasList]);
     }
 

@@ -69,7 +69,7 @@
 
 
                         <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style=" font-family: {{ $opciones['tipografia1'] }} !IMPORTANT; margin-bottom: 1em; margin-right: 2em">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: {{ $opciones['color_elementos_menu'] }} !IMPORTANT; font-family: {{ $opciones['tipografia1'] }} !IMPORTANT; margin-bottom: 1em; margin-right: 2em">
                                 COLECCIONES
                             </button>
 
