@@ -25,8 +25,8 @@
     @yield('css')
 </head>
 
-<body>
-    <div id="container" style="padding-bottom: 100px;">
+<body style="background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
+    <div id="container" >
 
     <!-- Menu-->
     @yield('content')
@@ -128,61 +128,143 @@
             @if((Route::current()->getName() != 'home') && (Route::current()->getName() != 'vistaBuscador'))
             <!-- Buscador -->
             @if(isset($categoria))
-            <div class="p-1 searchParent" style="font-family: {{$opciones['tipografia1']}}">
-                <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="texto" name="textoBusqueda"
-                        placeholder="Buscar en {{$categoria->name ?? ''}}"
-                        value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
-                        <button class="btn btn-light" type="submit"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </form>
-            </div>
+                <div class="p-1 searchParent" style="font-family: {{$opciones['tipografia1']}}">
+                    <form action="{{route('productoPorCategoria', [$categoria->id ?? ''])}}" action="GET">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="texto" name="textoBusqueda"
+                                placeholder="Buscar en {{$categoria->name ?? ''}}"
+                                value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
+                            <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="btn btn-light" type="button" onclick="showInfoMessage()" style="font-size: 22px; border-left: 2px solid #000;">
+                                ⓘ
+                            </button>                            
+                        </div>
+                    </form>
+                </div>
             @endif
             <!-- Fin Buscador -->
             @endif
         </div>
         </nav>
         <!-- Fin menu -->
-        <!-- Footer-->
-        <style>
-            .fixed-footer {
-                position: fixed;
-                margin-top:2em;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-        <footer id="main-footer" class="footer py-4" >
-            <div class="container" style="font-family: {{$opciones['tipografia1']}}">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br> </br> <div class="colores" style="color: blue">juan.baronviciana@gmail.com <br>josemanuelgallurt24@gmail.com</b></div></div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">licencia de Creative Commons Reconocimiento-NoComercial 4.0 Internacional</a>.
-                    </div>
-                    
-                    <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca
-                            de
-                            Privacidad</a>
-                        <a class="link-dark text-decoration-none me-3" href="{{route('politica_cookies')}}">Política de
-                            cookies</a>
-                        <a class="link-dark text-decoration-none me-3" href="{{route('terminos_uso')}}">Términos de
-                            uso</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
         <script src="/js/main.js"></script>
         <!-- Nuestro js-->
         <script src="/js/frontScripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
-    </div>
+
+        <style>
+            /* Estilos para el mensaje emergente */
+            #info-message {
+                position: fixed;
+                top: 80px;
+                right: 10px;
+                padding: 5px 10px;
+                background-color: #ffffff;
+                color: #000000;
+                font-size: 12px;
+                z-index: 9999;
+                display: none;
+            }
+        </style>
+
+        <script>
+            // Función para mostrar el mensaje de información durante unos segundos
+            function showInfoMessage() {
+                var message = 'Para buscar coincidencias exactas, puedes utilizar comillas "". Por ejemplo, si buscas "hola pepe 33" entre comillas, el buscador mostrará los objetos que contengan esa combinación de palabras.';
+                var duration = 5000; // Duración en milisegundos (5 segundos)
+
+                // Crear y mostrar el elemento del mensaje
+                var infoMessage = document.createElement('div');
+                infoMessage.id = 'info-message';
+                infoMessage.textContent = message;
+                document.body.appendChild(infoMessage);
+
+                // Mostrar el mensaje
+                infoMessage.style.display = 'block';
+
+                // Ocultar el mensaje después de la duración especificada
+                setTimeout(function () {
+                    infoMessage.style.display = 'none';
+                }, duration);
+            }
+        </script>
+    
+</div>
+    <!-- Footer-->
+        
+    <style>
+        html, body {
+        height: 100%;
+        margin: 0;
+        }
+
+        .wrapper {
+        min-height: 100%;
+        position: relative;
+        }
+
+        .content {
+        padding-bottom: 60px; /* Altura del footer */
+        }
+
+        footer {
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        }
+        #footer {
+        display: none;
+        }
+
+    
+    </style>
+    
+        <footer class="footer " id="footer" style="background-color: {{ $opciones['color_nav'] }};">
+            <div class="row align-items-center" style="font-family: {{$opciones['tipografia1']}}">
+                <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br>  <div class="colores" style="color: blue">juan.baronviciana@gmail.com - josemanuelgallurt24@gmail.com</b></div></div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+                </div>
+                
+                <div class="col-lg-4 text-lg-end">
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca
+                        de
+                        Privacidad</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_cookies')}}">Política de
+                        cookies</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('terminos_uso')}}">Términos de
+                        uso</a>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+  var footer = document.getElementById("footer");
+
+  function showFooter() {
+    var scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    var clientHeight = window.innerHeight;
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollHeight - clientHeight <= scrollTop) {
+      footer.style.display = "block";
+    } else {
+      footer.style.display = "none";
+    }
+  }
+
+  window.addEventListener("scroll", showFooter);
+  window.addEventListener("resize", showFooter);
+});
+            </script>
 </body>
 
 </html>

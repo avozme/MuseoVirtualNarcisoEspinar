@@ -1,8 +1,8 @@
 @extends('layouts.front')
 @section('content')
 <div id="page-top">
-        <section class="page-section bg-light" id="portfolio"
-            style="--paginacion: {{ $opciones['paginacion_color'] }}; background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
+        <section class="page-section mt-5" id="portfolio"
+            style="--paginacion: {{ $opciones['paginacion_color'] }}; ">
 
             <div class="" style="font-family: {{$opciones['tipografia3']}}">
                 <div class="grid">
@@ -207,15 +207,16 @@
     // Genera un PDF con los datos del producto y la imagen del carrusel.
     // Recibe como parámetros el JSON del producto, el ID de la imagen en el árbol DOM, un JSON con los items del producto y el nombre de la categoría.
     function imprimir(json_product, image_id, json_items, category) {
+        // Escapamos los caracteres especiales de los JSON para que las tildes diacríticas no den problemas
+        var escaped_json_product = escapeSpecialCharacters(json_product);
+        var escaped_json_items = escapeSpecialCharacters(json_items);
         // Convertimos los JSON a objetos
-        var product = JSON.parse(json_product);
-        json_items = json_items.replace(/(\r\n|\n|\r)/gm, "");  // Limpiamos el JSON de posibles saltos de línea
-        console.log(json_items);
-        var items = JSON.parse(json_items);
+        var product = JSON.parse(escaped_json_product);
+        var items = JSON.parse(escaped_json_items);
         
         // Creamos un documento PDF en blanco
         var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
-        window.html2canvas = html2canvas;
+        window.html2canvas = html2canvas; 
 
         // Creamos un HTML con el contenido que queremos que tenga el PDF
         var html = '<div style="font-family: helvetica; font-size: 10pt">';
@@ -231,6 +232,10 @@
             callback: function(doc) {
                 // Save the PDF
                 doc.save(product.name + '.pdf');
+            },
+            styles: {
+                font: 'lato',
+                fontStyle: 'normal',
             },
             x: 15,
             y: 15,
@@ -253,7 +258,7 @@
         link.click();
     }
 
-    //Script de truncar el valor de los items >200 con el boton ver mas
+    // Script para truncar el valor de los items de más de 200 caracteres y añadir el botón "ver más"
     document.addEventListener('DOMContentLoaded', function() {
     var truncarElems = document.querySelectorAll('.truncar');
     truncarElems.forEach(function(elem) {
@@ -290,6 +295,45 @@
         }
     });
 });
+
+/* Esta función limpia todos los caracteres especiales de un string para que pueda ser parseado a JSON,
+   incluyendo las tildes diacríticas y los caracteres no imprimibles */
+function escapeSpecialCharacters(jsonString) {
+    return jsonString.replace(/[\\]/g, '\\\\')
+                   .replace(/[\"]/g, '\\"')
+                   .replace(/[\/]/g, '\\/')
+                   .replace(/[\b]/g, '\\b')
+                   .replace(/[\f]/g, '\\f')
+                   .replace(/[\n]/g, '\\n')
+                   .replace(/[\r]/g, '\\r')
+                   .replace(/[\t]/g, '\\t')
+                   .replace(/[Ī]/g, '\\u012A')
+                   .replace(/[Ū]/g, '\\u016A')
+                   .replace(/[Š]/g, '\\u0160')
+                   .replace(/[Ŷ]/g, '\\u0176')
+                   .replace(/[Ḥ]/g, '\\u1E24')
+                   .replace(/[Ṣ]/g, '\\u1E62')
+                   .replace(/[Ḍ]/g, '\\u1E0C')
+                   .replace(/[Ẓ]/g, '\\u1E92')
+                   .replace(/[Ṭ]/g, '\\u1E6C')
+                   .replace(/[Ḏ]/g, '\\u1E0E')
+                   .replace(/[Ṯ]/g, '\\u1E6E')
+                   .replace(/[ā]/g, '\\u0101')
+                   .replace(/[ī]/g, '\\u012B')
+                   .replace(/[ū]/g, '\\u016B')
+                   .replace(/[š]/g, '\\u0161')
+                   .replace(/[ŷ]/g, '\\u0177')
+                   .replace(/[ḥ]/g, '\\u1E25')
+                   .replace(/[ṣ]/g, '\\u1E63')
+                   .replace(/[ḍ]/g, '\\u1E0D')
+                   .replace(/[ẓ]/g, '\\u1E93')
+                   .replace(/[ṭ]/g, '\\u1E6D')
+                   .replace(/[ḏ]/g, '\\u1E0F')
+                   .replace(/[ṯ]/g, '\\u1E6F')
+                   .replace(/[ʿ]/g, '\\u02BF')
+                   .replace(/[’]/g, '\\u2019')
+                   .replace(/[\u00A0]/g, '\\u00A0');
+}
 
 
 </script>

@@ -2,9 +2,11 @@
      unas pseudo-subcategorías sin necesidad de hacer verdaderas subcategorías. -->
 @extends('layouts.front')
 @section('content')
+
+
     <div id="page-top">
-        <section class="page-section bg-light" id="portfolio"
-            style="background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
+        <section class="page-section" id="portfolio"
+            >
             <div class="" style="font-family: {{$opciones['tipografia3']}}">
                 <div class="grid">
                     @if (isset($msg) && !blank($msg))

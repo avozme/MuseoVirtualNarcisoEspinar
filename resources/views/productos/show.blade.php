@@ -5,15 +5,21 @@
 @section("content")
 <form id="formulario">
     <div class="container-fluid">
-        Categoria:<input class="form-control" type="text" disabled name="categoria_id"
+        Categoriaaaaes qauiasdfasaaaa:<input class="form-control" type="text" disabled name="categoria_id"
             value="{{$producto->categoria->name}}" id="categoria_id"><br>
         Nombre :<input class="form-control" type="text" disabled name="name" value="{{$producto->name ?? '' }}"
             id="categoria_id"><br>
+
         @foreach ($producto->items as $item)
-        {{$item->name}} <input class="form-control" disabled type="text" value='{{$item->pivot->value}}'><br>
+            @php
+                $valorDecoded = htmlspecialchars_decode($item->pivot->value);
+                $valorDecoded = str_replace('&nbsp;', ' ', $valorDecoded);
+                $valorItem = $valorDecoded == "" ? "Sin Valor" : strip_tags($valorDecoded);
+            @endphp
+            {{$item->name}} <input class="form-control" disabled type="text" value='{{$valorItem}}'>
+            <br>
         @endforeach
 
-        </select>
         Imagen: <br> <img id = "mi_imagen" src='{{asset("storage/$producto->id/$producto->image")}}' width="150">
         @foreach($producto->imagenes as $image)
         <img src='{{asset("storage/$producto->id/$image->image")}}' width="150">

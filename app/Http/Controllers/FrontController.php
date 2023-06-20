@@ -74,7 +74,7 @@ class FrontController extends Controller
             // Si el id del item destacado es distinto de -1, se mostrarán todos los productos de la categoría que tengan el valor seleccionado en $valueItem
             $categoria = Categorias::find($idCategoria);
             $categoriasList = Categorias::orderBy('name')->get();
-            $todosProductos = Productos::recuperarPorItemDestacado($idCategoria, $idItem, $valueItem);
+            $todosProductos = Productos::recuperarPorCategoriaDestacado($idCategoria, $idItem, $valueItem);
             $opciones = Opciones::convertToArray();
             if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';
             return view('front.piezas_categorias', ['msg'=> $msg??"",'todosProductos'=>$todosProductos,'categoriasList'=>$categoriasList,'categoria' => $categoria,
@@ -115,11 +115,15 @@ class FrontController extends Controller
         
         $todosProductos =  Productos::buscador($data);
         $opciones = Opciones::convertToArray();
-        if(empty($todosProductos)) $msg = 'No hay resultados de búsqueda';       
+    
+        if ($todosProductos===null){
+            $msg = 'No hay resultados de búsqueda';    
+        } 
         return view('front.piezas_categorias', 
         [
             'textoBusqueda'=> $r->textoBusqueda,
-            'msg'=> $msg??"", 'todosProductos'=>$todosProductos,
+            'msg'=> $msg??"",
+            'todosProductos'=>$todosProductos,
             'categoriasList'=>$categoriasList,
             'textoBusqueda' => $r->textoBusqueda, 
             'opciones' => $opciones
@@ -137,10 +141,11 @@ class FrontController extends Controller
         $opciones = Opciones::convertToArray();
         $todosProductos = Productos::buscador($data);
 
-        if(empty($todosProductos))$msg = 'No hay resultados de búsqueda';       
-        
+        if ($todosProductos===null) {
+            $msg = 'No hay resultados de búsqueda';   
+        }        
 
-        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id, 'items' => $r->items,'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
+        return view('front.piezas_categorias', ['categoria_id' => $r->categoria_id,'msg'=>$msg??"", 'items' => $r->items,'opciones' => $opciones, 'todosProductos'=>$todosProductos, 'categoriasList'=>$categoriasList]);
     }
 
     // Muestra la vista de "acerca de"

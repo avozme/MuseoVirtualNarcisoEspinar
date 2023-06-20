@@ -102,30 +102,16 @@ class Productos extends Model
             $resultadoBusqueda = $resultadoBusqueda->merge(Productos::all());
         } else {
             // CASO 3: Hay texto de búsqueda --> Buscamos productos que coincidan con el texto de búsqueda
-            $textoLimpio = Productos::limpiezaBuscador($textoBusquedaOG); // Limpia el texto de palabras comunes (como artículos) y lo trocea en palabras individuales
+            $textoLimpio = self::preparacionString($textoBusquedaOG); // Limpia el texto de palabras comunes (como artículos) y lo trocea en palabras individuales
             foreach ($textoLimpio as $textoBusqueda) {
-                if (strpos($textoBusqueda, '"') === false) {
-                    // CASO 3A: El texto de búsqueda NO contiene comillas --> Búsqueda LIKE
-                    if ($idCategoria != NULL) {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
-                            ->where("productos.categoria_id", "$idCategoria")
-                            ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->get());
-                    } else {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "like", "%$textoBusqueda%")->get());
-                    }
+                if ($idCategoria != NULL) {
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
+                        ->where("productos.categoria_id", "$idCategoria")
+                        ->where("productos.name", "like", "%$textoBusqueda%")->distinct()->get());
                 } else {
-                    // CASO 3B: El texto de búsqueda SÍ contiene comillas --> Búsqueda EXACTA
-                    $pos_comillas_inicio = strpos($textoBusqueda, '"') + 1;
-                    $pos_comillas_fin = strpos($textoBusqueda, '"', $pos_comillas_inicio);
-                    $texto_entre_comillas = substr($textoBusqueda, $pos_comillas_inicio, $pos_comillas_fin - $pos_comillas_inicio);
-                    if ($idCategoria != NULL) {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::with('categoria')
-                            ->where("productos.categoria_id", $idCategoria)
-                            ->where("productos.name", "$texto_entre_comillas")->distinct()->get());
-                    } else {
-                        $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "$texto_entre_comillas")->get());
-                    }
+                    $resultadoBusqueda = $resultadoBusqueda->merge(Productos::where("productos.name", "like", "%$textoBusqueda%")->get());
                 }
+                
             }
         }
         // Paginamos el resultado
@@ -188,33 +174,39 @@ class Productos extends Model
             });
 
             if (!empty($filteredItems)) {
-                $results = Productos::select('productos.id', 'productos.name', 'productos.image', 'categorias.name as categoriaName')
-                    ->join('items_productos', 'productos.id', '=', 'items_productos.productos_id')
-                    ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
-                    ->where('categorias.id', $idCategoria)
-                    ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name');
-
-                foreach ($filteredItems as $key => $item) {
-                    $txtReadyItem = self::preparacionString($item['texto']);
-
-                    $results->where(function ($query) use ($item, $txtReadyItem) {
-                        foreach ($txtReadyItem as $value) {
-                            $query->orWhere(function ($query) use ($value, $item) {
-                                $query->where('items_productos.items_id', $item['item_id'])
-                                    
-                                    ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                 $results = Productos::select('prod1.id', 'prod1.name', 'prod1.image', 'categorias.name as categoriaName')
+                ->from('productos as prod1')
+                ->join('items_productos', 'prod1.id', '=', 'items_productos.productos_id')
+                ->join('categorias', 'prod1.categoria_id', '=', 'categorias.id')
+                ->where('categorias.id', $idCategoria)
+                ->where(function ($query) use ($filteredItems) {
+                    foreach ($filteredItems as $key => $item) {
+                        $txtReadyItem = self::preparacionString($item['texto']);
+                        $query->where(function ($query) use ($item, $txtReadyItem) {
+                            $query->whereIn('prod1.id', function ($subquery) use ($item, $txtReadyItem) {
+                                $subquery->select('items_productos.productos_id')
+                                    ->from('items_productos')
+                                    ->join('productos', 'productos.id', '=', 'items_productos.productos_id')
+                                    ->join('items', 'items.id', '=', 'items_productos.items_id')
+                                    ->where('items_productos.items_id', $item['item_id'])
+                                    ->where('productos.id', DB::raw('prod1.id'))
+                                    ->where(function ($subquery) use ($txtReadyItem) {
+                                        foreach ($txtReadyItem as $value) {
+                                            $subquery->orWhereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
+                                        }
+                                    });
                             });
-                        }
-                    });
-                }
+                        });
+                    }
+                })
+                ->groupBy('prod1.id', 'prod1.name', 'prod1.image', 'categorias.name');
 
-                $results = $results->distinct()->paginate(3);
+                $results = $results->distinct()->paginate(9);
 
 
                 if (!empty($page)) {
                         $results->setPageName('page')->appends(['page' => $page]);
                 }
-
 
                 return $results->appends(['items' => $filteredItems, 'categoria_id' => $idCategoria]);
 
@@ -232,11 +224,15 @@ class Productos extends Model
                                 $query
                                     ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
                             });
+                            $query->orWhere(function ($query) use ($value) {
+                                $query
+                                    ->whereRaw("productos.name LIKE ?", ['%' . $value . '%']);
+                            });
                         }
                     })
                     ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
                     ->distinct()
-                    ->paginate(3);
+                    ->paginate(9);
 
                     if (!empty($page)) {
                         $results->setPageName('page')->appends(['page' => $page]);
@@ -256,11 +252,15 @@ class Productos extends Model
                                 $query
                                     ->whereRaw("cleanText(items_productos.value) LIKE ?", ['%' . $value . '%']);
                             });
+                            $query->orWhere(function ($query) use ($value) {
+                                $query
+                                    ->whereRaw("productos.name LIKE ?", ['%' . $value . '%']);
+                            });
                         }
                     })
                     ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
                     ->distinct()
-                    ->paginate(3);
+                    ->paginate(9);
             
                 if (!empty($page)) {
                     $results->setPageName('page')->appends(['page' => $page]);
