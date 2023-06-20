@@ -1,8 +1,22 @@
 @extends('layouts.front')
 
 @section('content')
-<div class="container" style="margin-top: 120px; padding-left: 2em; padding-right:2em; padding-bottom:4em">
-    
+<style>
+    /* Estilos generales */
+    #contenedor-todo {
+        margin-bottom: 250px; /* Valor predeterminado para dispositivos móviles */
+    }
+
+    /* Estilos para dispositivos de escritorio */
+    @media (min-width: 768px) {
+        #contenedor-todo {
+            margin-bottom: 150px; /* Valor para dispositivos de escritorio */
+        }
+    }
+</style>
+<div class="container" id="contenedor-todo">
+    <div class="container" style="margin-top: 120px; padding-left: 2em; padding-right:2em; ">
+
     <div style="float: right;">
         <table style="font-size: 14px;">
             <tr>
@@ -35,7 +49,7 @@
             </tr>
         </table>
     </div>  
-    
+
     <!-- Buscador General -->
     <div class="container" id="buscador_general_front" style="padding-bottom: 2em">
         
@@ -56,11 +70,11 @@
         </div>
     </div>
     <!-- Fin Buscador General -->
-</div>
+    </div>
     <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
     <!-- Checkbox categorias -->
         
-<div class="container" id="buscador_por_campos" style=" padding-left:2em;">
+    <div class="container" id="buscador_por_campos" style=" padding-left:2em;">
     <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}; text-align: justify;">
         <h5>BÚSQUEDA POR CAMPOS: <br></h5>
         <p style="padding-left: 2em;">
@@ -103,6 +117,7 @@
                 Buscar &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
+    </div>
     </div>
 </div>
 
