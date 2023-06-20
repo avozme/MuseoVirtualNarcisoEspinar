@@ -201,7 +201,7 @@ class Productos extends Model
                 })
                 ->groupBy('prod1.id', 'prod1.name', 'prod1.image', 'categorias.name');
 
-                $results = $results->distinct()->paginate(3);
+                $results = $results->distinct()->paginate(9);
 
 
                 if (!empty($page)) {
@@ -232,7 +232,7 @@ class Productos extends Model
                     })
                     ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
                     ->distinct()
-                    ->paginate(3);
+                    ->paginate(9);
 
                     if (!empty($page)) {
                         $results->setPageName('page')->appends(['page' => $page]);
@@ -260,7 +260,7 @@ class Productos extends Model
                     })
                     ->groupBy('productos.id', 'productos.name', 'productos.image', 'categorias.name')
                     ->distinct()
-                    ->paginate(3);
+                    ->paginate(9);
             
                 if (!empty($page)) {
                     $results->setPageName('page')->appends(['page' => $page]);
