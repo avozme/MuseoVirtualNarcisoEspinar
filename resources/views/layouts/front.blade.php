@@ -25,7 +25,7 @@
     @yield('css')
 </head>
 
-<body>
+<body style="background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
     <div id="container" >
 
     <!-- Menu-->
@@ -210,7 +210,6 @@
         }
 
         footer {
-        background-color: #f2f2f2;
         padding: 20px;
         text-align: center;
         width: 100%;
@@ -225,7 +224,7 @@
     
     </style>
     
-        <footer class="footer " id="footer">
+        <footer class="footer " id="footer" style="background-color: {{ $opciones['color_nav'] }};">
             <div class="row align-items-center" style="font-family: {{$opciones['tipografia1']}}">
                 <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br>  <div class="colores" style="color: blue">juan.baronviciana@gmail.com - josemanuelgallurt24@gmail.com</b></div></div>
                 <div class="col-lg-4 my-3 my-lg-0">
