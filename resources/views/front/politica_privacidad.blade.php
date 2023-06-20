@@ -1,6 +1,12 @@
 @extends('layouts.front')
 @section('content')
-<div class="avisos_legales" style="padding-top: 2in;  --tipografia3: {{$opciones['tipografia3']}}">
+<style>
+    p{
+      text-align: justify;
+    }
+</style>
+  
+<div class="container" style="margin-top: 1.5in  --tipografia3: {{$opciones['tipografia3']}}">
     {!! $opciones['politica_privacidad']!!}
 </div>
 @endsection
