@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         DB::unprepared(
-            'DROP FUNCTION IF EXISTS cleanText;
+            'ALTER TABLE categorias
+            ADD COLUMN `order` INT DEFAULT 0;
+            DROP FUNCTION IF EXISTS cleanText;
             CREATE FUNCTION cleanText(str TEXT)
                 RETURNS TEXT CHARSET utf8
                 DETERMINISTIC
