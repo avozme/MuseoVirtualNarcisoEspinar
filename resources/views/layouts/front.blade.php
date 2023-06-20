@@ -135,9 +135,9 @@
                                 placeholder="Buscar en {{$categoria->name ?? ''}}"
                                 value="{{isset($textoBusqueda) ? $textoBusqueda : ''}}">
                             <button class="btn btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            <button class="btn btn-light" type="button" onclick="showInfoMessage()">
-                               i
-                            </button>
+                            <button class="btn btn-light" type="button" onclick="showInfoMessage()" style="font-size: 22px; border-left: 2px solid #000;">
+                                ⓘ
+                            </button>                            
                         </div>
                     </form>
                 </div>

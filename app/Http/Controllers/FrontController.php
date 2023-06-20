@@ -115,8 +115,9 @@ class FrontController extends Controller
         
         $todosProductos =  Productos::buscador($data);
         $opciones = Opciones::convertToArray();
-        if ($todosProductos->isEmpty()) {
-            $msg = 'No hay resultados de búsqueda';   
+    
+        if ($todosProductos===null){
+            $msg = 'No hay resultados de búsqueda';    
         } 
         return view('front.piezas_categorias', 
         [
@@ -140,7 +141,7 @@ class FrontController extends Controller
         $opciones = Opciones::convertToArray();
         $todosProductos = Productos::buscador($data);
 
-        if ($todosProductos->isEmpty()) {
+        if ($todosProductos===null) {
             $msg = 'No hay resultados de búsqueda';   
         }        
 
