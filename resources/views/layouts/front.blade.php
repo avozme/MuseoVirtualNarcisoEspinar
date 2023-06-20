@@ -190,7 +190,8 @@
                 }, duration);
             }
         </script>
-    </div>
+    
+</div>
     <!-- Footer-->
         
     <style>
@@ -201,26 +202,34 @@
 
         .wrapper {
         min-height: 100%;
-        display: flex;
-        flex-direction: column;
+        position: relative;
         }
 
-        /* Estilos del footer */
+        .content {
+        padding-bottom: 60px; /* Altura del footer */
+        }
+
         footer {
         background-color: #f2f2f2;
         padding: 20px;
         text-align: center;
         width: 100%;
-        margin-top: auto;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        }
+        #footer {
+        display: none;
         }
 
     
     </style>
-        <footer class="footer ">
+    
+        <footer class="footer " id="footer">
             <div class="row align-items-center" style="font-family: {{$opciones['tipografia1']}}">
-                <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br>  <div class="colores" style="color: blue">juan.baronviciana@gmail.com <br>josemanuelgallurt24@gmail.com</b></div></div>
+                <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br>  <div class="colores" style="color: blue">juan.baronviciana@gmail.com - josemanuelgallurt24@gmail.com</b></div></div>
                 <div class="col-lg-4 my-3 my-lg-0">
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">licencia de Creative Commons Reconocimiento-NoComercial 4.0 Internacional</a>.
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
                 </div>
                 
                 <div class="col-lg-4 text-lg-end">
@@ -234,6 +243,31 @@
                 </div>
             </div>
         </footer>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+            var footer = document.getElementById("footer");
+
+            function showFooter() {
+                var scrollHeight = Math.max(
+                document.documentElement.scrollHeight,
+                document.body.scrollHeight
+                );
+                var clientHeight = window.innerHeight;
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollHeight <= clientHeight || scrollTop + clientHeight >= scrollHeight) {
+                footer.style.display = "block";
+                } else {
+                footer.style.display = "none";
+                }
+            }
+
+            window.addEventListener("scroll", showFooter);
+            window.addEventListener("resize", showFooter);
+            showFooter(); // Mostrar el footer al cargar la página
+            });
+
+            </script>
 </body>
 
 </html>
