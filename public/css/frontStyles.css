@@ -32,11 +32,6 @@
   }
 }
 
-#mainNav .navbar-nav .nav-item .nav-link, #menu .navbar-nav .nav-item .nav-link, #buscador_nav .navbar-nav .nav-item .nav-link{
-  color: #000000;
-}
-
-
 
 .nav-link{
   margin-right: 2em;

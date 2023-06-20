@@ -207,27 +207,16 @@
     // Genera un PDF con los datos del producto y la imagen del carrusel.
     // Recibe como parámetros el JSON del producto, el ID de la imagen en el árbol DOM, un JSON con los items del producto y el nombre de la categoría.
     function imprimir(json_product, image_id, json_items, category) {
-        // Convertimos los JSON a objetos
-        console.log(json_product);
+        // Escapamos los caracteres especiales de los JSON para que las tildes diacríticas no den problemas
         var escaped_json_product = escapeSpecialCharacters(json_product);
-        console.log(escaped_json_product);
-        console.log(json_items);
         var escaped_json_items = escapeSpecialCharacters(json_items);
-        console.log(escaped_json_items);
-
-//var jsonString = '{"name":"John","city":"New York","specialChars":"ĪŪŠŶḤṢḌẒṬḎṮāīūšŷḥṣḍẓṭḏṯʿ’"}';
-//var escapedString = escapeSpecialCharacters(jsonString);
-//var parsedObject = JSON.parse(escapedString);
-//console.log(parsedObject);
-
+        // Convertimos los JSON a objetos
         var product = JSON.parse(escaped_json_product);
-        //json_items = json_items.replace(/(\r\n|\n|\r)/gm, "");  // Limpiamos el JSON de posibles saltos de línea
-        //console.log(json_items);
         var items = JSON.parse(escaped_json_items);
         
         // Creamos un documento PDF en blanco
         var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
-        window.html2canvas = html2canvas;
+        window.html2canvas = html2canvas; 
 
         // Creamos un HTML con el contenido que queremos que tenga el PDF
         var html = '<div style="font-family: helvetica; font-size: 10pt">';
