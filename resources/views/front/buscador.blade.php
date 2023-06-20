@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-<div class="container" style="margin-top: 120px; margin-bottom: 4em;padding-left: 2em; padding-right:2em; padding-bottom:4em">
+<div class="container" style="margin-top: 120px; padding-left: 2em; padding-right:2em; padding-bottom:4em">
     
     <div style="float: right;">
         <table style="font-size: 14px;">
@@ -60,7 +60,7 @@
     <p>_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</p>
     <!-- Checkbox categorias -->
         
-<div class="container" id="buscador_por_campos" style="padding-bottom: 2em; padding-left:2em;">
+<div class="container" id="buscador_por_campos" style=" padding-left:2em;">
     <div class="informacion_busquedas" style="font-family: {{$opciones['tipografia3']}}; text-align: justify;">
         <h5>BÚSQUEDA POR CAMPOS: <br></h5>
         <p style="padding-left: 2em;">
@@ -99,7 +99,7 @@
             <!-- Fin Buscador por campos -->
             <p class="text-danger" id="sendError"></p>
 
-            <button id="botonBusquedaCampos" class="mb-3 btn btn-dark" type="submit">
+            <button id="botonBusquedaCampos" class="btn btn-dark" type="submit">
                 Buscar &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>

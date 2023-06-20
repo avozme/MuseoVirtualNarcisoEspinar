@@ -147,55 +147,6 @@
         </div>
         </nav>
         <!-- Fin menu -->
-        <!-- Footer-->
-        <style>
-            .fixed-footer {
-                position: fixed;
-                margin-top:2em;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
-        <footer id="main-footer" class="footer fixed-footer py-4">
-            <div class="container" style="font-family: {{$opciones['tipografia1']}}">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br> </br> <div class="colores" style="color: blue">juan.baronviciana@gmail.com <br>josemanuelgallurt24@gmail.com</b></div></div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">licencia de Creative Commons Reconocimiento-NoComercial 4.0 Internacional</a>.
-                    </div>
-                    
-                    <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca
-                            de
-                            Privacidad</a>
-                        <a class="link-dark text-decoration-none me-3" href="{{route('politica_cookies')}}">Política de
-                            cookies</a>
-                        <a class="link-dark text-decoration-none me-3" href="{{route('terminos_uso')}}">Términos de
-                            uso</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var footer = document.getElementById('main-footer');
-                function toggleFooterVisibility() {
-                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                        // Mostrar el footer cuando se alcance el final de la página
-                        footer.style.display = 'block';
-                    } else {
-                        // Ocultar el footer cuando no se alcance el final de la página
-                        footer.style.display = 'none';
-                    }
-                }
-                // Verificar la visibilidad del footer al cargar la página y al hacer scroll
-                window.addEventListener('scroll', toggleFooterVisibility);
-                window.addEventListener('resize', toggleFooterVisibility);
-                toggleFooterVisibility(); // Para comprobar la visibilidad inicial del footer
-            });
-        </script>
         <script src="/js/main.js"></script>
         <!-- Nuestro js-->
         <script src="/js/frontScripts.js"></script>
@@ -240,6 +191,49 @@
             }
         </script>
     </div>
+    <!-- Footer-->
+        
+    <style>
+        html, body {
+        height: 100%;
+        margin: 0;
+        }
+
+        .wrapper {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        }
+
+        /* Estilos del footer */
+        footer {
+        background-color: #f2f2f2;
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        margin-top: auto;
+        }
+
+    
+    </style>
+        <footer class="footer ">
+            <div class="row align-items-center" style="font-family: {{$opciones['tipografia1']}}">
+                <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br>  <div class="colores" style="color: blue">juan.baronviciana@gmail.com <br>josemanuelgallurt24@gmail.com</b></div></div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">licencia de Creative Commons Reconocimiento-NoComercial 4.0 Internacional</a>.
+                </div>
+                
+                <div class="col-lg-4 text-lg-end">
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca
+                        de
+                        Privacidad</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_cookies')}}">Política de
+                        cookies</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('terminos_uso')}}">Términos de
+                        uso</a>
+                </div>
+            </div>
+        </footer>
 </body>
 
 </html>
