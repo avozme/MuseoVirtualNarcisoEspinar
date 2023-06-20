@@ -299,7 +299,8 @@
 /* Esta función limpia todos los caracteres especiales de un string para que pueda ser parseado a JSON,
    incluyendo las tildes diacríticas y los caracteres no imprimibles */
 function escapeSpecialCharacters(jsonString) {
-  return jsonString.replace(/[\\]/g, '\\\\')
+    return jsonString.replace(/[\\]/g, '\\\\')
+                   .replace(/[\"]/g, '\\"')
                    .replace(/[\/]/g, '\\/')
                    .replace(/[\b]/g, '\\b')
                    .replace(/[\f]/g, '\\f')
@@ -330,10 +331,9 @@ function escapeSpecialCharacters(jsonString) {
                    .replace(/[ḏ]/g, '\\u1E0F')
                    .replace(/[ṯ]/g, '\\u1E6F')
                    .replace(/[ʿ]/g, '\\u02BF')
-                   .replace(/[’]/g, '\\u2019');
+                   .replace(/[’]/g, '\\u2019')
+                   .replace(/[\u00A0]/g, '\\u00A0');
 }
-
-
 
 
 </script>
