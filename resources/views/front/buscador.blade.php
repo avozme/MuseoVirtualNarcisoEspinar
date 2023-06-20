@@ -4,9 +4,11 @@
 <div class="container" style="margin-top: 120px; margin-bottom: 4em;padding-left: 2em; padding-right:2em; padding-bottom:4em">
     
     <div style="float: right;">
-        <table style="font-size: 13px;">
+        <table style="font-size: 14px;">
             <tr>
                 <td>Signos diacriticos:  </td>
+                <td>ʿ</td><td>  </td>
+                <td>’</td><td>  </td>
                 <td>Ī</td><td>  </td>
                 <td>Ū</td><td>  </td>
                 <td>Š</td><td>  </td>
@@ -30,8 +32,6 @@
                 <td>ṭ</td><td>  </td>
                 <td>ḏ</td><td>  </td>
                 <td>ṯ</td><td>  </td>
-                <td>ʿ</td><td>  </td>
-                <td>’</td><td>  </td>
             </tr>
         </table>
     </div>  
