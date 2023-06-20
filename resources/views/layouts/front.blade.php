@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div id="container" style="padding-bottom: 100px;">
+    <div id="container" >
 
     <!-- Menu-->
     @yield('content')
@@ -245,28 +245,26 @@
         </footer>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-            var footer = document.getElementById("footer");
+  var footer = document.getElementById("footer");
 
-            function showFooter() {
-                var scrollHeight = Math.max(
-                document.documentElement.scrollHeight,
-                document.body.scrollHeight
-                );
-                var clientHeight = window.innerHeight;
-                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  function showFooter() {
+    var scrollHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
+    var clientHeight = window.innerHeight;
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-                if (scrollHeight <= clientHeight || scrollTop + clientHeight >= scrollHeight) {
-                footer.style.display = "block";
-                } else {
-                footer.style.display = "none";
-                }
-            }
+    if (scrollHeight - clientHeight <= scrollTop) {
+      footer.style.display = "block";
+    } else {
+      footer.style.display = "none";
+    }
+  }
 
-            window.addEventListener("scroll", showFooter);
-            window.addEventListener("resize", showFooter);
-            showFooter(); // Mostrar el footer al cargar la página
-            });
-
+  window.addEventListener("scroll", showFooter);
+  window.addEventListener("resize", showFooter);
+});
             </script>
 </body>
 
