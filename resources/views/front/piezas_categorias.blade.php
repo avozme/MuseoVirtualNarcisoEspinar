@@ -1,7 +1,7 @@
 @extends('layouts.front')
 @section('content')
 <div id="page-top">
-        <section class="page-section bg-light" id="portfolio"
+        <section class="page-section bg-light mt-5" id="portfolio"
             style="--paginacion: {{ $opciones['paginacion_color'] }}; background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
 
             <div class="" style="font-family: {{$opciones['tipografia3']}}">
