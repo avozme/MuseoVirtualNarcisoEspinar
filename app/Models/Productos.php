@@ -128,6 +128,13 @@ class Productos extends Model
    
 
     public static function preparacionString($cadena) {
+        /*
+            Recibe una cadena string 
+
+            Esta funcion limpia palabras sencillas del texto de busqueda que estén contenidas en $diccionario.
+            Tambien las separa por palabras o por la combinacion de palabras segun si están entrecomilladas o no
+            Todas estas palabras se van añadiendo a un array el cual es el que se devuelve
+        */
         $valores = explode('"', $cadena);
         $txtReady = [];
     
@@ -156,6 +163,12 @@ class Productos extends Model
     
     public static function buscador($data)
     {
+        //Funcion la cual contiene los tres buscadores de la pagina web el de categorias el de campos y el general
+        //Segun los parametros almacenados dentro de $data y un if anidado se ejecuta una consulta a traves de eloquent u otra
+        //busqueda por campos, $items!=null
+        //busqueda por categoria $idCategoria!=null
+        //busqueda general $txt!=null
+
         $txt = $data['txt'] ?? null;
         $idCategoria = $data['idCategoria'] ?? null;
         $items = $data['items'] ?? null;
