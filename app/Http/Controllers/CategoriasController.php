@@ -52,7 +52,7 @@ class CategoriasController extends Controller
     }
 
     public function destroy($id) {
-        
+        Productos::where('categoria_id', $id)->delete();        
         $p = Categorias::find($id);
         $p->delete();
         return redirect()->route('categorias.index');
