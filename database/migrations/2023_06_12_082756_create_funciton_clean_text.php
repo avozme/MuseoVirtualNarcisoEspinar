@@ -46,8 +46,10 @@ return new class extends Migration
             
                 RETURN str;
             END;;
+
             '
         );
+        
     }
 
     /**
