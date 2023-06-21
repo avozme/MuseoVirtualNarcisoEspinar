@@ -34,6 +34,9 @@ class CategoriasController extends Controller
         $p->order = $maxOrder + 1;
         $p->save();
         $p->save();
+        Categorias::query()->update([
+            'order' => \DB::raw('id')
+        ]);
         return redirect()->route('categorias.index');
     }
 
