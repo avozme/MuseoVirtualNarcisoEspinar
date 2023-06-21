@@ -214,15 +214,20 @@
         
         // Creamos un documento PDF en blanco
         var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
+        var fontName = "Roboto-Regular";
+        doc.addFont('/fonts/'+fontName+'.ttf', fontName, 'normal'); // Es necesario usar una fuente con soporte unicode y poner el archivo ttf en /public/fonts
+        doc.setFont(fontName);
         window.html2canvas = html2canvas; 
 
         // Creamos un HTML con el contenido que queremos que tenga el PDF
-        var html = '<div style="font-family: helvetica; font-size: 10pt">';
+        var html = "";
+        html += '<body style="font-family: '+fontName+'; font-size: 100%">';
         html += '{{$opciones['home_titulo']}} {{$opciones['home_subtitulo']}}<br><hr>';
-        html += '<p style="font-size: 150%"><strong>' + product.name + '</strong> [' + category + ']</p>';
+        html += '<p style="font-family: '+fontName+'; font-size: 180%"><strong>' + product.name + '</strong> [' + category + ']</p>';
         html += '<img src="' + document.getElementById(image_id).src + '" width="100%">';
         for (var i = 0; i < items.length; i++) {
-            html += '<strong>' + items[i].name + ': </strong>' + items[i].pivot.value + '<br>';
+            html += '<p style="font-family: '+fontName+'; font-size: 140%">' + items[i].name + ':</p>';
+            html += '<p style="font-family: '+fontName+'; font-size: 100%">' + items[i].pivot.value.replace(/<p>/g, "<p style='font-family: "+fontName+"; font-size: 100%'>") + '</p>';
         }
 
         // Enviamos el HTML al PDF y forzamos la descarga
@@ -230,10 +235,6 @@
             callback: function(doc) {
                 // Save the PDF
                 doc.save(product.name + '.pdf');
-            },
-            styles: {
-                font: 'lato',
-                fontStyle: 'normal',
             },
             x: 15,
             y: 15,
