@@ -221,13 +221,12 @@
 
         // Creamos un HTML con el contenido que queremos que tenga el PDF
         var html = "";
-        html += '<body style="font-family: '+fontName+'; font-size: 100%">';
         html += '{{$opciones['home_titulo']}} {{$opciones['home_subtitulo']}}<br><hr>';
-        html += '<p style="font-family: '+fontName+'; font-size: 180%"><strong>' + product.name + '</strong> [' + category + ']</p>';
+        html += '<p style="font-family: '+fontName+'; font-size: 180%; letter-spacing: 0.15em"><strong>' + product.name + '</strong> [' + category + ']</p>';
         html += '<img src="' + document.getElementById(image_id).src + '" width="100%">';
         for (var i = 0; i < items.length; i++) {
-            html += '<p style="font-family: '+fontName+'; font-size: 140%">' + items[i].name + ':</p>';
-            html += '<p style="font-family: '+fontName+'; font-size: 100%">' + items[i].pivot.value.replace(/<p>/g, "<p style='font-family: "+fontName+"; font-size: 100%'>") + '</p>';
+            html += '<p style="font-family: '+fontName+'; font-size: 140%; letter-spacing: 0.15em;">' + items[i].name + ':</p>';
+            html += items[i].pivot.value.replace(/<p>/g, "<p style='font-family: "+fontName+"; font-size: 100%; letter-spacing: 0.15em;'>");
         }
 
         // Enviamos el HTML al PDF y forzamos la descarga
