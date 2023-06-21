@@ -75,7 +75,7 @@
                                                                 <div class="carousel-item active w-100">
                                                                     <!-- Botones de descarga e impresión de la imagen principal -->
                                                                     <div class="d-flex justify-content-center" style="padding-bottom: 5px">
-                                                                        <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{json_encode($producto)}}', 'mi_imagen{{$key}}', '{{json_encode($producto->items)}}', '{{$producto->categoriaName}}')">
+                                                                        <button class="btn btn-outline-secondary fa-solid fa-print mt-3" onclick="imprimir('{{addslashes(json_encode($producto,JSON_UNESCAPED_UNICODE))}}', 'mi_imagen{{$key}}', '{{addslashes(json_encode($producto->items,JSON_UNESCAPED_UNICODE))}}', '{{$producto->categoriaName}}')">
                                                                         <button class="btn btn-outline-secondary fa-solid fa-download mt-3" onclick="download('{{asset("storage/$producto->id/$producto->image")}}','{{$producto->image}}', '{{$producto->name}}', 0)">
                                                                     </div>   
                                                                     <!-- Imagen -->                                                    
@@ -207,12 +207,10 @@
     // Genera un PDF con los datos del producto y la imagen del carrusel.
     // Recibe como parámetros el JSON del producto, el ID de la imagen en el árbol DOM, un JSON con los items del producto y el nombre de la categoría.
     function imprimir(json_product, image_id, json_items, category) {
-        // Escapamos los caracteres especiales de los JSON para que las tildes diacríticas no den problemas
-        var escaped_json_product = escapeSpecialCharacters(json_product);
-        var escaped_json_items = escapeSpecialCharacters(json_items);
+
         // Convertimos los JSON a objetos
-        var product = JSON.parse(escaped_json_product);
-        var items = JSON.parse(escaped_json_items);
+        var product = JSON.parse(json_product);
+        var items = JSON.parse(json_items);
         
         // Creamos un documento PDF en blanco
         var doc = new jsPDF('portrait', 'mm', 'a4');   // Creamos el PDF en tamaño A4 y con unidades en mm
@@ -295,45 +293,6 @@
         }
     });
 });
-
-/* Esta función limpia todos los caracteres especiales de un string para que pueda ser parseado a JSON,
-   incluyendo las tildes diacríticas y los caracteres no imprimibles */
-function escapeSpecialCharacters(jsonString) {
-    return jsonString.replace(/[\\]/g, '\\\\')
-                   .replace(/[\"]/g, '\\"')
-                   .replace(/[\/]/g, '\\/')
-                   .replace(/[\b]/g, '\\b')
-                   .replace(/[\f]/g, '\\f')
-                   .replace(/[\n]/g, '\\n')
-                   .replace(/[\r]/g, '\\r')
-                   .replace(/[\t]/g, '\\t')
-                   .replace(/[Ī]/g, '\\u012A')
-                   .replace(/[Ū]/g, '\\u016A')
-                   .replace(/[Š]/g, '\\u0160')
-                   .replace(/[Ŷ]/g, '\\u0176')
-                   .replace(/[Ḥ]/g, '\\u1E24')
-                   .replace(/[Ṣ]/g, '\\u1E62')
-                   .replace(/[Ḍ]/g, '\\u1E0C')
-                   .replace(/[Ẓ]/g, '\\u1E92')
-                   .replace(/[Ṭ]/g, '\\u1E6C')
-                   .replace(/[Ḏ]/g, '\\u1E0E')
-                   .replace(/[Ṯ]/g, '\\u1E6E')
-                   .replace(/[ā]/g, '\\u0101')
-                   .replace(/[ī]/g, '\\u012B')
-                   .replace(/[ū]/g, '\\u016B')
-                   .replace(/[š]/g, '\\u0161')
-                   .replace(/[ŷ]/g, '\\u0177')
-                   .replace(/[ḥ]/g, '\\u1E25')
-                   .replace(/[ṣ]/g, '\\u1E63')
-                   .replace(/[ḍ]/g, '\\u1E0D')
-                   .replace(/[ẓ]/g, '\\u1E93')
-                   .replace(/[ṭ]/g, '\\u1E6D')
-                   .replace(/[ḏ]/g, '\\u1E0F')
-                   .replace(/[ṯ]/g, '\\u1E6F')
-                   .replace(/[ʿ]/g, '\\u02BF')
-                   .replace(/[’]/g, '\\u2019')
-                   .replace(/[\u00A0]/g, '\\u00A0');
-}
 
 
 </script>
