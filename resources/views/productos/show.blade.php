@@ -5,7 +5,7 @@
 @section("content")
 <form id="formulario">
     <div class="container-fluid">
-        Categoriaaaaes qauiasdfasaaaa:<input class="form-control" type="text" disabled name="categoria_id"
+        Categoria:<input class="form-control" type="text" disabled name="categoria_id"
             value="{{$producto->categoria->name}}" id="categoria_id"><br>
         Nombre :<input class="form-control" type="text" disabled name="name" value="{{$producto->name ?? '' }}"
             id="categoria_id"><br>
