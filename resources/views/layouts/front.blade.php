@@ -26,6 +26,8 @@
 </head>
 
 <body style="background-color: {{ $opciones['color_fondo'] }}!IMPORTANT;">
+    <div class="wrapper">
+
     <div id="container" >
 
     <!-- Menu-->
@@ -193,78 +195,48 @@
     
 </div>
     <!-- Footer-->
-        
     <style>
         html, body {
-        height: 100%;
-        margin: 0;
+            height: 100%;
+            margin: 0;
         }
-
-        .wrapper {
-        min-height: 100%;
-        position: relative;
-        }
-
-        .content {
-        padding-bottom: 60px; /* Altura del footer */
-        }
-
-        footer {
-        padding: 20px;
-        text-align: center;
-        width: 100%;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        }
-        #footer {
-        display: none;
-        }
-
     
+        .wrapper {
+            min-height: 100%;
+            position: relative;
+        }
+    
+        .content {
+            padding-bottom: 60px; /* Altura del footer */
+        }
+    
+        footer {
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            position: sticky;
+            bottom: 0;
+            background-color: {{ $opciones['color_nav'] }};
+        }
     </style>
     
-        <footer class="footer " id="footer" style="background-color: {{ $opciones['color_nav'] }};">
+    
+        <footer class="footer">
             <div class="row align-items-center" style="font-family: {{$opciones['tipografia1']}}">
                 <div class="col-lg-4 text-lg-start"><b>Si estás interesado en exponer tu arte online contáctanos: <br>  <div class="colores" style="color: blue">juan.baronviciana@gmail.com - josemanuelgallurt24@gmail.com</b></div></div>
                 <div class="col-lg-4 my-3 my-lg-0">
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
                 </div>
-                
                 <div class="col-lg-4 text-lg-end">
-                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca
-                        de
-                        Privacidad</a>
-                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_cookies')}}">Política de
-                        cookies</a>
-                    <a class="link-dark text-decoration-none me-3" href="{{route('terminos_uso')}}">Términos de
-                        uso</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_privacidad')}}">Politíca de Privacidad</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('politica_cookies')}}">Política de cookies</a>
+                    <a class="link-dark text-decoration-none me-3" href="{{route('terminos_uso')}}">Términos de uso</a>
                 </div>
             </div>
         </footer>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-  var footer = document.getElementById("footer");
-
-  function showFooter() {
-    var scrollHeight = Math.max(
-      document.documentElement.scrollHeight,
-      document.body.scrollHeight
-    );
-    var clientHeight = window.innerHeight;
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollHeight - clientHeight <= scrollTop) {
-      footer.style.display = "block";
-    } else {
-      footer.style.display = "none";
-    }
-  }
-
-  window.addEventListener("scroll", showFooter);
-  window.addEventListener("resize", showFooter);
-});
-            </script>
+    </div>
+    
+   
 </body>
 
 </html>
